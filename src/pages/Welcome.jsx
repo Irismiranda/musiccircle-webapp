@@ -7,13 +7,13 @@ export default function Welcome() {
     const storedRefreshToken = Cookies.get('storedRefreshToken')
     
     async function login() {
-        const response = await Axios.get("https://localhost:4000/auth/login");
+        const response = await Axios.get("http://localhost:4000/auth/login");
         const redirectURL = response.data
         window.location.href = redirectURL                
     }
 
     if(storedAccessToken || storedRefreshToken){
-        window.location.href = 'https://localhost:5173/'
+        window.location.href = 'http://localhost:5173/'
         return null
     } else return (       
         <button onClick={login}>login</button>      
