@@ -7,13 +7,13 @@ export default function Welcome() {
     const storedRefreshToken = Cookies.get('storedRefreshToken')
     
     async function login() {
-        const response = await Axios.get("http://localhost:4000/auth/login");
+        const response = await Axios.get("https://musiccircle-api.onrender.com/auth/login");
         const redirectURL = response.data
         window.location.href = redirectURL                
     }
 
     if(storedAccessToken || storedRefreshToken){
-        window.location.href = 'http://localhost:5173/'
+        window.location.href = 'https://musiccircle.onrender.com/'
         return null
     } else return (       
         <button onClick={login}>login</button>      

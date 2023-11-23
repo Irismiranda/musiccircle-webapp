@@ -93,7 +93,7 @@ export default function AuthRequired() {
   useEffect(() => {
     
     if (!socket && setSocket) {
-      const newSocket = io("http://localhost:4000", { withCredentials: true });
+      const newSocket = io("https://musiccircle-api.onrender.com", { withCredentials: true });
       setSocket(newSocket)
       
       return () => {
