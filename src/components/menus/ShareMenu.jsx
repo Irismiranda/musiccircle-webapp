@@ -37,6 +37,7 @@ export default function ShareMenu(){
     }, [currentUser])
 
     window.addEventListener('message', async function(event) {
+        console.log("message received")
         if (event.origin !== 'https://musiccircle.onrender.com') return
         if (event.data === 'InstagramAuthSuccess') {
             console.log('Authentication was successful!')
