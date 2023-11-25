@@ -4,13 +4,13 @@ import { Axios } from "../../Axios-config"
 import useStore from "../../store"
 
 export default function ShareMenu(){
-    const { currentUser } = useStore()
+    const { currentUser, setCurrentUser } = useStore()
     const [followingList, setFollowingList] = useState(null)
 
     async function handleIgConnect(){
         try{
            const response = await Axios.post('/instagram_connect', { user_id: currentUser.id })
-           const windowFeatures = 'toolbar=no, menubar=no, width=500, height=800, top=100, left=100'
+           const windowFeatures = 'toolbar=no, menubar=no, width=500, height=700, top=100, left=100'
            window.open(response.data, 'InstagramAuth', windowFeatures)
         } catch(err){
             console.log(err)
@@ -35,6 +35,18 @@ export default function ShareMenu(){
             getFollowersList()
         }
     }, [currentUser])
+
+    window.addEventListener('message', async function(event) {
+        if (event.origin !== 'https://musiccircle.onrender.com') return
+        if (event.data === 'InstagramAuthSuccess') {
+            console.log('Authentication was successful!')
+            const response = await Axios.post("/api/profile", {
+                id: currentUser.id,
+                type: "user",
+            })
+            setCurrentUser(response.data)
+        }
+    }, false)
 
     return (
         <div>

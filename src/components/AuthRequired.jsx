@@ -56,21 +56,16 @@ export default function AuthRequired() {
         type: "user",
         email: userData.email,
         instagram_connected: false,
+        instagram_code: null,
         tiktok_connected: false,
+        tiktok_code: null,
       }
       
       const response = await Axios.post("/api/profile", {
         userData: dbUserData,
       })
 
-      const { instagram_connected, tiktok_connected } = response.data.userData
-
-      userData.instagram_connected = instagram_connected
-      userData.tiktok_connected = tiktok_connected
-
-      console.log("log - updated user data is:". userData)
-
-      setCurrentUser(userData)
+      setCurrentUser(response.data)
 
       const stringData = JSON.stringify(userData)
       localStorage.setItem("currentUser", stringData)
