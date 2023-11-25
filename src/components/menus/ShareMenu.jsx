@@ -36,18 +36,30 @@ export default function ShareMenu(){
         }
     }, [currentUser])
 
-    window.addEventListener('message', async function(event) {
-        console.log("message received")
-        if (event.origin !== 'https://musiccircle.onrender.com') return
-        if (event.data === 'InstagramAuthSuccess') {
-            console.log('Authentication was successful!')
-            const response = await Axios.post("/api/profile", {
-                id: currentUser.id,
-                type: "user",
-            })
-            setCurrentUser(response.data)
+    useEffect(() => {
+        const handleMessage = async (event) => {
+            console.log("message received")
+            if (event.origin !== 'https://musiccircle.onrender.com') return;
+            if (event.data === 'InstagramAuthSuccess') {
+                console.log('Authentication was successful!')
+                try {
+                    const response = await Axios.post("/api/profile", {
+                        id: currentUser.id,
+                        type: "user",
+                    })
+                    setCurrentUser(response.data);
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                }
+            }
         }
-    }, false)
+
+        window.addEventListener('message', handleMessage, false)
+
+        return () => {
+            window.removeEventListener('message', handleMessage, false)
+        }
+    }, [])
 
     return (
         <div>
