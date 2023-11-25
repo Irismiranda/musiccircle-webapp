@@ -7,11 +7,11 @@ export default function ShareMenu(){
     const { currentUser } = useStore()
     const [followingList, setFollowingList] = useState(null)
 
-
     async function handleIgConnect(){
         try{
            const response = await Axios.post('/instagram_connect', { user_id: currentUser.id })
-           window.location.href = response.data
+           const windowFeatures = 'toolbar=no, menubar=no, width=500, height=800, top=100, left=100'
+           window.open(response.data, 'InstagramAuth', windowFeatures)
         } catch(err){
             console.log(err)
         }
