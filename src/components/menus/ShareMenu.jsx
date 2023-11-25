@@ -34,6 +34,7 @@ export default function ShareMenu(){
         if(currentUser){
             getFollowersList()
         }
+        console.log("log - updated user is:", currentUser)
     }, [currentUser])
 
     useEffect(() => {
@@ -48,9 +49,9 @@ export default function ShareMenu(){
                         id: currentUser.id,
                         type: "user",
                     })
-                    setCurrentUser(response.data);
+                    setCurrentUser(response.data.userData)
                 } catch (error) {
-                    console.error('Error updating profile:', error);
+                    console.error('Error updating profile:', error)
                 }
             }
         }
