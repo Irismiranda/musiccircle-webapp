@@ -22,7 +22,7 @@ export default function ShareMenu(){
     }
 
     async function getFollowersList(){
-        const response = await Axios.post('/api/profile/following', {currentUser})
+        const response = await Axios.post('/api/profile/following', currentUser)
         console.log("user is following:", response.data)
         if(response){
             setFollowingList(response.data)
@@ -39,6 +39,7 @@ export default function ShareMenu(){
     useEffect(() => {
         const handleMessage = async (event) => {
             console.log("message received")
+            event.stopImmediatePropagation()
             if (event.origin !== 'https://musiccircle.onrender.com') return;
             if (event.data === 'InstagramAuthSuccess') {
                 console.log('Authentication was successful!')
@@ -55,8 +56,10 @@ export default function ShareMenu(){
         }
 
         window.addEventListener('message', handleMessage, false)
+        console.log("Setting up message event listener")
 
         return () => {
+            console.log("Removing message event listener")
             window.removeEventListener('message', handleMessage, false)
         }
     }, [])
