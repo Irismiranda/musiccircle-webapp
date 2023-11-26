@@ -65,7 +65,7 @@ export default function AuthRequired() {
         userData: dbUserData,
       })
 
-      console.log("log - user data is:", response.data)
+      console.log("log - user data is:", response.data.userData)
       setCurrentUser(response.data.userData)
 
       const stringData = JSON.stringify(userData)
