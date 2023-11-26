@@ -168,7 +168,7 @@ export default function AuthRequired() {
 
     if(storedUser){
       setCurrentUser(JSON.parse(storedUser))
-      console.log("log - got stored user")
+      console.log("log - got stored user", storedUser)
     } else {
       if(spotifyApi){
         getUser()
