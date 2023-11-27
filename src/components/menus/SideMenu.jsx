@@ -16,7 +16,7 @@ export default function SideMenu(){
     useClickOutside(extendedMenu, sideMenuRef, () => switchActiveMenu(null))
 
     function switchActiveMenu(componentName){
-        if(activeMenu === null || activeMenu !== componentName){
+        if(!activeMenu || activeMenu !== componentName){
             setActiveMenu(componentName)
         } else {
             setActiveMenu(null)
@@ -51,6 +51,7 @@ export default function SideMenu(){
         } else {
             setisTextVisible(false)
         }
+        console.log("log - is text visible?", isTextVisible)
     }, [activeMenu])
 
     return (
