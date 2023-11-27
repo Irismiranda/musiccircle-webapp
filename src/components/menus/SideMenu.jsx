@@ -1,7 +1,7 @@
 import React, { useState, createRef, useEffect } from 'react'
 import { Outlet, useLocation, Link } from 'react-router-dom'
 import { SvgMusicCircle, SvgHomeIcon, SvgSearchIcon, SvgCommentBtn, SvgNotificationsIcon, SvgMoreIcon } from '../../../src/assets'
-import { Notifications, Account, Search } from '../'
+import { Notifications, More, Search } from '../'
 import { useClickOutside } from "../../utils/utils"
 import useStore from "../../store"
 
@@ -71,19 +71,19 @@ export default function SideMenu(){
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Notifications</h2>}
                     </div>
-                    <div className='flex gap' onClick={() => switchActiveMenu("account")}>
+                    <Link to="/account" className='flex gap' onClick={() => switchActiveMenu("account")}>
                         { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
                         {!activeMenu && <h2>My Profile</h2>}
-                    </div>
+                    </Link>
                     <div className='flex gap' onClick={() => switchActiveMenu("more")}>
                         <SvgMoreIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>More</h2>}
                     </div>
                 </div>
-                {(activeMenu && activeMenu !== "messages") && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
+                {(activeMenu && (activeMenu !== "messages" || "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
-                    {activeMenu === "account" && <Account />}
+                    {activeMenu === "more" && <More />}
                 </div>}
             </div>
             <Outlet />
