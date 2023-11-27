@@ -1,27 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { SvgLinkIcon, SvgFeedIcon, SvgIgIcon, SvgTiktokIcon } from "../../assets"
+import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
 import { Axios } from "../../Axios-config"
 import useStore from "../../store"
 
 export default function ShareMenu(){
     const { currentUser, setCurrentUser } = useStore()
     const [followingList, setFollowingList] = useState(null)
-    const [ isPopPupOpen, setPopUpOpen ] = useState(null)
-
-    async function handleIgConnect(){
-        setPopUpOpen(true)
-        try{
-           const response = await Axios.post('/instagram_connect', { user_id: currentUser.id })
-           const windowFeatures = 'toolbar=no, menubar=no, width=500, height=700, top=100, left=100'
-           window.open(response.data, 'InstagramAuth', windowFeatures)
-        } catch(err){
-            console.log(err)
-        }
-    }
-
-    function handleTiktokConnect(){
-
-    }
 
     async function getFollowersList(){
         console.log("log - user is:", currentUser)
@@ -32,73 +16,15 @@ export default function ShareMenu(){
         }
     }
 
-    async function getSuggestedFollowers(){
-        
-    }
-
     useEffect(() => {
-        console.log("current user is:", currentUser)
         if(currentUser){
             getFollowersList()
         }
         console.log("log - updated user is:", currentUser)
     }, [currentUser])
 
-    useEffect(() => {
-        const handleMessage = async (event) => {
-            console.log("message received")
-            event.stopImmediatePropagation()
-            if (event.origin !== 'https://musiccircle.onrender.com') return;
-            if (event.data === 'InstagramAuthSuccess') {
-                console.log('Authentication was successful!')
-                try {
-                    const response = await Axios.post("/api/profile", {
-                        id: currentUser.id,
-                        type: "user",
-                    })
-                    const completeUserData = { ...currentUser, ...response.data.userData }
-                    console.log("log - updated user is:", completeUserData)
-                    setCurrentUser(completeUserData)
-                    setPopUpOpen(false)
-                } catch (error) {
-                    console.error('Error updating profile:', error)
-                }
-            }
-        }
-
-        if(isPopPupOpen){
-            window.addEventListener('message', handleMessage, false)
-            console.log("Setting up message event listener")
-        } else{
-            console.log("Removing message event listener")
-            window.removeEventListener('message', handleMessage, false)
-        }
-
-        return () => {
-            console.log("Removing message event listener")
-            window.removeEventListener('message', handleMessage, false)
-        }
-    }, [isPopPupOpen])
-
     return (
         <div>
-            { !currentUser?.instagram_connected && 
-            <div className="flex" onClick={handleIgConnect}>
-                < SvgIgIcon className="svg" />
-            </div>}
-
-            { !currentUser?.tiktok_connected && 
-            <div className="flex" onClick={handleTiktokConnect}>
-                <SvgTiktokIcon className="svg" />
-            </div>}
-
-            { (!currentUser?.instagram_connected || !currentUser.tiktok_connected) && 
-            <h4>Connect to find your friends</h4>}
-            <div className="friend_list">
-               { followingList && followingList.map(user => {
-                    <h1> </h1>     
-               })} 
-            </div>
             <input placeholder="Find a friend..."/>
             <div className="flex">
                 <SvgLinkIcon className="svg" />
