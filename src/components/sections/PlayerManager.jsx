@@ -107,7 +107,8 @@ export default function PlayerManager() {
 
     function handleTimelineClick(e, trackTimelineRef) {
         const rect = trackTimelineRef.current.getBoundingClientRect()
-        const fraction = calculatePosition(e, rect);
+        const fraction = calculatePosition(e, rect)
+        console.log("fraction is:", fraction * 100)
         setProperties(setPlayerState, 'listened', fraction * 100)
         const positionInSec = fraction * playerState.currentTrack
         playerState.player.seek(positionInSec).then(() => {

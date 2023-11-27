@@ -87,7 +87,7 @@ export default function ShareMenu(){
                 < SvgIgIcon className="svg" />
             </div>}
 
-            { !currentUser?.instagram_connected && 
+            { !currentUser?.tiktok_connected && 
             <div className="flex" onClick={handleTiktokConnect}>
                 <SvgTiktokIcon className="svg" />
             </div>}
