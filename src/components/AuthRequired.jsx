@@ -65,11 +65,7 @@ export default function AuthRequired() {
         userData: dbUserData,
       })
       
-      function mergeUnique(arr1, arr2) {
-        return [...new Set([...arr1 ,...arr2])]
-      }
-
-      const completeUserData = mergeUnique(userData, response.data.userData)
+      const completeUserData = { ...userData, ...response.data.userData }
       
       console.log("log - user data is:", completeUserData)
       setCurrentUser(completeUserData)
