@@ -25,7 +25,7 @@ export default function ShareMenu(){
 
     async function getFollowersList(){
         console.log("log - user is:", currentUser)
-        const response = await Axios.post('/api/profile/following', currentUser)
+        const response = await Axios.post('/api/profile/following', { currentUser })
         console.log("user is following:", response.data)
         if(response){
             setFollowingList(response.data)
