@@ -12,6 +12,7 @@ export default function SideMenu(){
     const { currentUser, setSideMenuWidth, sideMenuWidth, setStandardWrapperWidth } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
+    const [ isSeideMenuVisible, setIsSideMenuVisible ] = useState(false)
 
     useClickOutside(extendedMenu, sideMenuRef, () => switchActiveMenu(null))
 
@@ -52,6 +53,10 @@ export default function SideMenu(){
             setisTextVisible(false)
         }
         console.log("log - is text visible?", isTextVisible)
+
+        if(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")){
+            setIsSideMenuVisible(true)
+        }
     }, [activeMenu])
 
     return (
@@ -87,7 +92,7 @@ export default function SideMenu(){
                         {isTextVisible && <h2>More</h2>}
                     </div>
                 </div>
-                {((activeMenu && activeMenu !== "messages") || (activeMenu && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
+                {isSeideMenuVisible && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
