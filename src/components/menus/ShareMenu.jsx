@@ -31,7 +31,7 @@ export default function ShareMenu(){
     }
 
     useEffect(() => {
-        console.log("current uer is:", currentUser)
+        console.log("current user is:", currentUser)
         if(currentUser){
             getFollowersList()
         }
