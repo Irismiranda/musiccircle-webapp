@@ -1,6 +1,6 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
-import { Welcome, Home, Inbox, Error } from './pages'
+import { Welcome, Home, Inbox, Error, Profile } from './pages'
 import { AuthRequired, PlayerManager, SideMenu } from "./components"
 
 export default function App() {
@@ -13,6 +13,7 @@ export default function App() {
               <Route element={<SideMenu />}>
                 <Route index element={<Home />}/> 
                 <Route path="inbox" element={<Inbox />}/> 
+                <Route path="account:" element={<Profile />}/> 
               </Route>
             </Route>
         </Route>
