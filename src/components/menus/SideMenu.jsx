@@ -63,7 +63,7 @@ export default function SideMenu(){
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Search</h2>}
                     </div>
-                    <Link to={`/inbox?${currentUser.id}`} className='flex gap'>
+                    <Link to={``} className='flex gap'>
                         <SvgCommentBtn className="svg_big"  color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Messages</h2>}
                     </Link>
