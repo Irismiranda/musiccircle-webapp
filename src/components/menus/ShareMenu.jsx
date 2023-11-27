@@ -32,6 +32,10 @@ export default function ShareMenu(){
         }
     }
 
+    async function getSuggestedFollowers(){
+        
+    }
+
     useEffect(() => {
         console.log("current user is:", currentUser)
         if(currentUser){
