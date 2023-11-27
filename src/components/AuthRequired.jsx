@@ -64,6 +64,8 @@ export default function AuthRequired() {
       const response = await Axios.post("/api/profile", {
         userData: dbUserData,
       })
+
+      console.log("log - extra user data is:", response.data.userData)
       
       const completeUserData = { ...userData, ...response.data.userData }
       
