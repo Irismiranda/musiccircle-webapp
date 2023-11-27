@@ -12,7 +12,7 @@ export default function App() {
             <Route path="/:songId?" element={<PlayerManager />}>
               <Route element={<SideMenu />}>
                 <Route index element={<Home />}/> 
-                <Route path="/inbox" element={<Inbox />}/> 
+                <Route path="inbox" element={<Inbox />}/> 
                 <Route path="account/:userId" element={<Profile />}/> 
               </Route>
             </Route>
