@@ -72,7 +72,7 @@ export default function AuthRequired() {
       console.log("log - user data is:", completeUserData)
       setCurrentUser(completeUserData)
 
-      const stringData = JSON.stringify(userData)
+      const stringData = JSON.stringify(completeUserData)
       localStorage.setItem("currentUser", stringData)
       
     } catch(error){
