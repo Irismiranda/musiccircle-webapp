@@ -54,7 +54,7 @@ export default function EmojiBar(props){
         setSelectedCategory(null)
         setEmojiList(null)
         setIsLoading(true)
-        const search_term = emoji_searchbar.value
+        const search_term = emoji_searchbar.current.value
         const response = await Axios.post("/api/search_emojis", {
             search_term: search_term,
          })
