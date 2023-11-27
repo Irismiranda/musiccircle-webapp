@@ -171,8 +171,8 @@ button:focus-visible {
 }
 
 .profile_small{
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   object-fit: cover;
   border-radius: 10px;
 }
