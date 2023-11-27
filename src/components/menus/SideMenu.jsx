@@ -42,6 +42,7 @@ export default function SideMenu(){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
             }
         }
+        console.log("log - active menu is:", activeMenu)
     }, [activeMenu, setActiveMenu])
 
     useEffect(() => {
