@@ -76,7 +76,7 @@ export default function SideMenu(){
                         {!activeMenu && <h2>My Profile</h2>}
                     </Link>
                     <div className='flex gap' onClick={() => switchActiveMenu("more")}>
-                        <SvgMoreIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
+                        <SvgMoreIcon className="svg_big" color={ activeMenu === "more" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>More</h2>}
                     </div>
                 </div>

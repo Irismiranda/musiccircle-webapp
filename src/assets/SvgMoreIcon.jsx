@@ -6,7 +6,7 @@ const SvgMoreIcon = (props) => (
     viewBox="0 0 19 16"
     fill="none"
     stroke={props.color} 
-    strokeWidth="3"
+    strokeWidth="2.5"
     strokeLinecap="round"
     {...props}
   >
