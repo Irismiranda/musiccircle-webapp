@@ -14,17 +14,6 @@ export default function SideMenu(){
 
     useClickOutside(extendedMenu, sideMenuRef, () => switchActiveMenu(null))
 
-    const determineActiveMenu = () => {
-        const path = location.pathname
-        if (path.includes('/inbox')){
-            setActiveMenu('messages')
-        } else if(path.includes('/my_profile')){
-            setActiveMenu('profile')
-        } else {
-            setActiveMenu(null)
-        }
-    }
-
     function switchActiveMenu(componentName){
         if(activeMenu === null || activeMenu !== componentName){
             setActiveMenu(componentName)
@@ -34,8 +23,15 @@ export default function SideMenu(){
     }
 
     useEffect(() => {
-        determineActiveMenu()
-    }, [location])
+        const path = location.pathname
+        if (path.includes('/inbox')){
+            setActiveMenu('messages')
+        } else if(path.includes('/my_profile')){
+            setActiveMenu('profile')
+        } else {
+            setActiveMenu(null)
+        }
+    }, [])
 
     useEffect(() => {
         if (sideMenuRef.current) {
@@ -63,7 +59,7 @@ export default function SideMenu(){
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Search</h2>}
                     </div>
-                    <Link to={"/inbox"} className='flex gap'>
+                    <Link to={"/inbox"} className='flex gap' onClick={() => switchActiveMenu("messages")}>
                         <SvgCommentBtn className="svg_big"  color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Messages</h2>}
                     </Link>
@@ -71,7 +67,7 @@ export default function SideMenu(){
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Notifications</h2>}
                     </div>
-                    <Link to={`/account/${currentUser.id}`} className='flex gap'>
+                    <Link to={`/account/${currentUser.id}`} className='flex gap' onClick={() => switchActiveMenu("account")}>
                         { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
                         {!activeMenu && <h2>My Profile</h2>}
                     </Link>
