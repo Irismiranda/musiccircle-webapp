@@ -63,7 +63,7 @@ export default function SideMenu(){
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Search</h2>}
                     </div>
-                    <Link to={`/inbox?${currentUser.id}`} className='flex gap'>
+                    <Link to={"/inbox"} className='flex gap'>
                         <SvgCommentBtn className="svg_big"  color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Messages</h2>}
                     </Link>
@@ -71,7 +71,7 @@ export default function SideMenu(){
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {!activeMenu && <h2>Notifications</h2>}
                     </div>
-                    <Link to={`/account?${currentUser.id}`} className='flex gap' onClick={() => switchActiveMenu("account")}>
+                    <Link to={`/account/${currentUser.id}`} className='flex gap' onClick={() => switchActiveMenu("account")}>
                         { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
                         {!activeMenu && <h2>My Profile</h2>}
                     </Link>
