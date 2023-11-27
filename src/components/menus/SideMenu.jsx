@@ -48,6 +48,8 @@ export default function SideMenu(){
     useEffect(() => {
         if(!activeMenu || activeMenu === "messages" || activeMenu === "account"){
             setisTextVisible(true)
+        } else {
+            setisTextVisible(false)
         }
         console.log("log - is text visible?", isTextVisible)
     }, [activeMenu])
