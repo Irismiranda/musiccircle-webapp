@@ -49,7 +49,7 @@ export default function SideMenu(){
         if(!activeMenu || activeMenu === "messages" || activeMenu === "account"){
             setIsTextVisible(false)
         }
-        console.log("is text visible?", setIsTextVisible)
+        console.log("log - is text visible?", IsTextVisible)
     }, [activeMenu])
 
     return (
