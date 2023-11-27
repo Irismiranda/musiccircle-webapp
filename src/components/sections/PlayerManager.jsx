@@ -109,7 +109,8 @@ export default function PlayerManager() {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
         setProperties(setPlayerState, 'listened', fraction * 100)
-        const positionInSec = fraction * currentTrack.duration_ms
+        console.log("log - current track is:", playerState.currentTrack)
+        const positionInSec = fraction * playerState.currentTrack.duration_ms
         playerState.player.seek(positionInSec).then(() => {
         }) 
     }
