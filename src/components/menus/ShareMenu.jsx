@@ -25,7 +25,7 @@ export default function ShareMenu(){
 
     async function getFollowersList(){
         console.log("log - user is:", currentUser)
-        const response = await Axios.post('/api/profile/following', { currentUser })
+        const response = await Axios.post('/api/profile/following', currentUser)
         console.log("user is following:", response.data)
         if(response){
             setFollowingList(response.data)
@@ -56,7 +56,9 @@ export default function ShareMenu(){
                         id: currentUser.id,
                         type: "user",
                     })
-                    setCurrentUser(response.data.userData)
+                    const completeUserData = { ...currentUser, ...response.data.userData }
+                    console.log("log - updated user is:", completeUserData)
+                    setCurrentUser(completeUserData)
                     setPopUpOpen(false)
                 } catch (error) {
                     console.error('Error updating profile:', error)
