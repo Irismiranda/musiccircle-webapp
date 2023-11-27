@@ -6,8 +6,10 @@ import useStore from "../../store"
 export default function ShareMenu(){
     const { currentUser, setCurrentUser } = useStore()
     const [followingList, setFollowingList] = useState(null)
+    const [ isPopPupOpen, setPopUpOpen ] = useState(null)
 
     async function handleIgConnect(){
+        setPopUpOpen(true)
         try{
            const response = await Axios.post('/instagram_connect', { user_id: currentUser.id })
            const windowFeatures = 'toolbar=no, menubar=no, width=500, height=700, top=100, left=100'
@@ -51,20 +53,26 @@ export default function ShareMenu(){
                         type: "user",
                     })
                     setCurrentUser(response.data.userData)
+                    setPopUpOpen(false)
                 } catch (error) {
                     console.error('Error updating profile:', error)
                 }
             }
         }
 
-        window.addEventListener('message', handleMessage, false)
-        console.log("Setting up message event listener")
+        if(isPopPupOpen){
+            window.addEventListener('message', handleMessage, false)
+            console.log("Setting up message event listener")
+        } else{
+            console.log("Removing message event listener")
+            window.removeEventListener('message', handleMessage, false)
+        }
 
         return () => {
             console.log("Removing message event listener")
             window.removeEventListener('message', handleMessage, false)
         }
-    }, [])
+    }, [isPopPupOpen])
 
     return (
         <div>
