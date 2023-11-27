@@ -64,9 +64,15 @@ export default function AuthRequired() {
       const response = await Axios.post("/api/profile", {
         userData: dbUserData,
       })
+      
+      function mergeUnique(arr1, arr2) {
+        return [...new Set([...arr1 ,...arr2])]
+      }
 
-      console.log("log - user data is:", response.data.userData)
-      setCurrentUser(response.data.userData)
+      const completeUserData = mergeUnique(userData, response.data.userData)
+      
+      console.log("log - user data is:", completeUserData)
+      setCurrentUser(completeUserData)
 
       const stringData = JSON.stringify(userData)
       localStorage.setItem("currentUser", stringData)

@@ -11,7 +11,6 @@ export default function SideMenu(){
     const location = useLocation()
     const { currentUser, setSideMenuWidth, sideMenuWidth, setStandardWrapperWidth } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
-    const [ userImage, setUserImage ] = useState(null)
 
     useClickOutside(extendedMenu, sideMenuRef, () => switchActiveMenu(null))
 
@@ -48,12 +47,6 @@ export default function SideMenu(){
         }
     }, [activeMenu, setActiveMenu])
 
-    useEffect(() => {
-        if(currentUser){
-            setUserImage(currentUser.images[0].url)
-        }
-    }, [currentUser])
-
     return (
         <>
             <div className='side_menu_wrapper flex' ref={sideMenuRef}>
@@ -79,7 +72,7 @@ export default function SideMenu(){
                         {!activeMenu && <h2>Notifications</h2>}
                     </div>
                     <div className='flex gap' onClick={() => switchActiveMenu("account")}>
-                        { userImage && <img src={`${userImage}`} className='profile_small'/> }
+                        { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
                         {!activeMenu && <h2>My Profile</h2>}
                     </div>
                 </div>
