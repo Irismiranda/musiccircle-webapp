@@ -25,7 +25,7 @@ export default function SideMenu(){
     }
     
     function switchActiveMenu(componentName){
-        if((activeMenu === "messages" && componentName === "messages") || activeMenu === "account" && componentName === "account"){
+        if(activeMenu === componentName && (activeMenu === "messages" || activeMenu === "account")){
             return
         } else if(!activeMenu || activeMenu !== componentName){
             setActiveMenu(componentName)
