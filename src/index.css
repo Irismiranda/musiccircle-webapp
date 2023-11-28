@@ -396,6 +396,7 @@ a{
 }
 
 .side_menu{
+  display: flex;
   position: fixed;
   top: 0;
   height: 100%;
