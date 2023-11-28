@@ -374,11 +374,12 @@ a{
 }
 
 .side_menu_wrapper{
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  padding: 0 30px;
+  padding: 20px 50px 20px 35px;
   background-color: #191414;
   box-shadow: 0 0 10px #00000080;
   font-size: 13px;
