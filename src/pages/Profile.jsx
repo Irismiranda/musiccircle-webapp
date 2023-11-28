@@ -6,7 +6,7 @@ export default function Profile(){
     const { standardWrapperWidth } = useStore()
     const location = useLocation()
     const params = location.search
-    console.log("Log - params are:", params)
+    console.log("log - params are:", params)
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
