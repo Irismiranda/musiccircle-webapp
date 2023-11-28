@@ -38,7 +38,7 @@ export default function SideMenu(){
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
         if(artistUri){
-            setStandardWrapperWidth(width - 8) // discount for the scroll bar width
+            setStandardWrapperWidth(width + 8) // sum the scroll bar width
         } else {
             setStandardWrapperWidth(width)
         }
