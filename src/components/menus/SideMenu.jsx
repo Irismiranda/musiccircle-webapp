@@ -40,6 +40,7 @@ export default function SideMenu(){
             for (const entry of entries) {
                 const { width } = entry.contentRect
                 setSideMenuWidth(width)
+                console.log("log - width is:", width, "data is:", entry.contentRect)
                 if (!activeMenu) {
                     setStandardWrapperWidth(width)
                 }
