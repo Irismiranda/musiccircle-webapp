@@ -415,6 +415,7 @@ a{
   width: 100%;
   display: flex;
   gap: 30px;
+  z-index: 3;
 }
 
 .player_minimized{
