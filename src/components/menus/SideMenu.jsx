@@ -23,9 +23,7 @@ export default function SideMenu(){
             setActiveMenu(null)
         }
     }
-
-    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
-
+    
     function switchActiveMenu(componentName){
         if(!activeMenu || activeMenu !== componentName){
             setActiveMenu(componentName)
@@ -33,12 +31,11 @@ export default function SideMenu(){
             setActiveMenu(null)
         }
     }
+    
+    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
     useEffect(() => {
-        
-    }, [])
-
-    useEffect(() => {
+        console.log("log - active menu is:", activeMenu)
         if (sideMenuRef.current) {
             const sideMenuCurrentWidth = sideMenuRef.current.getBoundingClientRect().right + sideMenuRef.current.getBoundingClientRect().left
             setSideMenuWidth(sideMenuCurrentWidth)
@@ -46,8 +43,7 @@ export default function SideMenu(){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
             }
         }
-        console.log("log - active menu is:", activeMenu)
-    }, [activeMenu, setActiveMenu])
+    }, [location, activeMenu, setActiveMenu])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
@@ -55,7 +51,6 @@ export default function SideMenu(){
         } else {
             setisTextVisible(false)
         }
-        console.log("log - is text visible?", isTextVisible)
     }, [activeMenu])
 
     return (
