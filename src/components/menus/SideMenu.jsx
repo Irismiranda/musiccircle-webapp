@@ -58,8 +58,8 @@ export default function SideMenu(){
     return (
         <>
             <div className='side_menu_wrapper flex' ref={sideMenuRef}>
-                <div className='side_menu' onClick={() => setActiveMenu(null)} style={{ cursor: "pointer", marginRight: !activeMenu ? "30px" : ""}}>
-                    <Link to="/" className='flex gap'>
+                <div className='side_menu' style={{ cursor: "pointer", marginRight: !activeMenu ? "30px" : ""}}>
+                    <Link to="/" className='flex gap' onClick={() => setActiveMenu(null)}>
                         <SvgMusicCircle className="svg_big"/>
                         {isTextVisible && <h2>Music<span style={{ color: "#F230AA", fontWeight: "500" }}>Circle</span></h2>}
                     </Link>
