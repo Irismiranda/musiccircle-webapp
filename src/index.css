@@ -383,7 +383,6 @@ a{
   background-color: #191414;
   box-shadow: 0 0 10px #00000080;
   font-size: 13px;
-  z-index: 4;
   cursor: pointer;
   line-height: 0px;
 }
@@ -401,6 +400,7 @@ a{
   position: fixed;
   top: 0;
   height: 100%;
+  z-index: 3;
 }
 
 .menu_item_wrapper{
@@ -546,7 +546,6 @@ h3{
   padding: 13px 20px;
   width: 300px;
   height: 250px;
-  z-index: 2;
   top: 95%;
   left: 68%;
 }
@@ -558,7 +557,7 @@ h3{
   transform: translate(-50%, -50%);
   height: 500px;
   width: 800px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .player_minimized .interaction_btns{
