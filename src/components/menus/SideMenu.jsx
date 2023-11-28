@@ -43,7 +43,7 @@ export default function SideMenu(){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
             }
         }
-    }, [sideMenuRef, activeMenu])
+    }, [sideMenuRef.current, activeMenu])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
