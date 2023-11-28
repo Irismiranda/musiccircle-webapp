@@ -384,6 +384,7 @@ a{
   font-size: 13px;
   z-index: 4;
   cursor: pointer;
+  line-height: 0px;
 }
 
 .side_menu_wrapper img{
