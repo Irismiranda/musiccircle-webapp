@@ -36,8 +36,8 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-        } else if(userId){
-            getUser(userId)
+        } else{
+            userId && getUser(userId)
         }
     }, [userId])
     
