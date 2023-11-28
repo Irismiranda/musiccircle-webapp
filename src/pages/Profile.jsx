@@ -12,8 +12,10 @@ export default function Profile(){
 
     async function getUser(id){
         const response = await Axios.post("/api/profile", {
-            id: id,
-            type: "user",
+            userData: {
+                id: id,
+                type: "user",
+            }
         })
         setUserProfileData(response.data.userData)
     }
@@ -42,7 +44,7 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
            <img src={`${userProfileData?.images[0].url}`} className="profile_large"/>
-           <h2>${userProfileData?.display_name}</h2>
+           <h2>{userProfileData?.display_name}</h2>
            {isLoggedUser && <button> Edit Profile </button>}
            <h3> Posts </h3>
            <h3> Followers </h3>
@@ -51,7 +53,7 @@ export default function Profile(){
            <div>
             
            </div>
-           <h1> Recently Listened to </h1>
+           <h1> Posts </h1>
            <div>
 
            </div>
