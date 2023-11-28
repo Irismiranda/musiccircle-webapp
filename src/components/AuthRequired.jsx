@@ -53,12 +53,8 @@ export default function AuthRequired() {
       const userData = await spotifyApi.getMe()
       const dbUserData = {
         id: userData.id,
-        type: "user",
         email: userData.email,
-        instagram_connected: false,
-        instagram_code: null,
-        tiktok_connected: false,
-        tiktok_code: null,
+        type: "user",
       }
       
       const response = await Axios.post("/api/profile", {
