@@ -3,6 +3,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom'
 import { SvgMusicCircle, SvgHomeIcon, SvgSearchIcon, SvgCommentBtn, SvgNotificationsIcon, SvgMoreIcon } from '../../../src/assets'
 import { Notifications, More, Search } from '../'
 import { useClickOutside } from "../../utils/utils"
+import ResizeObserver from 'resize-observer-polyfill';
 import useStore from "../../store"
 
 export default function SideMenu(){
@@ -43,6 +44,28 @@ export default function SideMenu(){
             }
         }
     }, [sideMenuRef.current, activeMenu, setSideMenuWidth, setStandardWrapperWidth])
+
+    useEffect(() => {
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                const { width } = entry.contentRect
+                setSideMenuWidth(width)
+                if (!activeMenu) {
+                    setStandardWrapperWidth(width)
+                }
+            }
+        })
+
+        if (sideMenuRef.current) {
+            resizeObserver.observe(sideMenuRef.current)
+        }
+
+        return () => {
+            if (sideMenuRef.current) {
+                resizeObserver.unobserve(sideMenuRef.current)
+            }
+        }
+    }, [sideMenuRef.current])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
