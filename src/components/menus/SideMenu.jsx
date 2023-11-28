@@ -37,7 +37,7 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
-        setSideMenuWidth(width)
+        setStandardWrapperWidth(width)
     }, [sideMenuRef.current])
 
     useEffect(() => {
