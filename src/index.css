@@ -374,6 +374,7 @@ a{
 }
 
 .side_menu_wrapper{
+  padding-top: 50px;
   box-sizing: border-box;
   position: fixed;
   top: 0;
@@ -383,6 +384,7 @@ a{
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.50);
   font-size: 13px;
   z-index: 4;
+  cursor: pointer;
 }
 
 .side_menu_wrapper img{
@@ -516,14 +518,6 @@ h3{
   position: absolute;
   height: 15px;
   cursor: pointer;
-}
-
-
-.side_menu{
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  line-height: 0px;
 }
 
 .side_menu_expanded{
