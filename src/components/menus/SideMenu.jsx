@@ -12,9 +12,19 @@ export default function SideMenu(){
     const { currentUser, setSideMenuWidth, sideMenuWidth, setStandardWrapperWidth } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
-    const [ isSideMenuVisible, setIsSideMenuVisible ] = useState(false)
+    
+    function setActiveMenuByLocation(){
+        const path = location.pathname
+        if (path.includes('inbox')){
+            setActiveMenu('messages')
+        } else if(path.includes('/profile')){
+            setActiveMenu('account')
+        } else {
+            setActiveMenu(null)
+        }
+    }
 
-    useClickOutside(extendedMenu, sideMenuRef, () => switchActiveMenu(null))
+    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
     function switchActiveMenu(componentName){
         if(!activeMenu || activeMenu !== componentName){
@@ -25,14 +35,7 @@ export default function SideMenu(){
     }
 
     useEffect(() => {
-        const path = location.pathname
-        if (path.includes('inbox')){
-            setActiveMenu('messages')
-        } else if(path.includes('/profile')){
-            setActiveMenu('account')
-        } else {
-            setActiveMenu(null)
-        }
+        
     }, [])
 
     useEffect(() => {
