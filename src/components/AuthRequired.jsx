@@ -55,7 +55,8 @@ export default function AuthRequired() {
       const response = await Axios.post("/api/profile", {
         userData: userData,
       })
-
+      
+      setCurrentUser(userData)
       const stringData = JSON.stringify(userData)
       localStorage.setItem("currentUser", stringData)
       
