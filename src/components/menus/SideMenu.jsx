@@ -68,33 +68,33 @@ export default function SideMenu(){
 
     return (
         <>
-            <div className='flex side_menu'>
+            <div className='side_menu'>
                 <div ref={sideMenuRef} className='side_menu_wrapper'>
-                    <Link to="/" className='flex gap' onClick={() => setActiveMenu(null)}>
+                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu(null)}>
                         <SvgMusicCircle className="svg_big"/>
                         {isTextVisible && <h2>Music<span style={{ color: "#F230AA", fontWeight: "500" }}>Circle</span></h2>}
                     </Link>
-                    <Link to="/" className='flex gap' onClick={() => setActiveMenu(null)}>
+                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu(null)}>
                         <SvgHomeIcon className="svg_big" color={ activeMenu === null ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2 style={{ color: activeMenu === null ? "#F230AA" : "white" }}>Home</h2>}
                     </Link>
-                    <div className='flex gap' onClick={() => switchActiveMenu("search")}>
+                    <div className='menu_item_wrapper' onClick={() => switchActiveMenu("search")}>
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2>Search</h2>}
                     </div>
-                    <Link to={"/inbox"} className='flex gap' onClick={() => switchActiveMenu("messages")}>
+                    <Link to={"/inbox"} className='menu_item_wrapper' onClick={() => switchActiveMenu("messages")}>
                         <SvgCommentBtn className="svg_big"  color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2 style={{ color: activeMenu === "messages" ? "#F230AA" : "white" }}>Messages</h2>}
                     </Link>
-                    <div className='flex gap' onClick={() => switchActiveMenu("notifications")}>
+                    <div className='menu_item_wrapper' onClick={() => switchActiveMenu("notifications")}>
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2>Notifications</h2>}
                     </div>
-                    <Link to={`/account/${currentUser.id}`} className='flex gap' onClick={() => switchActiveMenu("account")}>
+                    <Link to={`/account/${currentUser.id}`} className='menu_item_wrapper' onClick={() => switchActiveMenu("account")}>
                         { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
                         {isTextVisible && <h2 style={{ color: activeMenu === "account" ? "#F230AA" : "white" }}>My Profile</h2>}
                     </Link>
-                    <div className='flex gap' onClick={() => switchActiveMenu("more")}>
+                    <div className='menu_item_wrapper' onClick={() => switchActiveMenu("more")}>
                         <SvgMoreIcon className="svg_big" color={ activeMenu === "more" ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2>More</h2>}
                     </div>

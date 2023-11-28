@@ -402,6 +402,14 @@ a{
   height: 100%;
 }
 
+.menu_item_wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 40px;
+  align-items: center;
+}
+
 .player_wrapper{
   width: 100%;
   display: flex;
