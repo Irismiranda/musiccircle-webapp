@@ -14,7 +14,7 @@ const useStore = create((set, get) => ({
   setSpotifyApi: (api) => set({ spotifyApi: api }),
   setArtistUri: (artist) => set({ artistUri: artist }),
   setSideMenuWidth: (menuWidth) => set({ sideMenuWidth: menuWidth }),
-  setStandardWrapperWidth: (width) => set({ standardWrapperWidth: `calc(100vw - ${width}px - 150px)` }),
+  setStandardWrapperWidth: (width) => set({ standardWrapperWidth: `calc(100vw - ${width}px - 30px)` }),
   setSocket: (socket) => set({ socket: socket }),
   
 }))
