@@ -58,7 +58,7 @@ export default function SideMenu(){
                     </Link>
                     <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu(null)} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgHomeIcon className="svg_big" color={ activeMenu === null ? "#F230AA" : "white" }/>
-                        {isTextVisible && <h2 style={{ color: activeMenu === null ? "#F230AA" : "white" }}>Home</h2>}
+                        {isTextVisible && <h2 style={{ color: activeMenu === null ? "#F230AA" : "white", fontWeight: activeMenu === null ? "500" : "" }}>Home</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("search")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
@@ -66,7 +66,7 @@ export default function SideMenu(){
                     </div>
                     <Link to={"/inbox"} className='menu_item_wrapper' onClick={() => switchActiveMenu("messages")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgCommentBtn className="svg_big"  color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
-                        {isTextVisible && <h2 style={{ color: activeMenu === "messages" ? "#F230AA" : "white" }}>Messages</h2>}
+                        {isTextVisible && <h2 style={{ color: activeMenu === "messages" ? "#F230AA" : "white", fontWeight: activeMenu === "messages" ? "500" : "" }}>Messages</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("notifications")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
@@ -74,7 +74,7 @@ export default function SideMenu(){
                     </div>
                     <Link to={`/account/${currentUser.id}`} className='menu_item_wrapper' onClick={() => switchActiveMenu("account")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
-                        {isTextVisible && <h2 style={{ color: activeMenu === "account" ? "#F230AA" : "white" }}>My Profile</h2>}
+                        {isTextVisible && <h2 style={{ color: activeMenu === "account" ? "#F230AA" : "white", fontWeight: activeMenu === "account" ? "500" : ""  }}>My Profile</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("more")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgMoreIcon className="svg_big" color={ activeMenu === "more" ? "#F230AA" : "white" }/>
