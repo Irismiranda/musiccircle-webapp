@@ -41,8 +41,8 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-           <img src={`${userProfileData.images[0].url}`} className="profile_large"/>
-           <h2>${userProfileData.display_name}</h2>
+           <img src={`${userProfileData?.images[0].url}`} className="profile_large"/>
+           <h2>${userProfileData?.display_name}</h2>
            {isLoggedUser && <button> Edit Profile </button>}
            <h3> Posts </h3>
            <h3> Followers </h3>
