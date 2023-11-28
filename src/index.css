@@ -404,10 +404,10 @@ a{
 
 .menu_item_wrapper{
   width: 100%;
-  display: flex;
-  justify-content: start;
-  gap: 40px;
+  display: grid;
+  gap: 20px;
   align-items: center;
+  justify-content: start;
 }
 
 .player_wrapper{
