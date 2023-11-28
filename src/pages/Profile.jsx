@@ -33,7 +33,7 @@ export default function Profile(){
     }, [spotifyApi])
     
     useEffect(() => {
-        if(userId === currentUser){
+        if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
         } else if(userId){
