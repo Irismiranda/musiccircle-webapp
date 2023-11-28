@@ -37,13 +37,12 @@ export default function SideMenu(){
     useEffect(() => {
         if (sideMenuRef.current) {
             const sideMenuCurrentWidth = sideMenuRef.current.getBoundingClientRect().right - sideMenuRef.current.getBoundingClientRect().left
-            console.log("log - menu width is:", sideMenuCurrentWidth)
             setSideMenuWidth(sideMenuCurrentWidth)
             if(!activeMenu){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
             }
         }
-    }, [location, activeMenu, setActiveMenu])
+    }, [sideMenuRef.current, activeMenu, setSideMenuWidth, setStandardWrapperWidth])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
@@ -86,7 +85,7 @@ export default function SideMenu(){
                         {isTextVisible && <h2>More</h2>}
                     </div>
                 </div>
-                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuRef?.current?.getBoundingClientRect().right - sideMenuRef?.current?.getBoundingClientRect().left}px` }}>
+                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
