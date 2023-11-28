@@ -37,7 +37,7 @@ export default function SideMenu(){
     useEffect(() => {
         console.log("log - active menu is:", activeMenu)
         if (sideMenuRef.current) {
-            const sideMenuCurrentWidth = sideMenuRef.current.getBoundingClientRect().right + sideMenuRef.current.getBoundingClientRect().left
+            const sideMenuCurrentWidth = sideMenuRef.current.getBoundingClientRect().right - sideMenuRef.current.getBoundingClientRect().left
             setSideMenuWidth(sideMenuCurrentWidth)
             if(!activeMenu){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
