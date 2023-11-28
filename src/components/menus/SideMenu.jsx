@@ -43,7 +43,7 @@ export default function SideMenu(){
                 setStandardWrapperWidth(sideMenuCurrentWidth)
             }
         }
-    }, [sideMenuRef.current, activeMenu])
+    }, [location, activeMenu, setActiveMenu])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
@@ -86,7 +86,7 @@ export default function SideMenu(){
                         {isTextVisible && <h2>More</h2>}
                     </div>
                 </div>
-                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
+                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuRef.current.getBoundingClientRect().right}px` }}>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
