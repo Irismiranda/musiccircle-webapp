@@ -51,24 +51,12 @@ export default function AuthRequired() {
   async function getUser() {
     try{       
       const userData = await spotifyApi.getMe()
-      const dbUserData = {
-        id: userData.id,
-        email: userData.email,
-        type: "user",
-      }
       
       const response = await Axios.post("/api/profile", {
-        userData: dbUserData,
+        userData: userData,
       })
 
-      console.log("log - extra user data is:", response.data.userData)
-      
-      const completeUserData = { ...userData, ...response.data.userData }
-      
-      console.log("log - user data is:", completeUserData)
-      setCurrentUser(completeUserData)
-
-      const stringData = JSON.stringify(completeUserData)
+      const stringData = JSON.stringify(userData)
       localStorage.setItem("currentUser", stringData)
       
     } catch(error){
