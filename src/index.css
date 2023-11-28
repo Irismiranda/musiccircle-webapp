@@ -376,8 +376,6 @@ a{
 .side_menu_wrapper{
   padding-top: 50px;
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
   height: 100%;
   padding: 0px 30px;
   background-color: #191414;
@@ -393,6 +391,11 @@ a{
 
 .side_menu_wrapper svg{
   margin: 10px 8px;
+}
+
+.side_menu{
+  position: fixed;
+  top: 0;
 }
 
 .player_wrapper{
