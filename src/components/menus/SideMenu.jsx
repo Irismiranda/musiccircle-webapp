@@ -9,7 +9,7 @@ export default function SideMenu(){
     const sideMenuRef = createRef(null)
     const extendedMenu = createRef(null)
     const location = useLocation()
-    const { currentUser, setSideMenuWidth, sideMenuWidth, setStandardWrapperWidth } = useStore()
+    const { currentUser, setStandardWrapperWidth, artistUri } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
     
@@ -37,7 +37,11 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
-        setStandardWrapperWidth(width)
+        if(artistUri){
+            setStandardWrapperWidth(width - 8)
+        } else {
+            setStandardWrapperWidth(width)
+        }
     }, [sideMenuRef.current])
 
     useEffect(() => {
