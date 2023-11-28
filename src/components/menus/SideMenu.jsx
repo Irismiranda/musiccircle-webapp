@@ -68,8 +68,8 @@ export default function SideMenu(){
 
     return (
         <>
-            <div>
-                <div ref={sideMenuRef} className='side_menu_wrapper' style={{ marginRight: !activeMenu ? "30px" : ""}}>
+            <div className='flex'>
+                <div ref={sideMenuRef} className='side_menu_wrapper' style={{ cursor: "pointer", marginRight: !activeMenu ? "30px" : ""}}>
                     <Link to="/" className='flex gap' onClick={() => setActiveMenu(null)}>
                         <SvgMusicCircle className="svg_big"/>
                         {isTextVisible && <h2>Music<span style={{ color: "#F230AA", fontWeight: "500" }}>Circle</span></h2>}
@@ -99,7 +99,8 @@ export default function SideMenu(){
                         {isTextVisible && <h2>More</h2>}
                     </div>
                 </div>
-                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_expanded side_menu_wrapper gap' style={{ left: `${sideMenuWidth}px` }}>
+                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && 
+                <div>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
