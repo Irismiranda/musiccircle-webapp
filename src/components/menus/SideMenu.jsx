@@ -33,16 +33,26 @@ export default function SideMenu(){
             setActiveMenu(null)
         }
     }
+
+    function calculateAvailableWidth(){
+        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
+        const width = sideMenuRect.right - sideMenuRect.left
+        setStandardWrapperWidth(width)
+    }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
     useEffect(() => {
+        calculateAvailableWidth()
+    }, [])
+    
+    useEffect(() => {
+        calculateAvailableWidth()
+    }, [artistUri])
+
+    useEffect(() => {
         setActiveMenuByLocation()
-        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        const width = sideMenuRect.right - sideMenuRect.left
-        setStandardWrapperWidth(width)
-        
-    }, [location, artistUri])
+    }, [location])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
