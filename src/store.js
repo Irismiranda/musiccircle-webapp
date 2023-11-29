@@ -12,7 +12,7 @@ const useStore = create((set, get) => ({
   setCurrentUser: (user) => set({ currentUser: user }),
   setSpotifyApi: (api) => set({ spotifyApi: api }),
   setArtistUri: (artist) => set({ artistUri: artist }),
-  setStandardWrapperWidth: (width) => set({ standardWrapperWidth: width }),
+  setStandardWrapperWidth: (width) => set({ standardWrapperWidth: `${width}px` }),
   setSocket: (socket) => set({ socket: socket }),
   
 }))
