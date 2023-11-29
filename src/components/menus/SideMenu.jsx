@@ -37,11 +37,12 @@ export default function SideMenu(){
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
     useEffect(() => {
+        setActiveMenuByLocation()
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
         setStandardWrapperWidth(width)
         
-    }, [location, artistUri, activeMenu])
+    }, [location, artistUri])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
