@@ -34,15 +34,15 @@ export default function SideMenu(){
         }
     }
 
-    function calculateAvailableWidth(sideMenuWIdth){
-        setStandardWrapperWidth(sideMenuWIdth)
+    function calculateAvailableWidth(sideMenuWidth){
+        setStandardWrapperWidth(sideMenuWidth)
     }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        sideMenuWidth = sideMenuRect.right - sideMenuRect.left
+        const sideMenuWidth = sideMenuRect.right - sideMenuRect.left
 
         const handleLoad = () => {
             calculateAvailableWidth(sideMenuWidth)
