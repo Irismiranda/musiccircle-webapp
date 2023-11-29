@@ -27,10 +27,11 @@ export default function Profile(){
     }
 
     useEffect(() => {
+        console.log("log - useEffect ran on profile")
         if(spotifyApi){
             getRecentlyPlayed()
         }
-    }, [])
+    }, [spotifyApi])
     
     useEffect(() => {
         if(userId === currentUser.id){
