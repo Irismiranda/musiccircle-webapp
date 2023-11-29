@@ -424,6 +424,7 @@ a{
   min-height: 100px;
   padding: 10px 65px 15px 20px;
   z-index: 4;
+  overflow: hidden;
 }
 
 .player_minimized .grid{

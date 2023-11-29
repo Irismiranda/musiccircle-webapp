@@ -113,7 +113,7 @@
             )
         } else return (           
             <>
-                <div className="flex secondary_btns" style={{ overflow: "hidden" }}>
+                <div className="flex secondary_btns">
                     <h4> {trackName} by {artistName} </h4>
                     {(playerSize.height > 120 || playerSize.width > 580) && <div className="flex">
                         <div onClick={() => handleShuffleClick()}>
