@@ -26,7 +26,6 @@ export default function Messages(props) {
     }
 
     const handleLoadNewMessage = (messages) => {
-      setIsComponentLoading(true)
       console.log("log - loading new messages", messages[0][0])
       const newMessages = messages[0][0]
       console.log(
@@ -45,14 +44,12 @@ export default function Messages(props) {
         const updatedMessages = [...storedMessages.current, newMessages]
         setMessages(updatedMessages)
         storedMessages.current = updatedMessages
-        setIsComponentLoading(false)
       } else {
         const updatedMessages = [...storedMessages.current]
         updatedMessages[messageIndex] = newMessages
         setMessages(updatedMessages)
         storedMessages.current = updatedMessages
         console.log("log - messages updated", updatedMessages)
-        setIsComponentLoading(false)
       }
 
     }
