@@ -51,7 +51,7 @@ export default function SideMenu(){
     }, [sideMenuWidth])
     
     useEffect(() => {
-        calculateAvailableWidth(sideMenuWidth)
+        setTimeout(calculateAvailableWidth(sideMenuWidth), 100)
     }, [isComponentLoading, artistUri, location])
 
     useEffect(() => {
