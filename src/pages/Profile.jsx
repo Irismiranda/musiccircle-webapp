@@ -30,7 +30,7 @@ export default function Profile(){
         if(spotifyApi){
             getRecentlyPlayed()
         }
-    }, [spotifyApi])
+    }, [])
     
     useEffect(() => {
         if(userId === currentUser.id){
