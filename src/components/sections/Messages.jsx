@@ -22,7 +22,6 @@ export default function Messages(props) {
       console.log("log - loading all messages", messages[0])
       setMessages(messages[0])
       storedMessages.current = messages[0]
-      setIsComponentLoading(false)
     }
 
     const handleLoadNewMessage = (messages) => {
@@ -56,8 +55,10 @@ export default function Messages(props) {
   
     socket.onAny((eventName, ...args) => {
       if(eventName === "loadAllMessages"){
+        setIsComponentLoading(true)
         console.log("log - loadAllMessages event received")
         handleLoadAllMessages(args)
+        setIsComponentLoading(false)
       } else if(eventName === "loadNewMessage"){
         console.log("log - loadNewMessage event received")
         handleLoadNewMessage(args)
