@@ -12,6 +12,7 @@ export default function SideMenu(){
     const { currentUser, setStandardWrapperWidth, artistUri } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
+    const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
     
     function setActiveMenuByLocation(){
         const path = location.pathname
@@ -34,21 +35,25 @@ export default function SideMenu(){
         }
     }
 
-    function calculateAvailableWidth(){
-        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
+    function calculateAvailableWidth(sideMenuWIdth){
         const isScrollBarVisible = window.document.body.offsetHeight > window.innerHeight
-        const width = isScrollBarVisible ? sideMenuRect.right - sideMenuRect.left : sideMenuRect.right - sideMenuRect.left + 12
+        const width = isScrollBarVisible ? sideMenuWIdth : sideMenuWIdth + 12
         setStandardWrapperWidth(width)
     }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
     
     useEffect(() => {
-        calculateAvailableWidth()
+        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
+        setSideMenuWidth(sideMenuRect.right - sideMenuRect.left)
     }, [])
+
+    useEffect(() => {
+        sideMenuWidth && calculateAvailableWidth(sideMenuWidth)
+    }, [sideMenuWidth])
     
     useEffect(() => {
-        calculateAvailableWidth()
+        calculateAvailableWidth(sideMenuWidth)
     }, [artistUri, location])
 
     useEffect(() => {
