@@ -9,7 +9,7 @@ export default function SideMenu(){
     const sideMenuRef = createRef(null)
     const extendedMenu = createRef(null)
     const location = useLocation()
-    const { currentUser, setStandardWrapperWidth, artistUri, isComponentLoading } = useStore()
+    const { currentUser, setStandardWrapperWidth } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
     const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
@@ -47,12 +47,13 @@ export default function SideMenu(){
     }, [])
 
     useEffect(() => {
-        sideMenuWidth && calculateAvailableWidth(sideMenuWidth)
-    }, [sideMenuWidth])
+        const handleLoad = () => {
+            calculateAvailableWidth(sideMenuWidth)
+        }
     
-    useEffect(() => {
-        setTimeout(calculateAvailableWidth(sideMenuWidth), 100)
-    }, [isComponentLoading, artistUri, location])
+        window.addEventListener('load', handleLoad)
+        return () => window.removeEventListener('load', handleLoad)
+    }, [])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
