@@ -36,7 +36,10 @@ export default function SideMenu(){
 
     function calculateAvailableWidth(){
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        const width = sideMenuRect.right - sideMenuRect.left
+        const width = sideMenuRect.right - sideMenuRect.left 
+        if(artistUri){
+            width -= 8
+        }
         setStandardWrapperWidth(width)
     }
     
