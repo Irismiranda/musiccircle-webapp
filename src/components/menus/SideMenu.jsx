@@ -39,7 +39,7 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const sideMenuWidth = sideMenuRect.right - sideMenuRect.left
-        const availableSpace = document.documentElement.clientWidth - sideMenuWidth
+        const availableSpace = document.documentElement.clientWidth - sideMenuWidth - 25
         setStandardWrapperWidth(availableSpace)
         
     }, [location, artistUri])
