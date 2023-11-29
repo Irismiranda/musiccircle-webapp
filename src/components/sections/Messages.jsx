@@ -55,7 +55,7 @@ export default function Messages(props) {
   
     socket.onAny((eventName, ...args) => {
       if(eventName === "loadAllMessages"){
-        setIsComponentLoading(false)
+        setIsComponentLoading(true)
         console.log("log - loadAllMessages event received")
         handleLoadAllMessages(args)
         setIsComponentLoading(false)

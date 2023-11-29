@@ -7,7 +7,7 @@ const useStore = create((set, get) => ({
   artistUri: null,
   socket: null,
   standardWrapperWidth: `calc(100vw - 295px)`,
-  isComponentLoading: true,
+  isComponentLoading: null,
 
   setAccessToken: (token) => set({ accessToken: token }),
   setCurrentUser: (user) => set({ currentUser: user }),
