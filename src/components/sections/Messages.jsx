@@ -6,8 +6,7 @@ export default function Messages(props) {
   const storedMessages = useRef(null)
   const prevChatId = useRef(null)
   const [messages, setMessages] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  const { socket, currentUser } = useStore()
+  const { socket, currentUser, setIsComponentLoading, isComponentLoading } = useStore()
   const { chatId, chatProfileId, type } = props
 
   useEffect(() => {
@@ -19,15 +18,15 @@ export default function Messages(props) {
   
   useEffect(() => {
     const handleLoadAllMessages = (messages) => {
-      setIsLoading(true)
+      setIsComponentLoading(true)
       console.log("log - loading all messages", messages[0])
       setMessages(messages[0])
       storedMessages.current = messages[0]
-      setIsLoading(false)
+      setIsComponentLoading(false)
     }
 
     const handleLoadNewMessage = (messages) => {
-      setIsLoading(true)
+      setIsComponentLoading(true)
       console.log("log - loading new messages", messages[0][0])
       const newMessages = messages[0][0]
       console.log(
@@ -46,14 +45,14 @@ export default function Messages(props) {
         const updatedMessages = [...storedMessages.current, newMessages]
         setMessages(updatedMessages)
         storedMessages.current = updatedMessages
-        setIsLoading(false)
+        setIsComponentLoading(false)
       } else {
         const updatedMessages = [...storedMessages.current]
         updatedMessages[messageIndex] = newMessages
         setMessages(updatedMessages)
         storedMessages.current = updatedMessages
         console.log("log - messages updated", updatedMessages)
-        setIsLoading(false)
+        setIsComponentLoading(false)
       }
 
     }
@@ -90,7 +89,7 @@ export default function Messages(props) {
   return (
     
     <div>
-      {isLoading ? (
+      {isComponentLoading ? (
         <>
           <h3>Loading...</h3>
           <br/><br/>

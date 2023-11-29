@@ -4,7 +4,7 @@ import { Axios } from "../Axios-config"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser } = useStore()
+    const { standardWrapperWidth, currentUser, setIsComponentLoading } = useStore()
     const { userId, spotifyApi } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -33,12 +33,14 @@ export default function Profile(){
     }, [spotifyApi])
     
     useEffect(() => {
+        setIsComponentLoading(true)
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
         } else{
             userId && getUser(userId)
         }
+        setIsComponentLoading(false)
     }, [userId])
     
     return(

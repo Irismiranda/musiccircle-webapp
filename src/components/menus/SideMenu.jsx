@@ -9,7 +9,7 @@ export default function SideMenu(){
     const sideMenuRef = createRef(null)
     const extendedMenu = createRef(null)
     const location = useLocation()
-    const { currentUser, setStandardWrapperWidth, artistUri } = useStore()
+    const { currentUser, setStandardWrapperWidth, artistUri, isComponentLoading } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
     const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
@@ -36,9 +36,7 @@ export default function SideMenu(){
     }
 
     function calculateAvailableWidth(sideMenuWIdth){
-        const isScrollBarVisible = window.document.body.offsetHeight > window.innerHeight
-        const width = isScrollBarVisible ? sideMenuWIdth + 12 : sideMenuWIdth
-        setStandardWrapperWidth(width)
+        setStandardWrapperWidth(sideMenuWIdth)
     }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
@@ -54,7 +52,7 @@ export default function SideMenu(){
     
     useEffect(() => {
         calculateAvailableWidth(sideMenuWidth)
-    }, [artistUri, location])
+    }, [isComponentLoading, artistUri])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
