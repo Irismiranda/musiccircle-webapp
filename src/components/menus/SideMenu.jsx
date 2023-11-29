@@ -46,6 +46,7 @@ export default function SideMenu(){
 
         const handleLoad = () => {
             calculateAvailableWidth(sideMenuWidth)
+            console.log("log - inner width is:", window.innerWidth, "client width is:", document.documentElement.clientWidth)
         }
     
         window.addEventListener('load', handleLoad)
