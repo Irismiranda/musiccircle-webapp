@@ -36,11 +36,8 @@ export default function SideMenu(){
     }
 
     function calculateAvailableWidth(sideMenuWIdth){
-        if(window.document.body.offsetHeight > window.innerHeight){
-            const width = sideMenuWIdth
-        } else {
-            const width = sideMenuWIdth + 12
-        }
+        const isScrollBarVisible = window.document.body.offsetHeight > window.innerHeight
+        const width = isScrollBarVisible ? sideMenuWIdth + 12 : sideMenuWIdth
         setStandardWrapperWidth(width)
     }
     
