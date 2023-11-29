@@ -47,11 +47,11 @@ export default function SideMenu(){
     }, [])
 
     useLayoutEffect(() => {
-        calculateAvailableWidth(sideMenuWidth)
+        calculateAvailableWidth(sideMenuWidth, document.documentElement.clientWidth)
     }, [])
 
     useLayoutEffect(() => {
-        calculateAvailableWidth(sideMenuWidth)
+        calculateAvailableWidth(sideMenuWidth, document.documentElement.clientWidth)
     }, [artistUri, location])
 
     useEffect(() => {
