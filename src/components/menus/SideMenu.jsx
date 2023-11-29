@@ -40,7 +40,7 @@ export default function SideMenu(){
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const sideMenuWidth = sideMenuRect.right - sideMenuRect.left
 
@@ -50,6 +50,7 @@ export default function SideMenu(){
         }
     
         window.addEventListener('load', handleLoad)
+
         return () => window.removeEventListener('load', handleLoad)
     }, [])
 
