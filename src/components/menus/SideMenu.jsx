@@ -33,19 +33,24 @@ export default function SideMenu(){
             setActiveMenu(null)
         }
     }
-    
-    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
 
-    useEffect(() => {
+    function calculateAvailableWidth(){
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
-        console.log("log - innerWidth is:", window.innerWidth, "clientWidth is:", document.documentElement.clientWidth)
-        if(window.innerWidth > document.documentElement.clientWidth || artistUri){
-            setStandardWrapperWidth(width + 12) // sum the scroll bar width
-        } else {
-            setStandardWrapperWidth(width)
-        }
-    }, [location, artistUri])
+        setStandardWrapperWidth(width)
+    }
+    
+    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
+    
+    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
+    
+    useEffect(() => {
+        calculateAvailableWidth()
+    }, [])
+    
+    useEffect(() => {
+        calculateAvailableWidth()
+    }, [artistUri])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
