@@ -39,11 +39,8 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
-        if(window.innerWidth > document.documentElement.clientWidth){
-            setStandardWrapperWidth(width + 8) // sum the scroll bar width
-        } else {
-            setStandardWrapperWidth(width)
-        }
+        setStandardWrapperWidth(width)
+        
     }, [location, artistUri])
 
     useEffect(() => {
