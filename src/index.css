@@ -415,7 +415,6 @@ a{
   width: 100%;
   display: flex;
   gap: 30px;
-  z-index: 3;
 }
 
 .player_minimized{
@@ -424,6 +423,7 @@ a{
   min-width: 520px;
   min-height: 100px;
   padding: 10px 65px 15px 20px;
+  z-index: 4;
 }
 
 .player_minimized .grid{
@@ -442,9 +442,14 @@ a{
       "a f";
 }
 
+.player_minimized h2{
+  line-height: 30px;
+}
+
 .player_default{
   padding: 20px 30px;
   display: flex;
+  z-index: 3;
 }
 
 .player_default .flex{
