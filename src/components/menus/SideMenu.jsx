@@ -9,9 +9,10 @@ export default function SideMenu(){
     const sideMenuRef = createRef(null)
     const extendedMenu = createRef(null)
     const location = useLocation()
-    const { currentUser, setStandardWrapperWidth } = useStore()
+    const { currentUser, setStandardWrapperWidth, artistUri } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
+    const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
     
     function setActiveMenuByLocation(){
         const path = location.pathname
@@ -34,25 +35,24 @@ export default function SideMenu(){
         }
     }
 
-    function calculateAvailableWidth(sideMenuWidth){
-        setStandardWrapperWidth(sideMenuWidth)
+    function calculateAvailableWidth(sideMenuWIdth){
+        setStandardWrapperWidth(sideMenuWIdth)
     }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
+    
+    useEffect(() => {
+        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
+        setSideMenuWidth(sideMenuRect.right - sideMenuRect.left)
+    }, [])
 
     useLayoutEffect(() => {
-        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        const sideMenuWidth = sideMenuRect.right - sideMenuRect.left
-
-        const handleLoad = () => {
-            calculateAvailableWidth(sideMenuWidth)
-            console.log("log - inner width is:", window.innerWidth, "client width is:", document.documentElement.clientWidth)
-        }
-    
-        window.addEventListener('load', handleLoad)
-
-        return () => window.removeEventListener('load', handleLoad)
+        calculateAvailableWidth(sideMenuWidth)
     }, [])
+
+    useLayoutEffect(() => {
+        calculateAvailableWidth(sideMenuWidth)
+    }, [artistUri, location])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
