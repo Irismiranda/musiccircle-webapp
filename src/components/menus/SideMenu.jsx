@@ -48,6 +48,7 @@ export default function SideMenu(){
     
     useEffect(() => {
         calculateAvailableWidth()
+        console.log("log - innerWidth is:", window.innerWidth, "clientWidth is:", document.documentElement.clientWidth)
     }, [artistUri, location])
 
     useEffect(() => {
