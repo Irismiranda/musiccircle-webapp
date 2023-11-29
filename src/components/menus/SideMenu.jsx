@@ -52,7 +52,7 @@ export default function SideMenu(){
     
     useEffect(() => {
         calculateAvailableWidth(sideMenuWidth)
-    }, [isComponentLoading, artistUri])
+    }, [isComponentLoading, artistUri, location])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
