@@ -4,8 +4,8 @@ import { Axios } from "../Axios-config"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser } = useStore()
-    const { userId, spotifyApi } = useParams()
+    const { standardWrapperWidth, currentUser, spotifyApi } = useStore()
+    const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ recentlyPlayed, setRecentlyPlayed ] = useState(null)
