@@ -39,8 +39,9 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
+        console.log("log - innerWidth is:", window.innerWidth, "clientWidth is:", document.documentElement.clientWidth)
         if(window.innerWidth > document.documentElement.clientWidth){
-            setStandardWrapperWidth(width + 8) // sum the scroll bar width
+            setStandardWrapperWidth(width + 12) // sum the scroll bar width
         } else {
             setStandardWrapperWidth(width)
         }
