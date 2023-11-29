@@ -12,7 +12,6 @@ export default function SideMenu(){
     const { currentUser, setStandardWrapperWidth } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
-    const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
     
     function setActiveMenuByLocation(){
         const path = location.pathname
@@ -40,13 +39,11 @@ export default function SideMenu(){
     }
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
-    
-    useEffect(() => {
-        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        setSideMenuWidth(sideMenuRect.right - sideMenuRect.left)
-    }, [])
 
     useEffect(() => {
+        const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
+        sideMenuWidth = sideMenuRect.right - sideMenuRect.left
+
         const handleLoad = () => {
             calculateAvailableWidth(sideMenuWidth)
         }
