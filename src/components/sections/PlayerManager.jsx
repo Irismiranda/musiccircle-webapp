@@ -151,8 +151,8 @@ export default function PlayerManager() {
         const dx = e.clientX - clientPrevPosX.current
         const dy = e.clientY - clientPrevPosY.current
 
-        const newLeft = Math.max(0, Math.min((playerRectRef.current.left + dx), document.documentElement.clientWidth - playerRef.current.offsetWidth - 0))
-        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.clientHeight - playerRef.current.offsetHeight - 5))
+        const newLeft = Math.max(0, Math.min((playerRectRef.current.left + dx), document.documentElement.offsetWidth - playerRef.current.offsetWidth - 0))
+        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.offsetHeight - playerRef.current.offsetHeight - 5))
 
         setPlayerPosStyle({ left: newLeft, top: newTop })
     }
@@ -164,7 +164,6 @@ export default function PlayerManager() {
         const dy = e.clientY - clientPrevPosY.current + height
 
         const newWidth = Math.min(dx, document.documentElement.clientWidth - playerRectRef.current.x)
-        const newHeight = Math.min(dy, document.documentElement.clientHeight - playerRectRef.current.y)
 
         if(dx > 615){
             setProperties(setPlayerSize, 'width', newWidth)
