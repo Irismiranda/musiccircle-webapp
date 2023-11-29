@@ -36,7 +36,7 @@ export default function SideMenu(){
 
     function calculateAvailableWidth(){
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
-        const width = sideMenuRect.right - sideMenuRect.left 
+        let width = sideMenuRect.right - sideMenuRect.left 
         if(window.innerWidth > document.documentElement.clientWidth){
             width -= 8 // discount scrollbar width
         }
