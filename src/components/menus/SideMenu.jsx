@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from 'react'
+import React, { useState, createRef, useEffect, useLayoutEffect } from 'react'
 import { Outlet, useLocation, Link } from 'react-router-dom'
 import { SvgMusicCircle, SvgHomeIcon, SvgSearchIcon, SvgCommentBtn, SvgNotificationsIcon, SvgMoreIcon } from '../../../src/assets'
 import { Notifications, More, Search } from '../'
