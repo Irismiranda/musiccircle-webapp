@@ -41,7 +41,7 @@ export default function SideMenu(){
         const width = sideMenuRect.right - sideMenuRect.left
         setStandardWrapperWidth(width)
         
-    }, [location, artistUri])
+    }, [location, artistUri, activeMenu])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
