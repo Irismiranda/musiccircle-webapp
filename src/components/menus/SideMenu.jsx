@@ -42,8 +42,6 @@ export default function SideMenu(){
     
     useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
     
-    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
-    
     useEffect(() => {
         calculateAvailableWidth()
     }, [])
