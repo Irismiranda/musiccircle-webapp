@@ -40,7 +40,7 @@ export default function SideMenu(){
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         const width = sideMenuRect.right - sideMenuRect.left
         console.log("log - innerWidth is:", window.innerWidth, "clientWidth is:", document.documentElement.clientWidth)
-        if(window.innerWidth > document.documentElement.clientWidth){
+        if(window.innerWidth > document.documentElement.clientWidth || artistUri){
             setStandardWrapperWidth(width + 12) // sum the scroll bar width
         } else {
             setStandardWrapperWidth(width)
