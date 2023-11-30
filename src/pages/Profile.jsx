@@ -8,7 +8,8 @@ export default function Profile(){
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
-    const [ recentlyPlayed, setRecentlyPlayed ] = useState(null)
+    const [ topSongs, setTopSongs ] = useState(null)
+    const [ topArtists, setTopArtists ] = useState(null)
 
     async function getUser(id){
         const response = await Axios.post("/api/profile", {
@@ -19,6 +20,16 @@ export default function Profile(){
         })
         setUserProfileData(response.data.userData)
     }
+
+    async function getTopSongs(){
+       const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
+       console.log("top songs response is:", response)
+    }
+
+    async function getTopArtists(){
+        const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
+        console.log("top artists response is:", response)
+     }
 
     useEffect(() => {
         console.log("log - useEffect ran on profile")
@@ -31,6 +42,8 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
+            getTopSongs()
+            getTopArtists()
         } else{
             userId && getUser(userId)
         }

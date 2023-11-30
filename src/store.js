@@ -6,7 +6,7 @@ const useStore = create((set, get) => ({
   spotifyApi: null,
   artistUri: null,
   socket: null,
-  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 295px)`,
+  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 295px - 25px)`,
 
   setAccessToken: (token) => set({ accessToken: token }),
   setCurrentUser: (user) => set({ currentUser: user }),
