@@ -23,12 +23,12 @@ export default function Profile(){
 
     async function getTopSongs(){
        const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
-       console.log("top songs response is:", response)
+       console.log("top songs response is:", response.data)
     }
 
     async function getTopArtists(){
         const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
-        console.log("top artists response is:", response)
+        console.log("top artists response is:", response.data)
      }
 
     useEffect(() => {
