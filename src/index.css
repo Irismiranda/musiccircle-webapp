@@ -552,6 +552,7 @@ h3{
 }
 
 .share_menu_wrapper{
+  box-sizing: border-box;
   position: absolute;
   padding: 13px 20px;
   width: 300px;

@@ -62,7 +62,7 @@ export default function Profile(){
            <section>
                 <h1> Top Artists </h1>
                 <div>
-                   {topArtists.map((artist) => {
+                   {topArtists.artists.map((artist) => {
                    return (
                     <Link to={`/artist/${artist.id}`}>
                         <img src={artist.images[0]}/>
@@ -78,7 +78,7 @@ export default function Profile(){
            <section>
                 <h1> Top Songs </h1>
                 <div>
-                   {topTracks.map((track) => {
+                   {topTracks.tracks.map((track) => {
                    return (
                     <Link to={`/song=${track.id}`}>
                         <img src={track.album.images[0]}/>
