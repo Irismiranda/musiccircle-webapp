@@ -61,7 +61,6 @@ export default function Profile(){
            {topArtists?.show_top_artists && 
            <section>
                 <h1> Top Artists </h1>
-                <button>Edit</button>
                 <div>
                    {topArtists.map((artist) => {
                    return (
@@ -74,10 +73,9 @@ export default function Profile(){
                    }) }
                 </div>
            </section>}
+           <button>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
            {topTracks?.show_top_tracks && 
            <section>
-                <button>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
-                <button>Edit</button>
                 <h1> Top Songs </h1>
                 <div>
                    {topTracks.map((track) => {
