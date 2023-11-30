@@ -22,7 +22,7 @@ export default function Profile(){
 
     async function getRecentlyPlayed(){
         const response = await spotifyApi.getMyRecentlyPlayedTracks()
-        console.log('log - recently played tracks are:', response.data)
+        console.log('log - recently played tracks are:', response)
         setRecentlyPlayed(response.data)
     }
 
