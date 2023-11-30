@@ -8,7 +8,7 @@ export default function Profile(){
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
-    const [ topSongs, setTopSongs ] = useState(null)
+    const [ topTracks, settopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
 
     async function getUser(id){
@@ -21,9 +21,9 @@ export default function Profile(){
         setUserProfileData(response.data.userData)
     }
 
-    async function getTopSongs(){
+    async function getTopTracks(){
        const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
-       setTopSongs(response.data)
+       settopTracks(response.data)
     }
 
     async function getTopArtists(){
@@ -42,7 +42,7 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-            getTopSongs()
+            getTopTracks()
             getTopArtists()
         } else{
             userId && getUser(userId)
@@ -57,7 +57,7 @@ export default function Profile(){
            <h3> Posts </h3>
            <h3> Followers </h3>
            <h3> Following </h3>
-           {topArtists?.isVisible && 
+           {topArtists?.show_top_artists && 
            <section>
                 <h1> Top Artists </h1>
                 <button>Hide</button>
@@ -73,13 +73,13 @@ export default function Profile(){
                    }) }
                 </div>
            </section>}
-           {topSongs?.isVisible && 
+           {topTracks?.show_top_tracks && 
            <section>
                 <button>Hide</button>
                 <button>Edit</button>
                 <h1> Top Songs </h1>
                 <div>
-                   {topSongs.map((song) => {
+                   {topTracks.map((song) => {
                    return (
                     <Link to={`/song=${song.id}`}>
                         <img src={song.album.images[0]}/>
