@@ -14,7 +14,7 @@ export default function AuthRequired() {
   const newSpotifyApi = new Spotify()
   const navigate = useNavigate()
 
-  const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, setSocket, socket } = useStore()
+  const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket } = useStore()
 
   function setCookies(accessToken, refreshToken, expiringTime){
     const tokenExpiringDate = new Date(Date.now() + expiringTime)
@@ -70,7 +70,7 @@ export default function AuthRequired() {
     console.log("log - fetching top tracks")
     const response = await spotifyApi.getMyTopTracks()
     Axios.post("/api/profile/top_tracks", {
-      id: id,
+      id: currentUser.id,
       topTracks: response.items,
     })
   }
@@ -79,7 +79,7 @@ export default function AuthRequired() {
     console.log("log - fetching top songs")
     const response = await spotifyApi.getMyTopArtists()
     Axios.post("/api/profile/top_artists", {
-      id: id,
+      id: currentUser.id,
       topArtists: response.items,
     })
   }
