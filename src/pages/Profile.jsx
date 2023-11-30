@@ -54,12 +54,12 @@ export default function Profile(){
            <h3> Posts </h3>
            <h3> Followers </h3>
            <button>Edit</button>
-           <button>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>
+           <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>
            {topArtists?.show_top_artists && 
            <section>
                 <h1> Top Artists </h1>
                 <div>
-                   {topArtists.artists.map((artist) => {
+                   {topArtists?.artists.map((artist) => {
                    return (
                     <Link to={`/artist/${artist.id}`}>
                         <img src={artist.images[0]}/>
@@ -70,7 +70,7 @@ export default function Profile(){
                    }) }
                 </div>
            </section>}
-           <button>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
+           <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
            {topTracks?.show_top_tracks && 
            <section>
                 <h1> Top Songs </h1>
