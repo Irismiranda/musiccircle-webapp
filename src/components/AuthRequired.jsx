@@ -179,11 +179,11 @@ export default function AuthRequired() {
     } else {
       if(spotifyApi){
         getUser()
-        console.log("log - stored user was set")
+        console.log("log - stored user was set!")
       }
     }
 
-    console.log("log - useEffect ran to this point")
+    console.log("log - useEffect ran to this point!!!!!")
     getTopTracks()
     getTopArtists()
 
