@@ -20,12 +20,6 @@ export default function Profile(){
         setUserProfileData(response.data.userData)
     }
 
-    async function getRecentlyPlayed(){
-        const response = await spotifyApi.getMyRecentlyPlayedTracks()
-        console.log('log - recently played tracks are:', response)
-        setRecentlyPlayed(response.data)
-    }
-
     useEffect(() => {
         console.log("log - useEffect ran on profile")
         if(spotifyApi){

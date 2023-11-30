@@ -66,6 +66,22 @@ export default function AuthRequired() {
   
   }
 
+  async function getTopTracks(){
+    const response = await spotifyApi.getMyTopTracks()
+    Axios.post("/api/profile/top_tracks", {
+      id: id,
+      topTracks: response.items,
+    })
+  }
+
+  async function getTopArtists(){
+    const response = await spotifyApi.getMyTopArtists()
+    Axios.post("/api/profile/top_artists", {
+      id: id,
+      topArtists: response.items,
+    })
+  }
+
   function calculateTimeLeft(dateAndTime){
     const currentTime = Math.floor(Date.now())
     const expirationDate = new Date(dateAndTime) 
@@ -164,6 +180,10 @@ export default function AuthRequired() {
         console.log("log - stored user was set")
       }
     }
+
+    getTopTracks()
+    getTopArtists()
+
     setIsLoading(false)
   }, [spotifyApi])
 
