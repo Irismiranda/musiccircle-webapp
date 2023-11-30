@@ -67,6 +67,7 @@ export default function AuthRequired() {
   }
 
   async function getTopTracks(){
+    console.log("log - fetching top tracks")
     const response = await spotifyApi.getMyTopTracks()
     Axios.post("/api/profile/top_tracks", {
       id: id,
@@ -75,6 +76,7 @@ export default function AuthRequired() {
   }
 
   async function getTopArtists(){
+    console.log("log - fetching top songs")
     const response = await spotifyApi.getMyTopArtists()
     Axios.post("/api/profile/top_artists", {
       id: id,
@@ -181,6 +183,7 @@ export default function AuthRequired() {
       }
     }
 
+    console.log("log - useEffect ran to this point")
     getTopTracks()
     getTopArtists()
 
