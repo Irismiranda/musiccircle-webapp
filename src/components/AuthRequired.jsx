@@ -182,10 +182,11 @@ export default function AuthRequired() {
         console.log("log - stored user was set!")
       }
     }
-
-    console.log("log - useEffect ran to this point!!!!!")
-    getTopTracks()
-    getTopArtists()
+    
+    if(spotifyApi){
+      getTopTracks()
+      getTopArtists()
+    }
 
     setIsLoading(false)
   }, [spotifyApi])

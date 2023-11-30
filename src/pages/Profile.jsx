@@ -32,11 +32,8 @@ export default function Profile(){
      }
 
     useEffect(() => {
-        console.log("log - useEffect ran on profile")
-        if(spotifyApi){
-           
-        }
-    }, [spotifyApi])
+        console.log("log - top tracks are:", topTracks, "top artists are:", topArtists)
+    }, [topTracks, topArtists])
     
     useEffect(() => {
         if(userId === currentUser.id){
