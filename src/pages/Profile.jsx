@@ -67,7 +67,7 @@ export default function Profile(){
                    return (
                     <Link to={`/artist/${artist.id}`}>
                         <img src={artist.images[0]}/>
-                        <h1>{artist.name}</h1>
+                        <h3>{artist.name}</h3>
                     </Link>
                    )
                    }) }
@@ -83,7 +83,7 @@ export default function Profile(){
                    return (
                     <Link to={`/song=${song.id}`}>
                         <img src={song.album.images[0]}/>
-                        <h1>{song.name}</h1>
+                        <h3>{song.name}</h3>
                     </Link>
                    )
                    }) }
