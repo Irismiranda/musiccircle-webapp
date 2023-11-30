@@ -56,17 +56,18 @@ export default function Profile(){
            {isLoggedUser && <button> Edit Profile </button>}
            <h3> Posts </h3>
            <h3> Followers </h3>
-           <h3> Following </h3>
+           <button>Edit</button>
+           <button>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>
            {topArtists?.show_top_artists && 
            <section>
                 <h1> Top Artists </h1>
-                <button>Hide</button>
                 <button>Edit</button>
                 <div>
                    {topArtists.map((artist) => {
                    return (
                     <Link to={`/artist/${artist.id}`}>
                         <img src={artist.images[0]}/>
+                        <button data-artist_id={artist.id}>Hide</button>
                         <h3>{artist.name}</h3>
                     </Link>
                    )
@@ -75,15 +76,16 @@ export default function Profile(){
            </section>}
            {topTracks?.show_top_tracks && 
            <section>
-                <button>Hide</button>
+                <button>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
                 <button>Edit</button>
                 <h1> Top Songs </h1>
                 <div>
-                   {topTracks.map((song) => {
+                   {topTracks.map((track) => {
                    return (
-                    <Link to={`/song=${song.id}`}>
-                        <img src={song.album.images[0]}/>
-                        <h3>{song.name}</h3>
+                    <Link to={`/song=${track.id}`}>
+                        <img src={track.album.images[0]}/>
+                        <button data-track_id={track.id}>Hide</button>
+                        <h3>{track.name}</h3>
                     </Link>
                    )
                    }) }
