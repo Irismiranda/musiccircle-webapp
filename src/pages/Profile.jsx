@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { Axios } from "../Axios-config"
 import useStore from "../store"
 
@@ -23,12 +23,12 @@ export default function Profile(){
 
     async function getTopSongs(){
        const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
-       console.log("top songs response is:", response.data)
+       setTopSongs(response.data)
     }
 
     async function getTopArtists(){
         const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
-        console.log("top artists response is:", response.data)
+        setTopArtists(response.data)
      }
 
     useEffect(() => {
@@ -57,10 +57,38 @@ export default function Profile(){
            <h3> Posts </h3>
            <h3> Followers </h3>
            <h3> Following </h3>
-           <h1> Recently Listened to </h1>
-           <div>
-            
-           </div>
+           {topArtists?.isVisible && 
+           <section>
+                <h1> Top Artists </h1>
+                <button>Hide</button>
+                <button>Edit</button>
+                <div>
+                   {topArtists.map((artist) => {
+                   return (
+                    <Link to={`/artist/${artist.id}`}>
+                        <img src={artist.images[0]}/>
+                        <h1>{artist.name}</h1>
+                    </Link>
+                   )
+                   }) }
+                </div>
+           </section>}
+           {topSongs?.isVisible && 
+           <section>
+                <button>Hide</button>
+                <button>Edit</button>
+                <h1> Top Songs </h1>
+                <div>
+                   {topSongs.map((song) => {
+                   return (
+                    <Link to={`/song=${song.id}`}>
+                        <img src={song.album.images[0]}/>
+                        <h1>{song.name}</h1>
+                    </Link>
+                   )
+                   }) }
+                </div>
+           </section>}
            <h1> Posts </h1>
            <div>
 
