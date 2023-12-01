@@ -31,7 +31,7 @@ export default function SideMenu(){
         } else if(!activeMenu || activeMenu !== componentName){
             setActiveMenu(componentName)
         } else {
-            setActiveMenu(null)
+            setActiveMenuByLocation()
         }
     }
 
