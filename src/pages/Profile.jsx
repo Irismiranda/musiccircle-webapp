@@ -15,14 +15,17 @@ export default function Profile(){
     const topTracksSlider = useRef(null)
 
     async function getUser(id){
+        console.log("log - id is:", id)
         const response = await Axios.post("/api/profile", {
             userData: {
                 id: id,
                 type: "user",
             }
         })
-        setUserProfileData(response.data)
-        console.log("log - user data is:", response.data)
+        setUserProfileData(response.data.userData)
+        getTopTracks()
+        getTopArtists()
+        console.log("log - user data is:", response.data.userData)
     }
 
     async function getTopTracks(id){
@@ -56,10 +59,8 @@ export default function Profile(){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
         } else{
-            userId && getUser()
+            userId && getUser(userId)
         }
-        userId && getTopTracks()
-        userId && getTopArtists()
     }, [userId])
     
     return(
