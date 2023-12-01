@@ -187,6 +187,13 @@ button:focus-visible {
   border-radius: 100%;
 }
 
+.profile_medium{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
 .cover_medium{
   height: 200px;
   width: 200px;

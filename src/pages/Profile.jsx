@@ -66,10 +66,12 @@ export default function Profile(){
                 <h3> Posts </h3>
                 <h3> Followers </h3>
             </div>
-           {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+            <div className="flex">
+                <h1> Top Artists </h1>
+                {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+            </div>
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
-                <h1> Top Artists </h1>
                 <div style={{ position: "relative" }}>
                     <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)} onMouseDown={() => slideRight(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
@@ -92,10 +94,12 @@ export default function Profile(){
                    }
                 </div>
            </section>}
-           {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+           <div className="flex">
+                {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                <h1> Top Tracks </h1>
+           </div>
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
-                <h1> Top Tracks </h1>
                 <div style={{ position: "relative" }}>
                     <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg"/>
