@@ -73,10 +73,10 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)} onMouseDown={() => slideRight(topArtistsSlider)}>
+                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
                     </div>
-                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)} onMouseDown={() => slideRight(topArtistsSlider)}>
+                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn style={{ height: "25px" }} />
                     </div>
                 </div>
