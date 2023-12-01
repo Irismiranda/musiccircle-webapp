@@ -71,10 +71,10 @@ export default function Profile(){
            <section>
                 <h1> Top Artists </h1>
                 <div style={{ position: "relative" }}>
-                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)} onMouseDown={() => slideRight(topArtistsSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>
-                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)} onMouseDown={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>
                 </div>
