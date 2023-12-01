@@ -58,35 +58,39 @@ export default function Profile(){
            {topArtists?.showTopArtists && 
            <section>
                 <h1> Top Artists </h1>
+                {topArtists && 
                 <div>
-                   {topArtists?.artists.map((artist) => {
+                   {topArtists.artists.map((artist) => {
                    return (
-                    <Link to={`/artist/${artist.id}`}>
-                        <div style={{ backgroundImage: `url('${artist?.images[0]?.url}')`}} className="cover_medium">
-                            <button data-artist_id={artist.id}>Hide</button>
-                        </div>
-                        <h3>{artist.name}</h3>
-                    </Link>
-                   )
-                   }) }
-                </div>
+                        <Link to={`/artist/${artist.id}`}>
+                            <div style={{ backgroundImage: `url('${artist.images[0].url}')`}} className="cover_medium">
+                                <button data-artist_id={artist.id}>Hide</button>
+                            </div>
+                            <h3>{artist.name}</h3>
+                        </Link>
+                        )
+                    }) 
+                   }
+                </div>}
            </section>}
            <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
-           {topTracks?.showTopTracks && 
+           {topTracks.showTopTracks && 
            <section>
                 <h1> Top Songs </h1>
+                {topTracks && 
                 <div>
                    {topTracks.tracks.map((track) => {
                    return (
-                    <Link to={`/song=${track.id}`}>
-                        <div style={{ backgroundImage: `url('${track?.images[0]?.url}')`}} className="cover_medium">
-                            <button data-track_id={track.id}>Hide</button>
-                        </div>
-                        <h3>{track.name}</h3>
-                    </Link>
-                   )
-                   }) }
-                </div>
+                        <Link to={`/song=${track.id}`}>
+                            <div style={{ backgroundImage: `url('${track.images[0].url}')`}} className="cover_medium">
+                                <button data-track_id={track.id}>Hide</button>
+                            </div>
+                            <h3>{track.name}</h3>
+                        </Link>
+                        )
+                    }) 
+                   }
+                </div>}
            </section>}
            <h1> Posts </h1>
            <div>
