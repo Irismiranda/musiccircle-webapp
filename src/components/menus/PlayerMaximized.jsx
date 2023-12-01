@@ -83,7 +83,7 @@ useEffect(() => {
                     </div>
                 </div>
 
-                <div className="interaction_btns flex space-between">
+                <div className="interaction_btns flex pace_between">
                     <div className="flex flex_wrap">
                         <div className="flex">
                             <div className="flex" onClick={() => handleShuffleClick()}>

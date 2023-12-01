@@ -78,7 +78,7 @@ export default function Profile(){
                     <h3> Following </h3>
                 </div>
             </div>
-            <div className="flex">
+            <div className="flex pace_between">
                 <h1> Top Artists </h1>
                 {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
@@ -106,7 +106,7 @@ export default function Profile(){
                    }
                 </div>
            </section>}
-           <div className="flex">
+           <div className="flex pace_between">
                 <h1> Top Tracks </h1>
                 {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>

@@ -70,7 +70,7 @@ const PlayerOnScroll = ((props) => {
                         <div className="track-listened" style={{ width: `${listened}%` }}></div>
                     </div>
                 </div>
-                <div className="flex space-between">
+                <div className="flex pace_between">
                     <div className="flex">
                         <div className="flex" onClick={() => handleShuffleClick()}>
                             <SvgRandom className="svg" style={{ fill: shuffleState ? '#F230AA' : '#AFADAD' }} />

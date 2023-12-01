@@ -95,7 +95,7 @@
                 const { artistName, profilePic} = artistData
                 return (
                     <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-                        <div className="flex space-between">
+                        <div className="flex pace_between">
                             <div className="flex gap">
                                 <img src={profilePic} alt={artistName} className="profile_medium"/>
                                 <h2>{artistName} Live Chat</h2>
