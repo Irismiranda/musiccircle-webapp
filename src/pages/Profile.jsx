@@ -72,6 +72,7 @@ export default function Profile(){
                 {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
                 <h3> Posts </h3>
                 <h3> Followers </h3>
+                <h3> Following </h3>
             </div>
             <div className="flex">
                 <h1> Top Artists </h1>
