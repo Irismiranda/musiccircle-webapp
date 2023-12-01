@@ -624,7 +624,7 @@ h3{
 .btn_wrapper_right{
   position: absolute;
   top: 90px;
-  right: 20px;
+  right: -20px;
 }
 
 ::-webkit-scrollbar {
