@@ -66,13 +66,15 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="user_data_grid">
+            <div className="flex">
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
-                <h2>{userProfileData?.display_name}</h2>
-                {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
-                <h3> Posts </h3>
-                <h3> Followers </h3>
-                <h3> Following </h3>
+                <div className="user_data_grid">
+                    <h2>{userProfileData?.display_name}</h2>
+                    {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
+                    <h3> Posts </h3>
+                    <h3> Followers </h3>
+                    <h3> Following </h3>
+                </div>
             </div>
             <div className="flex">
                 <h1> Top Artists </h1>

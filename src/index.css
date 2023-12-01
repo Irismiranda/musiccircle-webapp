@@ -635,20 +635,16 @@ h3{
 .user_data_grid{
   display: grid;
   grid-template:
-  "a b c c"
-  "a d e f"
-}
-
-.user_data_grid img{
-  grid-area: a;
+  "a b b"
+  "c d e"
 }
 
 .user_data_grid h2{
-  grid-area: b; 
+  grid-area: a; 
 }
 
 .user_data_grid button{
-  grid-area: c; 
+  grid-area: b; 
 }
 
 ::-webkit-scrollbar {
