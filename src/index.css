@@ -195,6 +195,7 @@ button:focus-visible {
   height: 100px;
   width: 100px;
   object-fit: cover;
+  background-size: cover;
   border-radius: 7px; 
 }
 
