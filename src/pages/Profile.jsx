@@ -32,7 +32,7 @@ export default function Profile(){
      }
 
     useEffect(() => {
-        console.log("log - top tracks are:", topTracks, "top artists are:", topArtists)
+        console.log("log - top tracks are:", topTracks.tracks[0].images, "top artists are:", topArtists)
     }, [topTracks, topArtists])
     
     useEffect(() => {
