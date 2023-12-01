@@ -74,7 +74,7 @@ export default function Profile(){
                 </div>}
            </section>}
            <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
-           {topTracks.showTopTracks && 
+           {topTracks && 
            <section>
                 <h1> Top Songs </h1>
                 {topTracks && 
