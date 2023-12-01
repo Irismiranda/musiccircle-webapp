@@ -21,8 +21,8 @@ export default function Profile(){
                 type: "user",
             }
         })
-        setUserProfileData(response.data.userData)
-        console.log("log - user data is:", response.data.userData)
+        setUserProfileData(response.data)
+        console.log("log - user data is:", response.data)
     }
 
     async function getTopTracks(id){
