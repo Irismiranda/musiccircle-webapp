@@ -27,6 +27,7 @@ export default function PlayerManager() {
     const postWindowRef = useRef(null)
     const shareMenuRef = useRef(null)
     const playerRef = useRef(null)
+    const playerWrapperRef = useRef(null)
     const draggableHandleRef = useRef(null)
 
     const clientPrevPosY = useRef(null)
@@ -151,8 +152,8 @@ export default function PlayerManager() {
         const dx = e.clientX - clientPrevPosX.current
         const dy = e.clientY - clientPrevPosY.current
 
-        const newLeft = Math.max(0, Math.min((playerRectRef.current.left + dx), document.documentElement.clientWidth - playerRef.current.offsetWidth))
-        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.clientWidth - playerRef.current.offsetHeight - 5))
+        const newLeft = Math.max(0, Math.min((playerRectRef.current.left + dx), document.documentElement.clientWidth - playerWrapperRef.current.offsetWidth))
+        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.clientWidth - playerWrapperRef.current.offsetHeight - 5))
 
         setPlayerPosStyle({ left: newLeft, top: newTop })
     }
@@ -365,7 +366,7 @@ export default function PlayerManager() {
                     <Post />
                 </div> }
                 <div 
-                ref={shareMenuRef}
+                ref={playerWrapperRef}
                 className={isMinimized ? "player_minimized wrapper fixed" : "player_default wrapper sticky"}
                 onMouseDown={(e) => getInitialPos(e)}
                 style={{ 
@@ -407,7 +408,7 @@ export default function PlayerManager() {
                     && 
                     <div 
                     className="full_width"
-                    >
+                    ref={playerRef}>
                         <PlayerOnScroll 
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
@@ -422,7 +423,7 @@ export default function PlayerManager() {
                     <div 
                     className={playerSize.width > 615 ? "grid" : "min_layout"}
                     style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
-                    >
+                    ref={playerRef}>
                         <PlayerMinimized 
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
