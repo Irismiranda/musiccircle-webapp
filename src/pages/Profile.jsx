@@ -9,7 +9,7 @@ export default function Profile(){
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
-    const [ topTracks, settopTracks ] = useState(null)
+    const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
@@ -22,17 +22,18 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data.userData)
-        console.log("user response is:", response.data)
     }
 
     async function getTopTracks(){
        const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
-       settopTracks(response.data)
+       setTopTracks(response.data)
+       console.log("top tracks response is:", response.data)
     }
 
     async function getTopArtists(){
         const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
         setTopArtists(response.data)
+        console.log("top artists response is:", response.data)
      }
      
     function slideLeft(parentRef){
@@ -55,11 +56,11 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-            getTopTracks()
-            getTopArtists()
         } else{
             userId && getUser(userId)
         }
+        getTopTracks()
+        getTopArtists()
     }, [userId])
     
     return(
