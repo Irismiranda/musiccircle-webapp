@@ -70,13 +70,15 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <h1> Top Artists </h1>
-                <div ref={topArtistsSlider} className="slider_grid">
-                <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                <div style={{ position: "relative" }}>
+                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>
                     <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>
+                </div>
+                <div ref={topArtistsSlider} className="slider_grid">
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
@@ -94,25 +96,27 @@ export default function Profile(){
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <h1> Top Tracks </h1>
-                <div ref={topTracksSlider} className="slider_grid">
+                <div style={{ position: "relative" }}>
                     <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>
                     <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>
-                   {topTracks.tracks.map((track) => {
-                   return (
-                        <Link to={`/song=${track.id}`}>
-                            <div style={{ backgroundImage: `url('${track.album.images[0].url}')`}} className="cover_medium cover_wrapper">
-                                <button data-track_id={track.id}>Hide</button>
-                            </div>
-                            <h3>{track.name}</h3>
-                            <h5>{track.artists[0].name}</h5>
-                        </Link>
-                        )
-                    }) 
-                   }
+                    <div ref={topTracksSlider} className="slider_grid">
+                    {topTracks.tracks.map((track) => {
+                    return (
+                            <Link to={`/song=${track.id}`}>
+                                <div style={{ backgroundImage: `url('${track.album.images[0].url}')`}} className="cover_medium cover_wrapper">
+                                    <button data-track_id={track.id}>Hide</button>
+                                </div>
+                                <h3>{track.name}</h3>
+                                <h5>{track.artists[0].name}</h5>
+                            </Link>
+                            )
+                        }) 
+                    }
+                    </div>
                 </div>
            </section>}
            <h1> Posts </h1>
