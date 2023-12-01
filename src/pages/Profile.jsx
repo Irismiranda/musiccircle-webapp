@@ -42,6 +42,10 @@ export default function Profile(){
         parentRef.current.scrollBy({ left: 100, behavior: 'smooth' })
     }
 
+    function hideItem(id){
+
+    }
+
     useEffect(() => {
         console.log("log - top tracks are:", topTracks, "top artists are:", topArtists)
     }, [topTracks, topArtists])
@@ -85,7 +89,7 @@ export default function Profile(){
                    return (
                         <Link to={`/artist/${artist.id}`}>
                             <div style={{ backgroundImage: `url('${artist.images[0].url}')`}} className="cover_medium cover_wrapper">
-                                <button data-artist_id={artist.id}>Hide</button>
+                                <button onClick={() => hideItem(track.id)}>Hide</button>
                             </div>
                             <h3>{artist.name}</h3>
                         </Link>
@@ -112,7 +116,7 @@ export default function Profile(){
                     return (
                             <Link to={`/song=${track.id}`}>
                                 <div style={{ backgroundImage: `url('${track.album.images[0].url}')`}} className="cover_medium cover_wrapper">
-                                    <button data-track_id={track.id}>Hide</button>
+                                    <button onClick={() => hideItem(track.id)}>Hide</button>
                                 </div>
                                 <h3>{track.name}</h3>
                                 <h5>{track.artists[0].name}</h5>
