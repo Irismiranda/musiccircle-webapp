@@ -365,6 +365,7 @@ export default function PlayerManager() {
                     <Post />
                 </div> }
                 <div 
+                ref={shareMenuRef}
                 className={isMinimized ? "player_minimized wrapper fixed" : "player_default wrapper sticky"}
                 onMouseDown={(e) => getInitialPos(e)}
                 style={{ 
@@ -380,7 +381,7 @@ export default function PlayerManager() {
                             left: isMinimized ? "18%" : "", 
                             top: isMinimized ? "90%" : ""
                         }}
-                        ref={shareMenuRef}>
+                        >
                             <ShareMenu />
                     </div>}
 
@@ -406,7 +407,7 @@ export default function PlayerManager() {
                     && 
                     <div 
                     className="full_width"
-                    ref={playerRef}>
+                    >
                         <PlayerOnScroll 
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
@@ -421,7 +422,7 @@ export default function PlayerManager() {
                     <div 
                     className={playerSize.width > 615 ? "grid" : "min_layout"}
                     style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
-                    ref={playerRef}>
+                    >
                         <PlayerMinimized 
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
