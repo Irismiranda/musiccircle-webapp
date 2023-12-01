@@ -13,8 +13,8 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
-    const [ topTracksScroll, setTopTracksScroll ] = useState(null)
-    const [ topArtistsScroll, setTopArtistsScroll ] = useState(null)
+    const [ topTracksScroll, setTopTracksScroll ] = useState(0)
+    const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
 
     async function getUser(id){
         console.log("log - id is:", id)
@@ -92,7 +92,7 @@ export default function Profile(){
                     {(topArtistsScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
                     </div>}
-                    {(topArtistsScroll > topArtistsSlider.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    {(topArtistsScroll > topArtistsSlider?.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn style={{ height: "25px" }} />
                     </div>}
                 </div>
@@ -120,7 +120,7 @@ export default function Profile(){
                     {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
-                    {(topTracksScroll > topTracksSlider.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    {(topTracksScroll > topTracksSlider?.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
