@@ -103,8 +103,8 @@ export default function Profile(){
                 </div>
            </section>}
            <div className="flex">
-                {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
                 <h1> Top Tracks </h1>
+                {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
