@@ -24,14 +24,14 @@ export default function Profile(){
         setUserProfileData(response.data.userData)
     }
 
-    async function getTopTracks(){
-       const response = await Axios.get(`/api/profile/top_tracks/${currentUser.id}`)
+    async function getTopTracks(id){
+       const response = await Axios.get(`/api/profile/top_tracks/${userProfileData.id}`)
        setTopTracks(response.data)
        console.log("top tracks response is:", response.data)
     }
 
     async function getTopArtists(){
-        const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
+        const response = await Axios.get(`/api/profile/top_artists/${userProfileData.id}`)
         setTopArtists(response.data)
         console.log("top artists response is:", response.data)
      }
