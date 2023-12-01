@@ -22,7 +22,8 @@ export default function Profile(){
                 type: "user",
             }
         })
-        setUserProfileData(response.data.userData)
+        console.log("response is:", response.data)
+        setUserProfileData(response.data)
         getTopTracks()
         getTopArtists()
         console.log("log - user data is:", response.data.userData)
