@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { Axios } from "../Axios-config"
+import { SvgRightBtn, SvgLeftBtn } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
@@ -59,6 +60,8 @@ export default function Profile(){
            <section>
                 <h1> Top Artists </h1>
                 <div className="slider_grid">
+                    <SvgLeftBtn className="svg"/>
+                    <SvgRightBtn className="svg"/>
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
@@ -84,6 +87,7 @@ export default function Profile(){
                                 <button data-track_id={track.id}>Hide</button>
                             </div>
                             <h3>{track.name}</h3>
+                            <h5>{track.artists[0].name}</h5>
                         </Link>
                         )
                     }) 

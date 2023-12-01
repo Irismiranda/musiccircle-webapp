@@ -188,6 +188,7 @@ button:focus-visible {
   height: 200px;
   width: 200px;
   object-fit: cover;
+  background-size: cover;
   border-radius: 10px;  
 }
 
@@ -583,10 +584,14 @@ h3{
 
 .slider_grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, 1fr);
-  grid-template-rows: 1fr;
-  gap: 20px;
-
+  grid-auto-flow: column;
+  gap: 60px;
+  width: 100%;
+  padding: 0px 40px;
+  margin-left: -40px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  text-align: center;
 }
 
 ::-webkit-scrollbar {
