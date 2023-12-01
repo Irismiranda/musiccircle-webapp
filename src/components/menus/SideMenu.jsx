@@ -44,11 +44,12 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         setSideMenuWidth(sideMenuRect.right - sideMenuRect.left)
+        setActiveMenuByLocation()
     }, [])
 
     useLayoutEffect(() => {
-        calculateAvailableWidth(sideMenuWidth)
-    }, [])
+        sideMenuWidth && calculateAvailableWidth(sideMenuWidth)
+    }, [sideMenuWidth])
 
     useLayoutEffect(() => {
         calculateAvailableWidth(sideMenuWidth)
