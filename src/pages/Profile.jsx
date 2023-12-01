@@ -117,7 +117,7 @@ export default function Profile(){
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                    {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
                     {(topTracksScroll > topTracksSlider.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
