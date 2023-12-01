@@ -186,11 +186,15 @@ button:focus-visible {
 
 .cover_medium{
   height: 200px;
+  width: 200px;
+  object-fit: cover;
   border-radius: 10px;  
 }
 
 .cover_small{
   height: 100px;
+  width: 100px;
+  object-fit: cover;
   border-radius: 7px; 
 }
 
