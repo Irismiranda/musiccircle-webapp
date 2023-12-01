@@ -609,11 +609,12 @@ h3{
 }
 
 .cover_wrapper{
-  box-sizing: border-box;
-  padding: 10px;
   display: flex;
+  box-sizing: border-box;
   justify-content: end;
   align-items: end;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
 .cover_wrapper button{
