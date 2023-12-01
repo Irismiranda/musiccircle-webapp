@@ -92,7 +92,7 @@ export default function Profile(){
                     {(topArtistsScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
                     </div>}
-                    {(topArtistsScroll > topArtistsScroll.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    {(topArtistsScroll > topArtistsSlider.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn style={{ height: "25px" }} />
                     </div>}
                 </div>
