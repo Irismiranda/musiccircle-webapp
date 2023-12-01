@@ -13,6 +13,8 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
+    const [ topTracksScroll, setTopTracksScroll ] = useState(null)
+    const [ topArtistsScroll, setTopArtistsScroll ] = useState(null)
 
     async function getUser(id){
         console.log("log - id is:", id)
@@ -41,6 +43,8 @@ export default function Profile(){
      
     function slideLeft(parentRef){
         parentRef.current.scrollBy({ left: -100, behavior: 'smooth' })
+        parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
+        parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
     
     function slideRight(parentRef){
@@ -69,7 +73,7 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
             <div className="flex">
-                <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
+                <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginLeft: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
                     {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
@@ -85,12 +89,12 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                    {(topArtistsScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
-                    </div>
-                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    </div>}
+                    {(topArtistsScroll > topArtistsScroll.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn style={{ height: "25px" }} />
-                    </div>
+                    </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
                    {topArtists.artists.map((artist) => {
@@ -113,12 +117,12 @@ export default function Profile(){
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                    {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg"/>
-                    </div>
-                    <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    </div>}
+                    {(topTracksScroll > topTracksSlider.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
-                    </div>
+                    </div>}
                     <div ref={topTracksSlider} className="slider_grid">
                     {topTracks.tracks.map((track) => {
                     return (
