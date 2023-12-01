@@ -59,7 +59,7 @@ export default function Profile(){
            <section>
                 <h1> Top Artists </h1>
                 {topArtists && 
-                <div>
+                <div className="slider_grid">
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
@@ -78,7 +78,7 @@ export default function Profile(){
            <section>
                 <h1> Top Songs </h1>
                 {topTracks && 
-                <div>
+                <div className="slider_grid">
                    {topTracks.tracks.map((track) => {
                    return (
                         <Link to={`/song=${track.id}`}>
