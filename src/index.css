@@ -609,17 +609,15 @@ h3{
 }
 
 .cover_wrapper{
+  box-sizing: border-box;
+  padding: 10px;
   display: flex;
   justify-content: end;
   align-items: end;
 }
 
 .cover_wrapper button{
-  background-color: transparent;
-  border-width: 3px;
-  border-color: #0f0c0c;
-  color: #0f0c0c;
-  font-weight: 700;
+  font-size: 12px;
 }
 
 .btn_wrapper_left{
