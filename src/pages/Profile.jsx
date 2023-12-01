@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useParams, Link } from "react-router-dom"
 import { Axios } from "../Axios-config"
 import { SvgRightBtn, SvgLeftBtn } from "../assets"
@@ -11,6 +11,8 @@ export default function Profile(){
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracks, settopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
+    const topArtistsSlider = useRef(null)
+    const topTracksSlider = useRef(null)
 
     async function getUser(id){
         const response = await Axios.post("/api/profile", {
@@ -31,6 +33,14 @@ export default function Profile(){
         const response = await Axios.get(`/api/profile/top_artists/${currentUser.id}`)
         setTopArtists(response.data)
      }
+     
+    function slideLeft(parentRef){
+        parentRef.current.scrollBy({ left: -100, behavior: 'smooth' })
+    }
+    
+    function slideRight(parentRef){
+        parentRef.current.scrollBy({ left: 100, behavior: 'smooth' })
+    }
 
     useEffect(() => {
         console.log("log - top tracks are:", topTracks, "top artists are:", topArtists)
@@ -62,9 +72,13 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <h1> Top Artists </h1>
-                <SvgLeftBtn className="svg"/>
-                <SvgRightBtn className="svg"/>
-                <div className="slider_grid">
+                <div ref={topArtistsSlider} className="slider_grid">
+                <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                        <SvgLeftBtn className="svg"/>
+                    </div>
+                    <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                        <SvgRightBtn className="svg"/>
+                    </div>
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
@@ -81,8 +95,14 @@ export default function Profile(){
            {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
-                <h1> Top Songs </h1>
-                <div className="slider_grid">
+                <h1> Top Tracks </h1>
+                <div ref={topTracksSlider} className="slider_grid">
+                    <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                        <SvgLeftBtn className="svg"/>
+                    </div>
+                    <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                        <SvgRightBtn className="svg"/>
+                    </div>
                    {topTracks.tracks.map((track) => {
                    return (
                         <Link to={`/song=${track.id}`}>
