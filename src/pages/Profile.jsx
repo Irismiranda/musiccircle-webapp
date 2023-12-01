@@ -26,12 +26,12 @@ export default function Profile(){
     }
 
     async function getTopTracks(id){
-       const response = await Axios.get(`/api/profile/top_tracks/${userProfileData.id}`)
+       const response = await Axios.get(`/api/profile/top_tracks/${userId}`)
        setTopTracks(response.data)
     }
 
     async function getTopArtists(){
-        const response = await Axios.get(`/api/profile/top_artists/${userProfileData.id}`)
+        const response = await Axios.get(`/api/profile/top_artists/${userId}`)
         setTopArtists(response.data)
      }
      
@@ -56,10 +56,10 @@ export default function Profile(){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
         } else{
-            userId && getUser(userId)
+            userId && getUser()
         }
-        getTopTracks()
-        getTopArtists()
+        userId && getTopTracks()
+        userId && getTopArtists()
     }, [userId])
     
     return(
