@@ -60,14 +60,12 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
             <div className="flex">
-
+                <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
+                <h2>{userProfileData?.display_name}</h2>
+                {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>}
+                <h3> Posts </h3>
+                <h3> Followers </h3>
             </div>
-           <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
-           <h2>{userProfileData?.display_name}</h2>
-           {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>}
-           <h3> Posts </h3>
-           <h3> Followers </h3>
-           {isLoggedUser && <button>Edit</button>}
            {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
            {(topArtists && topArtists?.showTopArtists) && 
            <section>

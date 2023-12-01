@@ -118,7 +118,7 @@ export default function PlayerManager() {
 
     const handleScroll = () => {  
 
-        const prevPlayerHeight = playerRef.current.offsetHeight
+        const prevPlayerHeight = playerRef?.current.offsetHeight
         
         if(window.scrollY > 1 + prevPlayerHeight){
             setProperties(setPlayerState, 'isScrolled', true)

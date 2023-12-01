@@ -597,6 +597,17 @@ h3{
   margin: 10px;
 }
 
+.btn_wrapper_left{
+  position: absolute;
+  top: 50%;
+}
+
+.btn_wrapper_right{
+  position: absolute;
+  top: 50%;
+  left: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;
