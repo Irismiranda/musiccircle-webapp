@@ -49,13 +49,16 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
+            <div className="flex">
+
+            </div>
            <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
            <h2>{userProfileData?.display_name}</h2>
-           {isLoggedUser && <button> Edit Profile </button>}
+           {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>}
            <h3> Posts </h3>
            <h3> Followers </h3>
-           <button>Edit</button>
-           <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>
+           {isLoggedUser && <button>Edit</button>}
+           {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <h1> Top Artists </h1>
@@ -75,7 +78,7 @@ export default function Profile(){
                    }
                 </div>
            </section>}
-           <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
+           {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <h1> Top Songs </h1>
