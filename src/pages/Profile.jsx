@@ -32,7 +32,7 @@ export default function Profile(){
      }
 
     useEffect(() => {
-        console.log("log - top tracks are:", topTracks.tracks[0].images, "top artists are:", topArtists)
+        console.log("log - top tracks are:", topTracks.tracks[0].album, "top artists are:", topArtists.artists[0].images)
     }, [topTracks, topArtists])
     
     useEffect(() => {
@@ -80,7 +80,7 @@ export default function Profile(){
                    {topTracks.tracks.map((track) => {
                    return (
                         <Link to={`/song=${track.id}`}>
-                            <div style={{ backgroundImage: `url('${track.images[0].url}')`}} className="cover_medium">
+                            <div style={{ backgroundImage: `url('${track.album.images[0].url}')`}} className="cover_medium">
                                 <button data-track_id={track.id}>Hide</button>
                             </div>
                             <h3>{track.name}</h3>
