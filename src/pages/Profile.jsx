@@ -62,9 +62,9 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <h1> Top Artists </h1>
+                <SvgLeftBtn className="svg"/>
+                <SvgRightBtn className="svg"/>
                 <div className="slider_grid">
-                    <SvgLeftBtn className="svg"/>
-                    <SvgRightBtn className="svg"/>
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
