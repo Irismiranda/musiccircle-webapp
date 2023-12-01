@@ -134,8 +134,8 @@ export default function PlayerManager() {
             playerRectRef.current = playerRef.current.getBoundingClientRect()
             
             if(draggableHandleRef.current.contains(e.target)) {
-                setProperties(setPlayerSize, 'width', playerRef.current.offsetWidth)
-                setProperties(setPlayerSize, 'height', playerRef.current.offsetHeight)
+                setProperties(setPlayerSize, 'width', playerRef?.current.offsetWidth)
+                setProperties(setPlayerSize, 'height', playerRef?.current.offsetHeight)
                 setIsResizing(true)
                 setIsMoving(false)
             } else{  
