@@ -118,7 +118,7 @@ export default function PlayerManager() {
 
     const handleScroll = () => {  
 
-        const prevPlayerHeight = playerRef?.current.offsetHeight
+        const prevPlayerHeight = playerRef?.current?.offsetHeight
         
         if(window.scrollY > 1 + prevPlayerHeight){
             setProperties(setPlayerState, 'isScrolled', true)
@@ -135,8 +135,8 @@ export default function PlayerManager() {
             playerRectRef.current = playerRef.current.getBoundingClientRect()
             
             if(draggableHandleRef.current.contains(e.target)) {
-                setProperties(setPlayerSize, 'width', playerRef?.current.offsetWidth)
-                setProperties(setPlayerSize, 'height', playerRef?.current.offsetHeight)
+                setProperties(setPlayerSize, 'width', playerRef?.current?.offsetWidth)
+                setProperties(setPlayerSize, 'height', playerRef?.current?.offsetHeight)
                 setIsResizing(true)
                 setIsMoving(false)
             } else{  
@@ -153,7 +153,7 @@ export default function PlayerManager() {
         const dy = e.clientY - clientPrevPosY.current
 
         const newLeft = Math.max(0, Math.min((playerRectRef.current.left + dx), document.documentElement.clientWidth - playerWrapperRef?.current.offsetWidth))
-        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.clientHeight - playerWrapperRef?.current.offsetHeight - 5))
+        const newTop = Math.max(0, Math.min((playerRectRef.current.top + dy), document.documentElement.clientHeight - playerWrapperRef?.current?.offsetHeight - 5))
 
         setPlayerPosStyle({ left: newLeft, top: newTop })
     }
