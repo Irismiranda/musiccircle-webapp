@@ -62,7 +62,7 @@ export default function Profile(){
                    {topArtists?.artists.map((artist) => {
                    return (
                     <Link to={`/artist/${artist.id}`}>
-                        <img src={artist.images[0].url}/>
+                        <img src={artist.images[0].url} className="cover_small"/>
                         <button data-artist_id={artist.id}>Hide</button>
                         <h3>{artist.name}</h3>
                     </Link>
@@ -78,7 +78,7 @@ export default function Profile(){
                    {topTracks.tracks.map((track) => {
                    return (
                     <Link to={`/song=${track.id}`}>
-                        <img src={track.album.images[0].url}/>
+                        <img src={track.album.images[0].url} className="cover_small"/>
                         <button data-track_id={track.id}>Hide</button>
                         <h3>{track.name}</h3>
                     </Link>
