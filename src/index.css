@@ -187,7 +187,7 @@ button:focus-visible {
   border-radius: 100%;
 }
 
-.profile_medium{
+.profile_large{
   width: 100px;
   height: 100px;
   object-fit: cover;
