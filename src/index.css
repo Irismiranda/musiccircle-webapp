@@ -624,13 +624,12 @@ h3{
 .btn_wrapper_left{
   position: absolute;
   top: 90px;
-  left: 20px;
 }
 
 .btn_wrapper_right{
   position: absolute;
   top: 90px;
-  right: -20px;
+  right: -10px;
 }
 
 .user_data_grid{
@@ -638,6 +637,18 @@ h3{
   grid-template:
   "a b c c"
   "a d e f"
+}
+
+.user_data_grid img{
+  grid-area: a;
+}
+
+.user_data_grid h2{
+  grid-area: b; 
+}
+
+.user_data_grid button{
+  grid-area: c; 
 }
 
 ::-webkit-scrollbar {
