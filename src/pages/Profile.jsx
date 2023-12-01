@@ -55,7 +55,7 @@ export default function Profile(){
            <h3> Followers </h3>
            <button>Edit</button>
            <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>
-           {topArtists?.showTopArtists && 
+           {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <h1> Top Artists </h1>
                 <div className="slider_grid">
@@ -73,7 +73,7 @@ export default function Profile(){
                 </div>
            </section>}
            <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
-           {topTracks?.showTopTracks && 
+           {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <h1> Top Songs </h1>
                 <div className="slider_grid">
