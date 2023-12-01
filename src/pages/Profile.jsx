@@ -29,7 +29,7 @@ export default function Profile(){
         console.log("log - user data is:", response.data.userData)
     }
 
-    async function getTopTracks(id){
+    async function getTopTracks(){
        const response = await Axios.get(`/api/profile/top_tracks/${userId}`)
        setTopTracks(response.data)
     }
@@ -59,6 +59,8 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
+            getTopTracks()
+            getTopArtists()
         } else{
             userId && getUser(userId)
         }
