@@ -22,6 +22,7 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data.userData)
+        console.log("user response is:", response.data)
     }
 
     async function getTopTracks(){
@@ -63,16 +64,12 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="flex">
+            <div className="user_data_grid">
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large"/>
-                <div>
-                    <div className="flex">
-                        <h2>{userProfileData?.display_name}</h2>
-                        {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>}
-                    </div>
-                    <h3> Posts </h3>
-                    <h3> Followers </h3>
-                </div>
+                <h2>{userProfileData?.display_name}</h2>
+                {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
+                <h3> Posts </h3>
+                <h3> Followers </h3>
             </div>
             <div className="flex">
                 <h1> Top Artists </h1>

@@ -633,6 +633,13 @@ h3{
   right: -20px;
 }
 
+.user_data_grid{
+  display: grid;
+  grid-template:
+  "a b c c"
+  "a d e f"
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;
