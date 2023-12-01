@@ -58,7 +58,6 @@ export default function Profile(){
            {topArtists?.showTopArtists && 
            <section>
                 <h1> Top Artists </h1>
-                {topArtists && 
                 <div className="slider_grid">
                    {topArtists.artists.map((artist) => {
                    return (
@@ -71,13 +70,12 @@ export default function Profile(){
                         )
                     }) 
                    }
-                </div>}
+                </div>
            </section>}
            <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>
-           {topTracks && 
+           {topTracks?.showTopTracks && 
            <section>
                 <h1> Top Songs </h1>
-                {topTracks && 
                 <div className="slider_grid">
                    {topTracks.tracks.map((track) => {
                    return (
@@ -90,7 +88,7 @@ export default function Profile(){
                         )
                     }) 
                    }
-                </div>}
+                </div>
            </section>}
            <h1> Posts </h1>
            <div>
