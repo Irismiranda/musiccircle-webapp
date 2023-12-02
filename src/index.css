@@ -649,6 +649,12 @@ h3{
   grid-area: b; 
 }
 
+.profile button{
+  justify-self: end;
+  margin: 0px;
+  font-size: 12px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;

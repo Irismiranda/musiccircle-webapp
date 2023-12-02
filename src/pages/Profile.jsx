@@ -37,16 +37,17 @@ export default function Profile(){
     async function getTopArtists(){
         const response = await Axios.get(`/api/profile/top_artists/${userId}`)
         setTopArtists(response.data)
-     }
+    }
      
     function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -100, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -300, behavior: 'smooth' })
+        console.log("top artists current scroll is:", topArtistsSlider.current.scrollLeft, "top tracks slider scroll is:", topArtistsSlider.current.scrollLeft)
         parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
         parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
     
     function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: 100, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: 300, behavior: 'smooth' })
     }
 
     function hideItem(id){
@@ -73,7 +74,7 @@ export default function Profile(){
     }, [userId])
     
     return(
-        <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
+        <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
             <div className="flex">
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
