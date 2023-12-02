@@ -53,7 +53,7 @@ export default function Profile(){
             userId: currentUser.id,
             itemId: itemId,
         })
-        console.log("log - repsonse is:", response)
+        setTopTracks(response.data)
     }
 
     function hideSection(id){
