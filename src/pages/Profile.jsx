@@ -11,25 +11,22 @@ export default function Profile(){
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
-    const topArtistsSlider = useRef(null)
-    const topTracksSlider = useRef(null)
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
+    const topArtistsSlider = useRef(null)
+    const topTracksSlider = useRef(null)
 
     async function getUser(id){
-        console.log("log - id is:", id)
         const response = await Axios.post("/api/profile", {
             userData: {
                 id: id,
                 type: "user",
             }
         })
-        console.log("response is:", response.data)
         setUserProfileData(response.data)
         getTopTracks()
         getTopArtists()
-        console.log("log - user data is:", response.data.userData)
     }
 
     async function getTopTracks(){
@@ -59,6 +56,7 @@ export default function Profile(){
     useEffect(() => {
         if(topArtistsSlider.current){
             const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
+            console.log("log - max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
     }, [topArtistsSlider])
