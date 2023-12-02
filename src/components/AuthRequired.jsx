@@ -86,7 +86,7 @@ export default function AuthRequired() {
 
     console.log("log - dbTopTracksData is:", dbTopTracksData)
 
-    Axios.post("/api/profile/top_tracks", {
+    Axios.post("/api/user/top_tracks", {
       id: currentUser.id,
       topTracks: dbTopTracksData,
     })
@@ -97,7 +97,7 @@ export default function AuthRequired() {
       limit: 50
     }
     const response = await spotifyApi.getMyTopArtists(options)
-    Axios.post("/api/profile/top_artists", {
+    Axios.post("/api/user/top_artists", {
       id: currentUser.id,
       topArtists: response.items,
     })

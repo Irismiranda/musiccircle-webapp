@@ -30,13 +30,13 @@ export default function Profile(){
     }
 
     async function getTopTracks(){
-       const response = await Axios.get(`/api/profile/top_tracks/${userId}`)
+       const response = await Axios.get(`/api/user/top_tracks/${userId}`)
        console.log("log - response is:", response.data)
        setTopTracks(response.data)
     }
 
     async function getTopArtists(){
-        const response = await Axios.get(`/api/profile/top_artists/${userId}`)
+        const response = await Axios.get(`/api/user/top_artists/${userId}`)
         setTopArtists(response.data)
     }
      
@@ -48,8 +48,12 @@ export default function Profile(){
         parentRef.current.scrollBy({ left: (maxScrollLeft/10), behavior: 'smooth' })
     }
 
-    function hideItem(itemId){
-
+    async function toggleItemVisibility(itemId, category){
+        const response = await Axios.post(`/api/user/top_list/${category}/toggleVisibility`, {
+            userId: currentUser.id,
+            itemId: itemId,
+        })
+        console.log("log - repsonse is:", response)
     }
 
     function hideSection(id){
@@ -135,7 +139,7 @@ export default function Profile(){
                    return (
                         <Link to={`/artist/${artist.id}`}>
                             <div style={{ backgroundImage: `url('${artist.images[0].url}')`}} className="cover_medium cover_wrapper">
-                                <button onClick={() => hideItem(track.id)}>Hide</button>
+                                <button onClick={() => toggleItemVisibility(track.id)}>Hide</button>
                             </div>
                             <h3>{artist.name}</h3>
                         </Link>
@@ -164,7 +168,7 @@ export default function Profile(){
                             return (
                                 <Link to={`/song=${track.id}`}>
                                     <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                        <button onClick={() => hideItem(track.id)}>Hide</button>
+                                        <button onClick={() => hideItem(track.id, "top_tracks")}>Hide</button>
                                     </div>
                                     <h3>{track.name}</h3>
                                     <h5>{track.artistName}</h5>
