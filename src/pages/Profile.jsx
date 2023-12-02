@@ -41,11 +41,11 @@ export default function Profile(){
     }
      
     function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -(maxScrollLeft/10), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: (maxScrollLeft/10), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
 
     async function toggleItemVisibility(itemId, category){
@@ -127,10 +127,10 @@ export default function Profile(){
             {(topArtists && topArtists?.showTopArtists) && 
             <section>
                 <div style={{ position: "relative" }}>
-                    {(topArtistsScroll > 300) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                    {(topArtistsScroll > (maxScrollLeft * 0.2)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg_left_right" />
                     </div>}
-                    {(topArtistsScroll < maxScrollLeft - 300) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    {(topArtistsScroll < (maxScrollLeft * 0.8)) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
@@ -156,10 +156,10 @@ export default function Profile(){
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    {(topTracksScroll > 300) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
+                    {(topTracksScroll > (maxScrollLeft * 0.2)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
-                    {(topTracksScroll < maxScrollLeft - 300) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    {(topTracksScroll < (maxScrollLeft * 0.8)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
