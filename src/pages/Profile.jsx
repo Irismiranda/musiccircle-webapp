@@ -48,6 +48,8 @@ export default function Profile(){
     
     function slideRight(parentRef){
         parentRef.current.scrollBy({ left: 300, behavior: 'smooth' })
+        parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
+        parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
 
     function hideItem(id){
