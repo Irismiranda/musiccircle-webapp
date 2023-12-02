@@ -649,6 +649,11 @@ h3{
   grid-area: b; 
 }
 
+.svg_left_right{
+  height: 25px;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.2));
+}
+
 .profile button{
   justify-self: end;
   margin: 0px;

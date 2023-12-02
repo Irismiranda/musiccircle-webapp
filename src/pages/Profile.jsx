@@ -94,11 +94,11 @@ export default function Profile(){
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    {(topArtistsScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
-                        <SvgLeftBtn style={{ height: "25px" }} />
+                    {(topArtistsScroll > 300) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
+                        <SvgLeftBtn className="svg_left_right" />
                     </div>}
-                    {(topArtistsScroll < maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
-                        <SvgRightBtn style={{ height: "25px" }} />
+                    {(topArtistsScroll < maxScrollLeft - 300) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                        <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
@@ -122,10 +122,10 @@ export default function Profile(){
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <div style={{ position: "relative" }}>
-                    {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
+                    {(topTracksScroll > 300) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
-                    {(topTracksScroll < maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    {(topTracksScroll < maxScrollLeft - 300) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
