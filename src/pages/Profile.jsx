@@ -41,29 +41,51 @@ export default function Profile(){
      
     function slideLeft(parentRef){
         parentRef.current.scrollBy({ left: -421.4, behavior: 'smooth' })
-        console.log("top artists current scroll is:", topArtistsSlider.current.scrollLeft, "top tracks slider scroll is:", topArtistsSlider.current.scrollLeft)
-        parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
-        parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
     
     function slideRight(parentRef){
-        console.log("top artists current scroll is:", topArtistsSlider.current.scrollLeft, "top tracks slider scroll is:", topArtistsSlider.current.scrollLeft)
         parentRef.current.scrollBy({ left: 421.4, behavior: 'smooth' })
-        parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
-        parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
 
-    function hideItem(id){
+    function hideItem(itemId){
+
+    }
+
+    function hideSection(id){
 
     }
 
     useEffect(() => {
         if(topArtistsSlider.current){
             const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
-            console.log("log - max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
-    }, [topArtistsSlider.current])
+    }, [topTracks, topArtists])
+
+    useEffect(() => {
+        const handleTopArtistsScroll = () => {
+            if (topArtistsSlider.current) {
+                setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
+            }
+        };
+    
+        const handleTopTracksScroll = () => {
+            if (topTracksSlider.current) {
+                setTopTracksScroll(topTracksSlider.current.scrollLeft)
+            }
+        }
+
+        const artistSliderElement = topArtistsSlider.current
+        const tracksSliderElement = topTracksSlider.current
+    
+        if (artistSliderElement) artistSliderElement.addEventListener('scroll', handleTopArtistsScroll)
+        if (tracksSliderElement) tracksSliderElement.addEventListener('scroll', handleTopTracksScroll)
+    
+        return () => {
+            if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
+            if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
+        }
+    }, [])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -90,7 +112,7 @@ export default function Profile(){
             </div>
             <div className="flex space_between">
                 <h2> Top Artists </h2>
-                {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
            {(topArtists && topArtists?.showTopArtists) && 
            <section>
@@ -118,7 +140,7 @@ export default function Profile(){
            </section>}
            <div className="flex space_between">
                 <h2> Top Tracks </h2>
-                {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
