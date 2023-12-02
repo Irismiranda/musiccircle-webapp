@@ -71,6 +71,9 @@ export default function AuthRequired() {
       limit: 50
     }
     
+    const response = await spotifyApi.getMyTopTracks(options)
+    console.log("log - response is:", response.items)
+    
     const dbTopTracksData = response.items.map((track) => {
       return {
         id: track.id,
@@ -81,7 +84,8 @@ export default function AuthRequired() {
       }
     })
 
-    const response = await spotifyApi.getMyTopTracks(options)
+    console.log("log - dbTopTracksData is:", dbTopTracksData)
+
     Axios.post("/api/profile/top_tracks", {
       id: currentUser.id,
       topTracks: dbTopTracksData,
