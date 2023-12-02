@@ -170,7 +170,7 @@ export default function Profile(){
                         return (
                             <Link to={`/song=${track.id}`}>
                                 <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    <button onClick={() => hideItem(track.id, "top_tracks")}>Hide</button>
+                                    <button onClick={() => toggleItemVisibility(track.id, "top_tracks")}>Hide</button>
                                 </div>
                                 <h3>{track.name}</h3>
                                 <h5>{track.artistName}</h5>
