@@ -77,12 +77,12 @@ export default function Profile(){
             }
         }
     
-        topArtistsSlider && topArtistsSlider.current.addEventListener('scroll', handleTopArtistsScroll)
-        topTracksSlider && topTracksSlider.current.addEventListener('scroll', handleTopTracksScroll)
+        if (topArtistsSlider) topArtistsSlider.current.addEventListener('scroll', handleTopArtistsScroll)
+        if (topTracksSlider) topTracksSlider.current.addEventListener('scroll', handleTopTracksScroll)
     
         return () => {
-            topArtistsSlider && topArtistsSlider.current.removeEventListener('scroll', handleTopArtistsScroll)
-            topTracksSlider && topTracksSlider.current.removeEventListener('scroll', handleTopTracksScroll)
+            if (topArtistsSlider) topArtistsSlider.current.removeEventListener('scroll', handleTopArtistsScroll)
+            if (topTracksSlider) topTracksSlider.current.removeEventListener('scroll', handleTopTracksScroll)
         }
     }, [])
     
