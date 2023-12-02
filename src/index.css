@@ -660,6 +660,10 @@ h3{
   font-size: 12px;
 }
 
+.profile{
+  padding-top: 60px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;

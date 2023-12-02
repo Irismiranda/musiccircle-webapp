@@ -66,24 +66,23 @@ export default function Profile(){
         const handleTopArtistsScroll = () => {
             if (topArtistsSlider.current) {
                 setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
+                console.log("log - top artist scroll is:", topArtistsSlider.current.scrollLeft)
             }
         };
     
         const handleTopTracksScroll = () => {
             if (topTracksSlider.current) {
                 setTopTracksScroll(topTracksSlider.current.scrollLeft)
+                console.log("log - top track scroll is:", topTracksSlider.current.scrollLeft)
             }
         }
-
-        const artistSliderElement = topArtistsSlider.current
-        const tracksSliderElement = topTracksSlider.current
     
-        if (artistSliderElement) artistSliderElement.addEventListener('scroll', handleTopArtistsScroll)
-        if (tracksSliderElement) tracksSliderElement.addEventListener('scroll', handleTopTracksScroll)
+        topArtistsSlider && topArtistsSlider.current.addEventListener('scroll', handleTopArtistsScroll)
+        topTracksSlider && topTracksSlider.current.addEventListener('scroll', handleTopTracksScroll)
     
         return () => {
-            if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
-            if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
+            topArtistsSlider && topArtistsSlider.current.removeEventListener('scroll', handleTopArtistsScroll)
+            topTracksSlider && topTracksSlider.current.removeEventListener('scroll', handleTopTracksScroll)
         }
     }, [])
     
