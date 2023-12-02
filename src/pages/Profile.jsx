@@ -53,7 +53,10 @@ export default function Profile(){
             userId: currentUser.id,
             itemId: itemId,
         })
-        setTopTracks(response.data.tracks)
+        const updatedTracks = topTracks.map(data => {
+            return ({...data, tracks: response.data})
+        })
+        setTopTracks(updatedTracks)
     }
 
     function hideSection(id){
