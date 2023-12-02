@@ -40,14 +40,14 @@ export default function Profile(){
     }
      
     function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -300, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -421.4, behavior: 'smooth' })
         console.log("top artists current scroll is:", topArtistsSlider.current.scrollLeft, "top tracks slider scroll is:", topArtistsSlider.current.scrollLeft)
         parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
         parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
     
     function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: 300, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: 421.4, behavior: 'smooth' })
         parentRef === topArtistsSlider && setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
         parentRef === topTracksSlider && setTopTracksScroll(topArtistsSlider.current.scrollLeft)
     }
