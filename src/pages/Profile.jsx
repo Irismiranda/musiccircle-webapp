@@ -59,7 +59,7 @@ export default function Profile(){
             console.log("log - max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
-    }, [topArtistsSlider])
+    }, [topArtistsSlider.current])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -75,7 +75,7 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
             <div className="flex">
-                <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginLeft: "90px" }}/>
+                <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
                     {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
@@ -84,8 +84,8 @@ export default function Profile(){
                     <h3> Following </h3>
                 </div>
             </div>
-            <div className="flex pace_between">
-                <h1> Top Artists </h1>
+            <div className="flex space_between">
+                <h2> Top Artists </h2>
                 {isLoggedUser && <button>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
            {(topArtists && topArtists?.showTopArtists) && 
@@ -112,8 +112,8 @@ export default function Profile(){
                    }
                 </div>
            </section>}
-           <div className="flex pace_between">
-                <h1> Top Tracks </h1>
+           <div className="flex space_between">
+                <h2> Top Tracks </h2>
                 {isLoggedUser && <button>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {(topTracks && topTracks?.showTopTracks) && 
@@ -141,7 +141,7 @@ export default function Profile(){
                     </div>
                 </div>
            </section>}
-           <h1> Posts </h1>
+           <h2> Posts </h2>
            <div>
 
            </div>

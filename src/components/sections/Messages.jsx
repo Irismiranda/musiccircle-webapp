@@ -14,33 +14,21 @@ export default function Messages(props) {
     if(prevChatId.current){
       socket?.emit('leaveChat', {chatId: prevChatId.current})
     }
-    console.log("log - props are", props)
   }, [])
   
   useEffect(() => {
     const handleLoadAllMessages = (messages) => {
       setIsLoading(true)
-      console.log("log - loading all messages", messages[0])
       setMessages(messages[0])
       storedMessages.current = messages[0]
       setIsLoading(false)
     }
 
     const handleLoadNewMessage = (messages) => {
-      console.log("log - loading new messages", messages[0][0])
       const newMessages = messages[0][0]
-      console.log(
-        "log - there are previowsly loaded messages",
-        storedMessages.current
-      )
-      console.log("log - new message is:", newMessages)
-      console.log("log - new message id is:", newMessages.messageId)
-      console.log("log - stored messages are", storedMessages.current)
-
       const messageIndex = storedMessages.current.findIndex(
         (message) => message.messageId === newMessages.messageId
       )
-      console.log("log - index is:", messageIndex)
       if (messageIndex === -1) {
         const updatedMessages = [...storedMessages.current, newMessages]
         setMessages(updatedMessages)
@@ -50,7 +38,6 @@ export default function Messages(props) {
         updatedMessages[messageIndex] = newMessages
         setMessages(updatedMessages)
         storedMessages.current = updatedMessages
-        console.log("log - messages updated", updatedMessages)
       }
 
     }

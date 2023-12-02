@@ -67,7 +67,6 @@ export default function AuthRequired() {
   }
 
   async function getTopTracks(){
-    console.log("log - fetching top tracks")
     const response = await spotifyApi.getMyTopTracks()
     Axios.post("/api/profile/top_tracks", {
       id: currentUser.id,
@@ -76,7 +75,6 @@ export default function AuthRequired() {
   }
 
   async function getTopArtists(){
-    console.log("log - fetching top songs")
     const response = await spotifyApi.getMyTopArtists()
     Axios.post("/api/profile/top_artists", {
       id: currentUser.id,
@@ -89,7 +87,6 @@ export default function AuthRequired() {
     const expirationDate = new Date(dateAndTime) 
     const expiresIn = expirationDate.getTime()
     const timeLeft = expiresIn - currentTime
-    console.log("log - cookie expires in", timeLeft)
     return timeLeft
   }
 
@@ -109,7 +106,6 @@ export default function AuthRequired() {
       if(socket && !socket.connected){
         socket.connect()
       }
-      console.log("log - Socket connected:", socket?.connected)
   }, [socket, socket?.connected])
 
   useEffect(() => {
@@ -130,7 +126,6 @@ export default function AuthRequired() {
     setAccessToken(token)
     setExpiringTime(timeLeft)
     setRefreshToken(storedRefreshToken)
-    console.log("log - stored token was set")
     } else if(!storedAccessToken && (storedRefreshToken)){
       setRefreshToken(storedRefreshToken)
       getNewToken(storedRefreshToken)
@@ -175,11 +170,9 @@ export default function AuthRequired() {
 
     if(storedUser){
       setCurrentUser(JSON.parse(storedUser))
-      console.log("log - got stored user", storedUser)
     } else {
       if(spotifyApi){
         getUser()
-        console.log("log - stored user was set!")
       }
     }
     
@@ -194,7 +187,6 @@ export default function AuthRequired() {
   useEffect(() => {
     if (expiringTime){
       const timeInMs = expiringTime
-      console.log("log - setting timer to:", timeInMs, "ms")
       setTimeout(() => {
         setExpired(true)
       }, timeInMs)
@@ -203,7 +195,6 @@ export default function AuthRequired() {
 
   useEffect(() => {
     if(expired && refreshToken){
-      console.log("log - token has expired")
       getNewToken(refreshToken)
     }
   }, [expired])

@@ -110,7 +110,6 @@ export default function PlayerManager() {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
         setProperties(setPlayerState, 'listened', fraction * 100)
-        console.log("log - current track is:", playerState.currentTrack)
         const positionInSec = fraction * playerState.currentTrack.duration_ms
         playerState.player.seek(positionInSec).then(() => {
         }) 
@@ -326,7 +325,6 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        console.log("log - is scrolled?", playerState.isScrolled)
     }, [playerState.isScrolled])
 
     const playerFunctionalProps = {

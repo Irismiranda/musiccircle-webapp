@@ -39,16 +39,6 @@ const PlayerMaximized = ((props) => {
     const artistName = currentTrack.artists[0].name
     const songId = currentTrack.id
 
-useEffect(() => {
-    if(shareMenuRef){
-        console.log("log - share menu ref is:", shareMenuRef)
-    }
-
-    if(commentBtnRef){
-        console.log("log - comment button ref is:", commentBtnRef)
-    }
-}, [shareMenuRef, commentBtnRef])
-
     useClickOutside(shareMenuRef, shareBtnRef, () => setIsShareMenuVisibile(false))
     useClickOutside(postWindowRef, commentBtnRef, () => setIsPostVisible(false))
 

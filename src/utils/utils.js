@@ -5,10 +5,8 @@ const useClickOutside = (ref, exceptionRef, callback) => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         if(exceptionRef && exceptionRef.current && !exceptionRef.current.contains(event.target)){
-            console.log("log - clicked outside")
           callback()
         } else if(!exceptionRef){
-          console.log("log - clicked outside")
           callback()
         } 
       }
