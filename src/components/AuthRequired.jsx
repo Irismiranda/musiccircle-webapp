@@ -94,7 +94,8 @@ export default function AuthRequired() {
 
   async function getTopArtists(){
     const options = {
-      limit: 50
+      limit: 50,
+      time_range: "long_term",
     }
     const response = await spotifyApi.getMyTopArtists(options)
     Axios.post("/api/user/top_artists", {
