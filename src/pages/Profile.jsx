@@ -57,8 +57,10 @@ export default function Profile(){
     }
 
     useEffect(() => {
-        const maxScroll = topArtistsSlider?.current.scrollWidth - topArtistsSlider?.current.clientWidth
-        setMaxScrollLeft(maxScroll)
+        if(topArtistsSlider){
+            const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
+            setMaxScrollLeft(maxScroll)
+        }
     }, [topArtistsSlider])
     
     useEffect(() => {
