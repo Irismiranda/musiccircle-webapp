@@ -163,18 +163,19 @@ export default function Profile(){
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {topTracks.tracks.map((track) => {
-                        if(track.isVisible){
-                            return (
-                                <Link to={`/song=${track.id}`}>
-                                    <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                        <button onClick={() => hideItem(track.id, "top_tracks")}>Hide</button>
-                                    </div>
-                                    <h3>{track.name}</h3>
-                                    <h5>{track.artistName}</h5>
-                                </Link>
-                                )
-                            }
+                    {topTracks.tracks
+                    .filter(track => track.isVisible)
+                    .slice(0, 10)
+                    .map((track) => {
+                        return (
+                            <Link to={`/song=${track.id}`}>
+                                <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    <button onClick={() => hideItem(track.id, "top_tracks")}>Hide</button>
+                                </div>
+                                <h3>{track.name}</h3>
+                                <h5>{track.artistName}</h5>
+                            </Link>
+                            )
                         }) 
                     }
                     </div>
