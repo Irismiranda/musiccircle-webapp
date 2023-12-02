@@ -67,15 +67,32 @@ export default function AuthRequired() {
   }
 
   async function getTopTracks(){
-    const response = await spotifyApi.getMyTopTracks()
+    const options = {
+      limit: 50
+    }
+    
+    const dbTopTracksData = response.items.map((track) => {
+      return {
+        id: track.id,
+        name: track.name,
+        artistName: track.artists[0].name,
+        imageUrl: track.album.images[0].url,
+        isVisible: true,
+      }
+    })
+
+    const response = await spotifyApi.getMyTopTracks(options)
     Axios.post("/api/profile/top_tracks", {
       id: currentUser.id,
-      topTracks: response.items,
+      topTracks: dbTopTracksData,
     })
   }
 
   async function getTopArtists(){
-    const response = await spotifyApi.getMyTopArtists()
+    const options = {
+      limit: 50
+    }
+    const response = await spotifyApi.getMyTopArtists(options)
     Axios.post("/api/profile/top_artists", {
       id: currentUser.id,
       topArtists: response.items,

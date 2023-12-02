@@ -118,8 +118,9 @@ export default function Profile(){
                 <h2> Top Artists </h2>
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
-           {(topArtists && topArtists?.showTopArtists) && 
-           <section>
+            {!topArtists && <h3>Loading...</h3>}
+            {(topArtists && topArtists?.showTopArtists) && 
+            <section>
                 <div style={{ position: "relative" }}>
                     {(topArtistsScroll > 300) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg_left_right" />
@@ -146,6 +147,7 @@ export default function Profile(){
                 <h2> Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
+           {!topArtists && <h3>Loading...</h3>}
            {(topTracks && topTracks?.showTopTracks) && 
            <section>
                 <div style={{ position: "relative" }}>
@@ -157,15 +159,17 @@ export default function Profile(){
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
                     {topTracks.tracks.map((track) => {
-                    return (
-                            <Link to={`/song=${track.id}`}>
-                                <div style={{ backgroundImage: `url('${track.album.images[0].url}')`}} className="cover_medium cover_wrapper">
-                                    <button onClick={() => hideItem(track.id)}>Hide</button>
-                                </div>
-                                <h3>{track.name}</h3>
-                                <h5>{track.artists[0].name}</h5>
-                            </Link>
-                            )
+                        if(track.isVisible){
+                            return (
+                                <Link to={`/song=${track.id}`}>
+                                    <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                        <button onClick={() => hideItem(track.id)}>Hide</button>
+                                    </div>
+                                    <h3>{track.name}</h3>
+                                    <h5>{track.artistName}</h5>
+                                </Link>
+                                )
+                            }
                         }) 
                     }
                     </div>
