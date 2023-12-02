@@ -31,6 +31,7 @@ export default function Profile(){
 
     async function getTopTracks(){
        const response = await Axios.get(`/api/profile/top_tracks/${userId}`)
+       console.log("log - response is:", response.data)
        setTopTracks(response.data)
     }
 
