@@ -87,7 +87,7 @@ export default function Profile(){
             if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
             if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
         }
-    }, [])
+    }, [topArtists, topTracks])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -102,7 +102,7 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            <div className="flex" syle={{ marginBottom: "30px" }}>
+            <div className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
