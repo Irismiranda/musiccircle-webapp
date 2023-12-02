@@ -168,13 +168,13 @@ export default function Profile(){
                     .slice(0, 10)
                     .map((track) => {
                         return (
-                            <Link to={`/song=${track.id}`}>
-                                <div style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
+                            <div>
+                                <div href={`/song=${track.id}`} style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     <button onClick={() => toggleItemVisibility(track.id, "top_tracks")}>Hide</button>
                                 </div>
-                                <h3>{track.name}</h3>
-                                <h5>{track.artistName}</h5>
-                            </Link>
+                                <h3 href={`/song=${track.id}`}>{track.name}</h3>
+                                <h5 href={`/song=${track.id}`}>{track.artistName}</h5>
+                            </div>
                             )
                         }) 
                     }
