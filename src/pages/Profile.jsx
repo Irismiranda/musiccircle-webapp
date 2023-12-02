@@ -15,6 +15,7 @@ export default function Profile(){
     const topTracksSlider = useRef(null)
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
+    const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
 
     async function getUser(id){
         console.log("log - id is:", id)
@@ -56,8 +57,9 @@ export default function Profile(){
     }
 
     useEffect(() => {
-        console.log("log - top tracks are:", topTracks, "top artists are:", topArtists)
-    }, [topTracks, topArtists])
+        const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
+        setMaxScrollLeft(maxScroll)
+    }, [])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -92,7 +94,7 @@ export default function Profile(){
                     {(topArtistsScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn style={{ height: "25px" }} />
                     </div>}
-                    {(topArtistsScroll > topArtistsSlider?.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
+                    {(topArtistsScroll > maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn style={{ height: "25px" }} />
                     </div>}
                 </div>
@@ -120,7 +122,7 @@ export default function Profile(){
                     {(topTracksScroll > 100) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
-                    {(topTracksScroll > topTracksSlider?.current.maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    {(topTracksScroll > maxScrollLeft - 100) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
