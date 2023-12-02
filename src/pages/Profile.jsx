@@ -40,11 +40,11 @@ export default function Profile(){
     }
      
     function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -421.4, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -(maxScrollLeft/10), behavior: 'smooth' })
     }
     
     function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: 421.4, behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: (maxScrollLeft/10), behavior: 'smooth' })
     }
 
     function hideItem(itemId){
@@ -102,14 +102,16 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            <div className="flex">
+            <div className="flex" syle={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
                     {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
-                    <h3> Posts </h3>
-                    <h3> Followers </h3>
-                    <h3> Following </h3>
+                    <div>
+                        <h3> Posts </h3>
+                        <h3> Followers </h3>
+                        <h3> Following </h3>
+                    </div>
                 </div>
             </div>
             <div className="flex space_between">

@@ -636,7 +636,8 @@ h3{
   display: grid;
   grid-template:
   "a b b"
-  "c d e";
+  "c c c";
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 30px 65px;
   align-items: center;
 }
@@ -647,6 +648,12 @@ h3{
 
 .user_data_grid button{
   grid-area: b; 
+}
+
+.user_data_grid div{
+  grid-area: c;
+  display: flex;
+  justify-content: space-between;
 }
 
 .svg_left_right{
