@@ -53,7 +53,9 @@ export default function Profile(){
             userId: currentUser.id,
             itemId: itemId,
         })
+        console.log("response data is:", response.data)
         const updatedTracks = {...topTracks, tracks: response.data}
+        console.log("updated track are:", updatedTracks)
         setTopTracks(updatedTracks)
     }
 
