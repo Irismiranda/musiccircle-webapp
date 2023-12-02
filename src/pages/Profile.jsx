@@ -53,9 +53,7 @@ export default function Profile(){
             userId: currentUser.id,
             itemId: itemId,
         })
-        const updatedTracks = topTracks.map(data => {
-            return ({...data, tracks: response.data})
-        })
+        const updatedTracks = {...topTracks, tracks: response.data}
         setTopTracks(updatedTracks)
     }
 
