@@ -17,6 +17,16 @@ export default function Profile(){
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
 
+    async function getTopList(category){
+        const response = await Axios.get(`/api/user/${category}/${userId}`)
+        console.log("log - response is:", response.data)
+        if(category === "top_tracks"){
+            setTopTracks(response.data)
+        } else if(category === "top_artists"){
+            setTopArtists(response.data)
+        }
+    }
+    
     async function getUser(id){
         const response = await Axios.post("/api/profile", {
             userData: {
@@ -25,21 +35,10 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
-        getTopTracks()
-        getTopArtists()
+        getTopList("top_tracks")
+        getTopList("top_artists")
     }
 
-    async function getTopTracks(){
-       const response = await Axios.get(`/api/user/top_tracks/${userId}`)
-       console.log("log - response is:", response.data)
-       setTopTracks(response.data)
-    }
-
-    async function getTopArtists(){
-        const response = await Axios.get(`/api/user/top_artists/${userId}`)
-        setTopArtists(response.data)
-    }
-     
     function slideLeft(parentRef){
         parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.1), behavior: 'smooth' })
     }
@@ -49,7 +48,7 @@ export default function Profile(){
     }
 
     async function toggleItemVisibility(itemId, category){
-        const response = await Axios.post(`/api/user/top_list/${category}/toggleVisibility`, {
+        const response = await Axios.post(`/api/user/${category}/toggleVisibility`, {
             userId: currentUser.id,
             itemId: itemId,
         })
@@ -101,8 +100,8 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-            getTopTracks()
-            getTopArtists()
+            getTopList("top_tracks")
+            getTopList("top_artists")
         } else{
             userId && getUser(userId)
         }
@@ -141,7 +140,7 @@ export default function Profile(){
                    {topArtists.artists.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
-                            <div style={{ backgroundImage: `url('${artist.images[0].url}')`}} className="cover_medium cover_wrapper">
+                            <div style={{ backgroundImage: `url('${artist.imageUrl}')`}} className="cover_medium cover_wrapper">
                                 <button onClick={() => toggleItemVisibility(track.id)}>Hide</button>
                             </div>
                             <h3>{artist.name}</h3>
@@ -156,13 +155,13 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {!topArtists && <h3>Loading...</h3>}
-           {(topTracks && topTracks?.showTopTracks) && 
+           {(topTracks && topTracks?.showTopTracks && topTracks?.tracks.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg"/>
                     </div>}
-                    {(topTracksScroll < (maxScrollLeft * 0.8)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
+                    {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">

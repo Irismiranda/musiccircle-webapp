@@ -66,42 +66,45 @@ export default function AuthRequired() {
   
   }
 
-  async function getTopTracks(){
-    const options = {
-      limit: 50
-    }
-    
-    const response = await spotifyApi.getMyTopTracks(options)
-    console.log("log - response is:", response.items)
-    
-    const dbTopTracksData = response.items.map((track) => {
-      return {
-        id: track.id,
-        name: track.name,
-        artistName: track.artists[0].name,
-        imageUrl: track.album.images[0].url,
-        isVisible: true,
-      }
-    })
-
-    console.log("log - dbTopTracksData is:", dbTopTracksData)
-
-    Axios.post("/api/user/top_tracks", {
-      id: currentUser.id,
-      topTracks: dbTopTracksData,
-    })
-  }
-
-  async function getTopArtists(){
+  async function getTopList(category){
     const options = {
       limit: 50,
       time_range: "long_term",
     }
-    const response = await spotifyApi.getMyTopArtists(options)
-    Axios.post("/api/user/top_artists", {
-      id: currentUser.id,
-      topArtists: response.items,
+    
+    let response
+
+    if(category === "top_tracks"){
+      response = await spotifyApi.getMyTopTracks(options)
+      console.log("log - response is:", response.items)  
+    } else if(category === "top_artists"){
+      response = await spotifyApi.getMyTopArtists(options)
+      console.log("log - response is:", response.items)  
+    }
+
+    const dbTopListData = response.items.map((item) => {
+      let listItem = {
+        id: item.id,
+        name: item.name,
+        imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url, 
+        isVisible: true,
+      }
+    
+      if (category === "top_tracks") {
+        listItem.artistName = item.artists[0].name 
+      }
+    
+      return listItem
     })
+
+    console.log("log - dbTopListData is:", dbTopListData)
+
+    const firestoreResponse = await Axios.post(`/api/user/${category}`, {
+      id: currentUser.id,
+      data: dbTopListData,
+    })
+
+
   }
 
   function calculateTimeLeft(dateAndTime){
@@ -199,8 +202,8 @@ export default function AuthRequired() {
     }
     
     if(spotifyApi){
-      getTopTracks()
-      getTopArtists()
+      getTopList("top_tracks")
+      getTopList("top_artists")
     }
 
     setIsLoading(false)
