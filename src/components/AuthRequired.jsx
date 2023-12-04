@@ -104,10 +104,9 @@ export default function AuthRequired() {
       id: currentUser.id,
       data: dbTopListData,
     })
-
+    setOffset(50)
     console.log("fire store response is:", firestoreResponse.data)
-    return firestoreResponse
-
+    category === "top_tracks" ? setTopTracks(firestoreResponse.data) : setTopArtists(firestoreResponse.data)
   }
 
   function calculateTimeLeft(dateAndTime){
@@ -206,9 +205,7 @@ export default function AuthRequired() {
     
     if(spotifyApi){
       const newTopTracks = getTopList("top_tracks")
-      setTopTracks(newTopTracks)
       const newTopArtists = getTopList("top_artists")
-      setTopArtists(newTopArtists)
     }
 
     setIsLoading(false)
@@ -234,7 +231,6 @@ export default function AuthRequired() {
    async function fetchMoreItems(category, list){
       const visibleItems = list.items.filter(item => item.isVisible)
       if(visibleItems.length < 10){
-        setOffset(prevOffset => prevOffset + 50)
         const options = {
           limit: 50,
           time_range: "long_term",
@@ -245,16 +241,17 @@ export default function AuthRequired() {
         const newItems = response.items 
         const updatedList = { ...list, items: list.items.concat(newItems)}
         console.log("fetchMoreItems log - updated list is:", updatedList)
-
+        
         Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
           data: updatedList,
         })
-
+        
         category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
+        setOffset(prevOffset => prevOffset + 50)
       } else return
     }
-
+    
     if(topTracks){
       fetchMoreItems("top_tracks", topTracks)
     }
