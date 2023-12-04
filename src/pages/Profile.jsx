@@ -145,7 +145,7 @@ export default function Profile(){
                 <h2> Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
-           {!topArtists && <h3>Loading...</h3>}
+           {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>

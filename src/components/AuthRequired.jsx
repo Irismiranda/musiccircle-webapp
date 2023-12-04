@@ -227,7 +227,7 @@ export default function AuthRequired() {
   }, [expired])
 
   useEffect(() => {
-    
+   console.log("top tracks are", topTracks, "top artists are", topArtists) 
    async function fetchMoreItems(category, list){
       const visibleItems = list.items.filter(item => item.isVisible)
       if(visibleItems.length < 10){
