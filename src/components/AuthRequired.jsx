@@ -11,6 +11,8 @@ export default function AuthRequired() {
   const [expiringTime, setExpiringTime] = useState(null)
   const [expired, setExpired] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [topTracks, setTopTracks] = useState(null)
+  const [topArtists, setTopArtists] = useState(null)
   const newSpotifyApi = new Spotify()
   const navigate = useNavigate()
 
@@ -104,6 +106,8 @@ export default function AuthRequired() {
       data: dbTopListData,
     })
 
+    console.log("fire store response is:", firestoreResponse)
+    return firestoreResponse
 
   }
 
@@ -202,8 +206,10 @@ export default function AuthRequired() {
     }
     
     if(spotifyApi){
-      getTopList("top_tracks")
-      getTopList("top_artists")
+      const newTopTracks = getTopList("top_tracks")
+      setTopTracks(newTopTracks)
+      const newTopArtists = getTopList("top_artists")
+      setTopArtists(newTopArtists)
     }
 
     setIsLoading(false)
@@ -223,6 +229,16 @@ export default function AuthRequired() {
       getNewToken(refreshToken)
     }
   }, [expired])
+
+  useEffect(() => {
+    if(topTracks){
+
+    }
+
+    if(topArtists){
+      
+    }
+  }, [topTracks, topArtists])
 
   if (accessToken && !isLoading) {
     return <Outlet/>
