@@ -604,6 +604,10 @@ h3{
   overflow-x: hidden;
 }
 
+.slider_grid div{
+  width: 200px;
+}
+
 .slider_grid h5{
   margin: 10px;
 }
