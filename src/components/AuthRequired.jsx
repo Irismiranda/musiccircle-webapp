@@ -105,7 +105,7 @@ export default function AuthRequired() {
       data: dbTopListData,
     })
 
-    console.log("fire store response is:", firestoreResponse)
+    console.log("fire store response is:", firestoreResponse.data)
     return firestoreResponse
 
   }
