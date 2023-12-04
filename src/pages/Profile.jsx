@@ -141,17 +141,20 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                   {topArtists?.tracks.map((artist) => {
-                   return (
-                        <Link to={`/artist/${artist.id}`}>
-                            <div style={{ backgroundImage: `url('${artist.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                <button onClick={() => toggleItemVisibility(track.id)}>Hide</button>
-                            </div>
-                            <h3>{artist.name}</h3>
-                        </Link>
-                        )
-                    }) 
-                   }
+                {topArtists?.tracks
+                    .filter(track => track.isVisible)
+                    .slice(0, 10)
+                    .map((track) => {
+                        return (
+                            <Link to={`/artist/${artist.id}`}>
+                                <div style={{ backgroundImage: `url('${artist.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    <button onClick={() => toggleItemVisibility(track.id)}>Hide</button>
+                                </div>
+                                <h3>{artist.name}</h3>
+                            </Link>
+                            )
+                        }) 
+                    }
                 </div>
            </section>}
            <div className="flex space_between">
