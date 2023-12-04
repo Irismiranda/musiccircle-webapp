@@ -130,7 +130,7 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
             {!topArtists && <h3>Loading...</h3>}
-            {(topArtists && topArtists?.show_top_artists && topArtists?.tracks.length > 0) && 
+            {(topArtists && topArtists?.show_top_artists && topArtists?.items.length > 0) && 
             <section>
                 <div style={{ position: "relative" }}>
                     {(topArtistsScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
@@ -141,16 +141,16 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                {topArtists?.tracks
-                    .filter(artist => artist.isVisible)
+                {topArtists?.items
+                    .filter(item => item.isVisible)
                     .slice(0, 10)
-                    .map((artist) => {
+                    .map((item) => {
                         return (
-                            <Link to={`/artist/${artist.id}`}>
-                                <div style={{ backgroundImage: `url('${artist.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    <button onClick={() => toggleItemVisibility(track.id)}>Hide</button>
+                            <Link to={`/artist/${item.id}`}>
+                                <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    <button onClick={() => toggleItemVisibility(item.id)}>Hide</button>
                                 </div>
-                                <h3>{artist.name}</h3>
+                                <h3>{item.name}</h3>
                             </Link>
                             )
                         }) 
@@ -162,7 +162,7 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {!topArtists && <h3>Loading...</h3>}
-           {(topTracks && topTracks?.show_top_tracks && topTracks?.tracks.length > 0) && 
+           {(topTracks && topTracks?.show_top_tracks && topTracks?.items.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
@@ -172,17 +172,17 @@ export default function Profile(){
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {topTracks?.tracks
-                    .filter(track => track.isVisible)
+                    {topTracks?.items
+                    .filter(item => item.isVisible)
                     .slice(0, 10)
-                    .map((track) => {
+                    .map((item) => {
                         return (
                             <div>
-                                <div href={`/song=${track.id}`} style={{ backgroundImage: `url('${track.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    <button onClick={() => toggleItemVisibility(track.id, "top_tracks")}>Hide</button>
+                                <div href={`/song=${item.id}`} style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    <button onClick={() => toggleItemVisibility(item.id, "top_tracks")}>Hide</button>
                                 </div>
-                                <h3 href={`/song=${track.id}`}>{track.name}</h3>
-                                <h5 href={`/song=${track.id}`}>{track.artistName}</h5>
+                                <h3 href={`/song=${item.id}`}>{item.name}</h3>
+                                <h5 href={`/song=${item.id}`}>{item.artistName}</h5>
                             </div>
                             )
                         }) 
