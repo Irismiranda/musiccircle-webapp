@@ -141,7 +141,7 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                   {topArtists?.artists.map((artist) => {
+                   {topArtists?.tracks.map((artist) => {
                    return (
                         <Link to={`/artist/${artist.id}`}>
                             <div style={{ backgroundImage: `url('${artist.imageUrl}')`}} className="cover_medium cover_wrapper">
