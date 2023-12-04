@@ -126,7 +126,7 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
             {!topArtists && <h3>Loading...</h3>}
-            {(topArtists && topArtists?.showTopArtists) && 
+            {(topArtists && topArtists?.show_top_artists && topArtists?.tracks.length > 0) && 
             <section>
                 <div style={{ position: "relative" }}>
                     {(topArtistsScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
@@ -155,7 +155,7 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {!topArtists && <h3>Loading...</h3>}
-           {(topTracks && topTracks?.showTopTracks && topTracks?.tracks.length > 0) && 
+           {(topTracks && topTracks?.show_top_tracks && topTracks?.tracks.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
