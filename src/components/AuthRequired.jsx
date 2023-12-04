@@ -11,12 +11,11 @@ export default function AuthRequired() {
   const [expiringTime, setExpiringTime] = useState(null)
   const [expired, setExpired] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  const [topTracks, setTopTracks] = useState(null)
-  const [topArtists, setTopArtists] = useState(null)
+  const [offset, setOffset] = useState(0)
   const newSpotifyApi = new Spotify()
   const navigate = useNavigate()
 
-  const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket } = useStore()
+  const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setTopTracks, topTracks, setTopArtists, topArtists } = useStore()
 
   function setCookies(accessToken, refreshToken, expiringTime){
     const tokenExpiringDate = new Date(Date.now() + expiringTime)
@@ -231,12 +230,35 @@ export default function AuthRequired() {
   }, [expired])
 
   useEffect(() => {
-    if(topTracks){
+    
+   async function fetchMoreItems(category, list){
+      const visibleItems = list.items.filter(item => item.isVisible)
+      if(visibleItems.length < 10){
+        setOffset(prevOffset => prevOffset + 50)
+        const options = {
+          limit: 50,
+          time_range: "long_term",
+          offset: offset,
+        }
+        const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
+        const newItems = response.items 
+        const updatedList = { ...list, items: list.items.concat(newItems)}
 
+        Axios.post(`/api/user/${category}`, {
+          id: currentUser.id,
+          data: updatedList,
+        })
+
+        category === "top_artists" ? setTopArtists(firebaseResponse.data) : setTopTracks(firebaseResponse.data)
+      } else return
+    }
+
+    if(topTracks){
+      fetchMoreItems("top_tracks", topTracks)
     }
 
     if(topArtists){
-      
+      fetchMoreItems("top_artists", topArtists)
     }
   }, [topTracks, topArtists])
 

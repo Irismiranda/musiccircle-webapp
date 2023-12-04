@@ -5,27 +5,15 @@ import { SvgRightBtn, SvgLeftBtn } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, spotifyApi } = useStore()
+    const { standardWrapperWidth, currentUser, topTracks, setTopTracks, topArtists, setTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
-    const [ topTracks, setTopTracks ] = useState(null)
-    const [ topArtists, setTopArtists ] = useState(null)
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
-
-    async function getTopList(category){
-        const response = await Axios.get(`/api/user/${category}/${userId}`)
-        console.log("log - response is:", response.data)
-        if(category === "top_tracks"){
-            setTopTracks(response.data)
-        } else if(category === "top_artists"){
-            setTopArtists(response.data)
-        }
-    }
     
     async function getUser(id){
         const response = await Axios.post("/api/profile", {
@@ -35,8 +23,6 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
-        getTopList("top_tracks")
-        getTopList("top_artists")
     }
 
     function slideLeft(parentRef){
@@ -55,7 +41,7 @@ export default function Profile(){
         console.log("response data is:", response.data)
         const updatedTracks = {...topTracks, tracks: response.data}
         console.log("updated track are:", updatedTracks)
-        setTopTracks(updatedTracks)
+        category === "top_tracks" ? setTopTracks(updatedTracks) : setTopArtists(updatedTracks)
     }
 
     function hideSection(id){
@@ -100,8 +86,6 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-            getTopList("top_tracks")
-            getTopList("top_artists")
         } else{
             userId && getUser(userId)
         }
@@ -141,7 +125,7 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                {topArtists?.items
+                {topArtists.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
@@ -172,7 +156,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {topTracks?.items
+                    {topTracks.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
