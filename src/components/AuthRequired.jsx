@@ -241,15 +241,17 @@ export default function AuthRequired() {
           offset: offset,
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
+        console.log("fetchMoreItems log - response is:", response.items)
         const newItems = response.items 
         const updatedList = { ...list, items: list.items.concat(newItems)}
+        console.log("fetchMoreItems log - updated list is:", updatedList)
 
         Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
           data: updatedList,
         })
 
-        category === "top_artists" ? setTopArtists(firebaseResponse.data) : setTopTracks(firebaseResponse.data)
+        category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
       } else return
     }
 
