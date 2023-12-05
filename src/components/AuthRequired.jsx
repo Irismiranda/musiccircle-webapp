@@ -241,7 +241,7 @@
         }
       }
       
-      if(userTopTracks){
+      if(topTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){
@@ -257,7 +257,7 @@
         }
       }
 
-    }, [userTopTracks, userTopArtists])
+    }, [topTracks,userTopArtists])
 
     if (accessToken && !isLoading) {
       return <Outlet/>
