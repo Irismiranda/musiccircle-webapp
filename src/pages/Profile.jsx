@@ -132,7 +132,7 @@ export default function Profile(){
                         return (
                             <Link to={`/artist/${item.id}`}>
                                 <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    <button onClick={() => toggleItemVisibility(item.id)}>Hide</button>
+                                    <button onClick={() => toggleItemVisibility(item.id, "top_artists")}>Hide</button>
                                 </div>
                                 <h3>{item.name}</h3>
                             </Link>
