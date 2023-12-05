@@ -69,7 +69,7 @@
 
     async function getTopList(category){
       const options = {
-        limit: 20,
+        limit: 50,
       }
       
       let response
@@ -230,22 +230,24 @@
     async function fetchMoreItems(category, list){
       console.log("log - offset is:", offset)
         const options = {
-          limit: 50,
+          limit: 20,
           offset: offset,
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
         console.log("fetchMoreItems log - response is:", response.items)
         const newItems = response.items
-        const updatedList = { ...list, items: list.items.concat(newItems)}
+
+        if(newItems.length > 0){
+          const updatedList = { ...list, items: list.items.concat(newItems)}
         console.log("fetchMoreItems log - updated list is:", updatedList)
         
         Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
           data: updatedList,
         })
-        
         category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
         setOffset(prevOffset => prevOffset + 50)
+        }
       }
       
       if(topTracks){
