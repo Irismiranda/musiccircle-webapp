@@ -2,6 +2,7 @@
   import { Outlet, useNavigate } from "react-router-dom"
   import { Axios } from "../Axios-config"
   import { io } from "socket.io-client"
+  import { formatListData } from "../utils/utils"
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
@@ -65,23 +66,6 @@
         console.log(error)
       }
     
-    }
-
-    function formatListData(items, category) {
-      return items.map(item => {
-        let listItem = {
-          id: item.id,
-          name: item.name,
-          imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url,
-          isVisible: true,
-        };
-    
-        if (category === "top_tracks") {
-          listItem.artistName = item.artists[0].name
-        }
-    
-        return listItem
-      })
     }
 
     async function getTopList(category){

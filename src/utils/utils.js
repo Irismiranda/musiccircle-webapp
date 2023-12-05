@@ -20,4 +20,21 @@ const useClickOutside = (ref, exceptionRef, callback) => {
   }, [ref, callback])
 }
 
-export { useClickOutside }
+function formatListData(items, category) {
+  return items.map(item => {
+    let listItem = {
+      id: item.id,
+      name: item.name,
+      imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url,
+      isVisible: true,
+    };
+
+    if (category === "top_tracks") {
+      listItem.artistName = item.artists[0].name
+    }
+
+    return listItem
+  })
+}
+
+export { useClickOutside, formatListData }
