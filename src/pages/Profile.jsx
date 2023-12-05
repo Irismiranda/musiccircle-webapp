@@ -25,6 +25,10 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
+        const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
+        const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
+        setTopTracks(topTracksList)
+        setTopArtists(topArtistsList)
     }
 
     function slideLeft(parentRef){
