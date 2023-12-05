@@ -236,14 +236,14 @@
           data: updatedList,
         })
         category === "top_artists" ? setUserTopArtists(updatedList) : setUserTopTracks(updatedList)
-        setOffset(prevOffset => prevOffset + 10)
+        setOffset(prevOffset => prevOffset + 50)
         }
       }
       
       if(userTopTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 50){
+        if(visibleItems.length < 10 && offset < 150){
         fetchMoreItems("top_tracks", userTopTracks)
         }
       }
@@ -251,7 +251,7 @@
       if(userTopArtists){
         const visibleItems = userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 50){
+        if(visibleItems.length < 10 && offset < 150){
         fetchMoreItems("top_artists", userTopTracks)
         }
       }
