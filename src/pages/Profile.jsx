@@ -5,7 +5,7 @@ import { SvgRightBtn, SvgLeftBtn } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, topTracks, setTopTracks, topArtists, setTopArtists } = useStore()
+    const { standardWrapperWidth, currentUser, userTopTracks, setUserTopTracks, userTopArtists, setUserTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -39,8 +39,8 @@ export default function Profile(){
             itemId: itemId,
         })
         console.log("response data is:", response.data)
-        category === "top_tracks" && setTopTracks(response.data.top_tracks)
-        category === "top_artists" && setTopArtists(response.data.top_artists)
+        category === "top_tracks" && setUserTopTracks(response.data.top_tracks)
+        category === "top_artists" && setUserTopArtists(response.data.top_artists)
     }
 
     function hideSection(id){
@@ -52,7 +52,7 @@ export default function Profile(){
             const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
             setMaxScrollLeft(maxScroll)
         }
-    }, [topTracks, topArtists])
+    }, [userTopTracks, userTopArtists])
 
     useEffect(() => {
         const handleTopArtistsScroll = () => {
@@ -79,7 +79,7 @@ export default function Profile(){
             if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
             if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
         }
-    }, [topArtists, topTracks])
+    }, [userTopArtists, userTopTracks])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -91,8 +91,8 @@ export default function Profile(){
     }, [userId])
 
     useEffect(() => {
-        console.log("top tracks are:", topTracks, "top artists are:", topArtists)
-    }, [topArtists, topTracks])
+        console.log("top tracks are:", userTopTracks, "top artists are:", userTopArtists)
+    }, [userTopArtists, userTopTracks])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
@@ -110,10 +110,10 @@ export default function Profile(){
             </div>
             <div className="flex space_between">
                 <h2> Top Artists </h2>
-                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
-            {!topArtists && <h3>Loading...</h3>}
-            {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
+            {!userTopArtists && <h3>Loading...</h3>}
+            {(userTopArtists && userTopArtists.show_top_artists && userTopArtists.items.length > 0) && 
             <section>
                 <div style={{ position: "relative" }}>
                     {(topArtistsScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
@@ -124,7 +124,7 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                {topArtists.items
+                {userTopArtists.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
@@ -142,10 +142,10 @@ export default function Profile(){
            </section>}
            <div className="flex space_between">
                 <h2> Top Tracks </h2>
-                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
-           {!topTracks && <h3>Loading...</h3>}
-           {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
+           {!userTopTracks && <h3>Loading...</h3>}
+           {(userTopTracks && userTopTracks.show_top_tracks && userTopTracks.items.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
@@ -155,7 +155,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {topTracks.items
+                    {userTopTracks.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
