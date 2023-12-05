@@ -39,7 +39,8 @@ export default function Profile(){
             itemId: itemId,
         })
         console.log("response data is:", response.data)
-        category === "top_tracks" ? setTopTracks(response.data) : setTopArtists(response.data)
+        category === "top_tracks" && setTopTracks(response.data.top_tracks)
+        category === "top_artists" && setTopArtists(response.data.top_artists)
     }
 
     function hideSection(id){
