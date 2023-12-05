@@ -16,7 +16,7 @@
     const newSpotifyApi = new Spotify()
     const navigate = useNavigate()
 
-    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setUserTopTracks, userTopTracks, setUserTopArtists, topArtists } = useStore()
+    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setUserTopTracks, userTopTracks, setUserTopArtists, userTopArtists } = useStore()
 
     function setCookies(accessToken, refreshToken, expiringTime){
       const tokenExpiringDate = new Date(Date.now() + expiringTime)
@@ -215,7 +215,7 @@
     }, [expired])
 
     useEffect(() => {
-    console.log("top tracks are", userTopTracks, "top artists are", topArtists) 
+    console.log("top tracks are", userTopTracks, "top artists are", userTopArtists) 
     async function fetchMoreItems(category, list){
       console.log("log - offset is:", offset)
         const options = {
@@ -248,15 +248,15 @@
         }
       }
 
-      if(topArtists){
-        const visibleItems = topArtists.items.filter(item => item.isVisible)
+      if(userTopArtists){
+        const visibleItems = userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){
         fetchMoreItems("top_artists", userTopTracks)
         }
       }
 
-    }, [userTopTracks, topArtists])
+    }, [userTopTracks, userTopTracks])
 
     if (accessToken && !isLoading) {
       return <Outlet/>
