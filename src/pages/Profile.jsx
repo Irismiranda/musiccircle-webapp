@@ -116,8 +116,8 @@ export default function Profile(){
                 <h2> Top Artists </h2>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
-            {!userTopArtists && <h3>Loading...</h3>}
-            {(userTopArtists && userTopArtists.show_top_artists && userTopArtists.items.length > 0) && 
+            {!topArtists && <h3>Loading...</h3>}
+            {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
             <section>
                 <div style={{ position: "relative" }}>
                     {(topArtistsScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
@@ -128,7 +128,7 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                {userTopArtists.items
+                {topArtists.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
@@ -148,8 +148,8 @@ export default function Profile(){
                 <h2> Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
-           {!userTopTracks && <h3>Loading...</h3>}
-           {(userTopTracks && userTopTracks.show_top_tracks && userTopTracks.items.length > 0) && 
+           {!topTracks && <h3>Loading...</h3>}
+           {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.1)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
@@ -159,7 +159,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {userTopTracks.items
+                    {topTracks.items
                     .filter(item => item.isVisible)
                     .slice(0, 10)
                     .map((item) => {
