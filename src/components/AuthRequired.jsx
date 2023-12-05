@@ -266,7 +266,7 @@ import { off } from "process"
         }
       }
 
-      if(topArtists){
+      if(userTopArtists){
         const visibleItems =userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){

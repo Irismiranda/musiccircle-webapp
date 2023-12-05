@@ -99,7 +99,7 @@ export default function Profile(){
             if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
             if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
         }
-    }, [userTopTracks, userTopArtists])
+    }, [topArtists, topTracks])
     
     useEffect(() => {
         if(userId === currentUser.id){
