@@ -68,6 +68,23 @@ import { off } from "process"
     
     }
 
+    function formatListData(items, category) {
+      return items.map(item => {
+        let listItem = {
+          id: item.id,
+          name: item.name,
+          imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url,
+          isVisible: true,
+        };
+    
+        if (category === "top_tracks") {
+          listItem.artistName = item.artists[0].name;
+        }
+    
+        return listItem;
+      });
+    }
+
     async function getTopList(category){
       const options = {
         limit: 50,
@@ -83,20 +100,7 @@ import { off } from "process"
         console.log("log - response is:", response.items)  
       }
 
-      const dbTopListData = response.items.map((item) => {
-        let listItem = {
-          id: item.id,
-          name: item.name,
-          imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url, 
-          isVisible: true,
-        }
-      
-        if (category === "top_tracks") {
-          listItem.artistName = item.artists[0].name 
-        }
-      
-        return listItem
-      })
+      const dbTopListData = formatListData(response.items, category)
 
       console.log("log - dbTopListData is:", dbTopListData)
 
@@ -236,7 +240,7 @@ import { off } from "process"
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
         console.log("fetchMoreItems log - response is:", response.items)
-        const newItems = response.items
+        const newItems = formatListData(response.items, category)
 
         if(newItems.length > 0){
           const updatedList = { ...list, items: list.items.concat(newItems)}
