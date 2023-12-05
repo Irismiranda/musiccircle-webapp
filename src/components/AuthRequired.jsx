@@ -106,20 +106,7 @@
       })
       setOffset(50)
       console.log("fire store response is:", firestoreResponse.data)
-      console.log("log", setTopArtists, setTopTracks)
-      if(category === "top_tracks"){
-        try{
-          setTopTracks(firestoreResponse.data)
-        } catch (err){
-          console.log(err)
-        }
-      } else {
-        try {
-          setTopArtists(firestoreResponse.data)
-        } catch(err){
-          console.log(err)
-        }
-      }
+      category === "top_tracks" ? setTopTracks(firestoreResponse.data) : setTopArtists(firestoreResponse.data)
     }
 
     function calculateTimeLeft(dateAndTime){
