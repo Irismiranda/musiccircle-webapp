@@ -5,6 +5,7 @@
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
+import { off } from "process"
 
   export default function AuthRequired() {
     const [refreshToken, setRefreshToken] = useState(null)
@@ -103,7 +104,7 @@
         id: currentUser.id,
         data: dbTopListData,
       })
-      setOffset(50)
+      setOffset(49)
       console.log("fire store response is:", firestoreResponse.data)
       category === "top_tracks" ? setTopTracks(firestoreResponse.data) : setTopArtists(firestoreResponse.data)
     }
@@ -230,7 +231,7 @@
     async function fetchMoreItems(category, list){
       console.log("log - offset is:", offset)
         const options = {
-          limit: 20,
+          limit: 50,
           offset: offset,
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
@@ -246,14 +247,14 @@
           data: updatedList,
         })
         category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
-        setOffset(prevOffset => prevOffset + 50)
+        setOffset(prevOffset => prevOffset + 10)
         }
       }
       
       if(topTracks){
         const visibleItems = topTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10){
+        if(visibleItems.length < 10 && offset < 50){
         fetchMoreItems("top_tracks", topTracks)
         }
       }
@@ -261,7 +262,7 @@
       if(topArtists){
         const visibleItems = topArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10){
+        if(visibleItems.length < 10 && offset < 50){
         fetchMoreItems("top_artists", topTracks)
         }
       }
