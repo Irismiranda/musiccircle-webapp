@@ -258,7 +258,7 @@ import { off } from "process"
         }
       }
       
-      if(topTracks){
+      if(userTopTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){
@@ -274,7 +274,7 @@ import { off } from "process"
         }
       }
 
-    }, [topTracks,userTopArtists])
+    }, [userTopTracks, userTopArtists])
 
     if (accessToken && !isLoading) {
       return <Outlet/>
