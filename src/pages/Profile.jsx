@@ -7,7 +7,7 @@ import useStore from "../store"
 export default function Profile(){
     const { standardWrapperWidth, currentUser, userTopTracks, setUserTopTracks, userTopArtists, setUserTopArtists } = useStore()
     const { userId } = useParams()
-    const [ isCurrentUser, setisCurrentUser ] = useState(false)
+    const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
@@ -29,13 +29,10 @@ export default function Profile(){
         getList(id, "top_tracks")
     }
     
-    async function getList(id, category){
-        const response = await Axios.get(`/api/user/${category}/${id}`)
-        if (category === "top_artists") {
-            setTopArtists(response.data)
-        } else if (category === "top_tracks") {
-            setTopTracks(response.data)
-        }
+    function getList(id, category){
+        const response = Axios.get(`/api/user/${category}/${id}`)
+        category === "top_artists" && setTopArtists(response.data)
+        category === "top_tracks" && setTopTracks(response.data)
     }
 
     function slideLeft(parentRef){
@@ -83,7 +80,7 @@ export default function Profile(){
         }
 
     useEffect(() => {
-        if(isCurrentUser){
+        if(isLoggedUser){
             setTopTracks(userTopTracks)
             setTopArtists(userTopArtists)
         }
@@ -103,7 +100,7 @@ export default function Profile(){
     
     useEffect(() => {
         if(userId === currentUser.id){
-            setisCurrentUser(true)
+            setIsLoggedUser(true)
             setUserProfileData(currentUser)
         } else{
             userId && getUser(userId)
@@ -116,7 +113,7 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {isCurrentUser ? <button> Edit Profile </button> : <button> Follow </button>} 
+                    {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
                     <div>
                         <h3> Posts </h3>
                         <h3> Followers </h3>
@@ -126,7 +123,7 @@ export default function Profile(){
             </div>
             <div className="flex space_between">
                 <h2> Top Artists </h2>
-                {isCurrentUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
@@ -158,7 +155,7 @@ export default function Profile(){
            </section>}
            <div className="flex space_between">
                 <h2> Top Tracks </h2>
-                {isCurrentUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection(topArtists)}>{topTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
