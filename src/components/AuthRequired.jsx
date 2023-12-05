@@ -204,8 +204,8 @@
       }
       
       if(spotifyApi){
-        const newTopTracks = getTopList("top_tracks")
-        const newTopArtists = getTopList("top_artists")
+        getTopList("top_tracks")
+        getTopList("top_artists")
       }
 
       setIsLoading(false)
@@ -247,9 +247,7 @@
             data: updatedList,
           })
           
-          if(category === "top_artists"){
-            setTopArtists(updatedList)
-          } else setTopTracks(updatedList)
+          category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
           setOffset(prevOffset => prevOffset + 50)
         } else return
       }
