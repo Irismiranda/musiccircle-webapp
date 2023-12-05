@@ -246,7 +246,7 @@
           data: updatedList,
         })
         
-        category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
+        //category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
         setOffset(prevOffset => prevOffset + 50)
       }
       
