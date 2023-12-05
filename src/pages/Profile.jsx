@@ -39,9 +39,9 @@ export default function Profile(){
             itemId: itemId,
         })
         console.log("response data is:", response.data)
-        const updatedTracks = {...topTracks, tracks: response.data}
-        console.log("updated track are:", updatedTracks)
-        category === "top_tracks" ? setTopTracks(updatedTracks) : setTopArtists(updatedTracks)
+        const updatedList = {...[category], items: response.data}
+        console.log("updated track are:", updatedList)
+        category === "top_tracks" ? setTopTracks(updatedList) : setTopArtists(updatedList)
     }
 
     function hideSection(id){
