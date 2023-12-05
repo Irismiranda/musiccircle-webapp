@@ -5,7 +5,6 @@
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
-import { off } from "process"
 
   export default function AuthRequired() {
     const [refreshToken, setRefreshToken] = useState(null)
@@ -78,11 +77,11 @@ import { off } from "process"
         };
     
         if (category === "top_tracks") {
-          listItem.artistName = item.artists[0].name;
+          listItem.artistName = item.artists[0].name
         }
     
-        return listItem;
-      });
+        return listItem
+      })
     }
 
     async function getTopList(category){
