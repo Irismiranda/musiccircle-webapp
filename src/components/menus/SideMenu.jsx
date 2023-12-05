@@ -18,7 +18,7 @@ export default function SideMenu(){
         const path = location.pathname
         if (path.includes('inbox')){
             setActiveMenu('messages')
-        } else if(path.includes('account')){
+        } else if(path.includes(currentUser.id)){
             setActiveMenu('account')
         } else {
             setActiveMenu(null)
