@@ -88,6 +88,7 @@ import { off } from "process"
     async function getTopList(category){
       const options = {
         limit: 50,
+        time_range: "long_term",
       }
       
       let response
@@ -236,6 +237,7 @@ import { off } from "process"
       console.log("log - offset is:", offset)
         const options = {
           limit: 50,
+          time_range: "long_term",
           offset: offset,
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
