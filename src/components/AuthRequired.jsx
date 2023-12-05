@@ -16,7 +16,7 @@ import { off } from "process"
     const newSpotifyApi = new Spotify()
     const navigate = useNavigate()
 
-    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setTopTracks, topTracks, setTopArtists, topArtists } = useStore()
+    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setUserTopTracks, userTopTracks, setUserTopArtists,userTopArtists } = useStore()
 
     function setCookies(accessToken, refreshToken, expiringTime){
       const tokenExpiringDate = new Date(Date.now() + expiringTime)
@@ -111,7 +111,7 @@ import { off } from "process"
       })
       setOffset(49)
       console.log("fire store response is:", firestoreResponse.data)
-      category === "top_tracks" ? setTopTracks(firestoreResponse.data) : setTopArtists(firestoreResponse.data)
+      category === "top_tracks" ? setUserTopTracks(firestoreResponse.data) : setUserTopArtists(firestoreResponse.data)
     }
 
     function calculateTimeLeft(dateAndTime){
@@ -232,7 +232,7 @@ import { off } from "process"
     }, [expired])
 
     useEffect(() => {
-    console.log("top tracks are", topTracks, "top artists are", topArtists) 
+    console.log("top tracks are", userTopTracks, "top artists are", userTopArtists) 
     async function fetchMoreItems(category, list){
       console.log("log - offset is:", offset)
         const options = {
@@ -252,28 +252,29 @@ import { off } from "process"
           id: currentUser.id,
           data: updatedList,
         })
-        category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
-        setOffset(prevOffset => prevOffset + 10)
+
+        category === "top_artists" ? setUserTopArtists(updatedList) : setUserTopTracks(updatedList)
+        setOffset(prevOffset => prevOffset + 40)
         }
       }
       
       if(topTracks){
-        const visibleItems = topTracks.items.filter(item => item.isVisible)
+        const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){
-        fetchMoreItems("top_tracks", topTracks)
+        fetchMoreItems("top_tracks", userTopTracks)
         }
       }
 
       if(topArtists){
-        const visibleItems = topArtists.items.filter(item => item.isVisible)
+        const visibleItems =userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 50){
-        fetchMoreItems("top_artists", topTracks)
+        fetchMoreItems("top_artists", userTopTracks)
         }
       }
 
-    }, [topTracks, topArtists])
+    }, [topTracks,userTopArtists])
 
     if (accessToken && !isLoading) {
       return <Outlet/>
