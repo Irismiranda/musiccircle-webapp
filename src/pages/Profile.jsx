@@ -5,15 +5,13 @@ import { SvgRightBtn, SvgLeftBtn } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, userTopTracks, setUserTopTracks, userTopArtists, setUserTopArtists } = useStore()
+    const { standardWrapperWidth, currentUser, topTracks, setTopTracks, topArtists, setTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
-    const [ topTracks, setTopTracks] = useState(null)
-    const [ topArtists, setTopArtists] = useState(null)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
@@ -25,14 +23,6 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
-        getList(id, "top_artists")
-        getList(id, "top_tracks")
-    }
-    
-    function getList(id, category){
-        const response = Axios.get(`/api/user/${category}/${id}`)
-        category === "top_artists" && setTopArtists(response.data)
-        category === "top_tracks" && setTopTracks(response.data)
     }
 
     function slideLeft(parentRef){
@@ -49,8 +39,8 @@ export default function Profile(){
             itemId: itemId,
         })
         console.log("response data is:", response.data)
-        category === "top_tracks" && setUserTopTracks(response.data.top_tracks)
-        category === "top_artists" && setUserTopArtists(response.data.top_artists)
+        category === "top_tracks" && setTopTracks(response.data.top_tracks)
+        category === "top_artists" && setTopArtists(response.data.top_artists)
     }
 
     function hideSection(id){
@@ -79,13 +69,6 @@ export default function Profile(){
             }
         }
 
-    useEffect(() => {
-        if(isLoggedUser){
-            setTopTracks(userTopTracks)
-            setTopArtists(userTopArtists)
-        }
-    }, [userTopTracks, userTopArtists])
-
         const artistSliderElement = topArtistsSlider.current
         const tracksSliderElement = topTracksSlider.current
     
@@ -106,6 +89,10 @@ export default function Profile(){
             userId && getUser(userId)
         }
     }, [userId])
+
+    useEffect(() => {
+        console.log("top tracks are:", topTracks, "top artists are:", topArtists)
+    }, [topArtists, topTracks])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
