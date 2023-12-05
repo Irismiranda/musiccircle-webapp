@@ -16,8 +16,8 @@ const useStore = create((set, get) => ({
   setArtistUri: (artist) => set({ artistUri: artist }),
   setStandardWrapperWidth: (sideMenuWidth) => set({ standardWrapperWidth: `calc(100vw - ${sideMenuWidth}px - (${window.innerWidth}px - ${document.documentElement.clientWidth}px) - 25px)` }), // 25px for padding
   setSocket: (socket) => set({ socket: socket }),
-  setUserTopTracks: (tracks) => set({ topTracks: tracks }),
-  setUserTopArtists: (artists) => set({ topArtists: artists }),
+  setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
+  setUserTopArtists: (artists) => set({ userTtopArtists: artists }),
 }))
 
 export default useStore
