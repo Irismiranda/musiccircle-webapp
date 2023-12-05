@@ -229,36 +229,40 @@
     useEffect(() => {
     console.log("top tracks are", topTracks, "top artists are", topArtists) 
     async function fetchMoreItems(category, list){
-        const visibleItems = list.items.filter(item => item.isVisible)
-        if(visibleItems.length < 10){
-          const options = {
-            limit: 50,
-            time_range: "long_term",
-            offset: offset,
-          }
-          const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
-          console.log("fetchMoreItems log - response is:", response.items)
-          const newItems = response.items 
-          const updatedList = { ...list, items: list.items.concat(newItems)}
-          console.log("fetchMoreItems log - updated list is:", updatedList)
-          
-          Axios.post(`/api/user/${category}`, {
-            id: currentUser.id,
-            data: updatedList,
-          })
-          
-          category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
-          setOffset(prevOffset => prevOffset + 50)
-        } else return
+        const options = {
+          limit: 50,
+          time_range: "long_term",
+          offset: offset,
+        }
+        const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
+        console.log("fetchMoreItems log - response is:", response.items)
+        const newItems = response.items
+        const updatedList = { ...list, items: list.items.concat(newItems)}
+        console.log("fetchMoreItems log - updated list is:", updatedList)
+        
+        Axios.post(`/api/user/${category}`, {
+          id: currentUser.id,
+          data: updatedList,
+        })
+        
+        category === "top_artists" ? setTopArtists(updatedList) : setTopTracks(updatedList)
+        setOffset(prevOffset => prevOffset + 50)
       }
       
       if(topTracks){
+        const visibleItems = topTracks.items.filter(item => item.isVisible)
+        if(visibleItems.length < 10){
         fetchMoreItems("top_tracks", topTracks)
+        }
       }
 
       if(topArtists){
-        fetchMoreItems("top_artists", topArtists)
+        const visibleItems = topArtists.items.filter(item => item.isVisible)
+        if(visibleItems.length < 10){
+        fetchMoreItems("top_tracks", topTracks)
+        }
       }
+
     }, [topTracks, topArtists])
 
     if (accessToken && !isLoading) {
