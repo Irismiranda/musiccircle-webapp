@@ -12,6 +12,8 @@ export default function Profile(){
     const [ topTracksScroll, setTopTracksScroll ] = useState(0)
     const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
+    const [ topTracks, setTopTracks ] = useState(null)
+    const [ topArtists, setTopArtists ] = useState(null)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
@@ -85,10 +87,12 @@ export default function Profile(){
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
+            userTopTracks && setTopTracks(userTopTracks)
+            userTopArtists && setTopArtists(userTopArtists)
         } else{
             userId && getUser(userId)
         }
-    }, [userId])
+    }, [userId, userTopTracks, userTopArtists])
 
     useEffect(() => {
         console.log("top tracks are:", userTopTracks, "top artists are:", userTopArtists)
