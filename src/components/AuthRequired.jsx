@@ -229,6 +229,7 @@
     useEffect(() => {
     console.log("top tracks are", topTracks, "top artists are", topArtists) 
     async function fetchMoreItems(category, list){
+      console.log("log - offset is:", offset)
         const options = {
           limit: 50,
           time_range: "long_term",
@@ -259,7 +260,7 @@
       if(topArtists){
         const visibleItems = topArtists.items.filter(item => item.isVisible)
         if(visibleItems.length < 10){
-        fetchMoreItems("top_tracks", topTracks)
+        fetchMoreItems("top_artists", topTracks)
         }
       }
 
