@@ -69,7 +69,7 @@
 
     async function getTopList(category){
       const options = {
-        limit: 50,
+        limit: 20,
         time_range: "long_term",
       }
       
@@ -104,7 +104,7 @@
         id: currentUser.id,
         data: dbTopListData,
       })
-      setOffset(40)
+      setOffset(50)
       console.log("fire store response is:", firestoreResponse.data)
       category === "top_tracks" ? setTopTracks(firestoreResponse.data) : setTopArtists(firestoreResponse.data)
     }
