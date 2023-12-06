@@ -225,9 +225,9 @@
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
         console.log("fetchMoreItems log - response is:", response.items)
-        const dbTopListData = formatListData(response.items, category)
-
-        if(newItems.length > 0){
+        
+        if(response.items.length > 0){
+          const dbTopListData = formatListData(response.items, category)
           const updatedList = { ...list.items, ...dbTopListData}
         console.log("fetchMoreItems log - updated list is:", updatedList)
         
