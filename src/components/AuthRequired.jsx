@@ -70,7 +70,7 @@
 
     async function getTopList(category){
       const options = {
-        limit: 49,
+        limit: 48,
         time_range: "long_term",
       }
       
