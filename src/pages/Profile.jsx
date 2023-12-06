@@ -157,10 +157,10 @@ export default function Profile(){
            <section>
                 <div style={{ position: "relative" }}>
                     {(topTracksScroll > (maxScrollLeft * 0.08)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
-                        <SvgLeftBtn className="svg"/>
+                        <SvgLeftBtn className="svg_left_right"/>
                     </div>}
                     {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
-                        <SvgRightBtn className="svg"/>
+                        <SvgRightBtn className="svg_left_right"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
                     {topTracks.items
