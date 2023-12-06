@@ -20,6 +20,8 @@ export default function SideMenu(){
             setActiveMenu('messages')
         } else if(path.includes(currentUser.id)){
             setActiveMenu('account')
+        } else if(path === "/"){
+            setActiveMenu('home')
         } else {
             setActiveMenu(null)
         }
@@ -67,13 +69,13 @@ export default function SideMenu(){
         <>
             <div className='side_menu'>
                 <div ref={sideMenuRef} className='side_menu_wrapper'>
-                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu(null)} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
+                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu('home')} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgMusicCircle className="svg_big"/>
                         {isTextVisible && <h2>Music<span style={{ color: "#F230AA", fontWeight: "500" }}>Circle</span></h2>}
                     </Link>
-                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu(null)} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
-                        <SvgHomeIcon className="svg_big" color={ activeMenu === null ? "#F230AA" : "white" }/>
-                        {isTextVisible && <h2 style={{ color: activeMenu === null ? "#F230AA" : "white", fontWeight: activeMenu === null ? "500" : "" }}>Home</h2>}
+                    <Link to="/" className='menu_item_wrapper' onClick={() => setActiveMenu('home')} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
+                        <SvgHomeIcon className="svg_big" color={ activeMenu === 'home' ? "#F230AA" : "white" }/>
+                        {isTextVisible && <h2 style={{ color: activeMenu === 'home' ? "#F230AA" : "white", fontWeight: activeMenu === 'home' ? "500" : "" }}>Home</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("search")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
                         <SvgSearchIcon className="svg_big" color={ activeMenu === "search" ? "#F230AA" : "white" }/>
