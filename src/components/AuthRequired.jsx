@@ -225,10 +225,10 @@
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
         console.log("fetchMoreItems log - response is:", response.items)
-        const newItems = formatListData(response.items, category)
+        const dbTopListData = formatListData(response.items, category)
 
         if(newItems.length > 0){
-          const updatedList = { ...list, items: list.items.concat(newItems)}
+          const updatedList = { ...list.items, ...dbTopListData}
         console.log("fetchMoreItems log - updated list is:", updatedList)
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
