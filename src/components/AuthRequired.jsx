@@ -231,11 +231,13 @@
           const updatedList = { ...list, items: list.items.concat(newItems)}
         console.log("fetchMoreItems log - updated list is:", updatedList)
         
-        Axios.post(`/api/user/${category}`, {
+        const firebaseResponse = await Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
           data: updatedList,
         })
-        category === "top_artists" ? setUserTopArtists(updatedList) : setUserTopTracks(updatedList)
+
+        console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
+        category === "top_artists" ? setUserTopArtists(firebaseResponse) : setUserTopTracks(firebaseResponse)
         setOffset(prevOffset => prevOffset + 50)
         }
       }
@@ -243,7 +245,7 @@
       if(userTopTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 150){
+        if(visibleItems.length < 10 && offset < 95){
         fetchMoreItems("top_tracks", userTopTracks)
         }
       }
@@ -251,7 +253,7 @@
       if(userTopArtists){
         const visibleItems = userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 150){
+        if(visibleItems.length < 10 && offset < 95){
         fetchMoreItems("top_artists", userTopTracks)
         }
       }
