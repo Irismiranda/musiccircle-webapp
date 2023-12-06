@@ -228,7 +228,9 @@
         
         if(response.items.length > 0){
           const dbTopListData = formatListData(response.items, category)
-          const updatedList = { ...list.items, items: list.items.concat(dbTopListData)}
+          const existingItemIds = new Set(list.items.map(item => item.id))
+          const newUniqueItems = dbTopListData.filter(item => !existingItemIds.has(item.id))
+          const updatedList = { ...list.items, items: list.items.concat(newUniqueItems)}
         console.log("fetchMoreItems log - updated list is:", updatedList.items)
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
