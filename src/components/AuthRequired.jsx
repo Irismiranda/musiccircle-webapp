@@ -92,7 +92,7 @@
         id: currentUser.id,
         data: dbTopListData,
       })
-      setOffset(49)
+      setOffset(48)
       console.log("fire store response is:", firestoreResponse.data)
       category === "top_tracks" ? setUserTopTracks(firestoreResponse.data) : setUserTopArtists(firestoreResponse.data)
     }
