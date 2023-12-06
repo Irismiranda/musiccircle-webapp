@@ -90,7 +90,7 @@
 
       const firestoreResponse = await Axios.post(`/api/user/${category}`, {
         id: currentUser.id,
-        data: dbTopListData,
+        items: dbTopListData,
       })
       setOffset(48)
       console.log("fire store response is:", firestoreResponse.data)
@@ -235,7 +235,7 @@
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
-          data: updatedList.items,
+          items: updatedList.items,
         })
 
         console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
