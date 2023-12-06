@@ -70,7 +70,7 @@
 
     async function getTopList(category){
       const options = {
-        limit: 50,
+        limit: 49,
         time_range: "long_term",
       }
       
@@ -228,12 +228,12 @@
         
         if(response.items.length > 0){
           const dbTopListData = formatListData(response.items, category)
-          const updatedList = { ...list.items, ...dbTopListData}
-        console.log("fetchMoreItems log - updated list is:", updatedList)
+          const updatedList = { ...list.items, items: list.items.concat(dbTopListData)}
+        console.log("fetchMoreItems log - updated list is:", updatedList.items)
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
-          data: updatedList,
+          data: updatedList.items,
         })
 
         console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
