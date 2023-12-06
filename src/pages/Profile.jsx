@@ -110,9 +110,11 @@ export default function Profile(){
                 </div>
             </div>
             <div className="flex space_between">
-                <div className="flex">
-                    <h2> Top Artists </h2>
-                    {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>Show Hidden Items</button>}
+                <div className={!showVisibleTopArtists && "hidden_section"}>
+                    <div className="flex">
+                        <h2> Top Artists </h2>
+                        {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Hide" : "Show Hidden Artists" }</button>}
+                    </div>
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
@@ -127,14 +129,16 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
-                <div ref={topArtistsSlider} className="slider_grid">
-                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
+                <div>
+                    <div ref={topArtistsSlider} className="slider_grid">
+                        <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
+                    </div>
                 </div>
            </section>}
            <div className="flex space_between">
             <div className="flex">
                 <h2>  Top Tracks </h2>
-                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>Show Hidden Items</button>}
+                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopArtists ? "Hide" : "Show Hidden Tracks"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
