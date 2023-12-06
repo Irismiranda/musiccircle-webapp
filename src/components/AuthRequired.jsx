@@ -54,7 +54,7 @@
       try{       
         const userData = await spotifyApi.getMe()
         
-        const response = await Axios.post("/api/profile", {
+        const response = await Axios.post("/api/account", {
           userData: userData,
         })
         
