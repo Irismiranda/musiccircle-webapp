@@ -25,7 +25,7 @@ export default function Slider(props){
                 return (
                     <Link to={`/artist/${item.id}`}>
                         <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                            {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>Hide</button>}
+                            {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                         </div>
                         <h3>{item.name}</h3>
                         {category === "top_tracks" && <h5>{item.artistName}</h5>}

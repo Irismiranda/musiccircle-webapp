@@ -15,8 +15,8 @@ export default function Profile(){
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
-    const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(false)
-    const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(false)
+    const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
+    const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
