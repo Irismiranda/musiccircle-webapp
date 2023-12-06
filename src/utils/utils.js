@@ -21,6 +21,7 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 }
 
 function formatListData(items, category) {
+  console.log("Input items:", items);
   return items.map(item => {
     let listItem = {
       id: item.id,
