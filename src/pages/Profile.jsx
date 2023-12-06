@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useParams, Link } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Axios } from "../Axios-config"
 import { SvgRightBtn, SvgLeftBtn } from "../assets"
+import { Slider } from "../components/sections"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, userTopTracks, setUserTopTracks, userTopArtists, setUserTopArtists } = useStore()
+    const { standardWrapperWidth, currentUser, userTopTracks, userTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -37,16 +38,6 @@ export default function Profile(){
     
     function slideRight(parentRef){
         parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
-    }
-
-    async function toggleItemVisibility(itemId, category){
-        const response = await Axios.post(`/api/user/${category}/toggleVisibility`, {
-            userId: currentUser.id,
-            itemId: itemId,
-        })
-        console.log("response data is:", response.data)
-        category === "top_tracks" && setUserTopTracks(response.data.top_tracks)
-        category === "top_artists" && setUserTopArtists(response.data.top_artists)
     }
 
     function hideSection(id){
@@ -132,20 +123,7 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                {topArtists.items
-                    .filter(item => item.isVisible)
-                    .slice(0, 10)
-                    .map((item) => {
-                        return (
-                            <Link to={`/artist/${item.id}`}>
-                                <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, "top_artists")}>Hide</button>}
-                                </div>
-                                <h3>{item.name}</h3>
-                            </Link>
-                            )
-                        }) 
-                    }
+                    <Slider list={topArtists} category="top_artists" visibility={true} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
            <div className="flex space_between">
@@ -163,21 +141,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                    {topTracks.items
-                    .filter(item => item.isVisible)
-                    .slice(0, 10)
-                    .map((item) => {
-                        return (    
-                            <div>
-                                <div href={`/song=${item.id}`} style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                   {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, "top_tracks")}>Hide</button>}
-                                </div>
-                                <h3 href={`/song=${item.id}`}>{item.name}</h3>
-                                <h5 href={`/song=${item.id}`}>{item.artistName}</h5>
-                            </div>
-                            )
-                        }) 
-                    }
+                        <Slider list={topTracks} category="top_tracks" visibility={true} isLoggedUser={isLoggedUser}/>
                     </div>
                 </div>
            </section>}
