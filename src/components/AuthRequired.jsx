@@ -247,7 +247,7 @@
       if(userTopTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 95){
+        if(visibleItems.length < 10 && offset < 95 && offset > 0){
         fetchMoreItems("top_tracks", userTopTracks)
         }
       }
@@ -255,7 +255,7 @@
       if(userTopArtists){
         const visibleItems = userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
-        if(visibleItems.length < 10 && offset < 95){
+        if(visibleItems.length < 10 && offset < 95 && offset > 0){
         fetchMoreItems("top_artists", userTopTracks)
         }
       }
