@@ -260,7 +260,7 @@
         }
       }
 
-    }, [userTopTracks, userTopTracks])
+    }, [userTopTracks, userTopTracks, offset])
 
     if (accessToken && !isLoading) {
       return <Outlet/>
