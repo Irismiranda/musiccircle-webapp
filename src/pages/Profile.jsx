@@ -32,11 +32,11 @@ export default function Profile(){
     }
 
     function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.1), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.1), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
 
     async function toggleItemVisibility(itemId, category){
