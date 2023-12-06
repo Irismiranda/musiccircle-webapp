@@ -15,6 +15,8 @@ export default function Profile(){
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
+    const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(false)
+    const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(false)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
@@ -108,7 +110,10 @@ export default function Profile(){
                 </div>
             </div>
             <div className="flex space_between">
-                <h2> Top Artists </h2>
+                <div>
+                    <h2> Top Artists </h2>
+                    {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>Show Hidden Items</button>}
+                </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
             {!topArtists && <h3>Loading...</h3>}
@@ -123,11 +128,14 @@ export default function Profile(){
                     </div>}
                 </div>
                 <div ref={topArtistsSlider} className="slider_grid">
-                    <Slider list={topArtists} category="top_artists" visibility={true} isLoggedUser={isLoggedUser}/>
+                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
            <div className="flex space_between">
-                <h2> Top Tracks </h2>
+            <div>
+                <h2>  Top Tracks </h2>
+                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>Show Hidden Items</button>}
+            </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
            {!topTracks && <h3>Loading...</h3>}
@@ -141,7 +149,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right"/>
                     </div>}
                     <div ref={topTracksSlider} className="slider_grid">
-                        <Slider list={topTracks} category="top_tracks" visibility={true} isLoggedUser={isLoggedUser}/>
+                        <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
                     </div>
                 </div>
            </section>}
