@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Axios } from "../Axios-config"
 import { SvgRightBtn, SvgLeftBtn } from "../assets"
-import { Slider } from "../components/sections"
+import { Slider } from "../components/"
 import useStore from "../store"
 
 export default function Profile(){
