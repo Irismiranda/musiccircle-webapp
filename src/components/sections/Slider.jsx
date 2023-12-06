@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import useStore from "../../store"
-import Axios from "../../Axios-config"
+import { Axios } from "../../Axios-config"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser } = props
