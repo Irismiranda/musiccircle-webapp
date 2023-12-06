@@ -237,7 +237,7 @@
         })
 
         console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
-        category === "top_artists" ? setUserTopArtists(firebaseResponse) : setUserTopTracks(firebaseResponse)
+        category === "top_artists" ? setUserTopArtists(firebaseResponse.data) : setUserTopTracks(firebaseResponse.data)
         setOffset(prevOffset => prevOffset + 50)
         }
       }
