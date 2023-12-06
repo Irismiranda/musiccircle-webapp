@@ -110,7 +110,7 @@ export default function Profile(){
                 </div>
             </div>
             <div className="flex space_between">
-                <div>
+                <div className="flex">
                     <h2> Top Artists </h2>
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>Show Hidden Items</button>}
                 </div>
@@ -132,7 +132,7 @@ export default function Profile(){
                 </div>
            </section>}
            <div className="flex space_between">
-            <div>
+            <div className="flex">
                 <h2>  Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>Show Hidden Items</button>}
             </div>
