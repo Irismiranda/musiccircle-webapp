@@ -13,6 +13,7 @@
     const [expired, setExpired] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [offset, setOffset] = useState(0)
+    const [loadingItems, setLoadingItems] = useState(false)
     const newSpotifyApi = new Spotify()
     const navigate = useNavigate()
 
@@ -217,6 +218,7 @@
     useEffect(() => {
     console.log("top tracks are", userTopTracks, "top artists are", userTopArtists) 
     async function fetchMoreItems(category, list){
+      setLoadingItems(true)
       console.log("log - offset is:", offset)
         const options = {
           limit: 50,
@@ -241,10 +243,11 @@
         console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
         category === "top_artists" ? setUserTopArtists(firebaseResponse.data) : setUserTopTracks(firebaseResponse.data)
         setOffset(prevOffset => prevOffset + 50)
+        setLoadingItems(false)
         }
       }
       
-      if(userTopTracks){
+      if(userTopTracks && !loadingItems){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 95 && offset > 0){
@@ -252,7 +255,7 @@
         }
       }
 
-      if(userTopArtists){
+      if(userTopArtists && !loadingItems){
         const visibleItems = userTopArtists.items.filter(item => item.isVisible)
         console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 95 && offset > 0){
