@@ -104,7 +104,7 @@ export default function Messages(props) {
                 <div className="flex">
                   {type === "user" && <img src={`${userProfilePic}`} />}
                   <h4>
-                    <a href={`/profile/${userId}`}>{userName}</a>
+                    <a href={`/account/${userId}`}>{userName}</a>
                   </h4>
                 </div>
                 <div className="chat-message">

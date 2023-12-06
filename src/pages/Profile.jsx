@@ -18,7 +18,7 @@ export default function Profile(){
     const topTracksSlider = useRef(null)
     
     async function getUser(id){
-        const response = await Axios.post("/api/profile", {
+        const response = await Axios.post("/api/account", {
             userData: {
                 id: id,
                 type: "user",
