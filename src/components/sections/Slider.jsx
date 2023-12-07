@@ -29,8 +29,8 @@ export default function Slider(props){
     }
 
     useEffect(() => {
-        if(ref.current){
-            const maxScroll = ref.current.scrollWidth - ref.current.clientWidth
+        if(parentRef.current){
+            const maxScroll = parentRef.current.scrollWidth - parentRef.current.clientWidth
             setMaxScrollLeft(maxScroll)
         }
     }, [list])
