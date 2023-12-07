@@ -98,7 +98,7 @@ export default function Profile(){
             {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
             <section style={{ position: "relative" }}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
+                    <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
                 </div>
            </section>}
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
@@ -112,7 +112,7 @@ export default function Profile(){
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section style={{ position: "relative" }}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
+                    <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
                 </div>
            </section>}
            <h2> Posts </h2>
