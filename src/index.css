@@ -605,6 +605,14 @@ h3{
   overflow-x: hidden;
 }
 
+.slider_wrapper h2{
+  margin-top: -2px
+}
+
+.slider_wrapper .flex{
+  align-items: start;
+}
+
 .slider_grid h5{
   margin: 10px;
 }
