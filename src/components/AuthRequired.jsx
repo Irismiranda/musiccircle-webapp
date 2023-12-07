@@ -40,13 +40,11 @@
         })
         const accessToken = response.data.access_token
         const expiresIn = response.data.expires_in * 1000
-        console.log("log - new token expires in:", expiresIn, "ms")
         setExpiringTime(expiresIn - 6000)
         setAccessToken(accessToken)
         setCookies(accessToken, refreshToken, expiresIn)
-        console.log("log - token was refreshed successfully")
-      } catch(error){
-        console.log(error)
+      } catch(err){
+        console.log(err)
       }
     }
 
@@ -62,8 +60,8 @@
         const stringData = JSON.stringify(userData)
         localStorage.setItem("currentUser", stringData)
         
-      } catch(error){
-        console.log(error)
+      } catch(err){
+        console.log(err)
       }
     
     }
@@ -78,22 +76,17 @@
 
       if(category === "top_tracks"){
         response = await spotifyApi.getMyTopTracks(options)
-        console.log("log - response is:", response.items)  
       } else if(category === "top_artists"){
         response = await spotifyApi.getMyTopArtists(options)
-        console.log("log - response is:", response.items)  
       }
 
       const dbTopListData = formatListData(response.items, category)
-
-      console.log("log - dbTopListData is:", dbTopListData)
 
       const firestoreResponse = await Axios.post(`/api/user/${category}`, {
         id: currentUser.id,
         items: dbTopListData,
       })
       setOffset(48)
-      console.log("fire store response is:", firestoreResponse.data)
       category === "top_tracks" ? setUserTopTracks(firestoreResponse.data) : setUserTopArtists(firestoreResponse.data)
     }
 
@@ -215,30 +208,25 @@
     }, [expired])
 
     useEffect(() => {
-    console.log("top tracks are", userTopTracks, "top artists are", userTopArtists) 
     async function fetchMoreItems(category, list){
-      console.log("log - offset is:", offset)
         const options = {
           limit: 50,
           time_range: "long_term",
           offset: offset,
         }
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
-        console.log("fetchMoreItems log - response is:", response.items)
         
         if(response.items.length > 0){
           const dbTopListData = formatListData(response.items, category)
           const existingItemIds = new Set(list.items.map(item => item.id))
           const newUniqueItems = dbTopListData.filter(item => !existingItemIds.has(item.id))
           const updatedList = { ...list.items, items: list.items.concat(newUniqueItems)}
-        console.log("fetchMoreItems log - updated list is:", updatedList.items)
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
           id: currentUser.id,
           items: updatedList.items,
         })
 
-        console.log("log - firebase response for fetchMoreItems is:", firebaseResponse)
         setOffset(prevOffset => prevOffset + 50)
         category === "top_artists" ? setUserTopArtists(firebaseResponse.data) : setUserTopTracks(firebaseResponse.data)
         }
@@ -246,7 +234,6 @@
       
       if(userTopTracks){
         const visibleItems = userTopTracks.items.filter(item => item.isVisible)
-        console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 95 && offset > 0){
         fetchMoreItems("top_tracks", userTopTracks)
         }
@@ -254,7 +241,6 @@
 
       if(userTopArtists){
         const visibleItems = userTopArtists.items.filter(item => item.isVisible)
-        console.log("visible items are:", visibleItems)
         if(visibleItems.length < 10 && offset < 95 && offset > 0){
         fetchMoreItems("top_artists", userTopTracks)
         }

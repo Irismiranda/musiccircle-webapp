@@ -57,14 +57,12 @@ export default function Profile(){
         const handleTopArtistsScroll = () => {
             if (topArtistsSlider.current) {
                 setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
-                console.log("log - top artist scroll is:", topTracksSlider.current.scrollLeft)
             }
         }
     
         const handleTopTracksScroll = () => {
             if (topTracksSlider.current) {
                 setTopTracksScroll(topTracksSlider.current.scrollLeft)
-                console.log("log - top track scroll is:", topTracksSlider.current.scrollLeft)
             }
         }
 
@@ -92,7 +90,6 @@ export default function Profile(){
     }, [userId, userTopTracks, userTopArtists])
 
     useEffect(() => {
-        console.log("top tracks are:", userTopTracks, "top artists are:", userTopArtists)
     }, [userTopArtists, userTopTracks])
     
     return(
