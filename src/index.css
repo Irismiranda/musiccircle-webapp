@@ -625,6 +625,16 @@ h3{
   margin: 10px;
 }
 
+.slider_image_wrapper{
+  position: relative;
+}
+
+.slider_image_wrapper button{
+  position: absolute;
+  top: 75%;
+  right: 8%;
+}
+
 .transparent_section{
   opacity: 0.5;
 }
