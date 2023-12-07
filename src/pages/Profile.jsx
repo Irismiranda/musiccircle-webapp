@@ -142,7 +142,7 @@ export default function Profile(){
            </div>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
-           <section>
+           <section style={{ position: "relative" }}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     {(topTracksScroll > (maxScrollLeft * 0.08)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
                         <SvgLeftBtn className="svg_left_right"/>

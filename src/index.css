@@ -595,7 +595,6 @@ h3{
 .slider_grid{
   display: grid;
   grid-auto-flow: column;
-  position: relative;
   gap: 60px;
   width: 100%;
   padding: 30px 40px;
