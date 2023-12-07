@@ -116,7 +116,7 @@ export default function Profile(){
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </section>
-            {!topArtists && <h3 style={{ marign: "40px 0px" }}>Loading...</h3>}
+            {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
             <section style={{ position: "relative" }}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
@@ -136,7 +136,7 @@ export default function Profile(){
             </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
-           {!topTracks && <h3 style={{ marign: "20px 0px" }}>Loading...</h3>}
+           {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section style={{ position: "relative" }}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
