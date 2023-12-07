@@ -8,9 +8,9 @@ export default function Artist(){
     const [ artistData, setArtistData ] = useState(null)
 
     async function getArtistData(){
-        const data = await spotifyApi.getArtist()
+        const data = await spotifyApi.getArtist(artistId)
         setArtistData(data)
-        console.log("artist data is:", artistData)
+        console.log("artist data is:", data)
     }
     
 
