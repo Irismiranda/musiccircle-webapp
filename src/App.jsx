@@ -14,6 +14,7 @@ export default function App() {
                 <Route index element={<Home />}/> 
                 <Route path="inbox" element={<Inbox />}/> 
                 <Route path="account/:userId" element={<Profile />}/> 
+                <Route path="artist/:artistId" element={<Profile />}/> 
               </Route>
             </Route>
         </Route>
