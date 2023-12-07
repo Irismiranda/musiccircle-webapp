@@ -16,16 +16,18 @@ export default function Slider(props){
             itemId: itemId,
         })
         console.log("response data is:", response.data)
-        category === "top_tracks" && setUserTopTracks(response.data.top_tracks)
-        category === "top_artists" && setUserTopArtists(response.data.top_artists)
+        category === "tracks" && setUserTopTracks(response.data.top_tracks)
+        category === "artists" && setUserTopArtists(response.data.top_artists)
     }
 
     function slideLeft(){
         parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
+        setListScroll(parentRef.current.scrollLeft)
     }
     
     function slideRight(){
         parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
+        setListScroll(parentRef.current.scrollLeft)
     }
 
     useEffect(() => {
