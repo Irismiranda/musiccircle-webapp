@@ -616,7 +616,7 @@ h3{
   background-color: #1a1a1a;
 }
 
-.hidden_items_grid button{
+.hidden_items_grid .button_grow{
   padding-bottom: 20px;
 }
 
