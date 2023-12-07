@@ -644,12 +644,12 @@ h3{
 
 .btn_wrapper_left{
   position: absolute;
-  top: 90px;
+  bottom: 235px;
 }
 
 .btn_wrapper_right{
   position: absolute;
-  top: 90px;
+  bottom: 235px;  
   right: -10px;
 }
 
