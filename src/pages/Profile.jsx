@@ -128,7 +128,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
-                <div className={!showVisibleTopArtists ? "" : "hidden_section"}> 
+                <div className={!showVisibleTopArtists ? "hidden_section" : ""}> 
                     <div ref={topArtistsSlider} className="slider_grid">
                         <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                     </div>
@@ -151,7 +151,7 @@ export default function Profile(){
                     {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg_left_right"/>
                     </div>}
-                    <div className={!showVisibleTopTracks ? "" : "hidden_section"}>
+                    <div className={!showVisibleTopTracks ? "hidden_section" : ""}>
                         <div ref={topTracksSlider} className="slider_grid">
                             <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
                         </div>
