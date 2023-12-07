@@ -153,6 +153,10 @@ button:focus-visible {
   align-items: center;
 }
 
+.aling_start{
+  align-items: start;
+}
+
 .wrapper{
   box-sizing: border-box;
   background-color: #191414;
