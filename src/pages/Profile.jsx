@@ -51,7 +51,7 @@ export default function Profile(){
             const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
             setMaxScrollLeft(maxScroll)
         }
-    }, [userTopTracks, userTopArtists])
+    }, [topTracks, topArtists])
 
     useEffect(() => {
         const handleTopArtistsScroll = () => {
