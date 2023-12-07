@@ -113,7 +113,7 @@ export default function Profile(){
                 <div className={!showVisibleTopArtists && "hidden_section"}>
                     <div className="flex">
                         <h2> Top Artists </h2>
-                        {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Hide" : "Show Hidden Artists" }</button>}
+                        {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
                     </div>
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
@@ -138,7 +138,7 @@ export default function Profile(){
            <div className="flex space_between">
             <div className="flex">
                 <h2>  Top Tracks </h2>
-                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopArtists ? "Hide" : "Show Hidden Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show Hidden Tracks" : "Hide"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>
