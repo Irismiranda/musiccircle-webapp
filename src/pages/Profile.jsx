@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
-import { SvgRightBtn, SvgLeftBtn } from "../assets"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import useStore from "../store"
@@ -10,9 +9,6 @@ export default function Profile(){
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
-    const [ topTracksScroll, setTopTracksScroll ] = useState(0)
-    const [ topArtistsScroll, setTopArtistsScroll ] = useState(0)
-    const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
@@ -34,24 +30,9 @@ export default function Profile(){
         setTopArtists(topArtistsList.data)
     }
 
-    function slideLeft(parentRef){
-        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
-    }
-    
-    function slideRight(parentRef){
-        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
-    }
-
     function hideSection(id){
 
     }
-
-    useEffect(() => {
-        if(topArtistsSlider.current){
-            const maxScroll = topArtistsSlider.current.scrollWidth - topArtistsSlider.current.clientWidth
-            setMaxScrollLeft(maxScroll)
-        }
-    }, [topTracks, topArtists])
 
     useEffect(() => {
         const handleTopArtistsScroll = () => {
@@ -117,13 +98,7 @@ export default function Profile(){
             {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
             <section style={{ position: "relative" }}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    {(topArtistsScroll > (maxScrollLeft *  0.08)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
-                        <SvgLeftBtn className="svg_left_right" />
-                    </div>}
-                    {(topArtistsScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
-                        <SvgRightBtn className="svg_left_right" />
-                    </div>}
-                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
+                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
                 </div>
            </section>}
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
@@ -137,13 +112,7 @@ export default function Profile(){
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section style={{ position: "relative" }}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    {(topTracksScroll > (maxScrollLeft * 0.08)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topTracksSlider)}>
-                        <SvgLeftBtn className="svg_left_right"/>
-                    </div>}
-                    {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
-                        <SvgRightBtn className="svg_left_right"/>
-                    </div>}
-                    <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
+                    <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
                 </div>
            </section>}
            <h2> Posts </h2>

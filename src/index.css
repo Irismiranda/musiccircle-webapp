@@ -396,7 +396,7 @@ a{
 .side_menu_wrapper{
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
   box-sizing: border-box;
   height: 100%;
   padding: 20px 50px 20px 35px;
