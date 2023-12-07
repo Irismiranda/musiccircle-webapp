@@ -66,17 +66,20 @@ export default function Slider(props){
                 .slice(0, 10)
                 .map((item) => {
                     return (
-                        <Link to={`/artist/${item.id}`}>
-                            <div style={{ maxWidth: "200px" }}>
+                        <div style={{ maxWidth: "200px" }}>
+                            <div className="slider_image_wrapper">
                                 <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                                 </div>
-                                <h3>{item.name}</h3>
-                                {category === "top_tracks" && <h5>{item.artistName}</h5>}
+                                {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                             </div>
-                        </Link>
-                    )
-                })   }     
+                            <Link to={`/artist/${item.id}`}>
+                                <h3>{item.name}</h3>
+                                {category === "tracks" && <h5>{item.artistName}</h5>}
+                            </Link>
+                        </div>
+                        )
+                    })   
+                }     
         </>
     )
 }
