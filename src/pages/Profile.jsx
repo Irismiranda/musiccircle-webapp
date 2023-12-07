@@ -110,11 +110,10 @@ export default function Profile(){
                 </div>
             </div>
             <div className="flex space_between">
-                <div className={!showVisibleTopArtists && "hidden_section"}>
-                    <div className="flex">
-                        <h2> Top Artists </h2>
-                        {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
-                    </div>
+                
+                <div className="flex">
+                    <h2> Top Artists </h2>
+                    {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
@@ -129,7 +128,7 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
-                <div>
+                <div className={!showVisibleTopArtists ? "" : "hidden_section"}> 
                     <div ref={topArtistsSlider} className="slider_grid">
                         <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                     </div>
@@ -152,8 +151,10 @@ export default function Profile(){
                     {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg_left_right"/>
                     </div>}
-                    <div ref={topTracksSlider} className="slider_grid">
-                        <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
+                    <div className={!showVisibleTopTracks ? "" : "hidden_section"}>
+                        <div ref={topTracksSlider} className="slider_grid">
+                            <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
+                        </div>
                     </div>
                 </div>
            </section>}
