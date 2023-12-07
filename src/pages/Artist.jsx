@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Slider } from "../components"
 import { useParams } from "react-router-dom"
 import useStore from "../store"
 
@@ -12,7 +13,6 @@ export default function Artist(){
         setArtistData(data)
         console.log("artist data is:", data)
     }
-    
 
     useEffect(() => {
         if(artistId){
