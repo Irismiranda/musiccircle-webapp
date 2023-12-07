@@ -606,11 +606,11 @@ h3{
 }
 
 .slider_wrapper h2{
-  margin-top: -2px
+  margin-top: -2px;
 }
 
 .slider_wrapper .flex{
-  align-items: start;
+  align-items: start !important;
 }
 
 .slider_grid h5{
