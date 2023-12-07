@@ -110,7 +110,6 @@ export default function Profile(){
                 </div>
             </div>
             <div className="flex space_between">
-                
                 <div className="flex">
                     <h2> Top Artists </h2>
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
@@ -128,8 +127,8 @@ export default function Profile(){
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
                 </div>
-                <div className={!showVisibleTopArtists ? "slider_wrapper hidden_section" : "slider_wrapper"}> 
-                    <div ref={topArtistsSlider} className="slider_grid">
+                <div>
+                    <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                         <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                     </div>
                 </div>
@@ -151,10 +150,8 @@ export default function Profile(){
                     {(topTracksScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topTracksSlider)}>
                         <SvgRightBtn className="svg_left_right"/>
                     </div>}
-                    <div className={!showVisibleTopTracks ? "slider_wrapper hidden_section" : "slider_wrapper"}>
-                        <div ref={topTracksSlider} className="slider_grid">
-                            <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
-                        </div>
+                    <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
+                        <Slider list={topTracks} category="top_tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
                     </div>
                 </div>
            </section>}

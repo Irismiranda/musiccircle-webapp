@@ -597,7 +597,7 @@ h3{
   grid-auto-flow: column;
   gap: 60px;
   width: 100%;
-  padding: 0px 40px;
+  padding: 30px 40px;
   margin-left: -40px;
   margin-bottom: 30px;
   text-align: center;
@@ -612,19 +612,16 @@ h3{
   margin: 10px;
 }
 
-.hidden_section{
-  position: relative;
+.hidden_items_grid{
+  background-color: #1a1a1a;
 }
 
-.hidden_section::before{
-  content: "";
-  position: absolute;
-  top: -10px; 
-  left: -10px;
-  width: 100%; 
-  height: 100%; 
-  background-color: #1a1a1a;
-  z-index: -1; 
+.hidden_items_grid button{
+  padding-bottom: 20px;
+}
+
+.hidden_items_grid h2{
+  padding-bottom: 15px;
 }
 
 .cover_wrapper{
