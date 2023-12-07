@@ -609,6 +609,10 @@ h3{
   overflow-x: hidden;
 }
 
+.slider_wrapper{
+  margin-top: 40px;
+}
+
 .slider_wrapper h2{
   margin-top: -2px;
 }
