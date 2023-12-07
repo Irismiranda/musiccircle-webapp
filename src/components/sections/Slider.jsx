@@ -11,7 +11,7 @@ export default function Slider(props){
     const [ listScroll, setListScroll ] = useState(0)
 
     async function toggleItemVisibility(itemId, category){
-        const response = await Axios.post(`/api/user/${category}/hide_item`, {
+        const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
             userId: currentUser.id,
             itemId: itemId,
         })
