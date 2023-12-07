@@ -14,6 +14,12 @@ export default function Artist(){
         console.log("artist data is:", data)
     }
 
+    async function getArtistData(){
+        const data = await spotifyApi.getArtist(artistId)
+        setArtistData(data)
+        console.log("artist data is:", data)
+    }
+
     useEffect(() => {
         if(artistId){
             getArtistData()
@@ -22,6 +28,9 @@ export default function Artist(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
+            <div style={{ backgroundImage: `url("${artistData.images[0].url}")` }}>
+                <h1>{artistData.name}</h1>
+            </div>
             <h1> Artist Page Goes Here</h1>
         </div>
     )

@@ -5,7 +5,7 @@ import { Axios } from "../Axios-config"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, userTopTracks, userTopArtists } = useStore()
+    const { standardWrapperWidth, currentUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -30,34 +30,11 @@ export default function Profile(){
         setTopArtists(topArtistsList.data)
     }
 
-    function hideSection(id){
-
+    function hideSection(category){
+        Axios.post("")
+        category === "top_artists" && setUserTopArtists(...prevData => [...prevData, prevData.show_top_artists === !prevData.show_top_artists] )
+        category === "top_track" && setUserTopTracks(...prevData => [...prevData, prevData.show_top_tracks === !prevData.show_top_tracks] )
     }
-
-    useEffect(() => {
-        const handleTopArtistsScroll = () => {
-            if (topArtistsSlider.current) {
-                setTopArtistsScroll(topArtistsSlider.current.scrollLeft)
-            }
-        }
-    
-        const handleTopTracksScroll = () => {
-            if (topTracksSlider.current) {
-                setTopTracksScroll(topTracksSlider.current.scrollLeft)
-            }
-        }
-
-        const artistSliderElement = topArtistsSlider.current
-        const tracksSliderElement = topTracksSlider.current
-    
-        if (artistSliderElement) artistSliderElement.addEventListener('scroll', handleTopArtistsScroll)
-        if (tracksSliderElement) tracksSliderElement.addEventListener('scroll', handleTopTracksScroll)
-    
-        return () => {
-            if (artistSliderElement) artistSliderElement.removeEventListener('scroll', handleTopArtistsScroll)
-            if (tracksSliderElement) tracksSliderElement.removeEventListener('scroll', handleTopTracksScroll)
-        }
-    }, [userTopArtists, userTopTracks])
     
     useEffect(() => {
         if(userId === currentUser.id){
@@ -92,11 +69,11 @@ export default function Profile(){
                     <h2> Top Artists </h2>
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
                 </div>
-                {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection("top_artists")}>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </section>
             {!topArtists && <h3>Loading...</h3>}
-            {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
-            <section style={{ position: "relative" }}>
+            {(topArtists && topArtists.items.length > 0 && (topArtists.show_top_tracks || isLoggedUser)) && 
+            <section style={{ position: "relative" }} className={topTracks.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
                 </div>
@@ -106,11 +83,11 @@ export default function Profile(){
                 <h2>  Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show HiddenTracks" : "Hide"}</button>}
             </div>
-                {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
            {!topTracks && <h3>Loading...</h3>}
-           {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
-           <section style={{ position: "relative" }}>
+           {(topTracks && topTracks.items.length > 0 && (topTracks.show_top_tracks || isLoggedUser)) && 
+           <section style={{ position: "relative" }} className={topTracks.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
                 </div>

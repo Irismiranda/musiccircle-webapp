@@ -21,12 +21,10 @@ export default function Slider(props){
     }
 
     function slideLeft(){
-        setListScroll(parentRef.current.scrollLeft)
         parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(){
-        setListScroll(parentRef.current.scrollLeft)
         parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
 
@@ -34,6 +32,22 @@ export default function Slider(props){
         if(parentRef.current){
             const maxScroll = parentRef.current.scrollWidth - parentRef.current.clientWidth
             setMaxScrollLeft(maxScroll)
+        }
+    }, [list])
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (parentRef.current) {
+                setListScroll(parentRef.current.scrollLeft)
+            }
+        }
+    
+        const sliderElement = parentRef.current
+    
+        if (sliderElement) sliderElement.addEventListener('scroll', handleScroll)
+    
+        return () => {
+            if (sliderElement) sliderElement.removeEventListener('scroll', handleScroll)
         }
     }, [list])
 

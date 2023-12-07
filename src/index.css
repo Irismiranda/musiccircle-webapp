@@ -625,6 +625,10 @@ h3{
   margin: 10px;
 }
 
+.transparent_section{
+  opacity: 0.5;
+}
+
 .hidden_items_grid{
   background-color: #1a1a1a;
 }
