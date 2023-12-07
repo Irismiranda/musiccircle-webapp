@@ -58,7 +58,7 @@ export default function SideMenu(){
     }, [artistUri, location])
 
     useEffect(() => {
-        if (activeMenu === "messages" || activeMenu === "account" || !activeMenu) {
+        if (activeMenu === "messages" || activeMenu === "account" || activeMenu === "home" || !activeMenu) {
             setisTextVisible(true)
         } else {
             setisTextVisible(false)
