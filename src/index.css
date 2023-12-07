@@ -598,6 +598,7 @@ h3{
   gap: 60px;
   width: 100%;
   padding: 30px 40px;
+  margin-top: -25px;
   margin-left: -40px;
   margin-bottom: 30px;
   text-align: center;
@@ -617,11 +618,11 @@ h3{
 }
 
 .hidden_items_grid .button_grow{
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .hidden_items_grid h2{
-  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .cover_wrapper{
