@@ -68,8 +68,10 @@ export default function Slider(props){
                     return (
                         <div style={{ maxWidth: "200px" }}>
                             <div className="slider_image_wrapper">
-                                <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                </div>
+                                <Link to={`/artist/${item.id}`}>
+                                    <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    </div>
+                                </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                             </div>
                             <Link to={`/artist/${item.id}`}>
