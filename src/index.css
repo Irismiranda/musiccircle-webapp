@@ -617,6 +617,10 @@ h3{
   background-color: #1a1a1a;
 }
 
+.hidden_items_grid div{
+  margin-top: -5px;
+}
+
 .hidden_items_section h2{
   margin-bottom: 30px;
 }
