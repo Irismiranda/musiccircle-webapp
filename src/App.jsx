@@ -1,6 +1,6 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
-import { Welcome, Home, Inbox, Error, Profile } from './pages'
+import { Welcome, Home, Inbox, Error, Profile, Artist } from './pages'
 import { AuthRequired, PlayerManager, SideMenu } from "./components"
 
 export default function App() {
