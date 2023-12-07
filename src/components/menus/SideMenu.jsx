@@ -98,7 +98,7 @@ export default function SideMenu(){
                         {isTextVisible && <h2>More</h2>}
                     </div>
                 </div>
-                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account")) && <div ref={extendedMenu} className='side_menu_wrapper gap'>
+                {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account" && activeMenu !== "home")) && <div ref={extendedMenu} className='side_menu_wrapper gap'>
                     {activeMenu === "search" && <Search />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
