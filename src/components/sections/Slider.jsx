@@ -21,13 +21,13 @@ export default function Slider(props){
     }
 
     function slideLeft(){
-        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
         setListScroll(parentRef.current.scrollLeft)
+        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(){
-        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
         setListScroll(parentRef.current.scrollLeft)
+        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
 
     useEffect(() => {
