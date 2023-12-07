@@ -74,8 +74,8 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection("top_artists")}>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </section>
             {!topArtists && <h3>Loading...</h3>}
-            {(topArtists && topArtists.items.length > 0 && (topArtists.show_top_tracks || isLoggedUser)) && 
-            <section style={{ position: "relative" }} className={topTracks.show_top_tracks ? "" : "transparent_section"}>
+            {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_tracks || isLoggedUser)) && 
+            <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
                 </div>
@@ -88,8 +88,8 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
            {!topTracks && <h3>Loading...</h3>}
-           {(topTracks && topTracks.items.length > 0 && (topTracks.show_top_tracks || isLoggedUser)) && 
-           <section style={{ position: "relative" }} className={topTracks.show_top_tracks ? "" : "transparent_section"}>
+           {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
+           <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
                 </div>
