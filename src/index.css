@@ -617,6 +617,14 @@ h3{
   background-color: #1a1a1a;
 }
 
+.hidden_items_section h2{
+  margin-bottom: 15px;
+}
+
+.hidden_items_section button{
+  padding-bottom: 20px;
+}
+
 .cover_wrapper{
   display: flex;
   box-sizing: border-box;
