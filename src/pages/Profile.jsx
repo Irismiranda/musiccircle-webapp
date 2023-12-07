@@ -109,7 +109,7 @@ export default function Profile(){
                     </div>
                 </div>
             </section>
-            <section className={ showVisibleTopArtists ? "flex space_between slider_wrapper" : "slider_wrapper flex space_between hidden_items_section" }>
+            <section className={ showVisibleTopArtists ? "flex space_between slider_wrapper aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
                 <div className="flex aling_start">
                     <h2> Top Artists </h2>
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
@@ -129,7 +129,7 @@ export default function Profile(){
                     <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
-           <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between" : "slider_wrapper flex space_between hidden_items_section" }>
+           <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
             <div className="flex aling_start">
                 <h2>  Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show HiddenTracks" : "Hide"}</button>}
