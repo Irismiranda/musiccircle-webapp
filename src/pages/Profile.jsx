@@ -97,7 +97,7 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            <div className="flex" style={{ marginBottom: "30px" }}>
+            <section className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
@@ -108,38 +108,34 @@ export default function Profile(){
                         <h3> Following </h3>
                     </div>
                 </div>
-            </div>
-            <div className={ showVisibleTopArtists ? "flex space_between" : "flex space_between hidden_items_section" }>
+            </section>
+            <section className={ showVisibleTopArtists ? "flex space_between" : "flex space_between hidden_items_section" }>
                 <div className="flex">
                     <h2> Top Artists </h2>
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
-            </div>
+            </section>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.show_top_artists && topArtists.items.length > 0) && 
-            <section>
-                <div style={{ position: "relative" }}>
+            <section style={{ position: "relative" }}>
+                <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     {(topArtistsScroll > (maxScrollLeft *  0.08)) && <div className="btn_wrapper_left" onClick={() => slideLeft(topArtistsSlider)}>
                         <SvgLeftBtn className="svg_left_right" />
                     </div>}
                     {(topArtistsScroll < (maxScrollLeft * 0.9)) && <div className="btn_wrapper_right" onClick={() => slideRight(topArtistsSlider)}>
                         <SvgRightBtn className="svg_left_right" />
                     </div>}
-                </div>
-                <div>
-                    <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                        <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
-                    </div>
+                    <Slider list={topArtists} category="top_artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
-           <div className={ showVisibleTopTracks ? "flex space_between" : "flex space_between hidden_items_section" }>
+           <section className={ showVisibleTopTracks ? "flex space_between" : "flex space_between hidden_items_section" }>
             <div className="flex">
                 <h2>  Top Tracks </h2>
                 {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show HiddenTracks" : "Hide"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
-           </div>
+           </section>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.show_top_tracks && topTracks.items.length > 0) && 
            <section style={{ position: "relative" }}>

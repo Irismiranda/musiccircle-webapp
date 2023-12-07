@@ -605,10 +605,6 @@ h3{
   overflow-x: hidden;
 }
 
-.slider_grid div{
-  width: 200px;
-}
-
 .slider_grid h5{
   margin: 10px;
 }
@@ -644,12 +640,12 @@ h3{
 
 .btn_wrapper_left{
   position: absolute;
-  bottom: 235px;
+  top: 125px;
 }
 
 .btn_wrapper_right{
   position: absolute;
-  bottom: 235px;  
+  top: 125px;
   right: -10px;
 }
 
