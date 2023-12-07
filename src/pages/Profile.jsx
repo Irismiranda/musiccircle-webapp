@@ -111,8 +111,8 @@ export default function Profile(){
             </div>
             <div className="flex space_between">
                 <div className="flex">
-                    <h2> Top Artists </h2>
-                    {isLoggedUser && <button className="button_grow" onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
+                    <h2 style={{ marginBottom: showVisibleTopArtists ? "" : "15px"}}> Top Artists </h2>
+                    {isLoggedUser && <button style={{ paddingBottom: showVisibleTopArtists ? "" : "20px"}} onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopArtists?.showTopArtists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </div>
@@ -135,8 +135,8 @@ export default function Profile(){
            </section>}
            <div className="flex space_between">
             <div className="flex">
-                <h2>  Top Tracks </h2>
-                {isLoggedUser && <button className="button_grow" onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show Hidden Tracks" : "Hide"}</button>}
+                <h2 style={{ marginBottom: showVisibleTopTracks ? "" : "15px"}}>  Top Tracks </h2>
+                {isLoggedUser && <button style={{ paddingBottom: showVisibleTopTracks ? "" : "20px"}} onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show Hidden Tracks" : "Hide"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection(userTopArtists)}>{userTopTracks?.showTopTracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </div>

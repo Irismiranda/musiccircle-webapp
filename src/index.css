@@ -617,14 +617,6 @@ h3{
   background-color: #1a1a1a;
 }
 
-.hidden_items_grid .button_grow{
-  padding-bottom: 20px !important;
-}
-
-.hidden_items_grid h2{
-  margin-bottom: 15px !important;
-}
-
 .cover_wrapper{
   display: flex;
   box-sizing: border-box;
