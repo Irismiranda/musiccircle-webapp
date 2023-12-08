@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
@@ -13,8 +13,6 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
-    const topArtistsSlider = useRef(null)
-    const topTracksSlider = useRef(null)
     
     async function getUser(id){
         const response = await Axios.post("/api/account", {
@@ -83,8 +81,8 @@ export default function Profile(){
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_tracks || isLoggedUser)) && 
             <section style={{ position: "relative" }} className={topArtists?.show_top_artists ? "" : "transparent_section"}>
-                <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
+                <div className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
+                    <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
@@ -97,8 +95,8 @@ export default function Profile(){
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
            <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
-                <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
-                    <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
+                <div className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
+                    <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser}/>
                 </div>
            </section>}
            <h2> Posts </h2>
