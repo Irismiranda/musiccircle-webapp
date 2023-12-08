@@ -25,7 +25,6 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
-        console.log("user data is:", response.data)
         const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
         setTopTracks(topTracksList.data)
@@ -73,6 +72,10 @@ export default function Profile(){
             setTopTracks(userTopTracks)
         }
     }, [userTopTracks])
+
+    useEffect(() => {
+        console.log("top tracks are", topTracks, "top artists are:", topArtists)
+    }, [topTracks, topArtists])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
