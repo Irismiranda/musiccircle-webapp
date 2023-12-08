@@ -64,7 +64,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.hover_upload:hover::after{
+.hover_upload::after{
   content: url('./assets/svgUploadIcon.svg');
   background-color: rgba(255, 255, 255, 0.479);
   opacity: 0.5;
