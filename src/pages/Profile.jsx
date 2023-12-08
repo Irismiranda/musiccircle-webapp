@@ -41,6 +41,8 @@ export default function Profile(){
         setIsFollowing(response.data.isFollowing)
         setLoggedUser(response.data.updatedLoggedUser)
         setUserProfileData(response.data.updatedCurrentUser)
+        const stringData = JSON.stringify(response.data.updatedLoggedUser)
+        localStorage.setItem("loggedUser", stringData)
     }
 
     async function hideSection(category){
