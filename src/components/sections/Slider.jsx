@@ -66,7 +66,7 @@ export default function Slider(props){
                 .slice(0, 10)
                 .map((item) => {
                     return (
-                        <>
+                        <div>
                             <div className="slider_image_wrapper">
                                 <Link to={`/artist/${item.id}`}>
                                     <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
@@ -78,7 +78,7 @@ export default function Slider(props){
                                 <h3>{item.name}</h3>
                                 {category === "tracks" && <h5>{item.artistName}</h5>}
                             </Link>
-                        </>
+                        </div>
                         )
                     })   
                 }     
