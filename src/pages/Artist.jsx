@@ -10,19 +10,20 @@ export default function Artist(){
     const [ isFollowing, setIsFollowing ] = useState(false)
 
     async function getArtistData(){
-        const data = await spotifyApi.getArtist(artistId)
-        setArtistData(data)
-        console.log("artist data is:", data)
+        const response = await spotifyApi.getArtist(artistId)
+        setArtistData(response)
+        console.log("artist data is:", response)
     }
 
     async function getIsFollowing(){
-        const data = await spotifyApi.isFollowingArtists(artistId)
-        setIsFollowing(data)
+        const response = await spotifyApi.isFollowingArtists(artistId)
+        setIsFollowing(response)
     }
 
     useEffect(() => {
         if(artistId){
             getArtistData()
+            getIsFollowing()
         }
     }, [artistId])
     
