@@ -81,9 +81,9 @@ export default function Profile(){
                     <h2>{userProfileData?.display_name}</h2>
                     {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
                     <div>
-                        <h3> Posts </h3>
-                        <h3> Followers </h3>
-                        <h3> Following </h3>
+                        <h3> {currentUser?.posts?.length || 0} Posts </h3>
+                        <h3> {currentUser?.following_you?.length || 0} Followers </h3>
+                        <h3> {currentUser?.following?.length || 0} Following </h3>
                     </div>
                 </div>
             </section>
