@@ -25,6 +25,7 @@ export default function Profile(){
             }
         })
         setUserProfileData(response.data)
+        console.log("user data is:", response.data)
         const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
         setTopTracks(topTracksList.data)
@@ -34,12 +35,10 @@ export default function Profile(){
     async function getIsFollowing(id){
         const response = await Axios.get(`/api/${currentUser.id}/is_following/${id}`)
         setIsFollowing(response.data)
-        console.log("are you following this user?", response.data)
     }
 
     async function toggleFollow(id){
         const response = await Axios.post(`/api/${currentUser.id}/toggle_follow/${id}`)
-        console.log("are you following this user?", response.data.isFollowing)
         setIsFollowing(response.data.isFollowing)
     }
 
