@@ -64,25 +64,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.hover_upload{
-  position: relative;
-}
-
-.hover_upload:hover::after{
-    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 -2 20 25' fill='none'%3E%3Cpath d='M 12.313 17.819 L 15.727 17.819 C 16.196 17.819 16.581 17.436 16.581 16.966 L 16.581 13.698 L 17.938 12.698 C 18.697 12.698 19.081 11.777 18.541 11.241 L 14.625 7.323 C 14.548 7.244 14.452 7.18 14.349 7.14 C 14.247 7.095 14.137 7.074 14.024 7.074 C 13.912 7.074 13.8 7.095 13.698 7.14 C 13.596 7.18 13.501 7.244 13.423 7.323 L 9.506 11.241 C 8.968 11.777 9.343 12.698 10.104 12.698 L 11.46 12.698 L 11.46 16.966 C 11.46 17.436 11.843 17.819 12.313 17.819 Z M 8.9 19.524 L 19.141 19.524 C 19.608 19.524 19.994 19.908 19.994 20.379 C 19.994 20.849 19.608 21.232 19.141 21.232 L 8.9 21.232 C 8.43 21.232 8.047 20.849 8.047 20.379 C 8.047 19.908 8.43 19.524 8.9 19.524 Z' style='fill: white; transform-box: fill-box; transform-origin: 50%25 50%25;'%3E%3C/path%3E%3C/svg%3E");
-    background-color: #fff6;
-    opacity: 3.8;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 200px;
-    border-radius: 100%;
-    border-style: solid;
-    border-color: white;
-    box-sizing: border-box;
-}
-
 svg{
   cursor: pointer;
 }

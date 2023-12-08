@@ -62,9 +62,7 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
             <section className="flex" style={{ marginBottom: "30px" }}>
-                <div className={isLoggedUser ? "hover_upload" : ""}>
-                    <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
-                </div>
+                <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
                     {!isLoggedUser && <button> Follow </button>}
