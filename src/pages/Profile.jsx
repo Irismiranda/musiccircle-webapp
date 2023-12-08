@@ -51,7 +51,16 @@ export default function Profile(){
     }, [userId, userTopTracks, userTopArtists])
 
     useEffect(() => {
-    }, [userTopArtists, userTopTracks])
+        if(isLoggedUser){
+            setTopArtists(userTopArtists)
+        }
+    }, [userTopArtists])
+    
+    useEffect(() => {
+        if(isLoggedUser){
+            setTopTracks(userTopTracks)
+        }
+    }, [userTopTracks])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
