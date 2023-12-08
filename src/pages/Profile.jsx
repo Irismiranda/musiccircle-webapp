@@ -31,11 +31,11 @@ export default function Profile(){
     }
 
     function hideSection(category){
-        Axios.post(`/api/user/${category}/hide_category`, {
+        const response = Axios.post(`/api/user/${category}/hide_category`, {
             userId: currentUser.id
         })
-        category === "top_artists" && setUserTopArtists(...prevData => [...prevData, prevData.show_top_artists === !prevData.show_top_artists] )
-        category === "top_track" && setUserTopTracks(...prevData => [...prevData, prevData.show_top_tracks === !prevData.show_top_tracks] )
+        category === "top_artists" && setUserTopArtists(response.data)
+        category === "top_track" && setUserTopTracks(response.data)
     }
     
     useEffect(() => {
