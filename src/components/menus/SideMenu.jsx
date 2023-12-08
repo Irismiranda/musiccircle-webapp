@@ -9,7 +9,7 @@ export default function SideMenu(){
     const sideMenuRef = createRef(null)
     const extendedMenu = createRef(null)
     const location = useLocation()
-    const { currentUser, setStandardWrapperWidth, artistUri } = useStore()
+    const { loggedUser, setStandardWrapperWidth, artistUri } = useStore()
     const [ activeMenu, setActiveMenu ] = useState(null)
     const [ isTextVisible, setisTextVisible ] = useState(true)
     const [ sideMenuWidth, setSideMenuWidth ] = useState(null)
@@ -18,7 +18,7 @@ export default function SideMenu(){
         const path = location.pathname
         if (path.includes('inbox')){
             setActiveMenu('messages')
-        } else if(path.includes(currentUser.id)){
+        } else if(path.includes(loggedUser.id)){
             setActiveMenu('account')
         } else if(path === "/"){
             setActiveMenu('home')
@@ -89,8 +89,8 @@ export default function SideMenu(){
                         <SvgNotificationsIcon className="svg_big" color={ activeMenu === "notifications" ? "#F230AA" : "white" }/>
                         {isTextVisible && <h2>Notifications</h2>}
                     </div>
-                    <Link to={`/account/${currentUser.id}`} className='menu_item_wrapper' onClick={() => switchActiveMenu("account")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
-                        { currentUser.images && <img src={`${currentUser.images[0].url}`} className='profile_small'/> }
+                    <Link to={`/account/${loggedUser.id}`} className='menu_item_wrapper' onClick={() => switchActiveMenu("account")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
+                        { loggedUser.images && <img src={`${loggedUser.images[0].url}`} className='profile_small'/> }
                         {isTextVisible && <h2 style={{ color: activeMenu === "account" ? "#F230AA" : "white", fontWeight: activeMenu === "account" ? "500" : ""  }}>My Profile</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("more")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>

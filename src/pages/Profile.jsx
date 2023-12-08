@@ -5,7 +5,7 @@ import { Axios } from "../Axios-config"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, currentUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
+    const { standardWrapperWidth, loggedUser, setLoggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -38,22 +38,23 @@ export default function Profile(){
     }
 
     async function toggleFollow(id){
-        const response = await Axios.post(`/api/${currentUser.id}/toggle_follow/${id}`)
+        const response = await Axios.post(`/api/${loggedUser.id}/toggle_follow/${id}`)
         setIsFollowing(response.data.isFollowing)
+        setLoggedUser(response.data.updatedLoggedUser)
     }
 
     async function hideSection(category){
         const response = await Axios.post(`/api/user/${category}/hide_category`, {
-            userId: currentUser.id
+            userId: loggedUser.id
         })
         category === "top_artists" && setUserTopArtists(response.data)
         category === "top_track" && setUserTopTracks(response.data)
     }
     
     useEffect(() => {
-        if(userId === currentUser.id){
+        if(userId === loggedUser.id){
             setIsLoggedUser(true)
-            setUserProfileData(currentUser)
+            setUserProfileData(loggedUser)
         } else{
             userId && getUser(userId)
             userId && getIsFollowing(userId)
@@ -80,9 +81,9 @@ export default function Profile(){
                     <h2>{userProfileData?.display_name}</h2>
                     {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
                     <div>
-                        <h3> {currentUser?.posts?.length || 0} Posts </h3>
-                        <h3> {currentUser?.following_you?.length || 0} Followers </h3>
-                        <h3> {currentUser?.following?.length || 0} Following </h3>
+                        <h3> {loggedUser?.posts?.length || 0} Posts </h3>
+                        <h3> {loggedUser?.following_you?.length || 0} Followers </h3>
+                        <h3> {loggedUser?.following?.length || 0} Following </h3>
                     </div>
                 </div>
             </section>

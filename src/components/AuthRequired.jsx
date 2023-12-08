@@ -16,7 +16,7 @@
     const newSpotifyApi = new Spotify()
     const navigate = useNavigate()
 
-    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setCurrentUser, currentUser, setSocket, socket, setUserTopTracks, userTopTracks, setUserTopArtists, userTopArtists } = useStore()
+    const { setAccessToken, accessToken, spotifyApi, setSpotifyApi, setLoggedUser, loggedUser, setSocket, socket, setUserTopTracks, userTopTracks, setUserTopArtists, userTopArtists } = useStore()
 
     function setCookies(accessToken, refreshToken, expiringTime){
       const tokenExpiringDate = new Date(Date.now() + expiringTime)
@@ -56,9 +56,9 @@
           userData: userData,
         })
         
-        setCurrentUser(userData)
+        setLoggedUser(userData)
         const stringData = JSON.stringify(userData)
-        localStorage.setItem("currentUser", stringData)
+        localStorage.setItem("loggedUser", stringData)
         
       } catch(err){
         console.log(err)
@@ -83,7 +83,7 @@
       const dbTopListData = formatListData(response.items, category)
 
       const firestoreResponse = await Axios.post(`/api/user/${category}`, {
-        id: currentUser.id,
+        id: loggedUser.id,
         items: dbTopListData,
       })
       setOffset(48)
@@ -171,13 +171,13 @@
     useEffect(() => {
       let storedUser = null
       try{
-        storedUser = localStorage.getItem("currentUser")
+        storedUser = localStorage.getItem("loggedUser")
       } catch(err){
         console.log(err)
       }
 
       if(storedUser){
-        setCurrentUser(JSON.parse(storedUser))
+        setLoggedUser(JSON.parse(storedUser))
       } else {
         if(spotifyApi){
           getUser()
@@ -223,7 +223,7 @@
           const updatedList = { ...list.items, items: list.items.concat(newUniqueItems)}
         
         const firebaseResponse = await Axios.post(`/api/user/${category}`, {
-          id: currentUser.id,
+          id: loggedUser.id,
           items: updatedList.items,
         })
 

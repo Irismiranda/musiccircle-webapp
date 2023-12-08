@@ -7,7 +7,7 @@ export default function Messages(props) {
   const prevChatId = useRef(null)
   const [messages, setMessages] = useState({})
   const [ isLoading, setIsLoading ] = useState(true) 
-  const { socket, currentUser } = useStore()
+  const { socket, loggedUser } = useStore()
   const { chatId, chatProfileId, type } = props
 
   useEffect(() => {
@@ -96,8 +96,8 @@ export default function Messages(props) {
                 key={messageId}
                 className="message_wrapper"
                 style={{
-                  alignSelf: userId === currentUser.userId ? "start" : "end",
-                  textAlign: userId === currentUser.userId ? "left" : "right",
+                  alignSelf: userId === loggedUser.userId ? "start" : "end",
+                  textAlign: userId === loggedUser.userId ? "left" : "right",
                   marginBottom: "2px",
                 }}
               >
@@ -114,12 +114,12 @@ export default function Messages(props) {
                   className="flex"
                   style={{
                     justifyContent:
-                      userId === currentUser.userId ? "start" : "end",
-                    textAlign: userId === currentUser.userId ? "left" : "right",
+                      userId === loggedUser.userId ? "start" : "end",
+                    textAlign: userId === loggedUser.userId ? "left" : "right",
                     margin: "0 30px",
                   }}
                 >
-                  {display && currentUser.userId === userId && (
+                  {display && loggedUser.userId === userId && (
                     <h4
                       style={{ cursor: "pointer" }}
                       onClick={() => replyToMessage(userName)}
@@ -127,7 +127,7 @@ export default function Messages(props) {
                       Reply
                     </h4>
                   )}
-                  {display && currentUser.userId !== userId && (
+                  {display && loggedUser.userId !== userId && (
                     <h4
                       style={{ cursor: "pointer" }}
                       onClick={() => removeMessage(messageId)}

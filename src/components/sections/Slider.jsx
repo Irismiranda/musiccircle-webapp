@@ -6,13 +6,13 @@ import { SvgRightBtn, SvgLeftBtn } from "../../assets"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, parentRef } = props
-    const { currentUser, setUserTopTracks, setUserTopArtists } = useStore()
+    const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
 
     async function toggleItemVisibility(itemId, category){
         const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
-            userId: currentUser.id,
+            userId: loggedUser.id,
             itemId: itemId,
         })
         category === "tracks" && setUserTopTracks(response.data.top_tracks)

@@ -4,7 +4,7 @@ import { Axios } from "../../Axios-config"
 import useStore from "../../store"
 
 export default function ShareMenu(){
-    const { currentUser } = useStore()
+    const { loggedUser } = useStore()
 
     return (
         <div>

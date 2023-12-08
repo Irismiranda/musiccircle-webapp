@@ -9,7 +9,7 @@
             const messageTextArea = createRef(null)
             const emojiBtnRef = useRef(null)
             const emojiBarRef = useRef(null)
-            const { artistUri, spotifyApi, currentUser, socket, standardWrapperWidth } = useStore()
+            const { artistUri, spotifyApi, loggedUser, socket, standardWrapperWidth } = useStore()
             const [chatState, setChatState] = useState({
                     artistData: null,
                     artistId: null,
@@ -64,13 +64,13 @@
                 const { chatId, artistId } = chatState
                 if (messageTextArea.current.value.trim()){
                     const newMessage = {
-                    messageId: `${currentUser.id}_${chatId}_${uuidv4()}`,
+                    messageId: `${loggedUser.id}_${chatId}_${uuidv4()}`,
                     id: artistId,
                     chatId: chatId,
-                    userId: currentUser.id,
+                    userId: loggedUser.id,
                     text: messageTextArea.current.value,
-                    userName: currentUser.display_name,
-                    userProfilePic: currentUser.images[0].url,
+                    userName: loggedUser.display_name,
+                    userProfilePic: loggedUser.images[0].url,
                     timeStamp: new Date().toLocaleString(),
                     display: true,
                 }
