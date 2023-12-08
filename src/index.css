@@ -64,6 +64,10 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+svg{
+  cursor: pointer;
+}
+
 .track-timeline{
   width: 100%;
 }
@@ -77,22 +81,18 @@ button:focus-visible {
 
 .svg_small{
   height: 15px;
-  cursor: pointer;
 }
 
 .svg{
   height: 20px;
-  cursor: pointer;
 }
 
 .svg_medium{
   height: 30px;
-  cursor: pointer;
 }
 
 .svg_big{
   width: 25px;
-  cursor: pointer;
 }
 
 .flex{
