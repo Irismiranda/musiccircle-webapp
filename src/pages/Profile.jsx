@@ -30,8 +30,8 @@ export default function Profile(){
         setTopArtists(topArtistsList.data)
     }
 
-    function hideSection(category){
-        const response = Axios.post(`/api/user/${category}/hide_category`, {
+    async function hideSection(category){
+        const response = await Axios.post(`/api/user/${category}/hide_category`, {
             userId: currentUser.id
         })
         console.log("response is:", response)
