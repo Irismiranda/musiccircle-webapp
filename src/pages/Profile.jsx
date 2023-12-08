@@ -75,7 +75,8 @@ export default function Profile(){
 
     useEffect(() => {
         console.log("top tracks are", topTracks, "top artists are:", topArtists)
-    }, [topTracks, topArtists])
+        console.log("user data is:", userProfileData)
+    }, [topTracks, topArtists, userProfileData])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
