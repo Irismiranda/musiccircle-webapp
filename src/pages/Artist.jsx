@@ -21,9 +21,13 @@ export default function Artist(){
     }
 
     async function toggleFollow(){
-        isFollowing && await spotifyApi.unfollowArtists([artistId])
-        !isFollowing && await spotifyApi.followArtists([artistId])
-        getIsFollowing()
+        try {
+            isFollowing && await spotifyApi.unfollowArtists([artistId])
+            !isFollowing && await spotifyApi.followArtists([artistId])
+            getIsFollowing()
+        } catch(err){
+            console.log(err)
+        }
     }
 
     useEffect(() => {
@@ -37,7 +41,7 @@ export default function Artist(){
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
             <div className="artist_profile_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
                 <h1>{artistData?.name}</h1>
-                <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "follow"}</button>
+                <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
             </div>
             <h1> Artist Page Goes Here</h1>
         </div>
