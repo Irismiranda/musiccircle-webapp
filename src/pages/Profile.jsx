@@ -34,30 +34,27 @@ export default function Profile(){
         const response = await Axios.post(`/api/user/${category}/hide_category`, {
             userId: currentUser.id
         })
-        console.log("response is:", response)
         category === "top_artists" && setUserTopArtists(response.data)
-        category === "top_track" && setUserTopTracks(response.data)
+        category === "top_tracks" && setUserTopTracks(response.data)
     }
     
     useEffect(() => {
         if(userId === currentUser.id){
             setIsLoggedUser(true)
             setUserProfileData(currentUser)
-            userTopTracks && setTopTracks(userTopTracks)
-            userTopArtists && setTopArtists(userTopArtists)
         } else{
             userId && getUser(userId)
         }
     }, [userId, userTopTracks, userTopArtists])
 
     useEffect(() => {
-        if(isLoggedUser){
+        if(isLoggedUser && userTopArtists){
             setTopArtists(userTopArtists)
         }
     }, [userTopArtists])
     
     useEffect(() => {
-        if(isLoggedUser){
+        if(isLoggedUser && userTopTracks){
             setTopTracks(userTopTracks)
         }
     }, [userTopTracks])
@@ -93,7 +90,7 @@ export default function Profile(){
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
             <div className="flex aling_start">
                 {(topArtists?.show_top_tracks || isLoggedUser) && <h2>  Top Tracks </h2>}
-                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show HiddenTracks" : "Hide"}</button>}
+                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show Hidden Tracks" : "Hide"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
