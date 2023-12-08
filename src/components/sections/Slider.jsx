@@ -20,7 +20,7 @@ export default function Slider(props){
     }
 
     function slideLeft(){
-        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: - (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(){
@@ -30,26 +30,26 @@ export default function Slider(props){
     useEffect(() => {
         if(parentRef.current){
             const maxScroll = parentRef.current.scrollWidth - parentRef.current.clientWidth
-            console.log("max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
     }, [list])
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (parentRef.current) {
-                setListScroll(parentRef.current.scrollLeft)
+        useEffect(() => {
+            const handleScroll = () => {
+                if (parentRef.current) {
+                    console.log("scroll is:", parentRef.current.scrollLeft)
+                    setListScroll(parentRef.current.scrollLeft)
+                }
             }
-        }
-    
-        const sliderElement = parentRef.current
-    
-        if (sliderElement) sliderElement.addEventListener('scroll', handleScroll)
-    
-        return () => {
-            if (sliderElement) sliderElement.removeEventListener('scroll', handleScroll)
-        }
-    }, [list])
+        
+            const sliderElement = parentRef.current
+        
+            if (sliderElement) sliderElement.addEventListener('scroll', handleScroll)
+        
+            return () => {
+                if (sliderElement) sliderElement.removeEventListener('scroll', handleScroll)
+            }
+        }, [list])
 
     return(
         <>
