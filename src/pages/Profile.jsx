@@ -38,6 +38,7 @@ export default function Profile(){
 
     async function toggleFollow(id){
         const response = await Axios.post(`/api/${loggedUser.id}/toggle_follow/${id}`)
+        console.log("response is following is", response.data)
         setIsFollowing(response.data.isFollowing)
         setLoggedUser(response.data.updatedLoggedUser)
         setUserProfileData(response.data.updatedCurrentUser)
