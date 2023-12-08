@@ -27,7 +27,7 @@ export default function Profile(){
         setUserProfileData(response.data)
         const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
-        console.log(topTracksList.data, topArtistsList.data)
+        console.log("top list responses are:", topTracksList.data, topArtistsList.data)
         setTopTracks(topTracksList.data)
         setTopArtists(topArtistsList.data)
     }
