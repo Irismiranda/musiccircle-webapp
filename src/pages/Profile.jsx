@@ -110,7 +110,7 @@ export default function Profile(){
                 {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
            {!topTracks && <h3>Loading...</h3>}
-           {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
+           {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_artists || isLoggedUser)) && 
            <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topTracks} category="tracks" visibility={showVisibleTopTracks} isLoggedUser={isLoggedUser} parentRef={topTracksSlider}/>
