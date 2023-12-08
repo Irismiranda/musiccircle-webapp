@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgRightBtn, SvgLeftBtn } from "../../assets"
 
 export default function Slider(props){
-    const { list, visibility, category, isLoggedUser } = props
+    const { list, visibility, category, isLoggedUser, parentRef } = props
     const { currentUser, setUserTopTracks, setUserTopArtists } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
-    const wrapperRef = useRef(null)
 
     async function toggleItemVisibility(itemId, category){
         const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
@@ -21,16 +20,16 @@ export default function Slider(props){
     }
 
     function slideLeft(){
-        wrapperRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: -(maxScrollLeft * 0.2), behavior: 'smooth' })
     }
     
     function slideRight(){
-        wrapperRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
     }
 
     useEffect(() => {
-        if(wrapperRef.current){
-            const maxScroll = wrapperRef.current.scrollWidth - wrapperRef.current.clientWidth
+        if(parentRef.current){
+            const maxScroll = parentRef.current.scrollWidth - parentRef.current.clientWidth
             console.log("max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
@@ -38,12 +37,12 @@ export default function Slider(props){
 
     useEffect(() => {
         const handleScroll = () => {
-            if (wrapperRef.current) {
-                setListScroll(wrapperRef.current.scrollLeft)
+            if (parentRef.current) {
+                setListScroll(parentRef.current.scrollLeft)
             }
         }
     
-        const sliderElement = wrapperRef.current
+        const sliderElement = parentRef.current
     
         if (sliderElement) sliderElement.addEventListener('scroll', handleScroll)
     
@@ -53,7 +52,7 @@ export default function Slider(props){
     }, [list])
 
     return(
-        <div ref={wrapperRef}>
+        <>
             {(listScroll > (maxScrollLeft * 0.08)) && 
                 <div className="btn_wrapper_left" onClick={() => slideLeft()}>
             <SvgLeftBtn className="svg_left_right"/>
@@ -83,7 +82,7 @@ export default function Slider(props){
                         )
                     })   
                 }     
-        </div>
+        </>
     )
 }
 
