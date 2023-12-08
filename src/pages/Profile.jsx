@@ -34,7 +34,7 @@ export default function Profile(){
         const response = Axios.post(`/api/user/${category}/hide_category`, {
             userId: currentUser.id
         })
-        console.log("response is:", response.data)
+        console.log("response is:", response)
         category === "top_artists" && setUserTopArtists(response.data)
         category === "top_track" && setUserTopTracks(response.data)
     }
