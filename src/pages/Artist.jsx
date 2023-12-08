@@ -37,7 +37,7 @@ export default function Artist(){
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
             <div className="artist_profile_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
                 <h1>{artistData?.name}</h1>
-                <button onClick={toggleFollow()} className="outline_button">{isFollowing ? "Following" : "follow"}</button>
+                <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "follow"}</button>
             </div>
             <h1> Artist Page Goes Here</h1>
         </div>
