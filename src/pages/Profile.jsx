@@ -41,6 +41,7 @@ export default function Profile(){
         const response = await Axios.post(`/api/${loggedUser.id}/toggle_follow/${id}`)
         setIsFollowing(response.data.isFollowing)
         setLoggedUser(response.data.updatedLoggedUser)
+        setUserProfileData(response.data.updatedCurrentUser)
     }
 
     async function hideSection(category){
