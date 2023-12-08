@@ -85,7 +85,7 @@ export default function Profile(){
             </section>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_tracks || isLoggedUser)) && 
-            <section style={{ position: "relative" }} className={topTracks?.show_top_artists ? "" : "transparent_section"}>
+            <section style={{ position: "relative" }} className={topArtists?.show_top_artists ? "" : "transparent_section"}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider list={topArtists} category="artists" visibility={showVisibleTopArtists} isLoggedUser={isLoggedUser} parentRef={topArtistsSlider}/>
                 </div>
