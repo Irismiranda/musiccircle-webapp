@@ -65,7 +65,7 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {isLoggedUser ? <button> Edit Profile </button> : <button> Follow </button>} 
+                    {!isLoggedUser && <button> Follow </button>} 
                     <div>
                         <h3> Posts </h3>
                         <h3> Followers </h3>
