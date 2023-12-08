@@ -15,7 +15,6 @@ export default function Slider(props){
             userId: currentUser.id,
             itemId: itemId,
         })
-        console.log("response data is:", response.data)
         category === "tracks" && setUserTopTracks(response.data.top_tracks)
         category === "artists" && setUserTopArtists(response.data.top_artists)
     }
