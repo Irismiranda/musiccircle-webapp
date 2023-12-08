@@ -13,6 +13,7 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
+    const [ isFollowing, setIsFollowing ] = useState(false)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
@@ -30,6 +31,18 @@ export default function Profile(){
         setTopArtists(topArtistsList.data)
     }
 
+    async function getIsFollowing(id){
+        const response = await Axios.get(`/api/${currentUser.id}/is_following/${id}`)
+        setIsFollowing(response)
+        console.log("are you following this user?", response.data)
+    }
+
+    async function toggleFollow(id){
+        const response = await Axios.post(`/api/${currentUser.id}/toggle_follow/${id}`)
+        console.log("are you following this user?", response.data.isFollowing)
+        setIsFollowing(response.data.isFollowing)
+    }
+
     async function hideSection(category){
         const response = await Axios.post(`/api/user/${category}/hide_category`, {
             userId: currentUser.id
@@ -44,6 +57,7 @@ export default function Profile(){
             setUserProfileData(currentUser)
         } else{
             userId && getUser(userId)
+            userId && getIsFollowing(userId)
         }
     }, [userId, userTopTracks, userTopArtists])
 
@@ -65,7 +79,7 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {!isLoggedUser && <button> Follow </button>}
+                    {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
                     <div>
                         <h3> Posts </h3>
                         <h3> Followers </h3>
@@ -76,7 +90,7 @@ export default function Profile(){
             <section className={ showVisibleTopArtists ? "flex space_between slider_wrapper aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
                 <div className="flex aling_start">
                     {(topArtists?.show_top_artists || isLoggedUser) && <h2> Top Artists </h2>}
-                    {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Show Hidden Artists" : "Hide" }</button>}
+                    {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Manage Hidden Artists" : "Hide" }</button>}
                 </div>
                 {isLoggedUser && <button onClick={() => hideSection("top_artists")}>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>}
             </section>
@@ -90,7 +104,7 @@ export default function Profile(){
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
             <div className="flex aling_start">
                 {(topArtists?.show_top_tracks || isLoggedUser) && <h2>  Top Tracks </h2>}
-                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Show Hidden Tracks" : "Hide"}</button>}
+                {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Manage Hidden Tracks" : "Hide"}</button>}
             </div>
                 {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
            </section>
