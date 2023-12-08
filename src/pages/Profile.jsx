@@ -33,7 +33,7 @@ export default function Profile(){
 
     async function getIsFollowing(id){
         const response = await Axios.get(`/api/${currentUser.id}/is_following/${id}`)
-        setIsFollowing(response)
+        setIsFollowing(response.data)
         console.log("are you following this user?", response.data)
     }
 
