@@ -721,6 +721,12 @@ h3{
   padding-top: 60px;
 }
 
+.artist_profile_cover{
+  height: 400px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;
