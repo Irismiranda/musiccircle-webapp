@@ -57,6 +57,7 @@ export default function Artist(){
                 </div>
             </div>
             {artistAlbums && <section ref={albumsSection}>
+                <h2>Discography</h2>
                 <Slider list={artistAlbums} visibility={true} category="albums" isLoggedUser={false} parentRef={albumsSection}/>
             </section>}
         </div>
