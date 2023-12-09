@@ -52,8 +52,9 @@ export default function Artist(){
     useEffect(() => {
         if(artistId){
             getArtistData()
-            getIsFollowing()
             getArtistAlbums()
+            getArtistTopTracks()
+            getIsFollowing()
         }
     }, [artistId])
     
