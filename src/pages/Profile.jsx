@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useParams, useLocation } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import useStore from "../store"
@@ -16,7 +16,6 @@ export default function Profile(){
     const [ isFollowing, setIsFollowing ] = useState(false)
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
-    const location = useLocation()
     
     async function getUser(id){
         const response = await Axios.post("/api/account", {
@@ -62,19 +61,19 @@ export default function Profile(){
             userId && getUser(userId)
             userId && getIsFollowing(userId)
         }
-    }, [userId, userTopTracks, userTopArtists, location])
+    }, [userId])
 
     useEffect(() => {
         if(isLoggedUser && userTopArtists){
             setTopArtists(userTopArtists)
         }
-    }, [userTopArtists])
+    }, [userTopArtists, isLoggedUser])
     
     useEffect(() => {
         if(isLoggedUser && userTopTracks){
             setTopTracks(userTopTracks)
         }
-    }, [userTopTracks])
+    }, [userTopTracks, isLoggedUser])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
