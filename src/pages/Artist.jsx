@@ -22,7 +22,7 @@ export default function Artist(){
         console.log("albums data are:", response.items)
         const formatedData = formatListData(response.items, "albums")
         console.log("formated data is:", formatedData)
-        setArtistAlbums(formatedData)
+        setArtistAlbums({items: formatedData})
     }
 
     async function getIsFollowing(){
