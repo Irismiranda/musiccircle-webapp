@@ -43,7 +43,6 @@ export default function Slider(props){
             }
         
             const sliderElement = parentRef.current
-        
             if (sliderElement) sliderElement.addEventListener('scroll', handleScroll)
         
             return () => {
