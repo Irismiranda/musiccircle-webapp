@@ -198,6 +198,14 @@ svg{
   border-radius: 100%;
 }
 
+.cover_small{
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  background-size: cover;
+  border-radius: 10px;  
+}
+
 .cover_medium{
   height: 200px;
   width: 200px;

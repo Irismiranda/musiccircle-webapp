@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Slider } from "../components"
+import { Slider, List } from "../components"
 import { useParams } from "react-router-dom"
 import { formatListData } from "../utils/utils"
 import useStore from "../store"
@@ -67,8 +67,15 @@ export default function Artist(){
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
             </div>
+            {artistTopTracks && 
+            <section>
+                <List 
+                list={artistTopTracks} 
+                categoty={"tracks"}/>
+            </section>}
             {artistAlbums && <h2>Discography</h2>}
-            {artistAlbums && <section style={{ position: "relative" }} >
+            {artistAlbums && 
+            <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
                     list={artistAlbums} 
