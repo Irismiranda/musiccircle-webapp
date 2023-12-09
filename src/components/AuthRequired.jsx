@@ -80,7 +80,7 @@
         response = await spotifyApi.getMyTopArtists(options)
       }
 
-      const dbTopListData = formatListData(response.items, category)
+      const dbTopListData = formatListData(response.items, category.slice(4))
 
       const firestoreResponse = await Axios.post(`/api/user/${category}`, {
         id: loggedUser.id,
@@ -217,7 +217,7 @@
         const response = category === "top_artists" ? await spotifyApi.getMyTopArtists(options) : await spotifyApi.getMyTopTracks(options)
         
         if(response.items.length > 0){
-          const dbTopListData = formatListData(response.items, category)
+          const dbTopListData = formatListData(response.items, category.slice(4))
           const existingItemIds = new Set(list.items.map(item => item.id))
           const newUniqueItems = dbTopListData.filter(item => !existingItemIds.has(item.id))
           const updatedList = { ...list.items, items: list.items.concat(newUniqueItems)}

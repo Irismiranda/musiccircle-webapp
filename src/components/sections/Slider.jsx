@@ -75,7 +75,8 @@ export default function Slider(props){
                             </div>
                             <Link to={`/artist/${item.id}`}>
                                 <h3>{item.name}</h3>
-                                {(category === "tracks" || category === "album") && <h5>{item.artistName}</h5>}
+                                {(category === "tracks" || category === "albums") && <h5>{item.artistName}</h5>}
+                                {(category === "albums" || category === "albums") && <h5>{item.releaseDate}</h5>}
                             </Link>
                         </div>
                         )

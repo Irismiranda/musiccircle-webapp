@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Slider } from "../components"
 import { useParams } from "react-router-dom"
+import { formatListData } from "../utils/utils"
 import useStore from "../store"
 
 export default function Artist(){
     const { standardWrapperWidth, spotifyApi } = useStore()
     const { artistId } = useParams()
     const [ artistData, setArtistData ] = useState(null)
+    const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ isFollowing, setIsFollowing ] = useState(false)
+    const albumsSection = useRef(null)
 
     async function getArtistData(){
         const response = await spotifyApi.getArtist(artistId)
@@ -16,7 +19,9 @@ export default function Artist(){
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
-        console.log("albums data are:", response)
+        const formatedData = formatListData(response.items, "albums")
+        setArtistAlbums(formatedData)
+        console.log("albums data are:", response.items)
     }
 
     async function getIsFollowing(){
@@ -50,10 +55,9 @@ export default function Artist(){
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
             </div>
-            <section>
-                
+            <section ref={albumsSection}>
+                <Slider list={artistAlbums} visibility={true} category="albums" isLoggedUser={false} parentRef={albumsSection}/>
             </section>
-            <h1> Artist Page Goes Here</h1>
         </div>
     )
 }

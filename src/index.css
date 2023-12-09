@@ -731,6 +731,9 @@ h3{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 25%;
+}
+
+.artist_profile_cover h1{
   font-weight: 700;
 }
 

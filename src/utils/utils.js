@@ -26,12 +26,16 @@ function formatListData(items, category) {
     let listItem = {
       id: item.id,
       name: item.name,
-      imageUrl: category === "top_tracks" ? item.album.images[0].url : item.images[0].url,
+      imageUrl: category === "tracks" ? item.album.images[0].url : item.images[0].url,
       isVisible: true,
-    };
+    }
 
-    if (category === "top_tracks") {
+    if (category === "tracks") {
       listItem.artistName = item.artists[0].name
+    }
+    
+    if(category === "albums") {
+      listItem.releaseDate = item.release_date
     }
 
     return listItem
