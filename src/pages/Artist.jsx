@@ -10,7 +10,7 @@ export default function Artist(){
     const [ artistData, setArtistData ] = useState(null)
     const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ isFollowing, setIsFollowing ] = useState(false)
-    const albumsSection = useRef(null)
+    const albumsSlider = useRef(null)
 
     async function getArtistData(){
         const response = await spotifyApi.getArtist(artistId)
@@ -56,9 +56,16 @@ export default function Artist(){
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
             </div>
-            {artistAlbums && <section ref={albumsSection}>
+            {artistAlbums && <section style={{ position: "relative" }} >
                 <h2>Discography</h2>
-                <Slider list={artistAlbums} visibility={true} category="albums" isLoggedUser={false} parentRef={albumsSection}/>
+                <div ref={albumsSlider} className="slider_grid">
+                    <Slider 
+                    list={artistAlbums} 
+                    visibility={true} 
+                    category="albums" 
+                    isLoggedUser={false} 
+                    parentRef={albumsSlider}/>
+                </div>
             </section>}
         </div>
     )
