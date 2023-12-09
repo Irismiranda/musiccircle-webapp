@@ -731,11 +731,16 @@ h3{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 25%;
+  font-weight: 700;
+}
+
+.artist_profile_cover button{
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .gradient_wrapper{
   display: flex;
-  flex-direction: column;
   justify-content: end;
   align-items: start;
   width: 100%;
