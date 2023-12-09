@@ -71,7 +71,7 @@ export default function Artist(){
             <section>
                 <List 
                 list={artistTopTracks} 
-                categoty={"tracks"}/>
+                category={"tracks"}/>
             </section>}
             {artistAlbums && <h2>Discography</h2>}
             {artistAlbums && 
