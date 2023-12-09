@@ -14,14 +14,13 @@ export default function Artist(){
 
     async function getArtistData(){
         const response = await spotifyApi.getArtist(artistId)
+        console.log("response is:", response)
         setArtistData(response)
     }
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
-        console.log("albums data are:", response)
         const formatedData = formatListData(response.items, "albums")
-        console.log("formated data is:", formatedData)
         setArtistAlbums({items: formatedData})
     }
 
@@ -29,10 +28,6 @@ export default function Artist(){
         const response = await spotifyApi.isFollowingArtists([artistId])
         setIsFollowing(response)
     }
-
-    useEffect(() => {
-        console.log("are you following this artists?", isFollowing)
-    }, [isFollowing])
 
     async function toggleFollow(){
         try {
