@@ -9,12 +9,20 @@ export default function Artist(){
     const { artistId } = useParams()
     const [ artistData, setArtistData ] = useState(null)
     const [ artistAlbums, setArtistAlbums] = useState(null)
+    const [ artistTopTracks, setArtistTopTracks ] = useState(null)
     const [ isFollowing, setIsFollowing ] = useState(false)
     const albumsSlider = useRef(null)
 
     async function getArtistData(){
         const response = await spotifyApi.getArtist(artistId)
         setArtistData(response)
+    }
+
+    async function getArtistTopTracks(){
+        const response = await spotifyApi.getArtistTopTracks(artistId)
+        const formatedData = formatListData(response.items, "tracks")
+        console.log("formated top track list is:", response.items)
+        setArtistTopTracks(formatedData)
     }
 
     async function getArtistAlbums(){
