@@ -10,11 +10,9 @@ export default function List(props){
                     return (
                         <div className="list_wrapper flex space_between">
                             <Link to={`/${category.slice(0, -1)}/${item.id}`}>
-                                <div className="flex">
-                                    <img src={`${item.imageUrl}`} className="cover_small" />
-                                    {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    <h3>{item.name}</h3>
-                                </div>
+                                <img src={`${item.imageUrl}`} className="cover_small" />
+                                {category === "playlist" && <h5>{item.artistName}</h5>}
+                                <h3>{item.name}</h3>
                             </Link>
                         </div>
                         )
