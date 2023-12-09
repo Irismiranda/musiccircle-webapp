@@ -69,9 +69,9 @@ export default function Artist(){
             </div>
             {artistTopTracks && 
             <section>
-                {/* <List 
+                <List 
                 list={artistTopTracks} 
-                categoty={"tracks"}/> */}
+                categoty={"tracks"}/>
             </section>}
             {artistAlbums && <h2>Discography</h2>}
             {artistAlbums && 
