@@ -57,8 +57,8 @@ export default function Artist(){
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
             </div>
+            {artistAlbums && <h2>Discography</h2>}
             {artistAlbums && <section style={{ position: "relative" }} >
-                <h2>Discography</h2>
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
                     list={artistAlbums} 
