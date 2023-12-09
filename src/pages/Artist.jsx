@@ -25,7 +25,7 @@ export default function Artist(){
 
     async function getIsFollowing(){
         const response = await spotifyApi.isFollowingArtists([artistId])
-        console.log("response is:", response)
+        console.log("response is:", response[0])
         setIsFollowing(response)
     }
 
