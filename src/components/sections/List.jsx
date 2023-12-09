@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 export default function List(props){
     const { list, category } = props
+    console.log("props are:",list, category)
 
     return(
         <>
