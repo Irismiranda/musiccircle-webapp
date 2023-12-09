@@ -67,13 +67,13 @@ export default function Slider(props){
                     return (
                         <div>
                             <div className="slider_image_wrapper">
-                                <Link to={`/artist/${item.id}`}>
+                                <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                     <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     </div>
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                             </div>
-                            <Link to={`/artist/${item.id}`}>
+                            <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                 <h3>{item.name}</h3>
                                 {(category === "tracks" || category === "albums") && <h5>{item.artistName}</h5>}
                                 {(category === "albums" || category === "albums") && <h5>{item.releaseDate}</h5>}
