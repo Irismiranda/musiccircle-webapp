@@ -20,9 +20,9 @@ export default function Artist(){
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
         console.log("albums data are:", response)
-        // const formatedData = formatListData(response.items, "albums")
-        // console.log("formated data is:", formatedData)
-        // setArtistAlbums({items: formatedData})
+        const formatedData = formatListData(response.items, "albums")
+        console.log("formated data is:", formatedData)
+        setArtistAlbums({items: formatedData})
     }
 
     async function getIsFollowing(){
@@ -56,9 +56,9 @@ export default function Artist(){
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
             </div>
-            <section ref={albumsSection}>
+            {artistAlbums && <section ref={albumsSection}>
                 <Slider list={artistAlbums} visibility={true} category="albums" isLoggedUser={false} parentRef={albumsSection}/>
-            </section>
+            </section>}
         </div>
     )
 }
