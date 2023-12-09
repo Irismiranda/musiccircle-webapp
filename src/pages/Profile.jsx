@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useParams,  } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import useStore from "../store"
