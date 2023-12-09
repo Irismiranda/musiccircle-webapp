@@ -30,6 +30,10 @@ export default function Artist(){
         setIsFollowing(response)
     }
 
+    useEffect(() => {
+        console.log("are you following this artists?", isFollowing)
+    }, [isFollowing])
+
     async function toggleFollow(){
         try {
             isFollowing && await spotifyApi.unfollowArtists([artistId])
