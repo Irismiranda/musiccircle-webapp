@@ -41,10 +41,10 @@ export default function Artist(){
             } else {
                 !isFollowing && await spotifyApi.followArtists([artistId])
             }
-            setTimeout(getIsFollowing(), 3000)
         } catch(err){
             console.log(err)
         }
+        setIsFollowing(!isFollowing)
     }
 
     useEffect(() => {
