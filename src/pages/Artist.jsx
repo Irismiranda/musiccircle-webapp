@@ -19,7 +19,7 @@ export default function Artist(){
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
-        const formatedData = formatListData(response.items, "albums")
+        const formatedData = formatListData(response, "albums")
         setArtistAlbums(formatedData)
         console.log("albums data are:", response.items)
     }
