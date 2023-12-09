@@ -20,8 +20,9 @@ export default function Artist(){
 
     async function getArtistTopTracks(){
         const response = await spotifyApi.getArtistTopTracks(artistId, loggedUser.country)
-        const formatedData = formatListData(response.items, "tracks")
         console.log("formated top track list is:", response.items)
+        const formatedData = formatListData(response.items, "tracks")
+        console.log("formated top track list is:", formatedData)
         setArtistTopTracks({items: formatedData})
     }
 
