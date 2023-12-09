@@ -5,7 +5,7 @@ import { formatListData } from "../utils/utils"
 import useStore from "../store"
 
 export default function Artist(){
-    const { standardWrapperWidth, spotifyApi } = useStore()
+    const { standardWrapperWidth, spotifyApi, loggedUser } = useStore()
     const { artistId } = useParams()
     const [ artistData, setArtistData ] = useState(null)
     const [ artistAlbums, setArtistAlbums] = useState(null)
@@ -19,7 +19,7 @@ export default function Artist(){
     }
 
     async function getArtistTopTracks(){
-        const response = await spotifyApi.getArtistTopTracks(artistId)
+        const response = await spotifyApi.getArtistTopTracks(artistId, loggedUser.country)
         const formatedData = formatListData(response.items, "tracks")
         console.log("formated top track list is:", response.items)
         setArtistTopTracks({items: formatedData})
