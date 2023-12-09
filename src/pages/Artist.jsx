@@ -14,7 +14,6 @@ export default function Artist(){
 
     async function getArtistData(){
         const response = await spotifyApi.getArtist(artistId)
-        console.log("response is:", response)
         setArtistData(response)
     }
 
@@ -26,6 +25,7 @@ export default function Artist(){
 
     async function getIsFollowing(){
         const response = await spotifyApi.isFollowingArtists([artistId])
+        console.log("response is:", response)
         setIsFollowing(response)
     }
 
