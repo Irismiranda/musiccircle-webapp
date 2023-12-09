@@ -46,7 +46,6 @@ export default function SideMenu(){
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()
         setSideMenuWidth(sideMenuRect.right - sideMenuRect.left)
-        setActiveMenuByLocation()
     }, [])
 
     useLayoutEffect(() => {
@@ -56,6 +55,10 @@ export default function SideMenu(){
     useLayoutEffect(() => {
         calculateAvailableWidth(sideMenuWidth)
     }, [artistUri, location])
+
+    useEffect(() => {
+        setActiveMenuByLocation()
+    }, [location])
 
     useEffect(() => {
         if (activeMenu === "messages" || activeMenu === "account" || activeMenu === "home" || !activeMenu) {
