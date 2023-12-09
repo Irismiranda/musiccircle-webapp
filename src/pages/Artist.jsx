@@ -36,9 +36,12 @@ export default function Artist(){
 
     async function toggleFollow(){
         try {
-            isFollowing && await spotifyApi.unfollowArtists([artistId])
-            !isFollowing && await spotifyApi.followArtists([artistId])
-            getIsFollowing()
+            if(isFollowing){
+                await spotifyApi.unfollowArtists([artistId])
+            } else {
+                !isFollowing && await spotifyApi.followArtists([artistId])
+            }
+            setTimeout(getIsFollowing(), 3000)
         } catch(err){
             console.log(err)
         }
