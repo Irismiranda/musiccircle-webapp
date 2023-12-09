@@ -42,4 +42,8 @@ function formatListData(items, category) {
   })
 }
 
-export { useClickOutside, formatListData }
+async function playItem(){
+  
+}
+
+export { useClickOutside, formatListData, playItem }
