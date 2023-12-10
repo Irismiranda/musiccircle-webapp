@@ -92,11 +92,11 @@ svg{
 }
 
 .svg_medium{
-  height: 30px;
+  height: 25px;
 }
 
 .svg_big{
-  width: 25px;
+  width: 40px;
 }
 
 .flex{
@@ -175,6 +175,33 @@ svg{
 
 .fullwidth{
   width: 100%;
+}
+
+.connect_device_float{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  line-height: 9px;
+  background-color: #191414;
+  padding: 9px;
+  border-radius: 100px;
+  z-index: 3;
+}
+
+.connect_device_float div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  background-color: rgb(212, 210, 210);
+  cursor: pointer;
+}
+
+.connect_device_float h5{
+  color: #191414;
+  font-weight: 900;
 }
 
 .message_wrapper{

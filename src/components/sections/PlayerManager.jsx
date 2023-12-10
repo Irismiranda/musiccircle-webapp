@@ -347,13 +347,13 @@ export default function PlayerManager() {
         return (
             <>
             <div className="flex connect_device_float">
-                <SvgDeviceIcon className="svg_sall"/>
+                <SvgDeviceIcon className="svg_big"/>
                 <div>
                     <h3>Connect your Spotify Player</h3>
-                    <p>to start your experience</p>
-                    <div>
+                    <h4>To start your experience</h4>
+                </div>
+                <div>
                     <h5>?</h5>
-                    </div>
                 </div>
             </div>
             <Outlet />
