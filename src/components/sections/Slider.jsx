@@ -78,7 +78,7 @@ export default function Slider(props){
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
                                 {hoverItemId === item.id && 
                                 <div 
-                                className="play_btn" 
+                                className="play_btn play_btn_slider" 
                                 onClick={() => playItem(item.id)} 
                                 onMouseEnter={() => setHoverItemId(item.id)}>
                                 </div>}

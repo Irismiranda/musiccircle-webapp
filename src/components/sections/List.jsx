@@ -8,9 +8,8 @@ export default function List(props){
     return(
         <div className="list_wrapper">
             {list.items.map((item) => {
-            console.log("id is", item.id)
                     return (
-                        <div key={item.id}>
+                        <div key={item.id} style={{ position: "relative" }}>
                             <div                           
                             onMouseEnter={() => setHoverItemId(item.id)}
                             onMouseLeave={() => setHoverItemId(null)}>
@@ -21,7 +20,7 @@ export default function List(props){
                             </div>
                             {hoverItemId === item.id && 
                                 <div 
-                                className="play_btn" 
+                                className="play_btn play_btn_list" 
                                 onClick={() => playItem(item.id)} 
                                 onMouseEnter={() => setHoverItemId(item.id)}>
                             </div>}
