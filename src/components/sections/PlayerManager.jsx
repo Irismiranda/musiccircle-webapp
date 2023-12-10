@@ -38,6 +38,7 @@ export default function PlayerManager() {
         isLiked, 
         shuffleState, 
         repeatState, 
+        isScrolled,
         isMute,  
     } = playerState
 
