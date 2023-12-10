@@ -23,6 +23,7 @@
             } = playerState
             
             const { 
+                setProperties,
                 handleShuffleClick,
                 handleRepeatClick,
                 trackVolumePosition,
@@ -146,7 +147,7 @@
                         <div className="track-listened" style={{ width: `${listened}%` }}></div>
                     </div>
 
-                    <div onClick={() => setPlayerState({ ...playerState, isMute: !isMute })}> 
+                    <div onClick={() => setProperties(setPlayerState, 'isMute', !isMute)}>
                         <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                     </div>
                     <div
