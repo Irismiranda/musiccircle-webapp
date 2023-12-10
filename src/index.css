@@ -679,15 +679,14 @@ h3{
 
 .play_btn{
   position: absolute;
-  top: 155px;
-  left: 155px;
+  top: 0px;
+  left: 0px;
   width: 100%;
   height: 100%;
 }
 
 .play_btn:hover{
   display: block;
-  border-radius: 100%;
   content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 500 500' width='85.292' height='85.292' xmlns='http://www.w3.org/2000/svg' xmlns:bx='https://boxy-svg.com'%3E%3Cellipse style='fill: rgb(242, 48, 170);' cx='432.132' cy='433.09' rx='42.646' ry='42.646'/%3E%3Cpath d='M 44.13 33.537 L 60.714 54.484 L 27.546 54.484 L 44.13 33.537 Z' style='stroke-linejoin: round; stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255); stroke-width: 6px; transform-origin: 177.781px 150.232px;' transform='matrix(0, 1, -1, 0, 153.133239746094, 416.896545410156)' bx:shape='triangle 27.546 33.537 33.168 20.947 0.5 0 1@0694741d'/%3E%3C/svg%3E");
   box-shadow: 0px 17px 32px 0px rgba(0,0,0,0.3);
 }
