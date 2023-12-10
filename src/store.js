@@ -5,6 +5,20 @@ const useStore = create((set, get) => ({
   loggedUser: {},
   spotifyApi: null,
   artistUri: null,
+ playerState:{ 
+    player: undefined,
+    isPaused: false,
+    isActive: false,
+    currentTrack: null,
+    listened: (0.1),
+    isLiked: false,
+    shuffleState: false,
+    repeatState: false,
+    volumePercentage: 1,
+    isMute: false,
+    isMinimized: false,
+    isScrolled: false,
+},
   socket: null,
   standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
   userTopTracks: null,
@@ -18,6 +32,13 @@ const useStore = create((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
+  setPlayerState: (newPlayerState) => ((state) => ({ 
+    playerState: {
+      ...state.playerState,
+      ...newPlayerState,
+    }
+  }))
+  
 }))
 
 export default useStore

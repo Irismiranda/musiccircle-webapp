@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react"
+import useStore from "../../store"
 import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
 import { useClickOutside } from "../../utils/utils"
 
 const PlayerMaximized = ((props) => {
+    const { playerState, setPlayerState } = useStore()
     const shareBtnRef = useRef(null)
     const commentBtnRef = useRef(null)
     const volumeBarRef = useRef(null)
@@ -17,10 +19,9 @@ const PlayerMaximized = ((props) => {
         repeatState, 
         volumePercentage, 
         isMute,  
-    } = props.playerState
+    } = playerState
     
     const { 
-        setProperties,
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
@@ -32,7 +33,7 @@ const PlayerMaximized = ((props) => {
         setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
-    const { shareMenuRef, postWindowRef, setPlayerState } = props
+    const { shareMenuRef, postWindowRef } = props
 
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
@@ -84,7 +85,7 @@ const PlayerMaximized = ((props) => {
                             </div> 
                         </div>
                         <div className="flex volume_bar_wrapper">
-                            <div className="flex" onClick={() => {setProperties(setPlayerState, 'isMute', !isMute)}}> 
+                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div

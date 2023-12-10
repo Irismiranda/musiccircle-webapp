@@ -1,9 +1,11 @@
 import React, { useRef } from "react"
+import useStore from "../../store"
 import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
 import { useClickOutside } from "../../utils/utils"
 
 
 const PlayerOnScroll = ((props) => {
+    const { playerState, setPlayerState } = useStore()
     const shareBtnRef = useRef(null)
     const commentBtnRef = useRef(null)
     const volumeBarRef = useRef(null)
@@ -18,10 +20,9 @@ const PlayerOnScroll = ((props) => {
         repeatState, 
         volumePercentage, 
         isMute,  
-    } = props.playerState
+    } = playerState
     
     const { 
-        setProperties,
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
@@ -33,7 +34,7 @@ const PlayerOnScroll = ((props) => {
         setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
-    const { shareMenuRef, postWindowRef, setPlayerState } = props
+    const { shareMenuRef, postWindowRef } = props
 
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
@@ -79,7 +80,7 @@ const PlayerOnScroll = ((props) => {
                             <SvgRepeat className="svg" repeat_state={repeatState} style={{ fill: repeatState === 1 || repeatState === 2 ? '#F230AA' : '#AFADAD' }} />
                         </div>
                         <div className="flex">
-                            <div className="flex" onClick={() => {setProperties(setPlayerState, 'isMute', !isMute)}}> 
+                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div

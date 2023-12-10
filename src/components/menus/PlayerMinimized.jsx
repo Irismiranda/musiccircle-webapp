@@ -1,8 +1,10 @@
         import React, { useRef } from "react"
+        import useStore from "../../store"
         import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
         import { useClickOutside } from "../../utils/utils"
 
         const PlayerMinimized = ((props) => {
+            const { playerState, setPlayerState } = useStore()
             const shareBtnRef = useRef(null)
             const commentBtnRef = useRef(null)
             const volumeBarRef = useRef(null)
@@ -18,10 +20,9 @@
                 repeatState, 
                 volumePercentage, 
                 isMute
-            } = props.playerState
+            } = playerState
             
             const { 
-                setProperties,
                 handleShuffleClick,
                 handleRepeatClick,
                 trackVolumePosition,
@@ -35,7 +36,7 @@
                 playerSize,
             } = props.playerFunctionalProps
 
-            const { shareMenuRef, postWindowRef, setPlayerState } = props
+            const { shareMenuRef, postWindowRef } = props
 
             const albumImg = currentTrack.album.images[0].url
             const trackName = currentTrack.name
@@ -97,7 +98,7 @@
                                 <SvgRepeat className="svg" repeat_state={repeatState} style={{ fill: repeatState === 1 || repeatState === 2 ? '#F230AA' : '#AFADAD' }} />
                             </div>
                         </div>
-                        <div onClick={() => {setProperties(setPlayerState, 'isMute', !isMute)}}> 
+                        <div onClick={() => setPlayerState({ isMute: !isMute })}> 
                             <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                         </div>
                         <div
@@ -145,7 +146,7 @@
                         <div className="track-listened" style={{ width: `${listened}%` }}></div>
                     </div>
 
-                    <div onClick={() => {setProperties(setPlayerState, 'isMute', !isMute)}}> 
+                    <div onClick={() => setPlayerState({ isMute: !isMute })}> 
                         <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                     </div>
                     <div

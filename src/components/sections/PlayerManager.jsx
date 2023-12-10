@@ -7,21 +7,6 @@ import useStore from "../../store"
 export default function PlayerManager() {
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
-    const [playerState, setPlayerState] = useState({ 
-        player: undefined,
-        isPaused: false,
-        isActive: false,
-        currentTrack: null,
-        listened: (0.1),
-        isLiked: false,
-        shuffleState: false,
-        repeatState: false,
-        volumePercentage: 1,
-        isMute: false,
-        isMinimized: false,
-        isScrolled: false,
-    })
-
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
@@ -29,7 +14,6 @@ export default function PlayerManager() {
     const playerRef = useRef(null)
     const playerWrapperRef = useRef(null)
     const draggableHandleRef = useRef(null)
-
     const clientPrevPosY = useRef(null)
     const clientPrevPosX = useRef(null)
     const playerRectRef = useRef(null)
@@ -46,7 +30,19 @@ export default function PlayerManager() {
         left: 0,
     })
     
-    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth } = useStore()
+    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState } = useStore()
+
+    const { 
+        player, 
+        isPaused,
+        currentTrack, 
+        listened, 
+        isLiked, 
+        shuffleState, 
+        repeatState, 
+        volumePercentage, 
+        isMute,  
+    } = playerState
 
     function setProperties(callback, property, value) {
         callback((prevState) => ({
@@ -56,16 +52,19 @@ export default function PlayerManager() {
     }
 
     async function handleShuffleClick() {
-        spotifyApi.setShuffle(!playerState.shuffleState)
-        setProperties(setPlayerState, 'shuffleState', !playerState.shuffleState)        
+        spotifyApi.setShuffle(!shuffleState)
+        setPlayerState({ shuffleState: !shuffleState })
+        // setProperties(setPlayerState, 'shuffleState', !shuffleState)        
     }
 
     async function handleRepeatClick() {
-        if (playerState.repeatState === 0 || playerState.repeatState === 1) {
-            const newState = playerState.repeatState + 1
-            setProperties(setPlayerState, 'repeatState', newState)
+        if (repeatState === 0 || repeatState === 1) {
+            const newState = repeatState + 1
+            setPlayerState({ repeatState: newState })
+            // setProperties(setPlayerState, 'repeatState', newState)
         } else {
-            setProperties(setPlayerState, 'repeatState', 0)
+            // setProperties(setPlayerState, 'repeatState', 0)
+            setPlayerState({ repeatState: 0 })
         }
     }
 
@@ -79,7 +78,8 @@ export default function PlayerManager() {
         const volumeBarRect = volumeBarRef.current.getBoundingClientRect()
         const volumePercentage = calculatePosition(e, volumeBarRect) * 100
         const roundedPercentage = Math.round(volumePercentage)
-        setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
+        // setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
+        setPlayerState({ volumePercentage: roundedPercentage })
         try {
             await spotifyApi.setVolume(roundedPercentage)
         } catch (error) {
@@ -89,17 +89,19 @@ export default function PlayerManager() {
 
     async function handleHeartClick(id) {
         const trackIds = [id]
-        if (!playerState.isLiked) {
+        if (!isLiked) {
             try{
                 await spotifyApi.addToMySavedTracks(trackIds)
-                setProperties(setPlayerState, 'isLiked', true)
+                setPlayerState({ isLiked: true })
+                // setProperties(setPlayerState, 'isLiked', true)
             } catch(err){
                 console.log(err)
             }
         } else {
             try{
                 await spotifyApi.removeFromMySavedTracks(trackIds)
-                setProperties(setPlayerState, 'isLiked', false)
+                setPlayerState({ isLiked: false })
+                // setProperties(setPlayerState, 'isLiked', false)
             } catch(err){
                 console.log(err)
             }
@@ -109,9 +111,10 @@ export default function PlayerManager() {
     function handleTimelineClick(e, trackTimelineRef) {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
-        setProperties(setPlayerState, 'listened', fraction * 100)
-        const positionInSec = fraction * playerState.currentTrack.duration_ms
-        playerState.player.seek(positionInSec).then(() => {
+        setPlayerState({ listened: fraction * 100 })
+        // setProperties(setPlayerState, 'listened', fraction * 100)
+        const positionInSec = fraction * currentTrack.duration_ms
+        player.seek(positionInSec).then(() => {
         }) 
     }
 
@@ -120,14 +123,16 @@ export default function PlayerManager() {
         const prevPlayerHeight = playerRef?.current?.offsetHeight
         
         if(window.scrollY > 1 + prevPlayerHeight){
-            setProperties(setPlayerState, 'isScrolled', true)
+            // setProperties(setPlayerState, 'isScrolled', true)
+            setPlayerState({ isScrolled: true })
         } else{
-            setProperties(setPlayerState, 'isScrolled', false)
+            // setProperties(setPlayerState, 'isScrolled', false)
+            setPlayerState({ isScrolled: false })
         }
     }
 
     const getInitialPos = (e) => {   
-        if(playerState.isMinimized){
+        if(isMinimized){
 
             clientPrevPosX.current = e.clientX
             clientPrevPosY.current = e.clientY 
@@ -180,15 +185,17 @@ export default function PlayerManager() {
             const { isMute, volumePercentage } = playerState
             if(isMute && volumePercentage){
                 prevSetVolume.current = volumePercentage
-                setProperties(setPlayerState, 'volumePercentage', 0)
+                // setProperties(setPlayerState, 'volumePercentage', 0)
+                setPlayerState({ volumePercentage: 0 })
                 await spotifyApi.setVolume(0)
-            } else if(!playerState.isMute && prevSetVolume.current){
-                setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
+            } else if(!isMute && prevSetVolume.current){
+                setPlayerState({ volumePercentage: prevSetVolume.current })
+                // setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
                 await spotifyApi.setVolume(prevSetVolume.current)
             }
         }
         updateMuteState()
-    }, [playerState.isMute])
+    }, [isMute])
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
@@ -200,15 +207,16 @@ export default function PlayerManager() {
 
     useEffect(() => {
         async function getIsTrackSaved() {
-            const trackIds = [playerState.currentTrack.id]
+            const trackIds = [currentTrack.id]
             const response = await spotifyApi.containsMySavedTracks(trackIds)
-            setProperties(setPlayerState, 'isLiked', response[0])
+            setPlayerState({ isLiked: response[0] })
+            // setProperties(setPlayerState, 'isLiked', response[0])
         }
 
-        if (playerState.currentTrack) {
+        if (currentTrack) {
             getIsTrackSaved()
         }
-    }, [playerState.currentTrack])
+    }, [currentTrack])
 
     useEffect(() => {
         const script = document.createElement("script")
@@ -225,7 +233,8 @@ export default function PlayerManager() {
                 volume: 0.5
             })
 
-            setProperties(setPlayerState, 'player', player)
+            setPlayerState({ player: player })
+            // setProperties(setPlayerState, 'player', player)
         
             player.connect()
 
@@ -233,7 +242,8 @@ export default function PlayerManager() {
                 player.getCurrentState().then((state) => {
                     if (state && state.position && state.duration && !state.paused) {
                         const totalListened = (100 * state.position) / state.duration
-                        setProperties(setPlayerState, 'listened', totalListened)
+                        setPlayerState({ listened: totalListened })
+                        // setProperties(setPlayerState, 'listened', totalListened)
                     }
                 })
             }, 50)
@@ -244,7 +254,8 @@ export default function PlayerManager() {
                     return
                 }
 
-                setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
+                setPlayerState({ currentTrack: state.track_window.current_track })
+                // setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
 
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
@@ -256,17 +267,25 @@ export default function PlayerManager() {
                     console.log(err)
                 }
 
-                setProperties(setPlayerState, 'shuffleState', state.shuffle)
-                setProperties(setPlayerState, 'repeatState', state.repeat_mode)
-                setProperties(setPlayerState, 'isPaused', state.paused)
+                setPlayerState({ 
+                    shuffleState: state.shuffle, 
+                    repeatState: state.repeat_mode, 
+                    isPaused: state.paused })
+
+                // setProperties(setPlayerState, 'shuffleState', state.shuffle)
+                // setProperties(setPlayerState, 'repeatState', state.repeat_mode)
+                // setProperties(setPlayerState, 'isPaused', state.paused)
 
                 player.getVolume().then(volume => {
                     let percentage = volume * 100
-                    setProperties(setPlayerState, 'volumePercentage', percentage)
+
+                    setPlayerState({ volumePercentage: percentage })
+                    // setProperties(setPlayerState, 'volumePercentage', percentage)
                 })
 
                 player.getCurrentState().then(state => {
-                    (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
+                    (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
+                    // (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
                 })
 
             }))
@@ -277,7 +296,8 @@ export default function PlayerManager() {
                 duration,
             }) => {
                 const totalListened = (100 * position) / duration
-                setProperties(setPlayerState, 'listened', totalListened)
+                setPlayerState({ listened: totalListened })
+                // setProperties(setPlayerState, 'listened', totalListened)
             })
 
             return () => clearInterval(interval)
@@ -325,7 +345,7 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-    }, [playerState.isScrolled])
+    }, [isScrolled])
 
     const playerFunctionalProps = {
         setProperties,
@@ -343,7 +363,7 @@ export default function PlayerManager() {
         playerSize,
       }
 
-    if (!playerState.currentTrack) {
+    if (!currentTrack) {
         return (
             <>
             <div className="flex connect_device_float">
@@ -390,7 +410,7 @@ export default function PlayerManager() {
                             <ShareMenu />
                     </div>}
 
-                    <div onClick={() => setProperties(setPlayerState, 'isMinimized', !isMinimized)}>
+                    <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
                         <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
                     </div>
 
@@ -402,7 +422,6 @@ export default function PlayerManager() {
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
                         playerState={playerState}
-                        setPlayerState={setPlayerState}
                         playerFunctionalProps={playerFunctionalProps}
                     />
                     </div>
@@ -417,7 +436,6 @@ export default function PlayerManager() {
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
                         playerState={playerState}
-                        setPlayerState={setPlayerState}
                         playerFunctionalProps={playerFunctionalProps}
                     />
                     </div>
@@ -432,7 +450,6 @@ export default function PlayerManager() {
                         shareMenuRef={shareMenuRef}
                         postWindowRef={postWindowRef}
                         playerState={playerState}
-                        setPlayerState={setPlayerState}
                         playerFunctionalProps={playerFunctionalProps}
                     />
                        <div 
