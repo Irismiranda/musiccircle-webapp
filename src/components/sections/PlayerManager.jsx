@@ -352,7 +352,7 @@ export default function PlayerManager() {
                     <h3>Connect your Spotify Player</h3>
                     <h4>To start your experience</h4>
                 </div>
-                <div>
+                <div className="more_info_button">
                     <h5>?</h5>
                 </div>
             </div>

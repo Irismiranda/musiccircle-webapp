@@ -181,14 +181,13 @@ svg{
   position: fixed;
   bottom: 10px;
   right: 10px;
-  line-height: 9px;
   background-color: #191414;
   padding: 9px;
   border-radius: 100px;
   z-index: 3;
 }
 
-.connect_device_float div{
+.more_info_button{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,6 +201,10 @@ svg{
 .connect_device_float h5{
   color: #191414;
   font-weight: 900;
+}
+
+.connect_device_float h4{
+  margin: 0px;
 }
 
 .message_wrapper{
@@ -550,7 +553,6 @@ a{
 
 
 .min_layout h4{
-  margin: 0px;
   line-height: 25px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
