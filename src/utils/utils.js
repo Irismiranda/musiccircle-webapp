@@ -43,7 +43,7 @@ function formatListData(items, category) {
 }
 
 async function playItem(){
-  
+  console.log("clicked!")
 }
 
 export { useClickOutside, formatListData, playItem }
