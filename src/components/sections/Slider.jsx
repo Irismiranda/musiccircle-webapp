@@ -66,7 +66,7 @@ export default function Slider(props){
                 .slice(0, 10)
                 .map((item) => {
                     return (
-                        <div key={item.id}>
+                        <div className="slider_item_wrapper" key={item.id}>
                             <div className="slider_image_wrapper">
                                 <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                     <div 
