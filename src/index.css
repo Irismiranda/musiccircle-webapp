@@ -677,10 +677,15 @@ h3{
   max-width: 100px;
 }
 
-.play_btn:hover{
+.play_btn{
   position: absolute;
   top: 155px;
   left: 155px;
+  display: none;
+}
+
+.play_btn:hover{
+  display: block;
   width: 35px;
   height: 35px;
   border-radius: 100%;
