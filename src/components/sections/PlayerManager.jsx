@@ -179,6 +179,10 @@ export default function PlayerManager() {
     }
 
     useEffect(() => {
+        console.log("player state is:", playerState)
+    }, [playerState])
+
+    useEffect(() => {
         async function updateMuteState(){
             const { isMute, volumePercentage } = playerState
             if(isMute && volumePercentage){
