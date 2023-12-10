@@ -98,7 +98,7 @@
                                 <SvgRepeat className="svg" repeat_state={repeatState} style={{ fill: repeatState === 1 || repeatState === 2 ? '#F230AA' : '#AFADAD' }} />
                             </div>
                         </div>
-                        <div onClick={() => setPlayerState({ isMute: !isMute })}> 
+                        <div onClick={() => setPlayerState({ ...playerState, isMute: !isMute })}> 
                             <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                         </div>
                         <div
@@ -146,7 +146,7 @@
                         <div className="track-listened" style={{ width: `${listened}%` }}></div>
                     </div>
 
-                    <div onClick={() => setPlayerState({ isMute: !isMute })}> 
+                    <div onClick={() => setPlayerState({ ...playerState, isMute: !isMute })}> 
                         <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                     </div>
                     <div

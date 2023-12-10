@@ -74,7 +74,7 @@ const PlayerMaximized = ((props) => {
                     </div>
                 </div>
 
-                <div className="interaction_btns flex pace_between">
+                <div className="interaction_btns flex space_between">
                     <div className="flex flex_wrap">
                         <div className="flex">
                             <div className="flex" onClick={() => handleShuffleClick()}>
@@ -85,7 +85,7 @@ const PlayerMaximized = ((props) => {
                             </div> 
                         </div>
                         <div className="flex volume_bar_wrapper">
-                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
+                            <div className="flex" onClick={() => setPlayerState({ ...playerState, isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div

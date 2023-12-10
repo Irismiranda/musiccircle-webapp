@@ -71,7 +71,7 @@ const PlayerOnScroll = ((props) => {
                         <div className="track-listened" style={{ width: `${listened}%` }}></div>
                     </div>
                 </div>
-                <div className="flex pace_between">
+                <div className="flex space_between">
                     <div className="flex">
                         <div className="flex" onClick={() => handleShuffleClick()}>
                             <SvgRandom className="svg" style={{ fill: shuffleState ? '#F230AA' : '#AFADAD' }} />
@@ -80,7 +80,7 @@ const PlayerOnScroll = ((props) => {
                             <SvgRepeat className="svg" repeat_state={repeatState} style={{ fill: repeatState === 1 || repeatState === 2 ? '#F230AA' : '#AFADAD' }} />
                         </div>
                         <div className="flex">
-                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
+                            <div className="flex" onClick={() => setPlayerState({ ...playerState, isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div

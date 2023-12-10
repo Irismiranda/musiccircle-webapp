@@ -51,18 +51,18 @@ export default function PlayerManager() {
 
     async function handleShuffleClick() {
         spotifyApi.setShuffle(!shuffleState)
-        setPlayerState({ shuffleState: !shuffleState })
+        setPlayerState({ ...playerState, shuffleState: !shuffleState })
         // setProperties(setPlayerState, 'shuffleState', !shuffleState)        
     }
 
     async function handleRepeatClick() {
         if (repeatState === 0 || repeatState === 1) {
             const newState = repeatState + 1
-            setPlayerState({ repeatState: newState })
+            setPlayerState({ ...playerState, repeatState: newState })
             // setProperties(setPlayerState, 'repeatState', newState)
         } else {
             // setProperties(setPlayerState, 'repeatState', 0)
-            setPlayerState({ repeatState: 0 })
+            setPlayerState({ ...playerState, repeatState: 0 })
         }
     }
 
@@ -77,7 +77,7 @@ export default function PlayerManager() {
         const volumePercentage = calculatePosition(e, volumeBarRect) * 100
         const roundedPercentage = Math.round(volumePercentage)
         // setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
-        setPlayerState({ volumePercentage: roundedPercentage })
+        setPlayerState({ ...playerState, volumePercentage: roundedPercentage })
         try {
             await spotifyApi.setVolume(roundedPercentage)
         } catch (error) {
@@ -90,7 +90,7 @@ export default function PlayerManager() {
         if (!isLiked) {
             try{
                 await spotifyApi.addToMySavedTracks(trackIds)
-                setPlayerState({ isLiked: true })
+                setPlayerState({ ...playerState, isLiked: true })
                 // setProperties(setPlayerState, 'isLiked', true)
             } catch(err){
                 console.log(err)
@@ -98,7 +98,7 @@ export default function PlayerManager() {
         } else {
             try{
                 await spotifyApi.removeFromMySavedTracks(trackIds)
-                setPlayerState({ isLiked: false })
+                setPlayerState({ ...playerState, isLiked: false })
                 // setProperties(setPlayerState, 'isLiked', false)
             } catch(err){
                 console.log(err)
@@ -109,7 +109,7 @@ export default function PlayerManager() {
     function handleTimelineClick(e, trackTimelineRef) {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
-        setPlayerState({ listened: fraction * 100 })
+        setPlayerState({ ...playerState, listened: fraction * 100 })
         // setProperties(setPlayerState, 'listened', fraction * 100)
         const positionInSec = fraction * currentTrack.duration_ms
         player.seek(positionInSec).then(() => {
@@ -122,10 +122,10 @@ export default function PlayerManager() {
         
         if(window.scrollY > 1 + prevPlayerHeight){
             // setProperties(setPlayerState, 'isScrolled', true)
-            setPlayerState({ isScrolled: true })
+            setPlayerState({ ...playerState, isScrolled: true })
         } else{
             // setProperties(setPlayerState, 'isScrolled', false)
-            setPlayerState({ isScrolled: false })
+            setPlayerState({ ...playerState, isScrolled: false })
         }
     }
 
@@ -188,10 +188,10 @@ export default function PlayerManager() {
             if(isMute && volumePercentage){
                 prevSetVolume.current = volumePercentage
                 // setProperties(setPlayerState, 'volumePercentage', 0)
-                setPlayerState({ volumePercentage: 0 })
+                setPlayerState({ ...playerState, volumePercentage: 0 })
                 await spotifyApi.setVolume(0)
             } else if(!isMute && prevSetVolume.current){
-                setPlayerState({ volumePercentage: prevSetVolume.current })
+                setPlayerState({ ...playerState, volumePercentage: prevSetVolume.current })
                 // setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
                 await spotifyApi.setVolume(prevSetVolume.current)
             }
@@ -211,7 +211,7 @@ export default function PlayerManager() {
         async function getIsTrackSaved() {
             const trackIds = [currentTrack.id]
             const response = await spotifyApi.containsMySavedTracks(trackIds)
-            setPlayerState({ isLiked: response[0] })
+            setPlayerState({ ...playerState, isLiked: response[0] })
             // setProperties(setPlayerState, 'isLiked', response[0])
         }
 
@@ -235,7 +235,7 @@ export default function PlayerManager() {
                 volume: 0.5
             })
 
-            setPlayerState({ player: player })
+            setPlayerState({ ...playerState, player: player })
             // setProperties(setPlayerState, 'player', player)
         
             player.connect()
@@ -244,7 +244,7 @@ export default function PlayerManager() {
                 player.getCurrentState().then((state) => {
                     if (state && state.position && state.duration && !state.paused) {
                         const totalListened = (100 * state.position) / state.duration
-                        setPlayerState({ listened: totalListened })
+                        setPlayerState({ ...playerState, listened: totalListened })
                         // setProperties(setPlayerState, 'listened', totalListened)
                     }
                 })
@@ -256,7 +256,7 @@ export default function PlayerManager() {
                     return
                 }
 
-                setPlayerState({ currentTrack: state.track_window.current_track })
+                setPlayerState({ ...playerState, currentTrack: state.track_window.current_track })
                 // setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
 
                 try{
@@ -270,6 +270,7 @@ export default function PlayerManager() {
                 }
 
                 setPlayerState({ 
+                    ...playerState, 
                     shuffleState: state.shuffle, 
                     repeatState: state.repeat_mode, 
                     isPaused: state.paused })
@@ -281,12 +282,12 @@ export default function PlayerManager() {
                 player.getVolume().then(volume => {
                     let percentage = volume * 100
 
-                    setPlayerState({ volumePercentage: percentage })
+                    setPlayerState({ ...playerState, volumePercentage: percentage })
                     // setProperties(setPlayerState, 'volumePercentage', percentage)
                 })
 
                 player.getCurrentState().then(state => {
-                    (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
+                    (!state) ? setPlayerState({ ...playerState, isActive: false }) : setPlayerState({ ...playerState, isActive: true })
                     // (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
                 })
 
@@ -298,7 +299,7 @@ export default function PlayerManager() {
                 duration,
             }) => {
                 const totalListened = (100 * position) / duration
-                setPlayerState({ listened: totalListened })
+                setPlayerState({ ...playerState, listened: totalListened })
                 // setProperties(setPlayerState, 'listened', totalListened)
             })
 
@@ -412,7 +413,7 @@ export default function PlayerManager() {
                             <ShareMenu />
                     </div>}
 
-                    <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
+                    <div onClick={() => setPlayerState({ ...playerState, isMinimized: !isMinimized })}>
                         <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
                     </div>
 
