@@ -28,7 +28,7 @@ const useStore = create((set, get) => ({
   setLoggedUser: (user) => set({ loggedUser: user }),
   setSpotifyApi: (api) => set({ spotifyApi: api }),
   setArtistUri: (artist) => set({ artistUri: artist }),
-  setStandardWrapperWidth: (sideMenuWidth) => set({ standardWrapperWidth: `calc(100vw - ${sideMenuWidth}px - (${window.innerWidth}px - ${document.documentElement.clientWidth}px) - 25px)` }), // 25px for padding
+  setStandardWrapperWidth: (sideMenuWidth) => set({ standardWrapperWidth: `calc(100vw - ${sideMenuWidth}px - (${window.innerWidth}px - ${document.documentElement.clientWidth}px ) - 50px)` }), // 25px for margins
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
