@@ -17,7 +17,7 @@ export default function List(props){
                                 <img src={`${item.imageUrl}`} className="cover_small" />
                                 <div>
                                     {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    <h3>.{index + 1} {item.name}</h3>
+                                    <h3>{index + 1}. {item.name}</h3>
                                     <h4>{category.slice(0, -1)}</h4>
                                 </div>
                             </div>

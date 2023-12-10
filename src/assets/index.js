@@ -21,6 +21,7 @@ export { default as SvgMoreIcon } from "./SvgMoreIcon"
 export { default as SvgLeftBtn } from "./SvgLeftBtn"
 export { default as SvgRightBtn } from "./SvgRightBtn"
 export { default as SvgMusicCircle } from "./SvgMusicCircle"
+export { default as SvgDeviceIcon } from "./SvgDeviceIcon"
 export { default as chat_illustration } from "./chat_illustration.png"
 export { default as connect_device } from "./connect_device.png"
 

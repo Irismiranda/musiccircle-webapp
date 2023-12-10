@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
 import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, Post, ShareMenu } from ".."
-import { connect_device, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
+import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
 import useStore from "../../store"
 
 export default function PlayerManager() {
@@ -346,9 +346,12 @@ export default function PlayerManager() {
     if (!playerState.currentTrack) {
         return (
             <>
-            <div className="wrapper default_padding flex flex_column" style={{ width: standardWrapperWidth }}>
-                <img src={connect_device} style={{ width: "200px" }}/>
-                <h3>Connect your device</h3>
+            <div className="flex connect_device_float">
+                <SvgDeviceIcon className="svg_sall"/>
+                <div>
+                    <h3>Connect your Spotify Player</h3>
+                    <p>to start your experience</p>
+                </div>
             </div>
             <Outlet />
             </>
