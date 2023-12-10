@@ -7,30 +7,34 @@ export default function List(props){
     
     return(
         <div className="list_wrapper">
-            {list.items.map((item) => {
-                    return (
-                        <div key={item.id} style={{ position: "relative" }}>
-                            <div 
-                            className="flex"                          
-                            onMouseEnter={() => setHoverItemId(item.id)}
-                            onMouseLeave={() => setHoverItemId(null)}>
-                                <img src={`${item.imageUrl}`} className="cover_small" />
-                                <div>
-                                    {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    <h3>{item.name}</h3>
-                                    <h4>{category.slice(0, -1)}</h4>
-                                </div>
-                            </div>
-                            {hoverItemId === item.id && 
+            <ol>
+                {list.items.map((item) => {
+                        return (
+                            <div key={item.id} style={{ position: "relative" }}>
                                 <div 
-                                className="play_btn play_btn_list" 
-                                onClick={() => playItem(item.id)} 
-                                onMouseEnter={() => setHoverItemId(item.id)}>
-                            </div>}
-                        </div>
-                        )
-                    })   
-                }     
+                                className="flex"                          
+                                onMouseEnter={() => setHoverItemId(item.id)}
+                                onMouseLeave={() => setHoverItemId(null)}>
+                                    <img src={`${item.imageUrl}`} className="cover_small" />
+                                    <div>
+                                        {category === "playlist" && <h5>{item.artistName}</h5>}
+                                        <li>
+                                            <h3>{item.name}</h3>
+                                        </li>
+                                        <h4>{category.slice(0, -1)}</h4>
+                                    </div>
+                                </div>
+                                {hoverItemId === item.id && 
+                                    <div 
+                                    className="play_btn play_btn_list" 
+                                    onClick={() => playItem(item.id)} 
+                                    onMouseEnter={() => setHoverItemId(item.id)}>
+                                </div>}
+                            </div>
+                            )
+                        })   
+                    }     
+            </ol>
         </div>
     )
 }

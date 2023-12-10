@@ -336,7 +336,7 @@ a{
   text-decoration: none;
 }
 
-.chat_room h2, h4{
+.chat_room h2, .chat_room h4{
   margin: 15px 30px;
   line-height: 0.6;
 }
@@ -669,15 +669,11 @@ h3{
 }
 
 .list_wrapper{
-  margin: 50px 0px;
-  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
+  display: grid;
   gap: 35px;
-  flex-wrap: wrap;
-  justify-content: start;
-}
-
-.list_wrapper div{
-  max-width: 250px;
+  grid-template-columns: repeat(auto-fit, 400px);
 }
 
 .play_btn{
