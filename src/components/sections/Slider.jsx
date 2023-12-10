@@ -9,7 +9,8 @@ export default function Slider(props){
     const { list, visibility, category, isLoggedUser, parentRef } = props
     const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
-    const [ hoverItemId, setHhoverItemId ] = useState(null)
+    const [ listScroll, setListScroll ] = useState(0)
+    const [ hoverItemId, setHoverItemId ] = useState(null)
 
     async function toggleItemVisibility(itemId, category){
         const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
@@ -69,8 +70,8 @@ export default function Slider(props){
                             <div className="slider_image_wrapper">
                                 <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                     <div 
-                                    onMouseEnter={() => hoverItemId(item.id)}
-                                    onMouseLeave={() => hoverItemId(null)}
+                                    onMouseEnter={() => setHoverItemId(item.id)}
+                                    onMouseLeave={() => setHoverItemId(null)}
                                     style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     </div>
                                 </Link>
