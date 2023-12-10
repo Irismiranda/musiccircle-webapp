@@ -69,7 +69,7 @@ export default function Artist(){
             </div>
             {artistTopTracks && 
             <section>
-                <h3> Popular </h3>
+                <h2> Popular Tracks</h2>
                 <List 
                 list={artistTopTracks} 
                 category={"tracks"}/>
