@@ -9,7 +9,7 @@ export default function List(props){
         <div className="list_wrapper">
             {list.items.map((item) => {
                     return (
-                        <div>
+                        <div key={item.id}>
                             <div                           
                             onMouseEnter={() => setHoverItemId(item.id)}
                             onMouseLeave={() => setHoverItemId(null)}>
