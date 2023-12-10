@@ -32,7 +32,12 @@ const useStore = create((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
-  setPlayerState: (newPlayerState) => set({ playerState: newPlayerState }),
+  setPlayerState: (newPlayerState) => ((state) => ({ 
+    playerState: {
+      ...state.playerState,
+      ...newPlayerState,
+    }
+  }))
   
 }))
 
