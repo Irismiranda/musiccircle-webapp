@@ -4,6 +4,7 @@ import { playItem } from "../../utils/utils"
 export default function List(props){
     const { list, category } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
+    console.log("id is", item.id)
 
     return(
         <div className="list_wrapper">
