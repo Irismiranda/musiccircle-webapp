@@ -70,8 +70,8 @@ export default function Slider(props){
                             <div className="slider_image_wrapper">
                                 <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                     <div 
-                                    onMouseEnter={setShowPlayBtn(true)}
-                                    onMouseLeave={setShowPlayBtn(false)}
+                                    onMouseEnter={() => setShowPlayBtn(true)}
+                                    onMouseLeave={() => setShowPlayBtn(false)}
                                     style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     </div>
                                 </Link>
