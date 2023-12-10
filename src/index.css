@@ -681,13 +681,12 @@ h3{
   position: absolute;
   top: 155px;
   left: 155px;
-  display: none;
+  width: 100%;
+  height: 100%;
 }
 
 .play_btn:hover{
   display: block;
-  width: 35px;
-  height: 35px;
   border-radius: 100%;
   background-color: #F230AA;
   content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 500 500' width='104.742' height='165.842' xmlns='http://www.w3.org/2000/svg' xmlns:bx='https://boxy-svg.com'%3E%3Cpath d='M 220.654 167.691 L 303.575 272.433 L 137.733 272.433 L 220.654 167.691 Z' style='stroke-linejoin: round; stroke-width: 16px; stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255); transform-origin: 177.781px 150.232px;' transform='matrix(0, 1, -1, 0, 167.131576538086, 56.89501953125)' bx:shape='triangle 137.733 167.691 165.842 104.742 0.5 0 1@fc71f886'/%3E%3C/svg%3E");
