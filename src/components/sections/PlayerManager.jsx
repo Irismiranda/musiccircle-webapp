@@ -33,6 +33,7 @@ export default function PlayerManager() {
     const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState } = useStore()
 
     const { 
+        isMinimized,
         player, 
         currentTrack, 
         isLiked, 
