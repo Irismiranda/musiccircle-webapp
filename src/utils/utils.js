@@ -42,8 +42,8 @@ function formatListData(items, category) {
   })
 }
 
-async function playItem(){
-  console.log("clicked!")
+async function playItem(id){
+  console.log("clicked on item id:", id)
 }
 
 export { useClickOutside, formatListData, playItem }

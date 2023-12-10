@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
 
 export default function List(props){
     const { list, category } = props
@@ -10,14 +9,14 @@ export default function List(props){
             {list.items.map((item) => {
                     return (
                         <div>
-                            <Link 
-                            to={`/${category.slice(0, -1)}/${item.id}`} 
+                            <div                           
                             onMouseEnter={() => setHoverItemId(item.id)}
                             onMouseLeave={() => setHoverItemId(null)}>
                                 <img src={`${item.imageUrl}`} className="cover_small" />
                                 {category === "playlist" && <h5>{item.artistName}</h5>}
                                 <h3>{item.name}</h3>
-                            </Link>
+                                <h4>{category.slice(0, -1)}</h4>
+                            </div>
                             {hoverItemId === item.id && 
                                 <div 
                                 className="play_btn" 
