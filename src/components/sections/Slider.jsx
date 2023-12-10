@@ -10,6 +10,7 @@ export default function Slider(props){
     const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
+    const [ showPlayBtn, setShowPlayBtn ] = useState(false)
 
     async function toggleItemVisibility(itemId, category){
         const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
@@ -68,12 +69,14 @@ export default function Slider(props){
                         <div>
                             <div className="slider_image_wrapper">
                                 <Link to={`/${category.slice(0, -1)}/${item.id}`}>
-                                    <div style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                    <div 
+                                    onMouseEnter={setShowPlayBtn(true)}
+                                    onMouseLeave={setShowPlayBtn(false)}
+                                    style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     </div>
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
-                                <div className="play_btn" onClick={() => playItem(item.id)}>
-                                </div>
+                                {showPlayBtn && <div className="play_btn" onClick={() => playItem(item.id)}></div>}
                             </div>
                             <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                 <h3>{item.name}</h3>
