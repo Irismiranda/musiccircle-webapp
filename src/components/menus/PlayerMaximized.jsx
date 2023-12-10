@@ -22,7 +22,6 @@ const PlayerMaximized = ((props) => {
     } = playerState
     
     const { 
-        setProperties,
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
@@ -86,7 +85,7 @@ const PlayerMaximized = ((props) => {
                             </div> 
                         </div>
                         <div className="flex volume_bar_wrapper">
-                            <div className="flex" onClick={() => setProperties(setPlayerState, 'isMute', !isMute)}> 
+                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div

@@ -51,15 +51,18 @@ export default function PlayerManager() {
 
     async function handleShuffleClick() {
         spotifyApi.setShuffle(!shuffleState)
-        setProperties(setPlayerState, 'shuffleState', !shuffleState)        
+        setPlayerState({ shuffleState: !shuffleState })
+        // setProperties(setPlayerState, 'shuffleState', !shuffleState)        
     }
 
     async function handleRepeatClick() {
         if (repeatState === 0 || repeatState === 1) {
             const newState = repeatState + 1
-            setProperties(setPlayerState, 'repeatState', newState)
+            setPlayerState({ repeatState: newState })
+            // setProperties(setPlayerState, 'repeatState', newState)
         } else {
-            setProperties(setPlayerState, 'repeatState', 0)
+            // setProperties(setPlayerState, 'repeatState', 0)
+            setPlayerState({ repeatState: 0 })
         }
     }
 
@@ -73,7 +76,8 @@ export default function PlayerManager() {
         const volumeBarRect = volumeBarRef.current.getBoundingClientRect()
         const volumePercentage = calculatePosition(e, volumeBarRect) * 100
         const roundedPercentage = Math.round(volumePercentage)
-        setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
+        // setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
+        setPlayerState({ volumePercentage: roundedPercentage })
         try {
             await spotifyApi.setVolume(roundedPercentage)
         } catch (error) {
@@ -86,14 +90,16 @@ export default function PlayerManager() {
         if (!isLiked) {
             try{
                 await spotifyApi.addToMySavedTracks(trackIds)
-                setProperties(setPlayerState, 'isLiked', true)
+                setPlayerState({ isLiked: true })
+                // setProperties(setPlayerState, 'isLiked', true)
             } catch(err){
                 console.log(err)
             }
         } else {
             try{
                 await spotifyApi.removeFromMySavedTracks(trackIds)
-                setProperties(setPlayerState, 'isLiked', false)
+                setPlayerState({ isLiked: false })
+                // setProperties(setPlayerState, 'isLiked', false)
             } catch(err){
                 console.log(err)
             }
@@ -103,7 +109,8 @@ export default function PlayerManager() {
     function handleTimelineClick(e, trackTimelineRef) {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
-        setProperties(setPlayerState, 'listened', fraction * 100)
+        setPlayerState({ listened: fraction * 100 })
+        // setProperties(setPlayerState, 'listened', fraction * 100)
         const positionInSec = fraction * currentTrack.duration_ms
         player.seek(positionInSec).then(() => {
         }) 
@@ -114,9 +121,11 @@ export default function PlayerManager() {
         const prevPlayerHeight = playerRef?.current?.offsetHeight
         
         if(window.scrollY > 1 + prevPlayerHeight){
-            setProperties(setPlayerState, 'isScrolled', true)
+            // setProperties(setPlayerState, 'isScrolled', true)
+            setPlayerState({ isScrolled: true })
         } else{
-            setProperties(setPlayerState, 'isScrolled', false)
+            // setProperties(setPlayerState, 'isScrolled', false)
+            setPlayerState({ isScrolled: false })
         }
     }
 
@@ -177,10 +186,13 @@ export default function PlayerManager() {
         async function updateMuteState(){
             const { isMute, volumePercentage } = playerState
             if(isMute && volumePercentage){
-                setProperties(setPlayerState, 'volumePercentage', 0)
+                prevSetVolume.current = volumePercentage
+                // setProperties(setPlayerState, 'volumePercentage', 0)
+                setPlayerState({ volumePercentage: 0 })
                 await spotifyApi.setVolume(0)
             } else if(!isMute && prevSetVolume.current){
-                setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
+                setPlayerState({ volumePercentage: prevSetVolume.current })
+                // setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
                 await spotifyApi.setVolume(prevSetVolume.current)
             }
         }
@@ -199,7 +211,8 @@ export default function PlayerManager() {
         async function getIsTrackSaved() {
             const trackIds = [currentTrack.id]
             const response = await spotifyApi.containsMySavedTracks(trackIds)
-            setProperties(setPlayerState, 'isLiked', response[0])
+            setPlayerState({ isLiked: response[0] })
+            // setProperties(setPlayerState, 'isLiked', response[0])
         }
 
         if (currentTrack) {
@@ -222,7 +235,8 @@ export default function PlayerManager() {
                 volume: 0.5
             })
 
-            setProperties(setPlayerState, 'player', player)
+            setPlayerState({ player: player })
+            // setProperties(setPlayerState, 'player', player)
         
             player.connect()
 
@@ -230,7 +244,8 @@ export default function PlayerManager() {
                 player.getCurrentState().then((state) => {
                     if (state && state.position && state.duration && !state.paused) {
                         const totalListened = (100 * state.position) / state.duration
-                        setProperties(setPlayerState, 'listened', totalListened)
+                        setPlayerState({ listened: totalListened })
+                        // setProperties(setPlayerState, 'listened', totalListened)
                     }
                 })
             }, 50)
@@ -241,7 +256,8 @@ export default function PlayerManager() {
                     return
                 }
 
-                setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
+                setPlayerState({ currentTrack: state.track_window.current_track })
+                // setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
 
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
@@ -253,17 +269,25 @@ export default function PlayerManager() {
                     console.log(err)
                 }
 
-                setProperties(setPlayerState, 'shuffleState', state.shuffle)
-                setProperties(setPlayerState, 'repeatState', state.repeat_mode)
-                setProperties(setPlayerState, 'isPaused', state.paused)
+                setPlayerState({ 
+                    shuffleState: state.shuffle, 
+                    repeatState: state.repeat_mode, 
+                    isPaused: state.paused })
+
+                // setProperties(setPlayerState, 'shuffleState', state.shuffle)
+                // setProperties(setPlayerState, 'repeatState', state.repeat_mode)
+                // setProperties(setPlayerState, 'isPaused', state.paused)
 
                 player.getVolume().then(volume => {
                     let percentage = volume * 100
-                    setProperties(setPlayerState, 'volumePercentage', percentage)
+
+                    setPlayerState({ volumePercentage: percentage })
+                    // setProperties(setPlayerState, 'volumePercentage', percentage)
                 })
 
                 player.getCurrentState().then(state => {
-                    (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
+                    (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
+                    // (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
                 })
 
             }))
@@ -274,7 +298,8 @@ export default function PlayerManager() {
                 duration,
             }) => {
                 const totalListened = (100 * position) / duration
-                setProperties(setPlayerState, 'listened', totalListened)
+                setPlayerState({ listened: totalListened })
+                // setProperties(setPlayerState, 'listened', totalListened)
             })
 
             return () => clearInterval(interval)
@@ -387,7 +412,7 @@ export default function PlayerManager() {
                             <ShareMenu />
                     </div>}
 
-                    <div onClick={() => setProperties(setPlayerState, 'isMinimized', !isMinimized)}>
+                    <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
                         <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
                     </div>
 

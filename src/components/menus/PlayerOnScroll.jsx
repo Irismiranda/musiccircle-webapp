@@ -23,7 +23,6 @@ const PlayerOnScroll = ((props) => {
     } = playerState
     
     const { 
-        setProperties,
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
@@ -81,7 +80,7 @@ const PlayerOnScroll = ((props) => {
                             <SvgRepeat className="svg" repeat_state={repeatState} style={{ fill: repeatState === 1 || repeatState === 2 ? '#F230AA' : '#AFADAD' }} />
                         </div>
                         <div className="flex">
-                            <div className="flex" onClick={() => setProperties(setPlayerState, 'isMute', !isMute)}>
+                            <div className="flex" onClick={() => setPlayerState({ isMute: !isMute })}> 
                                 <SvgVolume className="svg" volume_percentage={volumePercentage}/>
                             </div>
                             <div
