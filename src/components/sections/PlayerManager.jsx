@@ -34,13 +34,10 @@ export default function PlayerManager() {
 
     const { 
         player, 
-        isPaused,
         currentTrack, 
-        listened, 
         isLiked, 
         shuffleState, 
         repeatState, 
-        volumePercentage, 
         isMute,  
     } = playerState
 
