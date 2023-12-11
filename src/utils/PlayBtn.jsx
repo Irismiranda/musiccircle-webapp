@@ -7,15 +7,12 @@ export default function PlayBtn(props){
     const { uri, category, type } = props
 
     async function playItem(){
-        let recomendations
-
         if(type === "track"){
             await spotifyApi.play({uris: [uri], device_id: deviceId})
+            setPlayerState({reference: {uri: uri, type: type}})
         } else{
             await spotifyApi.play({context_uri: uri, device_id: deviceId})
         } 
-        
-        setPlayerState({reference: {uri: uri, type: type}})
     }
 
     return (
