@@ -267,6 +267,16 @@ export default function PlayerManager() {
                         if (state && state.position && state.duration && !state.paused) {
                             const totalListened = (100 * state.position) / state.duration
                             setPlayerState({ listened: totalListened })
+                            
+                            const currentQueue = state.track_window.next_tracks
+                            
+                            if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                                getRecommendations()
+                            }
+            
+                            if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                                setQueue()
+                            }
                         }
                     })
                 }, 50)
@@ -293,19 +303,6 @@ export default function PlayerManager() {
 
                     setPlayerState({ volumePercentage: percentage })
                 })
-
-                player.getCurrentState().then(state => {
-                    (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
-                    const currentQueue = state.track_window.next_tracks
-                    if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                        getRecommendations()
-                    }
-    
-                    if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                        setQueue()
-                    }
-                })
-
 
             }))
 
