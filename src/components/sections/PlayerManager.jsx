@@ -103,7 +103,7 @@ export default function PlayerManager() {
 
         if(type === "track"){
             const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
-            const recomendationsUriList = recommendations.forEach(track => {
+            const recomendationsUriList = recommendations.map(track => {
                 return track.uri
             })
             setRecommendations(recomendationsUriList)
