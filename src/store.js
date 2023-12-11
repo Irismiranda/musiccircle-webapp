@@ -11,7 +11,6 @@ const useStore = create((set, get) => ({
       isPaused: false,
       isActive: false,
       currentTrack: null,
-      reference: null,
       listened: (0.1),
       isLiked: false,
       shuffleState: false,
@@ -21,6 +20,7 @@ const useStore = create((set, get) => ({
       isMinimized: false,
       isScrolled: false,
   },
+  reference: null,
   socket: null,
   standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
   userTopTracks: null,
@@ -34,6 +34,7 @@ const useStore = create((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
+  setReference: (ref) => set({ reference: ref }),
   setPlayerState: (newPlayerState) => set((state) => ({
     ...state,
     playerState: {

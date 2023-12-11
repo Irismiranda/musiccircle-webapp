@@ -31,7 +31,7 @@ export default function PlayerManager() {
         left: 0,
     })
     
-    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState } = useStore()
+    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState, reference } = useStore()
 
     const { 
         isMinimized,
@@ -41,8 +41,7 @@ export default function PlayerManager() {
         shuffleState, 
         repeatState, 
         isScrolled,
-        isMute,  
-        reference,
+        isMute,
     } = playerState
 
     function setProperties(callback, property, value) {
