@@ -108,12 +108,13 @@ export default function PlayerManager() {
             })
             setRecommendations(recomendationsUriList)
             setQueueIndex(0)
+            setQueue(0)
         } 
     }
 
-    async function setQueue(){
+    async function setQueue(index){
         spotifyApi.queue(recommendations[queueIndex])
-        setQueueIndex(queueIndex + 1)
+        setQueueIndex(index + 1)
     }
 
     function calculatePosition(e, rect) {
@@ -274,7 +275,7 @@ export default function PlayerManager() {
                             }
             
                             if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                                setQueue()
+                               // setQueue()
                             }
                         }
                     })
