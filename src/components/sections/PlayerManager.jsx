@@ -269,14 +269,13 @@ export default function PlayerManager() {
                             setPlayerState({ listened: totalListened })
                             
                             const currentQueue = state.track_window.next_tracks
-                            
-                            if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                                getRecommendations()
-                            }
+                            // if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                            //     getRecommendations()
+                            // }
             
-                            if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                                setQueue()
-                            }
+                            // if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                            //     setQueue()
+                            // }
                         }
                     })
                 }, 50)
