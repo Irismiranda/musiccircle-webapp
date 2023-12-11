@@ -44,10 +44,10 @@ function formatListData(items, category) {
   })
 }
 
-async function PlayBtn(uri){
+async function playItem(uri){
   const { spotifyApi } = useStore()
   console.log("clicked on item uri:", uri)
   await spotifyApi.play(uri)
 }
 
-export { useClickOutside, formatListData, PlayBtn }
+export { useClickOutside, formatListData, playItem }
