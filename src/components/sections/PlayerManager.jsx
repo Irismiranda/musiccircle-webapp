@@ -295,6 +295,8 @@ export default function PlayerManager() {
                 player.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                         const currentQueue = state.track_window.next_tracks
+
+                        console.log("queue is:", currentQueue)
                         
                         if(currentTrack && currentQueue.length < 1 && !recommendations){
                             getRecommendations()
