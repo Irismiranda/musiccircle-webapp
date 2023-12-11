@@ -1,7 +1,7 @@
 import React from "react"
 import useStore from "../store"
 
-export default function playBtn(props){
+export default function PlayBtn(props){
     const { spotifyApi } = useStore()
     const { uri, category } = props
 
