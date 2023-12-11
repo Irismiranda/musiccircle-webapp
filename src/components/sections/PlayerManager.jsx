@@ -255,6 +255,20 @@ export default function PlayerManager() {
                 if (!state) {
                     return
                 }
+
+                if(state){
+                    const currentQueue = state.track_window.next_tracks
+                    console.log("current queue is", currentQueue)
+                    console.log("referece is", reference)
+                        
+                    if(reference && currentQueue.length < 1 && !recommendations){
+                        getRecommendations()
+                    }
+
+                    if(reference && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                        setQueue()
+                    }
+                }
                     
                 const interval = setInterval(() => {
                     player.getCurrentState().then((state) => {
@@ -300,23 +314,7 @@ export default function PlayerManager() {
                 duration,
             }) => {
                 const totalListened = (100 * position) / duration
-                setPlayerState({ listened: totalListened })
-
-                console.log("state is", state)
-
-                if(state){
-                    const currentQueue = state.track_window.next_tracks
-                    console.log("current queue is", currentQueue)
-                    console.log("referece is", reference)
-                        
-                    if(reference && currentQueue.length < 1 && !recommendations){
-                        getRecommendations()
-                    }
-
-                    if(reference && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                        setQueue()
-                    }
-                }
+                setPlayerState({ listened: totalListened })    
             })
 
             return () => clearInterval(interval)
