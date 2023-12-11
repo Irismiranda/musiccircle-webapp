@@ -24,7 +24,7 @@ export default function List(props){
                                     <h4>{category.slice(0, -1)}</h4>
                                 </div>
                             </div>
-                            {(currentTrack && hoverItemId === item.id) && <playBtn uri={item.uri}/>}
+                            {(currentTrack && hoverItemId === item.id) && <playBtn uri={item.uri} category={"slider"}/>}
                         </div>
                         )
                     })   
