@@ -65,12 +65,6 @@ export default function PlayerManager() {
         }
     }
 
-    function calculatePosition(e, rect) {
-        const handleRelativePosition = e.clientX - rect.left
-        const fraction = handleRelativePosition / rect.width
-        return fraction
-    }
-
     async function trackVolumePosition(e, volumeBarRef) {
         const volumeBarRect = volumeBarRef.current.getBoundingClientRect()
         const volumePercentage = calculatePosition(e, volumeBarRect) * 100
@@ -102,6 +96,25 @@ export default function PlayerManager() {
         }
     }
 
+    async function getRecommendations(){
+        const { type, uri } = reference
+        const id = uri.slice(14)
+
+        if(type === "track"){
+            const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
+            const recomendationsUriList = recommendations.map (track => {
+                return track.uri
+            })
+            setRecommendations(recomendationsUriList)
+            setQueueIndex(1)
+        } 
+    }
+
+    async function setQueue(){
+        spotifyApi.queue(recommendations[queueIndex])
+        setQueueIndex(prevIndex => prevIndex + 1)
+    }
+
     function handleTimelineClick(e, trackTimelineRef) {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
@@ -109,6 +122,12 @@ export default function PlayerManager() {
         const positionInSec = fraction * currentTrack.duration_ms
         player.seek(positionInSec).then(() => {
         }) 
+    }
+
+    function calculatePosition(e, rect) {
+        const handleRelativePosition = e.clientX - rect.left
+        const fraction = handleRelativePosition / rect.width
+        return fraction
     }
 
     const handleScroll = () => {  
@@ -276,13 +295,13 @@ export default function PlayerManager() {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                         const currentQueue = state.track_window.next_tracks
                         
-                        // if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                        //     getRecommendations()
-                        // }
+                        if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                            getRecommendations()
+                        }
         
-                        // if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                        //     setQueue()
-                        // }
+                        if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                            setQueue()
+                        }
                 })
 
             }))
