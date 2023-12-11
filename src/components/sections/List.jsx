@@ -26,7 +26,7 @@ export default function List(props){
                             </div>
                             {(currentTrack && hoverItemId === item.id) && 
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                    <PlayBtn uri={item.uri} category={"slider"} />
+                                    <PlayBtn uri={item.uri} category={"list"} />
                                 </div>}
                         </div>
                         )
