@@ -11,6 +11,7 @@ const useStore = create((set, get) => ({
       isPaused: false,
       isActive: false,
       currentTrack: null,
+      reference: null,
       listened: (0.1),
       isLiked: false,
       shuffleState: false,
