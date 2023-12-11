@@ -6,6 +6,7 @@ export default function PlayBtn(props){
     const { uri, category } = props
 
     async function playItem(){
+        console.log("device is;", deviceId)
         await spotifyApi.play({uris: [uri], device_id: deviceId})
     }
 
