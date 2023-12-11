@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import useStore from "../store"
 
 export default function PlayBtn(props){
-    const { spotifyApi, playerState, setReference } = useStore()
+    const { spotifyApi, playerState, setReference, reference } = useStore()
     const { uri, category, type, hoverItemId } = props
     const { deviceId } = playerState
     const id = uri.slice(14)
@@ -13,8 +13,12 @@ export default function PlayBtn(props){
             setReference(id)
         } else{
             await spotifyApi.play({context_uri: uri, device_id: deviceId})
-        } 
+        }
     }
+
+    useEffect(() => {
+        console.log("reference is (PlayBtn):", reference)
+    }, [reference])
 
     return (
         <>
