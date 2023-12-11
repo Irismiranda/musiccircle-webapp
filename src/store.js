@@ -22,7 +22,7 @@ const useStore = create((set, get) => ({
       isScrolled: false,
   },
   socket: null,
-  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
+  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 12.5px)`,
   userTopTracks: null,
   userTopArtists: null,
 

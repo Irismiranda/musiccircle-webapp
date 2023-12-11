@@ -7,6 +7,8 @@ import useStore from "../../store"
 export default function PlayerManager() {
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
+    const [queueIndex, setQueueIndex] = useState(null)
+    const [recommendations, setRecommendations] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
@@ -39,8 +41,8 @@ export default function PlayerManager() {
         isLiked, 
         shuffleState, 
         repeatState, 
-        isScrolled,
         isMute,  
+        reference,
     } = playerState
 
     function setProperties(callback, property, value) {
@@ -62,12 +64,6 @@ export default function PlayerManager() {
         } else {
             setPlayerState({ repeatState: 0 })
         }
-    }
-
-    function calculatePosition(e, rect) {
-        const handleRelativePosition = e.clientX - rect.left
-        const fraction = handleRelativePosition / rect.width
-        return fraction
     }
 
     async function trackVolumePosition(e, volumeBarRef) {
@@ -99,6 +95,31 @@ export default function PlayerManager() {
                 console.log(err)
             }
         }
+    }
+
+    async function getRecommendations(){
+        const { type, uri } = reference
+        const id = uri.slice(14)
+
+        if(type === "track"){
+            const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
+            const recomendationsUriList = recommendations.forEach(track => {
+                return track.uri
+            })
+            setRecommendations(recomendationsUriList)
+            setQueueIndex(1)
+        } 
+    }
+
+    async function setQueue(){
+        spotifyApi.queue(recommendations[queueIndex])
+        setQueueIndex(prevIndex => prevIndex + 1)
+    }
+
+    function calculatePosition(e, rect) {
+        const handleRelativePosition = e.clientX - rect.left
+        const fraction = handleRelativePosition / rect.width
+        return fraction
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
@@ -228,27 +249,30 @@ export default function PlayerManager() {
         
             player.connect()
 
+            player.addListener()
+
             player.addListener('ready', ({ device_id }) => {
                 setPlayerState({ deviceId: device_id })
-              })
+            })
 
-            const interval = setInterval(() => {
-                player.getCurrentState().then((state) => {
-                    if (state && state.position && state.duration && !state.paused) {
-                        const totalListened = (100 * state.position) / state.duration
-                        setPlayerState({ listened: totalListened })
-                    }
-                })
-            }, 50)
-
+              
             player.addListener('player_state_changed', (state => {
-
+                  
                 if (!state) {
                     return
                 }
-
+                    
+                const interval = setInterval(() => {
+                    player.getCurrentState().then((state) => {
+                        if (state && state.position && state.duration && !state.paused) {
+                            const totalListened = (100 * state.position) / state.duration
+                            setPlayerState({ listened: totalListened })
+                        }
+                    })
+                }, 50)
+                    
                 setPlayerState({ currentTrack: state.track_window.current_track })
-
+                    
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
                     if (!artistUri || currentArtistUri !== prevArtistUriRef.current) {
@@ -273,6 +297,15 @@ export default function PlayerManager() {
                 player.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                 })
+
+                const currentQueue = state.track_window.next_tracks
+                if(currentQueue.length < 1 && !queueIndex){
+                    getRecommendations()
+                }
+
+                if(currentQueue.length < 1 && queueIndex < 100){
+                    setQueue()
+                }
 
             }))
 
@@ -328,9 +361,6 @@ export default function PlayerManager() {
             window.removeEventListener('mouseup', handleMouseUp);
         }
     }, [isMoving])
-
-    useEffect(() => {
-    }, [isScrolled])
 
     const playerFunctionalProps = {
         setProperties,
