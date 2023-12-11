@@ -107,13 +107,13 @@ export default function PlayerManager() {
                 return track.uri
             })
             setRecommendations(recomendationsUriList)
-            setQueueIndex(1)
+            setQueueIndex(0)
         } 
     }
 
     async function setQueue(){
         spotifyApi.queue(recommendations[queueIndex])
-        setQueueIndex(prevIndex => prevIndex + 1)
+        setQueueIndex(queueIndex + 1)
     }
 
     function calculatePosition(e, rect) {
@@ -268,14 +268,14 @@ export default function PlayerManager() {
                             const totalListened = (100 * state.position) / state.duration
                             setPlayerState({ listened: totalListened })
                             
-                            //const currentQueue = state.track_window.next_tracks
-                            // if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                            //     getRecommendations()
-                            // }
+                            const currentQueue = state.track_window.next_tracks
+                            if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                                getRecommendations()
+                            }
             
-                            // if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                            //     setQueue()
-                            // }
+                            if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                                setQueue()
+                            }
                         }
                     })
                 }, 50)
