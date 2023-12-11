@@ -7,8 +7,6 @@ import useStore from "../../store"
 export default function PlayerManager() {
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
-    const [queueIndex, setQueueIndex] = useState(null)
-    const [recommendations, setRecommendations] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
@@ -41,6 +39,7 @@ export default function PlayerManager() {
         isLiked, 
         shuffleState, 
         repeatState, 
+        isScrolled,
         isMute,  
         reference,
     } = playerState
@@ -64,6 +63,12 @@ export default function PlayerManager() {
         } else {
             setPlayerState({ repeatState: 0 })
         }
+    }
+
+    function calculatePosition(e, rect) {
+        const handleRelativePosition = e.clientX - rect.left
+        const fraction = handleRelativePosition / rect.width
+        return fraction
     }
 
     async function trackVolumePosition(e, volumeBarRef) {
@@ -95,32 +100,6 @@ export default function PlayerManager() {
                 console.log(err)
             }
         }
-    }
-
-    async function getRecommendations(){
-        const { type, uri } = reference
-        const id = uri.slice(14)
-
-        if(type === "track"){
-            const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
-            const recomendationsUriList = recommendations.map(track => {
-                return track.uri
-            })
-            setRecommendations(recomendationsUriList)
-            setQueueIndex(0)
-            setQueue(0)
-        } 
-    }
-
-    async function setQueue(index){
-        spotifyApi.queue(recommendations[queueIndex])
-        setQueueIndex(index + 1)
-    }
-
-    function calculatePosition(e, rect) {
-        const handleRelativePosition = e.clientX - rect.left
-        const fraction = handleRelativePosition / rect.width
-        return fraction
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
@@ -250,8 +229,6 @@ export default function PlayerManager() {
         
             player.connect()
 
-            player.addListener()
-
             player.addListener('ready', ({ device_id }) => {
                 setPlayerState({ deviceId: device_id })
             })
@@ -268,15 +245,6 @@ export default function PlayerManager() {
                         if (state && state.position && state.duration && !state.paused) {
                             const totalListened = (100 * state.position) / state.duration
                             setPlayerState({ listened: totalListened })
-                            
-                            // const currentQueue = state.track_window.next_tracks
-                            // if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                            //     getRecommendations()
-                            // }
-            
-                            // if(currentTrack && currentQueue.length < 1 && queueIndex  && queueIndex < 100 && recommendations){
-                            //    setQueue()
-                            // }
                         }
                     })
                 }, 50)
@@ -302,6 +270,10 @@ export default function PlayerManager() {
                     let percentage = volume * 100
 
                     setPlayerState({ volumePercentage: percentage })
+                })
+
+                player.getCurrentState().then(state => {
+                    (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                 })
 
             }))
@@ -358,6 +330,9 @@ export default function PlayerManager() {
             window.removeEventListener('mouseup', handleMouseUp);
         }
     }, [isMoving])
+
+    useEffect(() => {
+    }, [isScrolled])
 
     const playerFunctionalProps = {
         setProperties,
