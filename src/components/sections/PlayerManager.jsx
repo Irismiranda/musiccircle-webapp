@@ -100,7 +100,6 @@ export default function PlayerManager() {
     async function getRecommendations(){
         const { type, uri } = reference
         const id = uri.slice(14)
-        console.log("reference is:", reference)
 
         if(type === "track"){
             const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
@@ -295,13 +294,14 @@ export default function PlayerManager() {
 
                 player.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
+
                         const currentQueue = state.track_window.next_tracks
                         
-                        if(currentTrack && currentQueue.length < 1 && !recommendations){
+                        if(reference && currentQueue.length < 1 && !recommendations){
                             getRecommendations()
                         }
         
-                        if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                        if(reference && currentQueue.length < 1 && queueIndex < 100 && recommendations){
                             setQueue()
                         }
                 })
