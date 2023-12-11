@@ -2,7 +2,8 @@ import React from "react"
 import useStore from "../store"
 
 export default function PlayBtn(props){
-    const { spotifyApi, deviceId } = useStore()
+    const { spotifyApi, playerState } = useStore()
+    const { deviceId } = playerState
     const { uri, category } = props
 
     async function playItem(){
