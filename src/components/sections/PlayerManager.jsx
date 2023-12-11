@@ -7,6 +7,7 @@ import useStore from "../../store"
 export default function PlayerManager() {
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
+    const [recommendations, setRecommendations] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
@@ -106,7 +107,7 @@ export default function PlayerManager() {
                 return track.uri
             })
             setRecommendations(recomendationsUriList)
-            setQueueIndex(1)
+            setQueueIndex(0)
         } 
     }
 
@@ -295,7 +296,7 @@ export default function PlayerManager() {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                         const currentQueue = state.track_window.next_tracks
                         
-                        if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                        if(currentTrack && currentQueue.length < 1 && !recommendations){
                             getRecommendations()
                         }
         
