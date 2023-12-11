@@ -6,7 +6,7 @@ export default function playBtn(props){
     const { uri } = props
 
     async function playItem(){
-        spotifyApi.play(uri)
+        await spotifyApi.play(uri)
     }
 
     return (
