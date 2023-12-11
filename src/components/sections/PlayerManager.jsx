@@ -271,11 +271,11 @@ export default function PlayerManager() {
                             
                             const currentQueue = state.track_window.next_tracks
                             if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                                getRecommendations()
+                                //getRecommendations()
                             }
             
-                            if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
-                               // setQueue()
+                            if(currentTrack && currentQueue.length < 1 && queueIndex  && queueIndex < 100 && recommendations){
+                               //setQueue()
                             }
                         }
                     })
