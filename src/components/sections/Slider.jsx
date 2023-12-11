@@ -7,10 +7,12 @@ import { playItem } from "../../utils/utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, parentRef } = props
-    const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
+    const { loggedUser, setUserTopTracks, setUserTopArtists, playerState } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
     const [ hoverItemId, setHoverItemId ] = useState(null)
+
+    const { currentTrack } = playerState
 
     async function toggleItemVisibility(itemId, category){
         const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
@@ -76,10 +78,10 @@ export default function Slider(props){
                                     </div>
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
-                                {hoverItemId === item.id && 
+                                {(currentTrack && hoverItemId === item.id) && 
                                 <div 
                                 className="play_btn play_btn_slider" 
-                                onClick={() => playItem(item.id)} 
+                                onClick={() => playItem(item.uri)} 
                                 onMouseEnter={() => setHoverItemId(item.id)}>
                                 </div>}
                             </div>

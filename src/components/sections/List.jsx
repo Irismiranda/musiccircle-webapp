@@ -1,9 +1,12 @@
 import React, { useState } from "react"
 import { playItem } from "../../utils/utils"
+import useStore from "../../store"
 
 export default function List(props){
     const { list, category } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
+    const { playerState } = useStore()
+    const { currentTrack } = playerState
     
     return(
         <div className="list_wrapper">
@@ -21,7 +24,7 @@ export default function List(props){
                                     <h4>{category.slice(0, -1)}</h4>
                                 </div>
                             </div>
-                            {hoverItemId === item.id && 
+                            {(currentTrack && hoverItemId === item.id) && 
                                 <div 
                                 className="play_btn play_btn_list" 
                                 onClick={() => playItem(item.id)} 

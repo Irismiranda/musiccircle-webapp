@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import useStore from "../../store"
 
 const useClickOutside = (ref, exceptionRef, callback) => {
   useEffect(() => {
@@ -25,6 +26,7 @@ function formatListData(items, category) {
   return items.map(item => {
     let listItem = {
       id: item.id,
+      uri: item.uri,
       name: item.name,
       imageUrl: category === "tracks" ? item.album.images[0].url : item.images[0].url,
       isVisible: true,
@@ -42,8 +44,10 @@ function formatListData(items, category) {
   })
 }
 
-async function playItem(id){
-  console.log("clicked on item id:", id)
+async function playItem(uri){
+  const { spotifyApi } = useStore()
+  console.log("clicked on item uri:", uri)
+  await spotifyApi.play(uri)
 }
 
 export { useClickOutside, formatListData, playItem }
