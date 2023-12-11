@@ -24,10 +24,13 @@ export default function List(props){
                                     <h4>{category.slice(0, -1)}</h4>
                                 </div>
                             </div>
-                            {(currentTrack && hoverItemId === item.id) && 
-                                <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                    <PlayBtn uri={item.uri} category={"list"} type={category.slice(0, -1)}/>
-                                </div>}
+                            <div onMouseEnter={() => setHoverItemId(item.id)}>
+                                <PlayBtn 
+                                uri={item.uri} 
+                                category={"slider"} 
+                                type={category.slice(0, -1)} 
+                                hoverItemId={hoverItemId}/>
+                            </div>
                         </div>
                         )
                     })   

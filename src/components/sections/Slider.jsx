@@ -78,10 +78,13 @@ export default function Slider(props){
                                     </div>
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
-                                {(currentTrack && hoverItemId === item.id) && 
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                    <PlayBtn uri={item.uri} category={"slider"} type={category.slice(0, -1)}/>
-                                </div>}
+                                    <PlayBtn 
+                                    uri={item.uri} 
+                                    category={"slider"} 
+                                    type={category.slice(0, -1)} 
+                                    hoverItemId={hoverItemId}/>
+                                </div>
                             </div>
                             <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                 <h3>{item.name}</h3>
