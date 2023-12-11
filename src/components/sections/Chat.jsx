@@ -2,7 +2,7 @@
         import { v4 as uuidv4 } from 'uuid'
         import { SvgPinned, SvgSendBtn, SvgEmojiBtn } from "../../assets"
         import { EmojiBar, Messages } from "../index"
-        import { useClickOutside } from "../../utils/utils"
+        import { useClickOutside } from "../../utils"
         import useStore from "../../store"
 
         export default function Chat(){

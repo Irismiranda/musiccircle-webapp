@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { playItem } from "../../utils/utils"
+import { PlayBtn } from "../../utils"
 import useStore from "../../store"
 
 export default function List(props){
@@ -24,12 +24,7 @@ export default function List(props){
                                     <h4>{category.slice(0, -1)}</h4>
                                 </div>
                             </div>
-                            {(currentTrack && hoverItemId === item.id) && 
-                                <div 
-                                className="play_btn play_btn_list" 
-                                onClick={() => playItem(item.id)} 
-                                onMouseEnter={() => setHoverItemId(item.id)}>
-                            </div>}
+                            {(currentTrack && hoverItemId === item.id) && <playBtn uri={item.uri}/>}
                         </div>
                         )
                     })   

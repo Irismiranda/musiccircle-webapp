@@ -1,7 +1,7 @@
         import React, { useRef } from "react"
         import useStore from "../../store"
         import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { useClickOutside } from "../../utils/utils"
+        import { useClickOutside } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()

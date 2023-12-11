@@ -2,7 +2,7 @@
   import { Outlet, useNavigate } from "react-router-dom"
   import { Axios } from "../Axios-config"
   import { io } from "socket.io-client"
-  import { formatListData } from "../utils/utils"
+  import { formatListData } from "../utils"
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"

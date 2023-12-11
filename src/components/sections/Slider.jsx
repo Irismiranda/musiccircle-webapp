@@ -3,7 +3,7 @@ import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgRightBtn, SvgLeftBtn } from "../../assets"
-import { playItem } from "../../utils/utils"
+import { PlayBtn } from "../../utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, parentRef } = props
@@ -78,12 +78,7 @@ export default function Slider(props){
                                     </div>
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
-                                {(currentTrack && hoverItemId === item.id) && 
-                                <div 
-                                className="play_btn play_btn_slider" 
-                                onClick={() => playItem(item.uri)} 
-                                onMouseEnter={() => setHoverItemId(item.id)}>
-                                </div>}
+                                {(currentTrack && hoverItemId === item.id) && <playBtn uri={item.uri}/>}
                             </div>
                             <Link to={`/${category.slice(0, -1)}/${item.id}`}>
                                 <h3>{item.name}</h3>

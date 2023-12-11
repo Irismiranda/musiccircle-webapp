@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Slider, List } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData } from "../utils/utils"
+import { formatListData } from "../utils"
 import useStore from "../store"
 
 export default function Artist(){
