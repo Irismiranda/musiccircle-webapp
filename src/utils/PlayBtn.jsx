@@ -3,7 +3,7 @@ import useStore from "../store"
 
 export default function playBtn(props){
     const { spotifyApi } = useStore()
-    const { uri, category, setHoverItemId } = props
+    const { uri, category } = props
 
     async function playItem(){
         await spotifyApi.play(uri)
@@ -12,8 +12,7 @@ export default function playBtn(props){
     return (
         <div 
         className={`play_btn play_btn_${category}`}
-        onClick={() => playItem(item.uri)} 
-        onMouseEnter={() => setHoverItemId(item.id)}>
+        onClick={() => playItem(uri)}>
         </div>
     )
   }
