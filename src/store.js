@@ -7,6 +7,7 @@ const useStore = create((set, get) => ({
   artistUri: null,
  playerState:{ 
     player: undefined,
+    deviceId,
     isPaused: false,
     isActive: false,
     currentTrack: null,

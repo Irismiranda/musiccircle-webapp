@@ -53,16 +53,13 @@ export default function PlayerManager() {
     async function handleShuffleClick() {
         spotifyApi.setShuffle(!shuffleState)
         setPlayerState({ shuffleState: !shuffleState })
-        // setProperties(setPlayerState, 'shuffleState', !shuffleState)        
     }
 
     async function handleRepeatClick() {
         if (repeatState === 0 || repeatState === 1) {
             const newState = repeatState + 1
             setPlayerState({ repeatState: newState })
-            // setProperties(setPlayerState, 'repeatState', newState)
         } else {
-            // setProperties(setPlayerState, 'repeatState', 0)
             setPlayerState({ repeatState: 0 })
         }
     }
@@ -77,7 +74,6 @@ export default function PlayerManager() {
         const volumeBarRect = volumeBarRef.current.getBoundingClientRect()
         const volumePercentage = calculatePosition(e, volumeBarRect) * 100
         const roundedPercentage = Math.round(volumePercentage)
-        // setProperties(setPlayerState, 'volumePercentage', roundedPercentage)
         setPlayerState({ volumePercentage: roundedPercentage })
         try {
             await spotifyApi.setVolume(roundedPercentage)
@@ -92,7 +88,6 @@ export default function PlayerManager() {
             try{
                 await spotifyApi.addToMySavedTracks(trackIds)
                 setPlayerState({ isLiked: true })
-                // setProperties(setPlayerState, 'isLiked', true)
             } catch(err){
                 console.log(err)
             }
@@ -100,7 +95,6 @@ export default function PlayerManager() {
             try{
                 await spotifyApi.removeFromMySavedTracks(trackIds)
                 setPlayerState({ isLiked: false })
-                // setProperties(setPlayerState, 'isLiked', false)
             } catch(err){
                 console.log(err)
             }
@@ -111,7 +105,6 @@ export default function PlayerManager() {
         const rect = trackTimelineRef.current.getBoundingClientRect()
         const fraction = calculatePosition(e, rect)
         setPlayerState({ listened: fraction * 100 })
-        // setProperties(setPlayerState, 'listened', fraction * 100)
         const positionInSec = fraction * currentTrack.duration_ms
         player.seek(positionInSec).then(() => {
         }) 
@@ -122,10 +115,8 @@ export default function PlayerManager() {
         const prevPlayerHeight = playerRef?.current?.offsetHeight
         
         if(window.scrollY > 1 + prevPlayerHeight){
-            // setProperties(setPlayerState, 'isScrolled', true)
             setPlayerState({ isScrolled: true })
         } else{
-            // setProperties(setPlayerState, 'isScrolled', false)
             setPlayerState({ isScrolled: false })
         }
     }
@@ -188,12 +179,10 @@ export default function PlayerManager() {
             const { isMute, volumePercentage } = playerState
             if(isMute && volumePercentage){
                 prevSetVolume.current = volumePercentage
-                // setProperties(setPlayerState, 'volumePercentage', 0)
                 setPlayerState({ volumePercentage: 0 })
                 await spotifyApi.setVolume(0)
             } else if(!isMute && prevSetVolume.current){
                 setPlayerState({ volumePercentage: prevSetVolume.current })
-                // setProperties(setPlayerState,'volumePercentage', prevSetVolume.current)
                 await spotifyApi.setVolume(prevSetVolume.current)
             }
         }
@@ -213,7 +202,6 @@ export default function PlayerManager() {
             const trackIds = [currentTrack.id]
             const response = await spotifyApi.containsMySavedTracks(trackIds)
             setPlayerState({ isLiked: response[0] })
-            // setProperties(setPlayerState, 'isLiked', response[0])
         }
 
         if (currentTrack) {
@@ -237,16 +225,18 @@ export default function PlayerManager() {
             })
 
             setPlayerState({ player: player })
-            // setProperties(setPlayerState, 'player', player)
         
             player.connect()
+
+            player.addListener('ready', ({ device_id }) => {
+                setPlayerState({ deviceId: device_id })
+              })
 
             const interval = setInterval(() => {
                 player.getCurrentState().then((state) => {
                     if (state && state.position && state.duration && !state.paused) {
                         const totalListened = (100 * state.position) / state.duration
                         setPlayerState({ listened: totalListened })
-                        // setProperties(setPlayerState, 'listened', totalListened)
                     }
                 })
             }, 50)
@@ -258,7 +248,6 @@ export default function PlayerManager() {
                 }
 
                 setPlayerState({ currentTrack: state.track_window.current_track })
-                // setProperties(setPlayerState, 'currentTrack', state.track_window.current_track)
 
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
@@ -275,20 +264,14 @@ export default function PlayerManager() {
                     repeatState: state.repeat_mode, 
                     isPaused: state.paused })
 
-                // setProperties(setPlayerState, 'shuffleState', state.shuffle)
-                // setProperties(setPlayerState, 'repeatState', state.repeat_mode)
-                // setProperties(setPlayerState, 'isPaused', state.paused)
-
                 player.getVolume().then(volume => {
                     let percentage = volume * 100
 
                     setPlayerState({ volumePercentage: percentage })
-                    // setProperties(setPlayerState, 'volumePercentage', percentage)
                 })
 
                 player.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
-                    // (!state) ? setProperties(setPlayerState, 'isActive', false) : setProperties(setPlayerState, 'isActive', true)
                 })
 
             }))
@@ -300,7 +283,6 @@ export default function PlayerManager() {
             }) => {
                 const totalListened = (100 * position) / duration
                 setPlayerState({ listened: totalListened })
-                // setProperties(setPlayerState, 'listened', totalListened)
             })
 
             return () => clearInterval(interval)

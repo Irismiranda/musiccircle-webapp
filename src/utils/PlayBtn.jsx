@@ -2,11 +2,11 @@ import React from "react"
 import useStore from "../store"
 
 export default function PlayBtn(props){
-    const { spotifyApi } = useStore()
+    const { spotifyApi, deviceId } = useStore()
     const { uri, category } = props
 
     async function playItem(){
-        await spotifyApi.play(uri)
+        await spotifyApi.play({uris: [uri], device_id: deviceId})
     }
 
     return (
