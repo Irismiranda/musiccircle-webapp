@@ -9,7 +9,8 @@ export default function PlayBtn(props){
     async function playItem(){
         if(type === "track"){
             await spotifyApi.play({uris: [uri], device_id: deviceId})
-            setReference({reference: {uri: uri, type: type}})
+            const id = uri.slice(14)
+            setReference(id)
         } else{
             await spotifyApi.play({context_uri: uri, device_id: deviceId})
         } 
