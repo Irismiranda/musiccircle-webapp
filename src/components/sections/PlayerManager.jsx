@@ -294,7 +294,7 @@ export default function PlayerManager() {
                     setPlayerState({ volumePercentage: percentage })
                 })
 
-                player.getCurrentState().then(state => {
+                player?.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
                 })
 
