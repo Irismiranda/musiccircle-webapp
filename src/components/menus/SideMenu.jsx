@@ -49,7 +49,7 @@ export default function SideMenu(){
     }, [])
 
     useLayoutEffect(() => {
-        sideMenuWidth && calculateAvailableWidth(sideMenuWidth)
+        sideMenuWidth && setTimeout(calculateAvailableWidth(sideMenuWidth), 5000)
     }, [sideMenuWidth])
 
     useLayoutEffect(() => {

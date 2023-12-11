@@ -73,8 +73,8 @@ export default function PlayerManager() {
         setPlayerState({ volumePercentage: roundedPercentage })
         try {
             await spotifyApi.setVolume(roundedPercentage)
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            console.log(err)
         }
     }
 
@@ -192,10 +192,6 @@ export default function PlayerManager() {
     }
 
     useEffect(() => {
-        console.log("player state is:", playerState)
-    }, [playerState])
-
-    useEffect(() => {
         async function updateMuteState(){
             const { isMute, volumePercentage } = playerState
             if(isMute && volumePercentage){
@@ -305,6 +301,8 @@ export default function PlayerManager() {
             }) => {
                 const totalListened = (100 * position) / duration
                 setPlayerState({ listened: totalListened })
+
+                console.log("state is", state)
 
                 if(state){
                     const currentQueue = state.track_window.next_tracks
