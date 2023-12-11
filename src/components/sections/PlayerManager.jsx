@@ -269,14 +269,14 @@ export default function PlayerManager() {
                             const totalListened = (100 * state.position) / state.duration
                             setPlayerState({ listened: totalListened })
                             
-                            const currentQueue = state.track_window.next_tracks
-                            if(currentTrack && currentQueue.length < 1 && !queueIndex){
-                                //getRecommendations()
-                            }
+                            // const currentQueue = state.track_window.next_tracks
+                            // if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                            //     getRecommendations()
+                            // }
             
-                            if(currentTrack && currentQueue.length < 1 && queueIndex  && queueIndex < 100 && recommendations){
-                               //setQueue()
-                            }
+                            // if(currentTrack && currentQueue.length < 1 && queueIndex  && queueIndex < 100 && recommendations){
+                            //    setQueue()
+                            // }
                         }
                     })
                 }, 50)
