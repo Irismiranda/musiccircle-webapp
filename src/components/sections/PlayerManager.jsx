@@ -268,7 +268,7 @@ export default function PlayerManager() {
                             const totalListened = (100 * state.position) / state.duration
                             setPlayerState({ listened: totalListened })
                             
-                            const currentQueue = state.track_window.next_tracks
+                            //const currentQueue = state.track_window.next_tracks
                             // if(currentTrack && currentQueue.length < 1 && !queueIndex){
                             //     getRecommendations()
                             // }
