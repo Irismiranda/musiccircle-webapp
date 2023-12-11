@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import useStore from "../../store"
+import useStore from "../store"
 
 const useClickOutside = (ref, exceptionRef, callback) => {
   useEffect(() => {
@@ -44,10 +44,10 @@ function formatListData(items, category) {
   })
 }
 
-async function playItem(uri){
+async function PlayBtn(uri){
   const { spotifyApi } = useStore()
   console.log("clicked on item uri:", uri)
   await spotifyApi.play(uri)
 }
 
-export { useClickOutside, formatListData, playItem }
+export { useClickOutside, formatListData, PlayBtn }
