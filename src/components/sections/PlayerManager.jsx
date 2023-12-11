@@ -274,6 +274,15 @@ export default function PlayerManager() {
 
                 player.getCurrentState().then(state => {
                     (!state) ? setPlayerState({ isActive: false }) : setPlayerState({ isActive: true })
+                        const currentQueue = state.track_window.next_tracks
+                        
+                        // if(currentTrack && currentQueue.length < 1 && !queueIndex){
+                        //     getRecommendations()
+                        // }
+        
+                        // if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                        //     setQueue()
+                        // }
                 })
 
             }))
@@ -330,9 +339,6 @@ export default function PlayerManager() {
             window.removeEventListener('mouseup', handleMouseUp);
         }
     }, [isMoving])
-
-    useEffect(() => {
-    }, [isScrolled])
 
     const playerFunctionalProps = {
         setProperties,
