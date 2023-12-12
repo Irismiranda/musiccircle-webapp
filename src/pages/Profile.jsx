@@ -94,7 +94,7 @@ export default function Profile(){
                     {(topArtists?.show_top_artists || isLoggedUser) && <h2> Top Artists </h2>}
                     {isLoggedUser && <button onClick={() => setShowVisibleTopArtists(!showVisibleTopArtists)}>{showVisibleTopArtists ? "Manage Hidden Artists" : "Hide" }</button>}
                 </div>
-                {isLoggedUser && <button onClick={() => hideSection("top_artists")}>{topArtists?.show_top_artists ? "Hide Top Artists" : "Show Top Artists"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection("top_artists")}>{topArtists?.show_top_artists ? "Hide From My Profile" : "Show On My Porfile"}</button>}
             </section>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_artists || isLoggedUser)) && 
@@ -113,7 +113,7 @@ export default function Profile(){
                 {(topTracks?.show_top_tracks || isLoggedUser) && <h2>  Top Tracks </h2>}
                 {isLoggedUser && <button onClick={() => setShowVisibleTopTracks(!showVisibleTopTracks)}>{showVisibleTopTracks ?  "Manage Hidden Tracks" : "Hide"}</button>}
             </div>
-                {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide Top Tracks" : "Show Top Tracks"}</button>}
+                {isLoggedUser && <button onClick={() => hideSection("top_tracks")}>{topTracks?.show_top_tracks ? "Hide From my Profile" : "Show On My Profile"}</button>}
            </section>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
