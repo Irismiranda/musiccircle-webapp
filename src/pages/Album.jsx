@@ -6,7 +6,7 @@ import useStore from "../store"
 
 export default function Album(){
     const { standardWrapperWidth, spotifyApi } = useStore()
-    const { artistId, albumId } = useParams()
+    const { albumId } = useParams()
     const [ albumData, setAlbumData ] = useState(null)
     const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ albumTracks, setAlbumTracks ] = useState(null)

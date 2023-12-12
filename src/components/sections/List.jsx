@@ -5,8 +5,6 @@ import useStore from "../../store"
 export default function List(props){
     const { list, category } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
-    const { playerState } = useStore()
-    const { currentTrack } = playerState
     
     return(
         <div className="list_wrapper">

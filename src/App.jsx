@@ -1,6 +1,6 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom"
-import { Welcome, Home, Inbox, Error, Profile, Artist } from './pages'
+import { Welcome, Home, Inbox, Error, Profile, Artist, Album } from './pages'
 import { AuthRequired, PlayerManager, SideMenu } from "./components"
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
                 <Route path="inbox" element={<Inbox />}/> 
                 <Route path="account/:userId" element={<Profile />}/> 
                 <Route path="artist/:artistId" element={<Artist />}/> 
-                <Route path="album/:albumId" element={<Artist />}/> 
+                <Route path="album/:albumId" element={<Album />}/> 
               </Route>
             </Route>
         </Route>
