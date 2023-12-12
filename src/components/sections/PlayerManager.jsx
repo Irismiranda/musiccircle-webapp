@@ -107,7 +107,11 @@ export default function PlayerManager() {
 
     async function setQueue(){
         spotifyApi.queue(recommendations[queueIndex])
-        setQueueIndex(prevIndex => prevIndex + 1)
+        if(queueIndex < 99){
+            setQueueIndex(prevIndex => prevIndex + 1)
+        } else {
+            setRecommendations(null)
+        }
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
