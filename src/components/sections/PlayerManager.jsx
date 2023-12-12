@@ -96,8 +96,8 @@ export default function PlayerManager() {
         }
     }
 
-    async function getRecommendations(){
-        const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [currentTrack.id], limit: 100 })
+    async function getRecommendations(id){
+        const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
         const recomendationsUriList = recommendations.map (track => {
             return track.uri
         })
@@ -112,18 +112,6 @@ export default function PlayerManager() {
             setQueueIndex(prevIndex => prevIndex + 1)
         } else {
             setRecommendations(null)
-        }
-    }
-
-    function handleQueue(currentQueue){
-        console.log("current track is", currentTrack, "current queue", currentQueue.length, "recommendations are", recommendations)
-                        
-        if(currentTrack && currentQueue.length < 1 && !recommendations){
-            getRecommendations()
-        }
-
-        if(currentTrack && currentQueue.length < 1 && recommendations){
-            setQueue()
         }
     }
 
@@ -234,6 +222,9 @@ export default function PlayerManager() {
 
         if (currentTrack) {
             getIsTrackSaved()
+            if(!recommendations){
+                getRecommendations()
+            }
         }
     }, [currentTrack])
 
@@ -269,8 +260,11 @@ export default function PlayerManager() {
 
                 if(state){
                     const currentQueue = state.track_window.next_tracks
-
-                    handleQueue(currentQueue)
+                    console.log("queue length is", currentQueue.length)
+                    
+                    if(queue.length < 1){
+                        setQueue()
+                    }
                 }
                     
                 const interval = setInterval(() => {
