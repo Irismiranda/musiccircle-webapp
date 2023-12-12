@@ -6,7 +6,7 @@ const useStore = create(devtools((set, get) => ({
   loggedUser: {},
   spotifyApi: null,
   artistUri: null,
-  reference: null,
+  seedTrack: null,
   socket: null,
   standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
   userTopTracks: null,
@@ -35,7 +35,7 @@ const useStore = create(devtools((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
-  setReference: (id) => set({ reference: id }),
+  setSeedTrack: (id) => set({ seedTrack: id }),
   setPlayerState: (newPlayerState) => set((state) => ({
     ...state,
     playerState: {
