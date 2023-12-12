@@ -99,7 +99,7 @@ export default function PlayerManager() {
     }
 
     async function getRecommendations(id){
-        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 10 })
+        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
         console.log("recommendations are:", response.tracks)
         const uriList = response.tracks.map(track => {
             return track.uri
@@ -381,7 +381,7 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        if(seedTrackId && currentQueue.length < 1 && recommendations){
+        if(seedTrackId && currentQueue.length < 10 && recommendations){
             setQueue()
         } else if(seedTrackId && !recommendations){
             getRecommendations(seedTrackId)
