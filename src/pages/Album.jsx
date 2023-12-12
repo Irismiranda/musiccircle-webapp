@@ -22,7 +22,7 @@ export default function Album(){
         console.log("response is", response)
         const tracks = formatListData(response.items, "simplified")
         console.log("formated data is", tracks)
-        setAlbumTracks(tracks)
+        setAlbumTracks({items: tracks})
     }
 
     async function getArtistAlbums(){
