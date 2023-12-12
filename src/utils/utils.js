@@ -39,8 +39,12 @@ function formatListData(items, category) {
       listItem.releaseDate = item.release_date
     }
 
-    if(item.album.images|| item.images){
-      listItem.imageUrl = category === "tracks" ? item.album.images[0].url : item.images[0].url
+    if(item.album.images){
+      listItem.imageUrl = item.album.images[0].url
+    }
+
+    if(item.images){
+      listItem.imageUrl = item.images[0].url
     }
 
     return listItem
