@@ -99,7 +99,7 @@ export default function PlayerManager() {
     }
 
     async function getRecommendations(id){
-        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 2 })
+        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 10 })
         console.log("recommendations are:", response.tracks)
         const uriList = response.tracks.map(track => {
             return track.uri
