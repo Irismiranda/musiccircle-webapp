@@ -257,6 +257,8 @@ export default function PlayerManager() {
 
                 if(state){
                     const currentQueue = state.track_window.next_tracks
+
+                    console.log("current track is", currentTrack, "current queue length is", currentQueue.lengthm, "recommendations are", recommendations)
                         
                     if(currentTrack && currentQueue.length < 1 && !recommendations){
                         getRecommendations()
