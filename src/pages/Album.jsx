@@ -19,7 +19,9 @@ export default function Album(){
 
     async function getAlbumTracks(){
         const response = await spotifyApi.getAlbumTracks(albumId)
+        console.log("response is", response)
         const tracks = formatListData(response.items, "tracks")
+        console.log("formated data is", tracks)
         setAlbumTracks(tracks)
     }
 
@@ -52,7 +54,7 @@ export default function Album(){
                 list={albumTracks} 
                 category={"tracks"}/>
             </section>}
-            {artistAlbums && <h2>Discography</h2>}
+            {artistAlbums && <h2>More on {albumData.artists[0].name}</h2>}
             {artistAlbums && 
             <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
