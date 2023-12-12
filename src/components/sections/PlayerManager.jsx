@@ -9,6 +9,7 @@ export default function PlayerManager() {
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [recommendations, setRecommendations] = useState(null)
     const [currentQueue, setCurrentQueue] = useState(null)
+    const [queueIndex, setQueueIndex] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
