@@ -102,6 +102,7 @@ export default function PlayerManager() {
             return track.uri
         })
         setRecommendations(recomendationsUriList)
+        console.log("recommendations are:", recomendationsUriList)
         setQueueIndex(0)
     }
 
@@ -261,7 +262,7 @@ export default function PlayerManager() {
                         getRecommendations()
                     }
 
-                    if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                    if(currentTrack && currentQueue.length < 1 && recommendations){
                         setQueue()
                     }
                 }
