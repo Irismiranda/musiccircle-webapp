@@ -17,7 +17,8 @@ export default function PlayBtn(props){
 
     useEffect(() => {
         console.log("reference is (PlayBtn):", reference)
-    }, [reference])
+        console.log("id is:", id)
+    }, [reference, id])
 
     return (
         <>

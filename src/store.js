@@ -6,6 +6,11 @@ const useStore = create(devtools((set, get) => ({
   loggedUser: {},
   spotifyApi: null,
   artistUri: null,
+  reference: null,
+  socket: null,
+  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
+  userTopTracks: null,
+  userTopArtists: null,
   playerState:{ 
       player: undefined,
       deviceId: null,
@@ -21,11 +26,6 @@ const useStore = create(devtools((set, get) => ({
       isMinimized: false,
       isScrolled: false,
   },
-  reference: null,
-  socket: null,
-  standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
-  userTopTracks: null,
-  userTopArtists: null,
 
   setAccessToken: (token) => set({ accessToken: token }),
   setLoggedUser: (user) => set({ loggedUser: user }),
