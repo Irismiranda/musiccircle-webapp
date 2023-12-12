@@ -108,16 +108,41 @@ export default function PlayerManager() {
         setQueueIndex(0)
     }
 
-    async function setQueue(){
-        if(recommendations){
-            await spotifyApi.queue(recommendations[queueIndex])
-            console.log("queue index is:", queueIndex, "recomendations length is:", recommendations.length)
-            if(queueIndex < (recommendations.length - 1)){
-                setQueueIndex(prevIndex => prevIndex + 1)
-            } else {
-                getRecommendations(currentTrack.id)
+    async function setQueue() {
+        if (recommendations[queueIndex]) {
+            console.log("queue index is:", queueIndex, "recommendations length is:", recommendations.length);
+    
+            let retries = 0;
+            const maxRetries = 3; // You can adjust the number of retries
+    
+            while (retries < maxRetries) {
+                try {
+                    await spotifyApi.queue(recommendations[queueIndex]);
+                    if (queueIndex < recommendations.length - 1) {
+                        setQueueIndex(prevIndex => prevIndex + 1);
+                    } else {
+                        getRecommendations(currentTrack.id);
+                    }
+                    return; // Exit the function if successful
+                } catch (err) {
+                    if (err.status === 502) {
+                        console.log(`Retry attempt ${retries + 1} due to 502 Bad Gateway`);
+                        retries++;
+                        await delay(1000);
+                    } else {
+                        // If it's not a 502 error, rethrow the error
+                        throw err;
+                    }
+                }
             }
+    
+            // If max retries reached, throw an error or handle it accordingly
+            throw new Error(`Failed after ${maxRetries} retries`);
         }
+    }
+    
+    async function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
