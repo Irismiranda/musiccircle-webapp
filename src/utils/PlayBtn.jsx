@@ -4,7 +4,7 @@ import useStore from "../store"
 export default function PlayBtn(props){
     const { spotifyApi, playerState, setReference, reference } = useStore()
     const { uri, category, type, hoverItemId } = props
-    const { deviceId } = playerState
+    const { deviceId, currentTrack } = playerState
     const id = uri.slice(14)
 
     async function playItem(){
@@ -22,7 +22,7 @@ export default function PlayBtn(props){
 
     return (
         <>
-            {(hoverItemId === id) && 
+            {(hoverItemId === id && currentTrack) && 
             <div 
             className={`play_btn play_btn_${category}`}
             onClick={() => playItem(uri)}>
