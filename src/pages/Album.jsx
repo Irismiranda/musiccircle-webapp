@@ -19,12 +19,12 @@ export default function Album(){
 
     async function getAlbumTracks(){
         const response = await spotifyApi.getAlbumTracks(albumId)
-        const tracks = formatListData(response)
+        const tracks = formatListData(response.items, "tracks")
         setAlbumTracks(tracks)
     }
 
     async function getArtistAlbums(){
-        const response = await spotifyApi.getArtistAlbums(artistId)
+        const response = await spotifyApi.getArtistAlbums(albumData.artists[0].name)
         const formatedData = formatListData(response.items, "albums")
         setArtistAlbums({items: formatedData})
     }
@@ -33,9 +33,11 @@ export default function Album(){
         if(albumId){
             getAlbumData()
             getAlbumTracks()
+        }
+        if(albumData){
             getArtistAlbums()
         }
-    }, [albumId])
+    }, [albumId, albumData])
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
