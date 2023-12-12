@@ -34,7 +34,7 @@ const useStore = create((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
-  setReference: (ref) => set({ reference: ref }),
+  setReference: (id) => set({ reference: id }),
   setPlayerState: (newPlayerState) => set((state) => ({
     ...state,
     playerState: {
