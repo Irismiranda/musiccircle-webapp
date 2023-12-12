@@ -97,7 +97,7 @@ export default function PlayerManager() {
     }
 
     async function getRecommendations(){
-        const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [seedTrack], limit: 100 })
+        const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [currentTrack.id], limit: 100 })
         const recomendationsUriList = recommendations.map (track => {
             return track.uri
         })
@@ -252,13 +252,12 @@ export default function PlayerManager() {
 
                 if(state){
                     const currentQueue = state.track_window.next_tracks
-                    console.log("referece is:", seedTrack)
                         
-                    if(seedTrack && currentQueue.length < 1 && !recommendations){
+                    if(currentTrack && currentQueue.length < 1 && !recommendations){
                         getRecommendations()
                     }
 
-                    if(seedTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
+                    if(currentTrack && currentQueue.length < 1 && queueIndex < 100 && recommendations){
                         setQueue()
                     }
                 }
