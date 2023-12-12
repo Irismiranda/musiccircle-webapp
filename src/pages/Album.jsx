@@ -36,10 +36,13 @@ export default function Album(){
             getAlbumData()
             getAlbumTracks()
         }
+    }, [albumId])
+
+    useEffect(() => {
         if(albumData){
             getArtistAlbums()
         }
-    }, [albumId, albumData])
+    }, [albumData])
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
