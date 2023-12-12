@@ -352,12 +352,6 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        if(!recommendations){
-            getRecommendations(seedTrackId)
-        }
-    }, [seedTrackId])
-
-    useEffect(() => {
         if(seedTrackId && currentQueue.length < 1 && recommendations){
             setQueue()
         } else if(seedTrackId && !recommendations){
