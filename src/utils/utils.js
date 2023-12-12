@@ -28,7 +28,6 @@ function formatListData(items, category) {
       id: item.id,
       uri: item.uri,
       name: item.name,
-      imageUrl: category === "tracks" ? item.album.images[0].url : item.images[0].url,
       isVisible: true,
     }
 
@@ -38,6 +37,10 @@ function formatListData(items, category) {
     
     if(category === "albums") {
       listItem.releaseDate = item.release_date
+    }
+
+    if(item.album.images[0].url || item.images[0].url){
+      listItem.imageUrl = category === "tracks" ? item.album.images[0].url : item.images[0].url
     }
 
     return listItem
