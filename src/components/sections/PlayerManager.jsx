@@ -223,7 +223,7 @@ export default function PlayerManager() {
         if (currentTrack) {
             getIsTrackSaved()
             if(!recommendations){
-                getRecommendations()
+                getRecommendations(currentTrack.id)
             }
         }
     }, [currentTrack])
@@ -260,9 +260,9 @@ export default function PlayerManager() {
 
                 if(state){
                     const currentQueue = state.track_window.next_tracks
-                    console.log("queue length is", currentQueue.length)
+                    console.log("queue length is", currentQueue.length, "recommendations are:", recommendations)
                     
-                    if(queue.length < 1){
+                    if(currentQueue.length < 1 && recommendations){
                         setQueue()
                     }
                 }
