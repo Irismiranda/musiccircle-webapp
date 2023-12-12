@@ -8,6 +8,7 @@ export default function PlayerManager() {
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [recommendations, setRecommendations] = useState(null)
+    const [currentQueue, setCurrentQueue] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
@@ -31,7 +32,7 @@ export default function PlayerManager() {
         left: 0,
     })
     
-    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState } = useStore()
+    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState, seedTrackId } = useStore()
 
     const { 
         isMinimized,
@@ -102,9 +103,7 @@ export default function PlayerManager() {
         const recomendationsUriList = recommendations.tracks.map (track => {
             return track.uri
         })
-        console.log("uris are:", recomendationsUriList)
         setRecommendations(recomendationsUriList)
-        console.log("recommendations are:", recomendationsUriList)
         setQueueIndex(0)
     }
 
@@ -224,9 +223,6 @@ export default function PlayerManager() {
 
         if (currentTrack) {
             getIsTrackSaved()
-            if(!recommendations){
-                getRecommendations(currentTrack.id)
-            }
         }
     }, [currentTrack])
 
@@ -261,12 +257,7 @@ export default function PlayerManager() {
                 }
 
                 if(state){
-                    const currentQueue = state.track_window.next_tracks
-                    console.log("queue length is", currentQueue.length, "recommendations are:", recommendations)
-                    
-                    if(currentQueue.length < 1 && recommendations){
-                        setQueue()
-                    }
+                    setCurrentQueue(state.track_window.next_tracks)
                 }
                     
                 const interval = setInterval(() => {
@@ -359,6 +350,20 @@ export default function PlayerManager() {
             window.removeEventListener('mouseup', handleMouseUp);
         }
     }, [isMoving])
+
+    useEffect(() => {
+        if(!recommendations){
+            getRecommendations(seedTrackId)
+        }
+    }, [seedTrackId])
+
+    useEffect(() => {
+        if(currentQueue.length < 1 && recommendations){
+            setQueue()
+        } else if(!recommendations && seedTrackId){
+            getRecommendations(seedTrackId)
+        }
+    }, [currentQueue])
 
     const playerFunctionalProps = {
         setProperties,
