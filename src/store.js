@@ -1,6 +1,7 @@
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
-const useStore = create((set, get) => ({
+const useStore = create(devtools((set, get) => ({
   accessToken: null,
   loggedUser: {},
   spotifyApi: null,
@@ -43,6 +44,6 @@ const useStore = create((set, get) => ({
     },
   })),
   
-}))
+})))
 
 export default useStore
