@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { Slider, List } from "../components"
+import { Slider, SimplifiedList } from "../components"
 import { useParams } from "react-router-dom"
 import { formatListData } from "../utils"
 import useStore from "../store"
@@ -53,7 +53,7 @@ export default function Album(){
             {albumTracks && 
             <section>
                 <h2> Tracks</h2>
-                <List 
+                <SimplifiedList 
                 list={albumTracks} 
                 category={"tracks"}/>
             </section>}
