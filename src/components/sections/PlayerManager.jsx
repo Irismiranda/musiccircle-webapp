@@ -99,16 +99,17 @@ export default function PlayerManager() {
     }
 
     async function getRecommendations(id){
-        const recommendations = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 2 })
-        console.log("recommendations are:", recommendations.tracks)
-        const recomendationsUriList = recommendations.tracks.map (track => {
+        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 2 })
+        console.log("recommendations are:", response.tracks)
+        const uriList = response.tracks.map(track => {
             return track.uri
         })
-        setRecommendations(recomendationsUriList)
+        setRecommendations(uriList)
         setQueueIndex(0)
     }
 
     async function setQueue(){
+        console.log("queue index is:", queueIndex, "recomendations are:", recommendations)
         spotifyApi.queue(recommendations[queueIndex])
         if(queueIndex < recommendations.length){
             setQueueIndex(prevIndex => prevIndex + 1)
