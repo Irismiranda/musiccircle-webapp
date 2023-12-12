@@ -257,8 +257,7 @@ export default function PlayerManager() {
                 }
 
                 if(state){
-                    const queue = state.track_window.next_tracks
-                    if(queue) setCurrentQueue(queue)
+                    setCurrentQueue(state.track_window.next_tracks)
                 }
                     
                 const interval = setInterval(() => {
@@ -359,7 +358,7 @@ export default function PlayerManager() {
     }, [seedTrackId])
 
     useEffect(() => {
-        if(currentQueue.length < 1 && recommendations){
+        if(currentQueue && currentQueue.length < 1 && recommendations){
             setQueue()
         } else if(!recommendations && seedTrackId){
             getRecommendations(seedTrackId)
