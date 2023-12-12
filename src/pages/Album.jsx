@@ -19,7 +19,8 @@ export default function Album(){
 
     async function getAlbumTracks(){
         const response = await spotifyApi.getAlbumTracks(albumId)
-        setAlbumTracks(response)
+        const tracks = formatListData(response)
+        setAlbumTracks(tracks)
     }
 
     async function getArtistAlbums(){
