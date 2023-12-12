@@ -109,12 +109,13 @@ export default function PlayerManager() {
     }
 
     async function setQueue(){
-        console.log("queue index is:", queueIndex, "recomendations are:", recommendations)
-        spotifyApi.queue(recommendations[queueIndex])
-        if(queueIndex < recommendations.length){
-            setQueueIndex(prevIndex => prevIndex + 1)
-        } else {
-            getRecommendations(currentTrack.id)
+        if(recommendations){
+            await spotifyApi.queue(recommendations[queueIndex])
+            if(queueIndex < recommendations.length){
+                setQueueIndex(prevIndex => prevIndex + 1)
+            } else {
+                getRecommendations(currentTrack.id)
+            }
         }
     }
 
