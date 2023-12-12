@@ -33,18 +33,15 @@ function formatListData(items, category) {
 
     if (category === "tracks") {
       listItem.artistName = item.artists[0].name
+      listItem.imageUrl = item.album.images[0].url
     }
     
     if(category === "albums") {
       listItem.releaseDate = item.release_date
-    }
-
-    if (item.album.images && item.album.images.length > 0) {
-      listItem.imageUrl = item.album.images[0].url;
-    }
-
-    if (item.images && item.images.length > 0) {
-      listItem.imageUrl = item.images[0].url;
+    } else if (category === "simplified") {
+      
+    } else {
+      listItem.imageUrl = item.images[0].url
     }
 
     return listItem
