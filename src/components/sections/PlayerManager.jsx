@@ -257,7 +257,8 @@ export default function PlayerManager() {
                 }
 
                 if(state){
-                    setCurrentQueue(state.track_window.next_tracks)
+                    const queue = state.track_window.next_tracks
+                    if(queue) setCurrentQueue(queue)
                 }
                     
                 const interval = setInterval(() => {
