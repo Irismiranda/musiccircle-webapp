@@ -31,7 +31,7 @@ export default function PlayerManager() {
         left: 0,
     })
     
-    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState, seedTrack } = useStore()
+    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState } = useStore()
 
     const { 
         isMinimized,
@@ -112,6 +112,18 @@ export default function PlayerManager() {
             setQueueIndex(prevIndex => prevIndex + 1)
         } else {
             setRecommendations(null)
+        }
+    }
+
+    function handleQueue(currentQueue){
+        console.log("current track is", currentTrack, "current queue", currentQueue.length, "recommendations are", recommendations)
+                        
+        if(currentTrack && currentQueue.length < 1 && !recommendations){
+            getRecommendations()
+        }
+
+        if(currentTrack && currentQueue.length < 1 && recommendations){
+            setQueue()
         }
     }
 
@@ -258,15 +270,7 @@ export default function PlayerManager() {
                 if(state){
                     const currentQueue = state.track_window.next_tracks
 
-                    console.log("current track is", currentTrack, "current queue", currentQueue.length, "recommendations are", recommendations)
-                        
-                    if(currentTrack && currentQueue.length < 1 && !recommendations){
-                        getRecommendations()
-                    }
-
-                    if(currentTrack && currentQueue.length < 1 && recommendations){
-                        setQueue()
-                    }
+                    handleQueue(currentQueue)
                 }
                     
                 const interval = setInterval(() => {
