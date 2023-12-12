@@ -81,6 +81,7 @@ export default function Slider(props){
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
                                     <PlayBtn 
                                     uri={item.uri} 
+                                    id={item.id}
                                     category={"slider"} 
                                     type={category.slice(0, -1)} 
                                     hoverItemId={hoverItemId}/>
