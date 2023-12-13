@@ -47,21 +47,23 @@ export default function Album(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div 
-            className="album_data_grid"
-            onMouseEnter={() => setHoverItemId(albumData?.id)}
-            onMouseLeave={() => setHoverItemId(null)}>
-                <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
-                    <PlayBtn 
-                    uri={albumData?.uri} 
-                    id={albumData?.id}
-                    category={"cover"} 
-                    type={"album"} 
-                    hoverItemId={hoverItemId}/>
+            <div className="profile_cover blur" style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
+                <div 
+                className="album_data_grid"
+                onMouseEnter={() => setHoverItemId(albumData?.id)}
+                onMouseLeave={() => setHoverItemId(null)}>
+                    <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
+                        <PlayBtn 
+                        uri={albumData?.uri} 
+                        id={albumData?.id}
+                        category={"cover"} 
+                        type={"album"} 
+                        hoverItemId={hoverItemId}/>
+                    </div>
+                    <h4>Album</h4>
+                    <h1>{albumData?.name}</h1>
+                    <h2>{albumData?.artists[0].name}</h2>
                 </div>
-                <h4>Album</h4>
-                <h1>{albumData?.name}</h1>
-                <h2>{albumData?.artists[0].name}</h2>
             </div>
             {albumTracks && 
             <section>

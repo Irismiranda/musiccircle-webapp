@@ -851,7 +851,7 @@ h3{
   padding-top: 60px;
 }
 
-.artist_profile_cover{
+.profile_cover{
   position: relative;
   height: 350px;
   width: calc(100% + 80px);
