@@ -10,6 +10,7 @@ export default function Album(){
     const [ albumData, setAlbumData ] = useState(null)
     const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ albumTracks, setAlbumTracks ] = useState(null)
+    const [ hoverItemId, setHoverItemId ] = useState(null)
     const albumsSlider = useRef(null)
 
     async function getAlbumData(){
@@ -46,8 +47,18 @@ export default function Album(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="album_data_grid">
-                <img src={albumData?.images[0].url} className="cover_medium"/>
+            <div 
+            className="album_data_grid"
+            onMouseEnter={() => setHoverItemId(albumData.id)}
+            onMouseLeave={() => setHoverItemId(null)}>
+                {(hoverItemId === albumData.id) && <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
+                    <PlayBtn 
+                    uri={albumData.uri} 
+                    id={albumData.id}
+                    category={"slider"} 
+                    type={"album"} 
+                    hoverItemId={hoverItemId}/>
+                </div>}
                 <h4>Album</h4>
                 <h1>{albumData?.name}</h1>
                 <h2>{albumData?.artists[0].name}</h2>

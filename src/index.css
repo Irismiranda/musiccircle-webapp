@@ -702,7 +702,7 @@ h3{
       "a d";
 }
 
-.album_data_grid img{
+.album_data_grid div{
   grid-area: a;
 }
 
