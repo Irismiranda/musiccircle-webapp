@@ -11,11 +11,8 @@ export default function SimplifiedList(props){
         <div className="simplified_list_wrapper">
             {list.items.map((item, index) => {
                     return (
-                        <div key={item.id} style={{ position: "relative" }}>
-                            <div onMouseEnter={() => {
-                                if(playerState.currentTrack){ 
-                                setHoverItemId(item.id)
-                                } }}>
+                        <div key={item.id} style={{ position: "relative" }} className="flex space_between">
+                            <div onMouseEnter={() => setHoverItemId(item.id)}>
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
