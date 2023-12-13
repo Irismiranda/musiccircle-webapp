@@ -12,6 +12,7 @@ export default function PlayBtn(props){
             setSeedTrackId(id)
         } else{
             await spotifyApi.play({context_uri: uri, device_id: deviceId})
+            setSeedTrackId(null)
         }
     }
 
