@@ -73,7 +73,7 @@ export default function Album(){
                 category={"tracks"}/>
             </section>}
             {artistAlbums && <h2>More on {albumData?.artists[0].name}</h2>}
-            {(artistAlbums && albumData) && 
+            {artistAlbums && 
             <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
