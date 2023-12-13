@@ -98,6 +98,7 @@ export default function Profile(){
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
                     {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
+                    <button>Send Message</button>
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
                         <h3 onClick={() => { toggleVisibility("followers") }}> {userProfileData?.following_you?.length || 0} Followers </h3>
