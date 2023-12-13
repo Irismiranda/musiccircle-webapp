@@ -458,10 +458,12 @@ a{
 
 .side_menu_wrapper img{
   border-radius: 100%;
+  justify-self: center;
 }
 
 .side_menu_wrapper svg{
   margin: 10px 8px;
+  justify-self: center;
 }
 
 .side_menu{
