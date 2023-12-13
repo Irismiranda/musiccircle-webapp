@@ -82,7 +82,7 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {!isLoggedUser && <ToggleFollowBtn id="follow_btn" userId={userId} loggedUser={loggedUser}/>}
+                    {!isLoggedUser && <ToggleFollowBtn id="follow_btn" userId={userId} loggedUser={loggedUser} setUserProfileData={setUserProfileData}/>}
                     <button is="message_btn">Send Message</button>
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
