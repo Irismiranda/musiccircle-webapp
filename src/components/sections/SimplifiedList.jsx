@@ -20,7 +20,10 @@ export default function SimplifiedList(props){
                         setHoverItemId(item.id)
                         } }}
                         onMouseLeave={() => setHoverItemId(null)}> 
-                            <div onMouseEnter={() => setHoverItemId(item.id)}>
+                            <div onMouseEnter={() => {
+                        if(playerState.currentTrack){ 
+                        setHoverItemId(item.id)
+                        } }} >
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
