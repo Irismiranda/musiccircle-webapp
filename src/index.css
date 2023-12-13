@@ -693,6 +693,9 @@ h3{
 
 .album_data_grid{
   display: grid;
+  align-items: center;
+  justify-content: start;
+  gap: 0px 50px;
   grid-template:
       "a b"
       "a c"

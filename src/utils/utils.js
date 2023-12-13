@@ -27,7 +27,7 @@ function formatListData(items, category) {
     let listItem = {
       id: item.id,
       uri: item.uri,
-      name: item.name,
+      name: category === "users" ? item.display_name : item.name,
       isVisible: true,
     }
 
@@ -38,6 +38,8 @@ function formatListData(items, category) {
       } else if(category === "albums") {
         listItem.imageUrl = item.images[0].url
         listItem.releaseDate = item.release_date
+      } else {
+        listItem.imageUrl = item.images[0].url
       }
       
     }

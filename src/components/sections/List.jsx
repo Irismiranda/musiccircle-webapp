@@ -14,14 +14,16 @@ export default function List(props){
                             className="flex"                          
                             onMouseEnter={() => setHoverItemId(item.id)}
                             onMouseLeave={() => setHoverItemId(null)}>
-                                <img src={`${item.imageUrl}`} className="cover_small" />
+                                <img src={`${item.imageUrl}`} 
+                                className={category === "userList" ? "profile_small" : "cover_small"} />
                                 <div>
                                     {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    <h3>{index + 1}. {item.name}</h3>
-                                    <h4>{category.slice(0, -1)}</h4>
+                                    {index && <h3>{index + 1}. {item.name}</h3>}
+                                    {(category !== "userList") && <h4>{category.slice(0, -1)}</h4>}
                                 </div>
                             </div>
-                            <div onMouseEnter={() => setHoverItemId(item.id)}>
+                            {(category === "userList") ?
+                                <div onMouseEnter={() => setHoverItemId(item.id)}>
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
@@ -29,6 +31,15 @@ export default function List(props){
                                 type={category.slice(0, -1)} 
                                 hoverItemId={hoverItemId}/>
                             </div>
+                            :
+                            <div onMouseEnter={() => setHoverItemId(item.id)}>
+                                <PlayBtn 
+                                uri={item.uri} 
+                                id={item.id}
+                                category={"list"} 
+                                type={category.slice(0, -1)} 
+                                hoverItemId={hoverItemId}/>
+                            </div>}
                         </div>
                         )
                     })   
