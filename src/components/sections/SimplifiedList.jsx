@@ -1,8 +1,10 @@
 import React, { useState } from "react"
 import { PlayBtn } from "../../utils"
+import useStore from "../../store"
 
 export default function SimplifiedList(props){
     const { list, category } = props
+    const { playerState } = useStore()
     const [ hoverItemId, setHoverItemId ] = useState(null)
     
     return(
@@ -10,7 +12,7 @@ export default function SimplifiedList(props){
             {list.items.map((item, index) => {
                     return (
                         <div key={item.id} style={{ position: "relative" }}>
-                            <div onMouseEnter={() => setHoverItemId(item.id)}>
+                            <div onMouseEnter={() => {playerState.currentTrack && setHoverItemId(item.id)}}>
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
