@@ -31,17 +31,15 @@ function formatListData(items, category) {
       isVisible: true,
     }
 
-    if (category === "tracks") {
-      listItem.artistName = item.artists[0].name
-      listItem.imageUrl = item.album.images[0].url
-    }
-    
-    if(category === "albums") {
-      listItem.releaseDate = item.release_date
-    } else if (category === "simplified") {
+    if (category !== "simplified") {
+      if (category === "tracks") {
+        listItem.artistName = item.artists[0].name
+        listItem.imageUrl = item.album.images[0].url
+      } else if(category === "albums") {
+        listItem.imageUrl = item.images[0].url
+        listItem.releaseDate = item.release_date
+      }
       
-    } else {
-      listItem.imageUrl = item.images[0].url
     }
 
     return listItem

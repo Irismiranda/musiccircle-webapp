@@ -743,6 +743,7 @@ h3{
 .simplified_list_wrapper .grid{
   grid-template-columns: 50px auto 100px;
   align-items: center;
+  gap: 20px;
 }
 
 .simplified_list_wrapper .play_btn{
