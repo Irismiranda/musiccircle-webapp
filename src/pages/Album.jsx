@@ -80,7 +80,7 @@ export default function Album(){
             <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
-                    list={artistAlbums} 
+                    list={artistAlbums.filter(album => album.id !== albumData.id)} 
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
