@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import useStore from "../store"
 
 export default function ToggleFollowBtn(props){
