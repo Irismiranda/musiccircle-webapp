@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
+import { useClickOutside, ToggleFollowBtn } from "../utils"
 import useStore from "../store"
 
 export default function Profile(){
@@ -13,7 +14,6 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
-    const [ isFollowing, setIsFollowing ] = useState(false)
     const [ listVisibility, setListVisibility ] = useState({
         following: false,
         followers: false,
@@ -33,20 +33,6 @@ export default function Profile(){
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
         setTopTracks(topTracksList.data)
         setTopArtists(topArtistsList.data)
-    }
-
-    async function getIsFollowing(id){
-        const response = await Axios.get(`/api/${loggedUser.id}/is_following/${id}`)
-        setIsFollowing(response.data)
-    }
-
-    async function toggleFollow(id){
-        const response = await Axios.post(`/api/${loggedUser.id}/toggle_follow/${id}`)
-        setIsFollowing(response.data.isFollowing)
-        setLoggedUser(response.data.updatedLoggedUser)
-        setUserProfileData(response.data.updatedCurrentUser)
-        const stringData = JSON.stringify(response.data.updatedLoggedUser)
-        localStorage.setItem("loggedUser", stringData)
     }
 
     async function hideSection(category){
@@ -75,7 +61,6 @@ export default function Profile(){
             setUserProfileData(loggedUser)
         } else{
             userId && getUser(userId)
-            userId && getIsFollowing(userId)
         }
     }, [userId])
 
@@ -97,7 +82,7 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
+                    {!isLoggedUser && <ToggleFollowBtn id={userId}/>}
                     <button>Send Message</button>
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
