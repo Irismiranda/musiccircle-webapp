@@ -3,7 +3,7 @@ import useStore from "../store"
 import { SvgHeart } from "../assets"
 
 export default function LikeBtn(props){
-    const { spotifyApi } = useStore()
+    const { spotifyApi, setPlayerState } = useStore()
     const { isLiked, songId } = props
 
     async function handleHeartClick(id) {
