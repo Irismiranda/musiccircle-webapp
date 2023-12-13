@@ -880,6 +880,7 @@ h3{
 
 .blur_cover{
   filter: blur(65px);
+  opacity: 0.85;
 }
 
 .gradient_wrapper{

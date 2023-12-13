@@ -13,6 +13,7 @@ const useStore = create(devtools((set, get) => ({
   userTopArtists: null,
   playerState:{ 
       player: undefined,
+      isConnected: false,
       deviceId: null,
       isPaused: false,
       isActive: false,
