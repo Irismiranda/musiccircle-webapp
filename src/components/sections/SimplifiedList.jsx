@@ -17,7 +17,7 @@ export default function SimplifiedList(props){
                                 category={"simplified_list"} 
                                 type={category.slice(0, -1)} 
                                 hoverItemId={hoverItemId}/>
-                                <h3>{index + 1}. {item.name}</h3>
+                                {(hoverItemId !== item.id) && <h3>{index + 1}. {item.name}</h3>}
                             </div>
                             <div 
                             className="flex"                          
