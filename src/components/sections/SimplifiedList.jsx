@@ -21,9 +21,9 @@ export default function SimplifiedList(props){
                         } }}
                         onMouseLeave={() => setHoverItemId(null)}> 
                             <div onMouseEnter={() => {
-                        if(playerState.currentTrack){ 
-                        setHoverItemId(item.id)
-                        } }} >
+                            if(playerState.currentTrack){ 
+                            setHoverItemId(item.id)
+                            } }} >
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
@@ -31,9 +31,9 @@ export default function SimplifiedList(props){
                                 type={category.slice(0, -1)} 
                                 hoverItemId={hoverItemId}/>
                                 {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
-                                <h3>{item.name}</h3>
                             </div>
                             
+                            <h3>{item.name}</h3>
                             {category === "playlist" && <h5>{item.artistName}</h5>}
                             <h4>{category.slice(0, -1)}</h4>
                                
