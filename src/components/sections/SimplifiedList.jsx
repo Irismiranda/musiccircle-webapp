@@ -14,7 +14,7 @@ export default function SimplifiedList(props){
                         <div 
                         key={item.id} 
                         style={{ position: "relative" }} 
-                        className="flex space_between"                
+                        className="grid"                
                         onMouseEnter={() => {
                         if(playerState.currentTrack){ 
                         setHoverItemId(item.id)
@@ -30,7 +30,7 @@ export default function SimplifiedList(props){
                                 category={"simplified_list"} 
                                 type={category.slice(0, -1)} 
                                 hoverItemId={hoverItemId}/>
-                                {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
+                                {(hoverItemId !== item.id) && <h3 className="list_number">{index + 1}.</h3>}
                             </div>
                             
                             <h3>{item.name}</h3>

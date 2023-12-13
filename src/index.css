@@ -740,6 +740,19 @@ h3{
   left: 35px;
 }
 
+.simplified_list_wrapper .grid{
+  grid-template-columns: 50px auto 100px;
+  align-items: center;
+}
+
+.simplified_list_wrapper .play_btn{
+  position: relative;
+}
+
+.simplified_list_wrapper .list_number{
+  justify-self: center;
+}
+
 .cover_wrapper{
   display: flex;
   box-sizing: border-box;
