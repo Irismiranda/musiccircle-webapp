@@ -21,13 +21,13 @@ export default function Album(){
     async function getAlbumTracks(){
         const response = await spotifyApi.getAlbumTracks(albumId)
         const tracks = formatListData(response.items, "simplified")
+        setAlbumTracks({items: tracks})
     }
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(albumData.artists[0].id)
         const formatedData = formatListData(response.items, "albums")
-        setArtistAlbums({items: formatedData.filter(item => item.id !== albumData.id)})
-    }
+        setArtistAlbums({items: formatedData.filter(item => item.id !== albumData.id)})    }
 
     useEffect(() => {
         if(albumId){
@@ -73,7 +73,7 @@ export default function Album(){
                 category={"tracks"}/>
             </section>}
             {artistAlbums && <h2>More on {albumData?.artists[0].name}</h2>}
-            {artistAlbums && 
+            {(artistAlbums && albumData) && 
             <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
