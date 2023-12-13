@@ -22,7 +22,7 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 }
 
 function formatListData(items, category) {
-  console.log(items)
+  console.log("items for formatting are", items)
 
   const itemsArray = Array.isArray(items) ? items : Object.values(items)
   
