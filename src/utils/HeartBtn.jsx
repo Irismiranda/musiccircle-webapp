@@ -26,7 +26,7 @@ export default function LikeBtn(props){
     }
 
     return (
-        <div className="flex" onClick={() => handleHeartClick(songId)}>
+        <div onClick={() => handleHeartClick(songId)}>
             <SvgHeart className="svg" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD", marginTop: "6px"}} />
         </div>
     )
