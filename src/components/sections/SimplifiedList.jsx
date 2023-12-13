@@ -33,10 +33,10 @@ export default function SimplifiedList(props){
                                 {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
                                 <h3>{item.name}</h3>
                             </div>
-                            <div>
-                                {category === "playlist" && <h5>{item.artistName}</h5>}
-                                <h4>{category.slice(0, -1)}</h4>
-                            </div>     
+                            
+                            {category === "playlist" && <h5>{item.artistName}</h5>}
+                            <h4>{category.slice(0, -1)}</h4>
+                               
                         </div>
                         )
                     })   
