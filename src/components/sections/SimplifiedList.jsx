@@ -20,7 +20,9 @@ export default function SimplifiedList(props){
                         setHoverItemId(item.id)
                         } }}
                         onMouseLeave={() => setHoverItemId(null)}> 
-                            <div onMouseEnter={() => {
+                            <div 
+                            style={{ justifySelf: "center"}}
+                            onMouseEnter={() => {
                             if(playerState.currentTrack){ 
                             setHoverItemId(item.id)
                             } }} >
@@ -30,7 +32,7 @@ export default function SimplifiedList(props){
                                 category={"simplified_list"} 
                                 type={category.slice(0, -1)} 
                                 hoverItemId={hoverItemId}/>
-                                {(hoverItemId !== item.id) && <h3 className="list_number">{index + 1}.</h3>}
+                                {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
                             </div>
                             
                             <h3>{item.name}</h3>

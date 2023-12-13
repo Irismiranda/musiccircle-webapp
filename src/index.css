@@ -749,10 +749,6 @@ h3{
   position: relative;
 }
 
-.simplified_list_wrapper .list_number{
-  justify-self: center;
-}
-
 .cover_wrapper{
   display: flex;
   box-sizing: border-box;
