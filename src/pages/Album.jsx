@@ -51,14 +51,14 @@ export default function Album(){
             className="album_data_grid"
             onMouseEnter={() => setHoverItemId(albumData?.id)}
             onMouseLeave={() => setHoverItemId(null)}>
-                {(hoverItemId === albumData?.id) && <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
+                <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
                     <PlayBtn 
                     uri={albumData?.uri} 
                     id={albumData?.id}
                     category={"slider"} 
                     type={"album"} 
                     hoverItemId={hoverItemId}/>
-                </div>}
+                </div>
                 <h4>Album</h4>
                 <h1>{albumData?.name}</h1>
                 <h2>{albumData?.artists[0].name}</h2>
