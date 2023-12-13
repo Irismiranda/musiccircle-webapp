@@ -27,7 +27,10 @@ export default function SimplifiedList(props){
                             </div>
                             <div 
                             className="flex"                          
-                            onMouseEnter={() => setHoverItemId(item.id)}
+                            onMouseEnter={() => {
+                                if(playerState.currentTrack){ 
+                                setHoverItemId(item.id)
+                                } }}
                             onMouseLeave={() => setHoverItemId(null)}>   
                                 <div>
                                     {category === "playlist" && <h5>{item.artistName}</h5>}
