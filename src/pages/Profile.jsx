@@ -79,8 +79,8 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            {listVisibility.following && <List list={formatListData(userProfileData.following, "users")} category={"userList"}/>}
-            {listVisibility.followers && <List list={formatListData(userProfileData.following_you, "users")} category={"userList"}/>}
+            {listVisibility.following && <List list={formatListData({items: userProfileData.following}, "users")} category={"userList"}/>}
+            {listVisibility.followers && <List list={formatListData({items: userProfileData.following_you}, "users")} category={"userList"}/>}
             <section className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
