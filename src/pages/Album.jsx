@@ -75,12 +75,12 @@ export default function Album(){
                 list={albumTracks} 
                 category={"tracks"}/>
             </section>}
-            {artistAlbums && <h2>More on {albumData?.artists[0].name}</h2>}
+            {(artistAlbums && albumData) && <h2>More on {albumData?.artists[0].name}</h2>}
             {artistAlbums && 
             <section style={{ position: "relative" }} >
                 <div ref={albumsSlider} className="slider_grid">
                     <Slider 
-                    list={artistAlbums?.filter(album => album.id !== albumData.id)} 
+                    list={artistAlbums.filter(album => album.id !== albumData.id)} 
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
