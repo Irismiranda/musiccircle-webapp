@@ -695,6 +695,8 @@ h3{
   display: grid;
   align-items: center;
   justify-content: start;
+  position: absolute;
+  top: 85px;
   gap: 0px 50px;
   grid-template:
       "a b"
@@ -876,9 +878,7 @@ h3{
 }
 
 .blur_cover{
-  padding: 39px;
-  box-sizing: border-box;
-  
+  filter: blur(65px);
 }
 
 .gradient_wrapper{
