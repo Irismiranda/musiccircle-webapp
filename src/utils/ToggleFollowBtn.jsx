@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
+import useStore from "../store"
 import { Axios } from "../Axios-config"
 
 export default function ToggleFollowBtn(props){
     const [ isFollowing, setIsFollowing ] = useState(false)
     const { userId, loggedUser } = props
+    const { setLoggedUser } = useStore()
 
     async function getIsFollowing(id){
         const response = await Axios.get(`/api/${loggedUser.id}/is_following/${id}`)
