@@ -20,7 +20,7 @@ export default function List(props){
                                 className={category === "userList" ? "profile_small" : "cover_small"} />
                                 <div>
                                     {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    {index && <h3>{index + 1}. {item.name}</h3>}
+                                    {<h3>{index + 1}. {item.name}</h3>}
                                     {(category !== "userList") && <h4>{category.slice(0, -1)}</h4>}
                                 </div>
                             </div>
