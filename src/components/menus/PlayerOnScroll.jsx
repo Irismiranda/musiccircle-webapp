@@ -1,7 +1,7 @@
 import React, { useRef } from "react"
 import useStore from "../../store"
-import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { useClickOutside } from "../../utils"
+import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+import { useClickOutside, HeartBtn } from "../../utils"
 
 
 const PlayerOnScroll = ((props) => {
@@ -26,7 +26,6 @@ const PlayerOnScroll = ((props) => {
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
-        handleHeartClick,
         handleTimelineClick,
         isPostVisible, 
         setIsPostVisible,
@@ -48,9 +47,7 @@ const PlayerOnScroll = ((props) => {
             <div className="flex_column gap">
                 <div className="flex">
                     <h3 style={{ lineHeight: "50px"}}>  {trackName} by {artistName} </h3>
-                    <div className="flex" onClick={() => handleHeartClick(songId)}>
-                        <SvgHeart className="svg_small" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD" }} />
-                    </div>
+                    <HeartBtn songId={songId} isLiked={isLiked}/>
                 </div>
                 <div className="flex">
                     <div onClick={() => { player.previousTrack() }}>

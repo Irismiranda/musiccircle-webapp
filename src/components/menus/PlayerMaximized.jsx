@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import useStore from "../../store"
-import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { useClickOutside } from "../../utils"
+import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+import { useClickOutside, HeartBtn } from "../../utils"
 
 const PlayerMaximized = ((props) => {
     const { playerState, setPlayerState } = useStore()
@@ -25,7 +25,6 @@ const PlayerMaximized = ((props) => {
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
-        handleHeartClick,
         handleTimelineClick,
         isPostVisible, 
         setIsPostVisible,
@@ -49,9 +48,7 @@ const PlayerMaximized = ((props) => {
             <div className="flex flex_column full_width" style={{ alignItems: "start"}}>
                 <div className="flex">
                     <h2> {trackName} </h2>
-                    <div className="flex" onClick={() => handleHeartClick(songId)}>
-                        <SvgHeart className="svg" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD", marginTop: "6px"}} />
-                    </div>
+                    <HeartBtn songId={songId} isLiked={isLiked}/>
                 </div>
                 <h3> {artistName} </h3>
 

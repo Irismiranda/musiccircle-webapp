@@ -1,7 +1,7 @@
         import React, { useRef } from "react"
         import useStore from "../../store"
-        import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgHeart, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { useClickOutside } from "../../utils"
+        import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+        import { useClickOutside, HeartBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()
@@ -26,7 +26,6 @@
                 handleShuffleClick,
                 handleRepeatClick,
                 trackVolumePosition,
-                handleHeartClick,
                 handleTimelineClick,
                 isPostVisible, 
                 setIsPostVisible,
@@ -58,9 +57,7 @@
                         <div ref={shareBtnRef}>
                             <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
                         </div>
-                        <div onClick={() => handleHeartClick(songId)}>
-                            <SvgHeart className="svg" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD" }} />
-                        </div>
+                        <HeartBtn songId={songId} isLiked={isLiked}/>
                     </div>
                         </div>
                 
@@ -166,9 +163,7 @@
                         <div ref={shareBtnRef}>
                             <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
                         </div>
-                        <div onClick={() => handleHeartClick(songId)}>
-                            <SvgHeart className="svg" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD" }} />
-                        </div>
+                        <HeartBtn songId={songId} isLiked={isLiked}/>
                     </div>} 
                 </> 
             )

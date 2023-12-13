@@ -79,25 +79,6 @@ export default function PlayerManager() {
         }
     }
 
-    async function handleHeartClick(id) {
-        const trackIds = [id]
-        if (!isLiked) {
-            try{
-                await spotifyApi.addToMySavedTracks(trackIds)
-                setPlayerState({ isLiked: true })
-            } catch(err){
-                console.log(err)
-            }
-        } else {
-            try{
-                await spotifyApi.removeFromMySavedTracks(trackIds)
-                setPlayerState({ isLiked: false })
-            } catch(err){
-                console.log(err)
-            }
-        }
-    }
-
     async function getRecommendations(id){
         const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
         console.log("recommendations are:", response.tracks)
@@ -390,7 +371,6 @@ export default function PlayerManager() {
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
-        handleHeartClick,
         handleTimelineClick,
         isPostVisible, 
         setIsPostVisible,
