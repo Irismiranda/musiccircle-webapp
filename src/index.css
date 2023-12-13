@@ -829,13 +829,14 @@ h3{
   grid-area: a; 
 }
 
-.user_data_grid #follow_btn{
+.user_data_grid #message_btn{
   grid-area: b; 
 }
 
-.user_data_grid #message_btn{
+.user_data_grid #follow_btn{
   grid-area: c; 
 }
+
 
 .user_data_grid div{
   grid-area: d;
