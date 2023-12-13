@@ -20,16 +20,13 @@ export default function Album(){
 
     async function getAlbumTracks(){
         const response = await spotifyApi.getAlbumTracks(albumId)
-        console.log("response is", response)
         const tracks = formatListData(response.items, "simplified")
-        console.log("formated data is", tracks)
-        setAlbumTracks({items: tracks})
     }
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(albumData.artists[0].id)
         const formatedData = formatListData(response.items, "albums")
-        setArtistAlbums({items: formatedData})
+        setArtistAlbums({items: formatedData.filter(item.id !== albumData.id)})
     }
 
     useEffect(() => {
