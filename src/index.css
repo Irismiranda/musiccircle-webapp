@@ -93,7 +93,7 @@ svg{
 }
 
 .svg_medium{
-  height: 25px;
+  width: 25px;
 }
 
 .svg_big{
@@ -458,12 +458,11 @@ a{
 
 .side_menu_wrapper img{
   border-radius: 100%;
-  justify-self: center;
+  margin-left: 3px;
 }
 
 .side_menu_wrapper svg{
   margin: 10px 8px;
-  justify-self: center;
 }
 
 .side_menu{
