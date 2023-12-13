@@ -55,7 +55,7 @@ export default function Album(){
                     <PlayBtn 
                     uri={albumData?.uri} 
                     id={albumData?.id}
-                    category={"slider"} 
+                    category={"cover"} 
                     type={"album"} 
                     hoverItemId={hoverItemId}/>
                 </div>
