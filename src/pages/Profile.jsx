@@ -14,6 +14,10 @@ export default function Profile(){
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
     const [ isFollowing, setIsFollowing ] = useState(false)
+    const [ listVisibility, setListVisibility ] = useState({
+        following: false,
+        followers: false,
+    })
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
     
@@ -52,6 +56,18 @@ export default function Profile(){
         category === "top_artists" && setUserTopArtists(response.data)
         category === "top_track" && setUserTopTracks(response.data)
     }
+
+    function toggleVisibility(item){
+        item === "following" && setListVisibility({
+            following: true,
+            followers: false,
+        })
+
+        item === "followers" && setListVisibility({
+            following: false,
+            followers: true,
+        })
+    }
     
     useEffect(() => {
         if(userId === loggedUser.id){
@@ -84,8 +100,9 @@ export default function Profile(){
                     {!isLoggedUser && <button onClick={() => toggleFollow(userId)}> {isFollowing ? "Following" : "Follow"} </button>}
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
-                        <h3> {userProfileData?.following_you?.length || 0} Followers </h3>
-                        <h3> {userProfileData?.following?.length || 0} Following </h3>
+                        <h3 onClick={() => { toggleVisibility("followers") }}> {userProfileData?.following_you?.length || 0} Followers </h3>
+                        <h3 onClick={() => { toggleVisibility("following") }}> {userProfileData?.following?.length || 0} 
+                        Following </h3>
                     </div>
                 </div>
             </section>

@@ -46,9 +46,11 @@ export default function Album(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="cover_container flex">
-                <img src={albumData?.images[0].url} className="cover_large"/>
-                <h2>{albumData?.name}</h2>
+            <div className="album_data_grid">
+                <img src={albumData?.images[0].url} className="cover_medium"/>
+                <h4>Album</h4>
+                <h1>{albumData?.name}</h1>
+                <h2>{albumData?.artists[0].name}</h2>
             </div>
             {albumTracks && 
             <section>
