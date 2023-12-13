@@ -11,7 +11,15 @@ export default function SimplifiedList(props){
         <div className="simplified_list_wrapper">
             {list.items.map((item, index) => {
                     return (
-                        <div key={item.id} style={{ position: "relative" }} className="flex space_between">
+                        <div 
+                        key={item.id} 
+                        style={{ position: "relative" }} 
+                        className="flex space_between"                
+                        onMouseEnter={() => {
+                        if(playerState.currentTrack){ 
+                        setHoverItemId(item.id)
+                        } }}
+                        onMouseLeave={() => setHoverItemId(null)}> 
                             <div onMouseEnter={() => setHoverItemId(item.id)}>
                                 <PlayBtn 
                                 uri={item.uri} 
@@ -22,18 +30,10 @@ export default function SimplifiedList(props){
                                 {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
                                 <h3>{item.name}</h3>
                             </div>
-                            <div 
-                            className="flex"                          
-                            onMouseEnter={() => {
-                                if(playerState.currentTrack){ 
-                                setHoverItemId(item.id)
-                                } }}
-                            onMouseLeave={() => setHoverItemId(null)}>   
-                                <div>
-                                    {category === "playlist" && <h5>{item.artistName}</h5>}
-                                    <h4>{category.slice(0, -1)}</h4>
-                                </div>
-                            </div>
+                            <div>
+                                {category === "playlist" && <h5>{item.artistName}</h5>}
+                                <h4>{category.slice(0, -1)}</h4>
+                            </div>     
                         </div>
                         )
                     })   
