@@ -12,7 +12,10 @@ export default function SimplifiedList(props){
             {list.items.map((item, index) => {
                     return (
                         <div key={item.id} style={{ position: "relative" }}>
-                            <div onMouseEnter={() => {playerState.currentTrack && setHoverItemId(item.id)}}>
+                            <div onMouseEnter={() => {
+                                if(playerState.currentTrack){ 
+                                setHoverItemId(item.id)
+                                } }}>
                                 <PlayBtn 
                                 uri={item.uri} 
                                 id={item.id}
