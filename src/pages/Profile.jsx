@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
-import { useClickOutside, ToggleFollowBtn, List, formatListData } from "../utils"
+import { List } from "../components"
+import { useClickOutside, ToggleFollowBtn, formatListData } from "../utils"
 import useStore from "../store"
 
 export default function Profile(){
