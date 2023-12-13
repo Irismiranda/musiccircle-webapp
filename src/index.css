@@ -875,6 +875,12 @@ h3{
   border-width: 4px;
 }
 
+.blur_cover{
+  padding: 39px;
+  box-sizing: border-box;
+  
+}
+
 .gradient_wrapper{
   display: flex;
   justify-content: start;

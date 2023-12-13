@@ -47,7 +47,9 @@ export default function Album(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="profile_cover blur" style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
+            <section style={{ position: "relative", padding: "39px", boxSizing: "border-box" }}>
+                <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
+                </div>
                 <div 
                 className="album_data_grid"
                 onMouseEnter={() => setHoverItemId(albumData?.id)}
@@ -64,7 +66,8 @@ export default function Album(){
                     <h1>{albumData?.name}</h1>
                     <h2>{albumData?.artists[0].name}</h2>
                 </div>
-            </div>
+            </section>
+            
             {albumTracks && 
             <section>
                 <h2> Tracks</h2>
