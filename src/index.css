@@ -818,8 +818,8 @@ h3{
 .user_data_grid{
   display: grid;
   grid-template:
-  "a b b"
-  "c c c";
+  "a b c"
+  "d d d";
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px 65px;
   align-items: center;
@@ -829,12 +829,16 @@ h3{
   grid-area: a; 
 }
 
-.user_data_grid button{
+.user_data_grid #follow_btn{
   grid-area: b; 
 }
 
+.user_data_grid #message_btn{
+  grid-area: c; 
+}
+
 .user_data_grid div{
-  grid-area: c;
+  grid-area: d;
   display: flex;
   justify-content: space-between;
 }

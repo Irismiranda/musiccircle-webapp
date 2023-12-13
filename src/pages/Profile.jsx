@@ -6,7 +6,7 @@ import { useClickOutside, ToggleFollowBtn } from "../utils"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, loggedUser, setLoggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
+    const { standardWrapperWidth, loggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -82,8 +82,8 @@ export default function Profile(){
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {!isLoggedUser && <ToggleFollowBtn userId={userId} loggedUser={loggedUser}/>}
-                    <button>Send Message</button>
+                    {!isLoggedUser && <ToggleFollowBtn id="follow_btn" userId={userId} loggedUser={loggedUser}/>}
+                    <button is="message_btn">Send Message</button>
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
                         <h3 onClick={() => { toggleVisibility("followers") }}> {userProfileData?.following_you?.length || 0} Followers </h3>
