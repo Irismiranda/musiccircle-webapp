@@ -691,6 +691,34 @@ h3{
   right: 10px;
 }
 
+.album_data_grid{
+  display: grid;
+  grid-template:
+      "a b"
+      "a c"
+      "a d";
+}
+
+.album_data_grid img{
+  grid-area: a;
+}
+
+.album_data_grid h4{
+  grid-area: b;
+  margin: 0px;
+}
+
+.album_data_grid h1{
+  grid-area: c;
+  margin: 0px;
+  font-weight: 800;
+}
+
+.album_data_grid h2{
+  grid-area: d;
+  margin: 0px;
+}
+
 .transparent_section{
   opacity: 0.5;
 }
