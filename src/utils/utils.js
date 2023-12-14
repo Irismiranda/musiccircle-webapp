@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import useStore from "../store"
 
 const useClickOutside = (ref, exceptionRef, callback) => {
   useEffect(() => {
@@ -22,19 +21,14 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 }
 
 function formatListData(items, category) {
-
-  console.log("items to format are:", items)
   
-  return items.map(item => {
-    console.log("item is", item)
-    
+  return items.map(item => {   
     let listItem = {
       id: item.id,
       uri: item.uri,
-      name: category === "users" ? item.display_name : item.name,
+      name: item.name,
       isVisible: true,
     }
-
 
     if (category !== "simplified") {
       if (category === "tracks") {
