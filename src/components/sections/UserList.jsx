@@ -37,21 +37,22 @@ export default function UserList(props){
         }
     }, [userDataList])
 
-    return (
-        <>
-            <input onInput={() => searchUsers()}/>
-
-            {userDataList && 
-                userDataList.map((user) => {
-                    <section className="flex">
-                        <img src={user.images[0].url} />
-                        {user.display_name}
-                        <ToggleFollowBtn 
-                        userId={user.id} 
-                        setUserProfileData={setUserProfileData}/>
-                    </section>
-                })
-            }
-        </>
-    )
+        return (
+            <>
+                <input onInput={() => searchUsers()}/>
+                {userDataList && 
+                    userDataList.map((user) => {
+                        return (
+                        <section className="flex">
+                            <img src={user.images[0].url} />
+                            {user.display_name}
+                            <ToggleFollowBtn 
+                            userId={user.id} 
+                            setUserProfileData={setUserProfileData}/>
+                        </section>
+                        )
+                    })
+                }
+            </>
+        )
 }
