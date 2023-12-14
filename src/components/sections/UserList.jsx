@@ -7,7 +7,7 @@ export default function UserList(props){
     const { userDataList, setUserDataList } = useState(null)
 
     async function getUsersData(){
-        const userList = []
+        const userList = [{}]
         idList.slice(0, 15).map(async (id) => {
             const response = await Axios.post("/api/account", {
                 userData: {
