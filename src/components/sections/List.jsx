@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { PlayBtn } from "../../utils"
+import { PlayBtn, ToggleFollowBtn } from "../../utils"
+import useStore from "../../store"
 
 export default function List(props){
-    const { list, category } = props
+    const { list, category, setUserProfileData } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
+    const { loggedUser } = useStore()
 
     console.log("list is:", list)
     
@@ -25,14 +27,9 @@ export default function List(props){
                                 </div>
                             </div>
                             {(category === "userList") ?
-                                <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                <PlayBtn 
-                                uri={item.uri} 
-                                id={item.id}
-                                category={"list"} 
-                                type={category.slice(0, -1)} 
-                                hoverItemId={hoverItemId}/>
-                            </div>
+                            <ToggleFollowBtn 
+                            userId={item.id}
+                            setUserProfileData={setUserProfileData}/>
                             :
                             <div onMouseEnter={() => setHoverItemId(item.id)}>
                                 <PlayBtn 

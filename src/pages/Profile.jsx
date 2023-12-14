@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
-import { List } from "../components"
-import { useClickOutside, ToggleFollowBtn, formatListData } from "../utils"
+import { UserList } from "../components"
+import { ToggleFollowBtn } from "../utils"
 import useStore from "../store"
 
 export default function Profile(){
@@ -79,8 +79,12 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            {(listVisibility.following && userProfileData?.following?.length > 0) && <List list={{items: formatListData({items: userProfileData?.following}, "users")}} category={"userList"}/>}
-            {(listVisibility.followers  && userProfileData?.following_you?.length > 0) && <List list={{items: formatListData({items: userProfileData?.following_you}, "users")}} category={"userList"}/>}
+            {listVisibility.following &&
+            <UserList idList={userProfileData?.following} setUserProfileData={setUserProfileData}/>}
+
+            {listVisibility.followers &&
+            <UserList idList={userProfileData?.following_you} setUserProfileData={setUserProfileData}/>}
+            
             <section className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
                 <div className="user_data_grid">
