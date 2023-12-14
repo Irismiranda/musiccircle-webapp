@@ -64,7 +64,7 @@ export default function Artist(){
                 <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
                 </div>
                 <div 
-                className="album_data_grid"
+                className="cover_data_grid"
                 onMouseEnter={() => setHoverItemId(artistData?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     <div className="cover_medium" style={{ backgroundImage: `url('${artistData?.images[0].url}')` }}>

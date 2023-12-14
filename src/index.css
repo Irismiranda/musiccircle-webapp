@@ -692,7 +692,7 @@ h3{
   right: 10px;
 }
 
-.album_data_grid{
+.cover_data_grid{
   display: grid;
   align-items: center;
   justify-content: start;
@@ -705,22 +705,22 @@ h3{
       "a d";
 }
 
-.album_data_grid div{
+.cover_data_grid div{
   grid-area: a;
 }
 
-.album_data_grid h4{
+.cover_data_grid h4{
   grid-area: b;
   margin: 0px;
 }
 
-.album_data_grid h1{
+.cover_data_grid h1{
   grid-area: c;
   margin: 0px;
   font-weight: 800;
 }
 
-.album_data_grid h2{
+.cover_data_grid h2{
   grid-area: d;
   margin: 0px;
 }
@@ -878,7 +878,7 @@ h3{
   border-width: 4px;
 }
 
-.profile_cover .outline_button{
+.cover_data_grid .outline_button{
   justify-self: start;
 }
 
