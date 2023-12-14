@@ -871,16 +871,15 @@ h3{
   background-position: 50% 25%;
 }
 
-.artist_profile_cover h1{
-  font-weight: 700;
-}
-
 .outline_button{
   font-weight: 700;
-  margin-bottom: 20px;
   background-color: transparent;
   border-color: white;
   border-width: 4px;
+}
+
+.profile_cover .outline_button{
+  justify-self: start;
 }
 
 .blur_cover{
