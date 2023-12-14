@@ -40,7 +40,9 @@ export default function UserList(props){
                     <section className="flex">
                         <img src={user.images[0].url} />
                         {user.display_name}
-                        <ToggleFollowBtn userId={user.id} setUserProfileData={setUserProfileData}/>
+                        <ToggleFollowBtn 
+                        userId={user.id} 
+                        setUserProfileData={setUserProfileData}/>
                     </section>
                 })
             }
