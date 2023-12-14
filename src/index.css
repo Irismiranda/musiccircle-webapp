@@ -910,6 +910,7 @@ h3{
   display: grid;
   grid-template-columns: 50px auto 1fr;
   gap: 20px;
+  align-items: center;
 }
 
 ::-webkit-scrollbar {
