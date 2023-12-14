@@ -35,6 +35,8 @@ function formatListData(items, category) {
       isVisible: true,
     }
 
+    console.log("formated list is", listItem)
+
     if (category !== "simplified") {
       if (category === "tracks") {
         listItem.artistName = item.artists[0].name
