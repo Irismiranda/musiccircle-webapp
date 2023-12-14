@@ -39,7 +39,7 @@ export default function UserList(props){
     }, [userDataList])
 
         return (
-            <>
+            <div className="user_list_wrapper">
                 <input onInput={() => searchUsers()}/>
                 {userDataList && 
                     userDataList.map((user) => {
@@ -63,6 +63,6 @@ export default function UserList(props){
                         )
                     })
                 }
-            </>
+            </div>
         )
 }
