@@ -28,6 +28,8 @@ function formatListData(items, category) {
   console.log("items to format are:", items)
   
   return items.map(item => {
+    console.log("item is", item)
+    
     let listItem = {
       id: item.id,
       uri: item.uri,
@@ -35,7 +37,6 @@ function formatListData(items, category) {
       isVisible: true,
     }
 
-    console.log("formated list is", listItem)
 
     if (category !== "simplified") {
       if (category === "tracks") {
