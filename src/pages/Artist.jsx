@@ -59,12 +59,26 @@ export default function Artist(){
     
     return(
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <div className="profile_cover artist_profile_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
-                <div className="gradient_wrapper">
+            <section style={{ position: "relative" }}>
+                <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
+                </div>
+                <div 
+                className="album_data_grid"
+                onMouseEnter={() => setHoverItemId(artistData?.id)}
+                onMouseLeave={() => setHoverItemId(null)}>
+                    <div className="cover_medium" style={{ backgroundImage: `url('${artistData?.images[0].url}')` }}>
+                        <PlayBtn 
+                        uri={artistData?.uri} 
+                        id={artistData?.id}
+                        category={"cover"} 
+                        type={"track"} 
+                        hoverItemId={hoverItemId}/>
+                    </div>
+                    <h4>Artist</h4>
                     <h1>{artistData?.name}</h1>
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
-            </div>
+            </section>
             {artistTopTracks && 
             <section>
                 <h2> Popular Tracks</h2>
