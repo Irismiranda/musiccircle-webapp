@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { ToggleFollowBtn } from "../../utils"
 import { Axios } from "../../Axios-config"
 
@@ -44,8 +45,12 @@ export default function UserList(props){
                     userDataList.map((user) => {
                         return (
                         <section className="flex">
-                            <img src={user.images[0].url} />
-                            {user.display_name}
+                            <Link to={`/account/${user.id}`}>
+                                <img src={user.images[0].url} />
+                            </Link>
+                            <Link to={}>
+                                {user.display_name}
+                            </Link>
                             <ToggleFollowBtn 
                             userId={user.id} 
                             setUserProfileData={setUserProfileData}/>
