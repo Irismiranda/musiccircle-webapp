@@ -15,7 +15,7 @@ export default function Profile(){
     const [ topArtists, setTopArtists ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
-    const [ listVisibility, setListVisibility ] = useState({
+    const [ userListVisibility, setUserListVisibility ] = useState({
         following: false,
         followers: false,
     })
@@ -45,12 +45,12 @@ export default function Profile(){
     }
 
     function toggleVisibility(item){
-        item === "following" && setListVisibility({
+        item === "following" && setUserListVisibility({
             following: true,
             followers: false,
         })
 
-        item === "followers" && setListVisibility({
+        item === "followers" && setUserListVisibility({
             following: false,
             followers: true,
         })
@@ -79,10 +79,10 @@ export default function Profile(){
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
-            {listVisibility.following &&
+            {userListVisibility.following &&
             <UserList idList={userProfileData?.following} setUserProfileData={setUserProfileData}/>}
 
-            {listVisibility.followers &&
+            {userListVisibility.followers &&
             <UserList idList={userProfileData?.following_you} setUserProfileData={setUserProfileData}/>}
             
             <section className="flex" style={{ marginBottom: "30px" }}>

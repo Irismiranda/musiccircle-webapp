@@ -35,10 +35,11 @@ export default function UserList(props){
     return (
         <>
             <input onInput={() => searchUsers()}/>
-            <List 
+
+            {formatedUserList && <List 
             list={formatedUserList} 
             category={"userList"} 
-            setUserProfileData={setUserProfileData}/>
+            setUserProfileData={setUserProfileData}/>}
         </>
     )
 }
