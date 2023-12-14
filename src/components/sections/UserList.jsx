@@ -21,6 +21,8 @@ export default function UserList(props){
 
         const formatedData = formatListData(userList)
 
+        console.log("formated data is:", formatedData)
+
         if(formatedData.length > 0){
             setFormatedUserList({items: formatedData})
         }
