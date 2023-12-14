@@ -31,6 +31,12 @@ export default function UserList(props){
         }
     }, [idList])
 
+    useEffect(() => {
+        if(userDataList){
+            console.log("user data list is:", userDataList)
+        }
+    }, [userDataList])
+
     return (
         <>
             <input onInput={() => searchUsers()}/>
