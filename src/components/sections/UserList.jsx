@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
-import { useClickOutside, formatListData } from "../../utils"
-import { List } from "../"
+import { ToggleFollowBtn } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 export default function UserList(props){
     const { idList, setUserProfileData } = props
-    const { formatedUserList, setFormatedUserList } = useState(null)
+    const { userDataList, setUserDataList } = useState(null)
 
     async function getUsersData(){
         const userList = []
@@ -19,13 +18,7 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
-        console.log("user list is", userList)
-
-        const formatedData = formatListData(userList, "users")
-
-        if(formatedData.length > 0){
-            setFormatedUserList({items: formatedData})
-        }
+        setUserDataList(userList)
     }
 
     async function searchUsers(){
@@ -42,10 +35,15 @@ export default function UserList(props){
         <>
             <input onInput={() => searchUsers()}/>
 
-            {formatedUserList && <List 
-            list={formatedUserList} 
-            category={"userList"} 
-            setUserProfileData={setUserProfileData}/>}
+            {userDataList && 
+                userDataList.map((user) => {
+                    <section className="flex">
+                        <img src={user.images[0].url} />
+                        {user.display_name}
+                        <ToggleFollowBtn userId={user.id} setUserProfileData={setUserProfileData}/>
+                    </section>
+                })
+            }
         </>
     )
 }
