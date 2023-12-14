@@ -22,9 +22,8 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 }
 
 function formatListData(items, category) {
-  console.log("items for formatting are", items)
 
-  const itemsArray = Array.isArray(items) ? items : Object.values(items)
+  // const itemsArray = Array.isArray(items) ? items : Object.values(items)
   
   return items.map(item => {
     let listItem = {

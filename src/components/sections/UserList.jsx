@@ -7,8 +7,6 @@ export default function UserList(props){
     const { idList, setUserProfileData } = props
     const { formatedUserList, setFormatedUserList } = useState(null)
 
-    console.log("id list is:", idList)
-
     async function getUsersData(){
         const userList = []
         idList.slice(0, 15).map(async (id) => {
