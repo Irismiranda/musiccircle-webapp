@@ -80,21 +80,39 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
             {userListVisibility.following &&
-            <UserList idList={userProfileData?.following} setUserProfileData={setUserProfileData}/>}
+            <UserList 
+            idList={userProfileData?.following} 
+            setUserProfileData={setUserProfileData}/>}
 
             {userListVisibility.followers &&
-            <UserList idList={userProfileData?.following_you} setUserProfileData={setUserProfileData}/>}
+            <UserList 
+            idList={userProfileData?.following_you} 
+            setUserProfileData={setUserProfileData}/>}
             
             <section className="flex" style={{ marginBottom: "30px" }}>
-                <img src={`${userProfileData?.images[1].url}`} className="profile_large" style={{ marginRight: "90px" }}/>
+                <img src={`${userProfileData?.images[1].url}`} 
+                className="profile_large" 
+                style={{ marginRight: "90px" }}/>
+
                 <div className="user_data_grid">
                     <h2>{userProfileData?.display_name}</h2>
-                    {!isLoggedUser && <ToggleFollowBtn id="follow_btn" userId={userId} loggedUser={loggedUser} setUserProfileData={setUserProfileData}/>}
-                    {!isLoggedUser && <button is="message_btn">Send Message</button>}
+                    {!isLoggedUser && 
+                    <ToggleFollowBtn id="follow_btn" 
+                    userId={userId} 
+                    loggedUser={loggedUser} 
+                    setUserProfileData={setUserProfileData}/>}
+                    {!isLoggedUser && 
+                    <button 
+                    id="message_btn">Send Message
+                    </button>}
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
-                        <h3 onClick={() => { toggleVisibility("followers") }}> {userProfileData?.following_you?.length || 0} Followers </h3>
-                        <h3 onClick={() => { toggleVisibility("following") }}> {userProfileData?.following?.length || 0} Following </h3>
+                        <h3 
+                        onClick={() => { toggleVisibility("followers") }}
+                        style={{ cursor: isLoggedUser ? "pointer" : "" }}> {userProfileData?.following_you?.length || 0} Followers </h3>
+                        <h3 
+                        onClick={() => { toggleVisibility("following") }}
+                        style={{ cursor: isLoggedUser ? "pointer" : "" }}> {userProfileData?.following?.length || 0} Following </h3>
                     </div>
                 </div>
             </section>
