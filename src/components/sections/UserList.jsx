@@ -7,9 +7,12 @@ export default function UserList(props){
     const { idList, setUserProfileData } = props
     const { formatedUserList, setFormatedUserList } = useState(null)
 
+    console.log("id list is:", idList)
+
     async function getUsersData(){
         const userList = []
         idList.slice(15).map(async (id) => {
+            console.log("id is:", response.data)
             const response = await Axios.post("/api/account", {
                 userData: {
                     id: id,
@@ -19,8 +22,12 @@ export default function UserList(props){
             userList.push(response.data)
             console.log("user data is:", response.data)
         })
+
         const formatedData = formatListData({items: userList})
-        setFormatedUserList({items: formatedData})
+
+        if(formatedData.length > 0){
+            setFormatedUserList({items: formatedData})
+        }
     }
 
     async function searchUsers(){
