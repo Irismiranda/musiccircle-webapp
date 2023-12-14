@@ -19,6 +19,8 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
+        console.log("user list is", userList)
+
         const formatedData = formatListData({items: userList})
 
         if(formatedData.length > 0){
