@@ -906,6 +906,12 @@ h3{
   margin: 15px 0px;
 }
 
+.user_list_grid{
+  display: grid;
+  grid-template-columns: 50px auto 1fr;
+  gap: 20px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;

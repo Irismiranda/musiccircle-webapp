@@ -44,11 +44,11 @@ export default function UserList(props){
                 {userDataList && 
                     userDataList.map((user) => {
                         return (
-                        <section className="flex">
+                        <section className="user_list_grid">
                             <Link to={`/account/${user.id}`}>
-                                <img src={user.images[0].url} />
+                                <img className="profile_medium" src={user.images[0].url} />
                             </Link>
-                            <Link to={}>
+                            <Link to={`/account/${user.id}`}>
                                 {user.display_name}
                             </Link>
                             <ToggleFollowBtn 
