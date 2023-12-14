@@ -11,6 +11,7 @@ export default function Artist(){
     const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ artistTopTracks, setArtistTopTracks ] = useState(null)
     const [ isFollowing, setIsFollowing ] = useState(false)
+    const [ hoverItemId, setHoverItemId ] = useState(null)
     const albumsSlider = useRef(null)
 
     async function getArtistData(){
