@@ -12,7 +12,6 @@ export default function UserList(props){
     async function getUsersData(){
         const userList = []
         idList.slice(0, 15).map(async (id) => {
-            console.log("id is:", response.data)
             const response = await Axios.post("/api/account", {
                 userData: {
                     id: id,
