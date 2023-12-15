@@ -38,7 +38,6 @@ export default function UserList(props){
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
               <section className="user_list_grid" key={user.id}>
-                <div>
                   <Link to={`/account/${user.id}`}>
                     <img 
                     className="profile_medium" 
@@ -51,11 +50,10 @@ export default function UserList(props){
                   <ToggleFollowBtn 
                   userId={user.id} 
                   setUserProfileData={setUserProfileData} />
-                </div>
               </section>
             ))
           ) : (
-            <h1>Nothing to see here...</h1>
+            <h3>Nothing to see here...</h3>
           )}
         </div>
       )
