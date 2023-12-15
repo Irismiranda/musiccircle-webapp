@@ -32,14 +32,8 @@ export default function UserList(props){
         }
     }, [idList])
 
-    useEffect(() => {
-        if(userDataList){
-            console.log("user data list is:", userDataList)
-        }
-    }, [userDataList])
-
         return (
-            <div className="user_list_wrapper">
+            <div className="user_list_wrapper wrapper default_padding">
                 <input onInput={() => searchUsers()}/>
                 {userDataList && 
                     userDataList.map((user) => {

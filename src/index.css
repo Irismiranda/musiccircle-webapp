@@ -632,12 +632,12 @@ h3{
 
 .post_wrapper{
   position: fixed;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%;
+  z-index: 3;
   height: 500px;
-  width: 800px;
-  z-index: 5;
+  width: 400px;
+  transform: translate(-50%, -50%);
 }
 
 .player_minimized .interaction_btns{
@@ -914,9 +914,10 @@ h3{
 }
 
 .user_list_wrapper{
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  height: 500px;
+  width: 400px;
+  position: fixed;
+  z-index: 3;
 }
 
 ::-webkit-scrollbar {
