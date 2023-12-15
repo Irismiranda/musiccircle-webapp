@@ -32,31 +32,31 @@ export default function UserList(props){
         }
     }, [idList])
 
-        return (
-            <div className="user_list_wrapper wrapper default_padding">
-                <input onInput={() => searchUsers()}/>
-                {userDataList && 
-                    userDataList.map((user) => {
-                        return (
-                        <section className="user_list_grid">
-                            {userDataList.length > 0 ? 
-                            <div>
-                                <Link to={`/account/${user.id}`}>
-                                    <img className="profile_medium" src={user.images[0].url} />
-                                </Link>
-                                <Link to={`/account/${user.id}`}>
-                                    {user.display_name}
-                                </Link>
-                                <ToggleFollowBtn 
-                                userId={user.id} 
-                                setUserProfileData={setUserProfileData}/>
-                            </div> :
-                            <h1>Nothing to see here...</h1>
-                            }
-                        </section>
-                        )
-                    })
-                }
-            </div>
-        )
-}
+    return (
+        <div className="user_list_wrapper wrapper default_padding">
+          <input onInput={() => searchUsers()} />
+          {userDataList && userDataList.length > 0 ? (
+            userDataList.map((user) => (
+              <section className="user_list_grid" key={user.id}>
+                <div>
+                  <Link to={`/account/${user.id}`}>
+                    <img 
+                    className="profile_medium" 
+                    src={user.images[0].url} 
+                    alt={`Profile of ${user.display_name}`} />
+                  </Link>
+                  <Link to={`/account/${user.id}`}>
+                    {user.display_name}
+                  </Link>
+                  <ToggleFollowBtn 
+                  userId={user.id} 
+                  setUserProfileData={setUserProfileData} />
+                </div>
+              </section>
+            ))
+          ) : (
+            <h1>Nothing to see here...</h1>
+          )}
+        </div>
+      )
+    }      
