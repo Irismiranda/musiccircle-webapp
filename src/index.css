@@ -920,6 +920,10 @@ h3{
   z-index: 3;
 }
 
+.user_list_wrapper input{
+  margin-bottom: 25px;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;
