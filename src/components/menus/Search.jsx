@@ -6,7 +6,7 @@ import { useStore } from "zustand"
 export default function Search(){
     const [searchResults, setSearchResults] = useState(null)
     const [activeCategory, setActiveCategory] = useState(null)
-    const { spotifyApi } = useStore
+    const { spotifyApi } = useStore()
     const searchBarRef = useRef(null)
 
     async function search(){
