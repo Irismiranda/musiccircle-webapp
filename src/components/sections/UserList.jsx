@@ -35,39 +35,35 @@ export default function UserList(props){
     async function searchUsers() {
         setIsLoading(true)
         const userList = []
-        const searchTerm = userSsearchInputRef.current.value
-      
-        console.log("search term is", searchTerm)
-      
+        const searchTerm = userSsearchInputRef.current.value.toLowerCase()
+        
         await Promise.all(
-          idList.map(async (id) => {
+            idList.map(async (id) => {
             const response = await Axios.post("/api/account", {
-              userData: {
+                userData: {
                 id: id,
                 type: "user",
-              },
+                },
             })
-      
+        
             userList.push(response.data)
-          })
+            })
         )
-      
-        console.log("user list is:", userList)
-      
+
         let searchResults
-      
+        
         if (searchTerm === "") {
-          searchResults = userList.slice(0, 15)
+            searchResults = userList.slice(0, 15)
         } else {
-          searchResults = userList.filter((user) =>
-            user.display_name.includes(searchTerm)
-          )
+            searchResults = userList.filter((user) =>
+            user.display_name.toLowerCase().includes(searchTerm)
+            )
         }
-      
+        
         console.log("search results are", searchResults)
         setUserDataList(searchResults)
         setIsLoading(false)
-      }
+    }
 
     useEffect(() => {
         if(idList){
