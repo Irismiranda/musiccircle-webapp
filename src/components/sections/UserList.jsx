@@ -15,6 +15,11 @@ export default function UserList(props){
         followers: false,
     }))
 
+    function toggleTransparency(e){
+        const parentDiv = e.currentTarget.parentElement
+        parentDiv.classList.toggle("transparent_section")
+    }
+
     async function getUsersData(){
         setIsLoading(true)
         const userList = []
@@ -75,7 +80,7 @@ export default function UserList(props){
           {(idList.length > 0) && <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />}
           { !isLoading ?       
           (userDataList && userDataList.length > 0 ? (
-            userDataList.map((user) => (
+            userDataList.map((user, index) => (
                 <section className="list_items_wrapper">
                     <div className="user_list_grid" key={user.id}>
                         <Link to={`/account/${user.id}`}>
@@ -87,7 +92,7 @@ export default function UserList(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <div onClick={} className="follow_btn">
+                        <div onClick={() => toggleTransparency(e)}>
                             <ToggleFollowBtn 
                             userId={user.id} 
                             setUserProfileData={setUserProfileData} />
