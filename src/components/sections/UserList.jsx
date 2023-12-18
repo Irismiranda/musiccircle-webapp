@@ -56,13 +56,16 @@ export default function UserList(props){
 
         if(searchTerm === ""){
             searchResults = userList.slice(0, 15)
+            console.log("search results are", searchResults)
+            setUserDataList(searchResults)
+            setIsLoading(false)
         } else {
             searchResults = userList.filter(user => user.display_name.includes(searchTerm))
+            console.log("search results are", searchResults)
+            setUserDataList(searchResults)
+            setIsLoading(false)
         }
-        
-        console.log("search results are", searchResults)
-        setUserDataList(searchResults)
-        setIsLoading(false)
+ 
     }
 
     useEffect(() => {
