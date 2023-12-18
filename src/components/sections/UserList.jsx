@@ -33,6 +33,8 @@ export default function UserList(props){
         const userList = []
         const searchTerm = userSsearchInputRef.value
 
+        console.log("search term is", searchTerm)
+
         idList.map(async (id) => {
             const response = await Axios.post("/api/account", {
                 userData: {
@@ -40,10 +42,17 @@ export default function UserList(props){
                     type: "user",
                 }
             })
+
             userList.push(response.data)
         })
-        
-        const searchResults = userList.filter(user => user.display_name.includes(searchTerm))
+
+        if(searchResults.value === ""){
+            const searchResults = userList.slice(0, 15)
+        } else {
+            const searchResults = userList.filter(user => user.display_name.includes(searchTerm))
+        }
+
+        console.log("search results are", searchResults)
 
         setUserDataList(searchResults)
     }
