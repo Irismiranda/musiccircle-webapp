@@ -78,7 +78,7 @@ export default function UserList(props){
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
           <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           { !isLoading ?       
-          userDataList && userDataList.length > 0 ? (
+          (userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
                 <section className="list_items_wrapper">
                     <div className="user_list_grid" key={user.id}>
@@ -99,7 +99,7 @@ export default function UserList(props){
             ))
           ) : (
             <h3>Nothing to see here...</h3>
-          ) :
+          )) :
           <h3>Loading...</h3>
         }
         </div>
