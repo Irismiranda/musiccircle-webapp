@@ -92,7 +92,7 @@ export default function UserList(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <div onClick={() => toggleTransparency(e)}>
+                        <div onClick={(e) => toggleTransparency(e)}>
                             <ToggleFollowBtn 
                             userId={user.id} 
                             setUserProfileData={setUserProfileData} />
