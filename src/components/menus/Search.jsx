@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import {List, SimplifiedList} from "../"
+import {UserList, SimplifiedList} from "../"
 import { Axios } from "../../Axios-config"
 import { useStore } from "zustand"
 
@@ -32,7 +32,7 @@ export default function Search(){
     }
 
     return (
-        <div className="wrapper default_padding" style={{ paddingTop: "50px" }}>
+        <>
             <section className="flex space_between" style={{ marginBottom: "20px" }}>
                 <button 
                 className="bullet_btn"
@@ -80,6 +80,6 @@ export default function Search(){
                 category={activeCategory} />}
             </section>}
 
-        </div>
+        </>
     )
 }
