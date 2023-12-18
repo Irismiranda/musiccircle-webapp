@@ -14,9 +14,9 @@ export default function Search(){
         console.log("search term is:", searchTerm)
         const options = {limit: 20}
 
-        if(searchTerm === ""){
-            return
-        } else if(activeCategory === "tracks"){
+        if(searchTerm === "") return
+        
+        if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)
             setSearchResults(response.items)
         } else if(activeCategory === "artists"){
