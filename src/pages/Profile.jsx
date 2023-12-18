@@ -84,12 +84,14 @@ export default function Profile(){
             {userListVisibility.following &&
             <UserList 
             idList={userProfileData?.following} 
-            setUserProfileData={setUserProfileData}/>}
+            setUserProfileData={setUserProfileData}
+            setUserListVisibility={setUserListVisibility}/>}
 
             {userListVisibility.followers &&
             <UserList 
             idList={userProfileData?.following_you} 
-            setUserProfileData={setUserProfileData}/>}
+            setUserProfileData={setUserProfileData}
+            setUserListVisibility={setUserListVisibility}/>}
             
             <section className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} 

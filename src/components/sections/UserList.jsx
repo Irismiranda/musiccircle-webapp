@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { ToggleFollowBtn } from "../../utils"
+import { ToggleFollowBtn, useClickOutside } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 export default function UserList(props){
-    const { idList, setUserProfileData } = props
+    const { idList, setUserProfileData, setUserListVisibility } = props
     const [userDataList, setUserDataList] = useState(null)
+    const userListRef = useRef(null)
+
+    useClickOutside()
 
     async function getUsersData(){
         const userList = []
@@ -19,7 +22,7 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
-        setUserDataList(userList)
+        setUserDataList(userListRef, null, setUserListVisibility)
     }
 
     async function searchUsers(){
@@ -33,8 +36,8 @@ export default function UserList(props){
     }, [idList])
 
     return (
-        <div className="user_list_wrapper wrapper default_padding">
-          <input onInput={() => searchUsers()} />
+        <div className="user_list_wrapper wrapper default_padding" ref={userListRef}>
+          <input placeholder="Search..." onInput={() => searchUsers()} />
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
               <section className="user_list_grid" key={user.id}>
