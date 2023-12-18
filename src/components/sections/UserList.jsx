@@ -7,6 +7,7 @@ export default function UserList(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
     const [userDataList, setUserDataList] = useState(null)
     const userListRef = useRef(null)
+    const userSsearchInputRef = useRef(null)
 
     useClickOutside(userListRef, exceptionRef, setUserListVisibility({
         following: false,
@@ -29,7 +30,22 @@ export default function UserList(props){
     }
 
     async function searchUsers(){
+        const userList = []
+        const searchTerm = userSsearchInputRef.value
 
+        idList.map(async (id) => {
+            const response = await Axios.post("/api/account", {
+                userData: {
+                    id: id,
+                    type: "user",
+                }
+            })
+            userList.push(response.data)
+        })
+        
+        const searchResults = userList.filter(user => user.display_name.includes(searchTerm))
+
+        setUserDataList(searchResults)
     }
 
     useEffect(() => {
@@ -40,7 +56,7 @@ export default function UserList(props){
 
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          <input placeholder="Search..." onInput={() => searchUsers()} />
+          <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
               <section className="user_list_grid" key={user.id}>
