@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { ToggleFollowBtn } from "../../utils"
 
 export default function UserSearchSection(props){
-    const { list } = props
+    const { list, setUserProfileData } = props
 
     return (
         list && list?.length > 0 ? (

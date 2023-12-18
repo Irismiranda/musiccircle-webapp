@@ -81,7 +81,9 @@ export default function UserSearchSection(props){
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
           <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           { !isLoading ?       
-          <UserList list={userDataList}/> :
+          <UserList 
+          list={userDataList}
+          setUserProfileData={setUserProfileData}/> :
           <h3>Loading...</h3>
         }
         </div>
