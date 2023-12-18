@@ -9,7 +9,7 @@ export default function UserList(props){
     const userListRef = useRef(null)
     const userSsearchInputRef = useRef(null)
 
-    useClickOutside(userListRef, exceptionRef, setUserListVisibility({
+    useClickOutside(userListRef, exceptionRef, () => setUserListVisibility({
         following: false,
         followers: false,
     }))
