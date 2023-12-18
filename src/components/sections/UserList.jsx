@@ -22,7 +22,7 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
-        setUserDataList(userListRef, null, setUserListVisibility)
+        setUserDataList(userListRef, null, setUserListVisibility(null))
     }
 
     async function searchUsers(){
