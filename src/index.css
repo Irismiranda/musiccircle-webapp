@@ -914,9 +914,12 @@ h3{
 }
 
 .user_list_wrapper{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   height: 500px;
   width: 400px;
-  position: fixed;
   z-index: 3;
 }
 
