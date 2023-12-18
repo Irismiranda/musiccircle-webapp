@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import {UserList, SimplifiedList} from ".."
 import { Axios } from "../../Axios-config"
-import { useStore } from "zustand"
+import useStore from "../../store"
 
 export default function SearchMenu(){
     const [searchResults, setSearchResults] = useState(null)

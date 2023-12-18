@@ -3,7 +3,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom'
 import { SvgMusicCircle, SvgHomeIcon, SvgSearchIcon, SvgCommentBtn, SvgNotificationsIcon, SvgMoreIcon } from '../../../src/assets'
 import { Notifications, More, SearchMenu } from '../'
 import { useClickOutside } from "../../utils"
-import useStore from "../../store"
+import useStore from '../../store'
 
 export default function SideMenu(){
     const sideMenuRef = createRef(null)
