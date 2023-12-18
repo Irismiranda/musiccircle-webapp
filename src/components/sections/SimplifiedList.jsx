@@ -19,7 +19,7 @@ export default function SimplifiedList(props){
                         if(playerState.currentTrack){ 
                         setHoverItemId(item.id)
                         } }}
-          s              onMouseLeave={() => setHoverItemId(null)}> 
+                        onMouseLeave={() => setHoverItemId(null)}> 
                             <div 
                             style={{ justifySelf: "center" }}
                             onMouseEnter={() => {

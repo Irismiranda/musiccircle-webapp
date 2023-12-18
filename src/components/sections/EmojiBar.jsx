@@ -77,7 +77,11 @@ export default function EmojiBar(props){
 
     return (
         <div className="wrapper default_padding emoji_bar">
-            <input ref={emoji_searchbar} placeholder="Search..." onInput={() => searchEmojis()}/>
+            <input 
+            ref={emoji_searchbar} 
+            className="search_bar"
+            placeholder="Search..." 
+            onInput={() => searchEmojis()}/>
             <div className="categories flex" >
                 {
                     categories.map( category => {

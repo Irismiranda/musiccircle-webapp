@@ -46,4 +46,11 @@ function formatListData(items, category) {
   })
 }
 
-export { useClickOutside, formatListData }
+function setProperties(callback, property, value) {
+  callback((prevState) => ({
+    ...prevState,
+    [property]: value,
+  }))
+}
+
+export { useClickOutside, formatListData, setProperties }

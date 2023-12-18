@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
-import { UserList } from "../components"
+import { UserSearchSection } from "../components"
 import { ToggleFollowBtn } from "../utils"
 import useStore from "../store"
 
@@ -85,14 +85,14 @@ export default function Profile(){
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
             {userListVisibility.following &&
-            <UserList 
+            <UserSearchSection 
             idList={userProfileData?.following} 
             setUserProfileData={setUserProfileData}
             setUserListVisibility={setUserListVisibility}
             exceptionRef={followingRef}/>}
 
             {userListVisibility.followers &&
-            <UserList 
+            <UserSearchSection 
             idList={userProfileData?.following_you} 
             setUserProfileData={setUserProfileData}
             setUserListVisibility={setUserListVisibility}

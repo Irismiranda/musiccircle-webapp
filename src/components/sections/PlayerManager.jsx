@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
 import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, Post, ShareMenu } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
+import { setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
@@ -45,13 +46,6 @@ export default function PlayerManager() {
         isScrolled,
         isMute,
     } = playerState
-
-    function setProperties(callback, property, value) {
-        callback((prevState) => ({
-          ...prevState,
-          [property]: value,
-        }))
-    }
 
     async function handleShuffleClick() {
         spotifyApi.setShuffle(!shuffleState)

@@ -1,91 +1,16 @@
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import { ToggleFollowBtn, useClickOutside } from "../../utils"
-import { Axios } from "../../Axios-config"
+import { ToggleFollowBtn } from "../../utils"
 
-export default function UserList(props){
-    const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
-    const [userDataList, setUserDataList] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-    const [preventUpdate, setPreventUpdate] = useState(false)
-    const userListRef = useRef(null)
-    const userSsearchInputRef = useRef(null)
-
-    useClickOutside(userListRef, exceptionRef, () => setUserListVisibility({
-        following: false,
-        followers: false,
-    }))
-
-    function toggleTransparency(e){
-        setPreventUpdate(true)
-        const parentDiv = e.currentTarget.parentElement
-        parentDiv.classList.toggle("transparent_section")
-    }
-
-    async function getUsersData(){
-        setIsLoading(true)
-        const userList = []
-        await Promise.all(
-            idList.slice(0, 15).map(async (id) => {
-                const response = await Axios.post("/api/account", {
-                    userData: {
-                        id: id,
-                        type: "user",
-                    }
-                })
-                userList.push(response.data)
-            })
-        )
-
-        setUserDataList(userList)
-        setIsLoading(false)
-    }
-
-    async function searchUsers() {
-        const userList = []
-        const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
-        await Promise.all(
-            idList.map(async (id) => {
-            const response = await Axios.post("/api/account", {
-                userData: {
-                id: id,
-                type: "user",
-                },
-            })
-        
-            userList.push(response.data)
-            })
-        )
-
-        let searchResults
-        
-        if (searchTerm === "") {
-            searchResults = userList.slice(0, 15)
-        } else {
-            searchResults = userList.filter((user) =>
-            user.display_name.toLowerCase().includes(searchTerm)
-            )
-        }
-        
-        console.log("search results are", searchResults)
-        setUserDataList(searchResults)
-    }
-
-    useEffect(() => {
-        if(!preventUpdate && idList){
-            getUsersData()
-        }
-    }, [idList])
+export default function UserSearchSection(props){
+    const { list } = props
 
     return (
-        <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
-          { !isLoading ?       
-          (userDataList && userDataList?.length > 0 ? (
-            userDataList.map((user, index) => (
+        list && list?.length > 0 ? (
+            list.map((user, index) => (
                 <section 
                 className="list_items_wrapper" 
-                style={{ overflowY: userDataList.length > 3 ? "scroll" : ""  }}>
+                style={{ overflowY: list.length > 3 ? "scroll" : ""  }}>
                     <div className="user_list_grid" key={user.id}>
                         <Link to={`/account/${user.id}`}>
                             <img 
@@ -109,9 +34,6 @@ export default function UserList(props){
             ))
           ) : (
             <h3>Nothing to see here...</h3>
-          )) :
-          <h3>Loading...</h3>
-        }
-        </div>
+          )
       )
     }      
