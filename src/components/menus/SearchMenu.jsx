@@ -80,7 +80,7 @@ export default function SearchMenu(){
                 list={searchResults}
                 showBtn={false}/> :
                 <SimplifiedList 
-                list={{items: searchResults}} 
+                list={{searchResults}} 
                 category={activeCategory} />}
             </section>}
 
