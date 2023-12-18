@@ -87,9 +87,11 @@ export default function UserList(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <ToggleFollowBtn 
-                        userId={user.id} 
-                        setUserProfileData={setUserProfileData} />
+                        <div onClick={} className="follow_btn">
+                            <ToggleFollowBtn 
+                            userId={user.id} 
+                            setUserProfileData={setUserProfileData} />
+                        </div>
                     </div>
                 </section>
             ))
