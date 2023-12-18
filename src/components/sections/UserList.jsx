@@ -46,10 +46,12 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
+        let searchResults
+
         if(searchResults.value === ""){
-            const searchResults = userList.slice(0, 15)
+            searchResults = userList.slice(0, 15)
         } else {
-            const searchResults = userList.filter(user => user.display_name.includes(searchTerm))
+            searchResults = userList.filter(user => user.display_name.includes(searchTerm))
         }
 
         console.log("search results are", searchResults)
