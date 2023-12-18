@@ -4,11 +4,11 @@ import { ToggleFollowBtn, useClickOutside } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 export default function UserList(props){
-    const { idList, setUserProfileData, setUserListVisibility } = props
+    const { idList, setUserProfileData } = props
     const [userDataList, setUserDataList] = useState(null)
     const userListRef = useRef(null)
 
-    useClickOutside()
+    useClickOutside(userListRef, null, setUserListVisibility(null))
 
     async function getUsersData(){
         const userList = []
@@ -22,7 +22,7 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
-        setUserDataList(userListRef, null, setUserListVisibility(null))
+        setUserDataList(userList)
     }
 
     async function searchUsers(){
@@ -36,7 +36,7 @@ export default function UserList(props){
     }, [idList])
 
     return (
-        <div className="user_list_wrapper wrapper default_padding" ref={userListRef}>
+        <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
           <input placeholder="Search..." onInput={() => searchUsers()} />
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
