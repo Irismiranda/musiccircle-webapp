@@ -11,7 +11,6 @@ export default function Search(){
 
     async function search(){
         const searchTerm = searchBarRef.current.value
-        console.log("search term is:", searchTerm)
         const options = {limit: 20}
 
         if(searchTerm === "") return
@@ -34,7 +33,7 @@ export default function Search(){
 
     return (
         <div className="wrapper default_padding" style={{ paddingTop: "50px" }}>
-            <section>
+            <section className="flex space_between" style={{ marginBottom: "20px" }}>
                 <button 
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "tracks" ? "#F230AA" : ""}}

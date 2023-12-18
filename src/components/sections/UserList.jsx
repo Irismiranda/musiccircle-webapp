@@ -17,7 +17,9 @@ export default function UserSearchSection(props){
                 <section 
                 className="list_items_wrapper" 
                 style={{ overflowY: list.length > 3 ? "scroll" : ""  }}>
-                    <div className="user_list_grid" key={user.id}>
+                    <div 
+                    className="user_list_grid" 
+                    key={user.id}>
                         <Link to={`/account/${user.id}`}>
                             <img 
                             className="profile_medium" 
