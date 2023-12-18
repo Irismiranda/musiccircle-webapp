@@ -70,7 +70,7 @@ export default function Search(){
             placeholder="Search..." />
 
             <section>
-                {activeCategory === user ?
+                {activeCategory === "users" ?
                 <UserList 
                 list={searchResults}/> :
                 <SimplifiedList 
