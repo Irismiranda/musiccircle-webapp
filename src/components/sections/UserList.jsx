@@ -77,7 +77,7 @@ export default function UserList(props){
 
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          {(idList?.length > 0) && <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />}
+          <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           { !isLoading ?       
           (userDataList && userDataList?.length > 0 ? (
             userDataList.map((user, index) => (
@@ -92,7 +92,12 @@ export default function UserList(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <div onClick={(e) => toggleTransparency(e)}>
+                        <div 
+                        style={{ 
+                            display: "flex",
+                            justifyContent: "end"
+                         }}
+                        onClick={(e) => toggleTransparency(e)}>
                             <ToggleFollowBtn 
                             userId={user.id} 
                             setUserProfileData={setUserProfileData} />
