@@ -4,7 +4,7 @@ import { ToggleFollowBtn, useClickOutside } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 export default function UserList(props){
-    const { idList, setUserProfileData } = props
+    const { idList, setUserProfileData, setUserListVisibility } = props
     const [userDataList, setUserDataList] = useState(null)
     const userListRef = useRef(null)
 
