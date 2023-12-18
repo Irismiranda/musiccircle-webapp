@@ -73,7 +73,12 @@ export default function UserSearchSection(props){
 
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
+          <input 
+          ref={userSsearchInputRef} 
+          className="search_bar" 
+          placeholder="Search..." 
+          onInput={() => searchUsers()} />
+          
           { !isLoading ?       
           <UserList 
           list={userDataList}
