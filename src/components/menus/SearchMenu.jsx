@@ -17,16 +17,16 @@ export default function SearchMenu(){
         
         if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)
-            setSearchResults(response.items)
+            setSearchResults(response.tracks)
         } else if(activeCategory === "artists"){
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            setSearchResults(response.items)
+            setSearchResults(response.albums)
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
-            setSearchResults(response.items)
+            setSearchResults(response.artists)
         } else if(activeCategory === "users"){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
-            setSearchResults({items: response.data})
+            setSearchResults(response.data)
         }
         
     }

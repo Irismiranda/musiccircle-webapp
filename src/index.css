@@ -944,8 +944,9 @@ h3{
 }
 
 .bullet_btn{
-  margin: 0px;
+  margin: 0;
   border-radius: 50px;
+  padding: 3px 10px 4px;
 }
 
 ::-webkit-scrollbar {
