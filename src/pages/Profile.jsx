@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import { UserList } from "../components"
@@ -21,7 +21,8 @@ export default function Profile(){
     })
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
-    const location = useLocation()
+    const followersRef = useRef(null)
+    const followingRef = useRef(null)
     
     async function getUser(id){
         const response = await Axios.post("/api/account", {
@@ -66,7 +67,7 @@ export default function Profile(){
         } else{
             userId && getUser(userId)
         }
-    }, [userId, location])
+    }, [userId])
 
     useEffect(() => {
         if(isLoggedUser && userTopArtists){
@@ -86,13 +87,15 @@ export default function Profile(){
             <UserList 
             idList={userProfileData?.following} 
             setUserProfileData={setUserProfileData}
-            setUserListVisibility={setUserListVisibility}/>}
+            setUserListVisibility={setUserListVisibility}
+            exceptionRef={followingRef}/>}
 
             {userListVisibility.followers &&
             <UserList 
             idList={userProfileData?.following_you} 
             setUserProfileData={setUserProfileData}
-            setUserListVisibility={setUserListVisibility}/>}
+            setUserListVisibility={setUserListVisibility}
+            exceptionRef={followersRef}/>}
             
             <section className="flex" style={{ marginBottom: "30px" }}>
                 <img src={`${userProfileData?.images[1].url}`} 
@@ -113,9 +116,11 @@ export default function Profile(){
                     <div>
                         <h3> {userProfileData?.posts?.length || 0} Posts </h3>
                         <h3 
+                        ref={followersRef}
                         onClick={() => { toggleVisibility("followers") }}
                         style={{ cursor: isLoggedUser ? "pointer" : "" }}> {userProfileData?.following_you?.length || 0} Followers </h3>
                         <h3 
+                        ref={followingRef}
                         onClick={() => { toggleVisibility("following") }}
                         style={{ cursor: isLoggedUser ? "pointer" : "" }}> {userProfileData?.following?.length || 0} Following </h3>
                     </div>
