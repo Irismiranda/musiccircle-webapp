@@ -61,12 +61,12 @@ export default function Profile(){
     }
     
     useEffect(() => {
-        console.log("useEffect is running with userId:", userId)
         if(userId === loggedUser.id){
             setIsLoggedUser(true)
             setUserProfileData(loggedUser)
         } else{
             userId && getUser(userId)
+            setIsLoggedUser(false)
         }
     }, [userId])
 
