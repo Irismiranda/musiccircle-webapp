@@ -18,15 +18,17 @@ export default function UserList(props){
     async function getUsersData(){
         setIsLoading(true)
         const userList = []
-        idList.slice(0, 15).map(async (id) => {
-            const response = await Axios.post("/api/account", {
-                userData: {
-                    id: id,
-                    type: "user",
-                }
+        await Promise.all(
+            idList.slice(0, 15).map(async (id) => {
+                const response = await Axios.post("/api/account", {
+                    userData: {
+                        id: id,
+                        type: "user",
+                    }
+                })
+                userList.push(response.data)
             })
-            userList.push(response.data)
-        })
+        )
 
         setUserDataList(userList)
         setIsLoading(false)
