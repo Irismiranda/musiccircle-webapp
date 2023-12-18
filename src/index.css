@@ -910,7 +910,10 @@ h3{
   display: grid;
   grid-template-columns: 50px auto 1fr;
   gap: 20px;
-  align-items: center;
+  height: 88%;
+  overflow-y: scroll;
+  align-items: start;
+  padding-right: 15px;
 }
 
 .user_list_wrapper{
