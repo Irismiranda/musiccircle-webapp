@@ -73,7 +73,8 @@ export default function Search(){
             <section>
                 {activeCategory === "users" ?
                 <UserList 
-                list={searchResults}/> :
+                list={searchResults}
+                showBtn={false}/> :
                 <SimplifiedList 
                 list={searchResults} 
                 category={activeCategory} />}
