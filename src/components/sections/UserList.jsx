@@ -35,10 +35,8 @@ export default function UserList(props){
     }
 
     async function searchUsers() {
-        setIsLoading(true)
         const userList = []
-        const searchTerm = userSsearchInputRef.current.value.toLowerCase()
-        
+        const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
         await Promise.all(
             idList.map(async (id) => {
             const response = await Axios.post("/api/account", {
@@ -64,7 +62,6 @@ export default function UserList(props){
         
         console.log("search results are", searchResults)
         setUserDataList(searchResults)
-        setIsLoading(false)
     }
 
     useEffect(() => {
