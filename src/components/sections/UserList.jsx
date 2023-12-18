@@ -83,7 +83,9 @@ export default function UserList(props){
           { !isLoading ?       
           (userDataList && userDataList?.length > 0 ? (
             userDataList.map((user, index) => (
-                <section className="list_items_wrapper">
+                <section 
+                className="list_items_wrapper" 
+                style={{ overflowY: userDataList.length > 3 ? "scroll" : ""  }}>
                     <div className="user_list_grid" key={user.id}>
                         <Link to={`/account/${user.id}`}>
                             <img 
@@ -94,11 +96,9 @@ export default function UserList(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <div 
-                        style={{ 
-                            display: "flex",
-                            justifyContent: "end"
-                         }}
+                        <div
+                        className="flex" 
+                        style={{ justifyContent: "end" }}
                         onClick={(e) => toggleTransparency(e)}>
                             <ToggleFollowBtn 
                             currentUserId={user.id} 
