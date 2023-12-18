@@ -99,7 +99,7 @@ export default function UserList(props){
                          }}
                         onClick={(e) => toggleTransparency(e)}>
                             <ToggleFollowBtn 
-                            userId={user.id} 
+                            currentUserId={user.id} 
                             setUserProfileData={setUserProfileData} />
                         </div>
                     </div>

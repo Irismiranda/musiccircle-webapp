@@ -107,7 +107,7 @@ export default function Profile(){
                     <h2>{userProfileData?.display_name}</h2>
                     {!isLoggedUser && 
                     <ToggleFollowBtn id="follow_btn" 
-                    userId={userId} 
+                    currentUserId={userId} 
                     loggedUser={loggedUser} 
                     setUserProfileData={setUserProfileData}/>}
                     {!isLoggedUser && 
