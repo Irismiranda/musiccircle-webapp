@@ -7,6 +7,7 @@ export default function UserList(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
     const [userDataList, setUserDataList] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [preventUpdate, setPreventUpdate] = useState(false)
     const userListRef = useRef(null)
     const userSsearchInputRef = useRef(null)
 
@@ -16,6 +17,7 @@ export default function UserList(props){
     }))
 
     function toggleTransparency(e){
+        setPreventUpdate(true)
         const parentDiv = e.currentTarget.parentElement
         parentDiv.classList.toggle("transparent_section")
     }
@@ -70,7 +72,7 @@ export default function UserList(props){
     }
 
     useEffect(() => {
-        if(idList){
+        if(!preventUpdate && idList){
             getUsersData()
         }
     }, [idList])
