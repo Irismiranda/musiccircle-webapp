@@ -57,8 +57,6 @@
         })
         
         setLoggedUser(userData)
-        const stringData = JSON.stringify(userData)
-        localStorage.setItem("loggedUser", stringData)
         
       } catch(err){
         console.log(err)
@@ -191,6 +189,13 @@
 
       setIsLoading(false)
     }, [spotifyApi])
+
+    useEffect(() => {
+      if(loggedUser){
+        const stringData = JSON.stringify(loggedUser)
+        localStorage.setItem("loggedUser", stringData)
+      }
+    }, [loggedUser])
 
     useEffect(() => {
       if (expiringTime){
