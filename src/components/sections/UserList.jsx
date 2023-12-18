@@ -31,7 +31,7 @@ export default function UserList(props){
 
     async function searchUsers(){
         const userList = []
-        const searchTerm = userSsearchInputRef.value
+        const searchTerm = userSsearchInputRef.current.value
 
         console.log("search term is", searchTerm)
 
