@@ -3,7 +3,13 @@ import { Link } from "react-router-dom"
 import { ToggleFollowBtn } from "../../utils"
 
 export default function UserSearchSection(props){
-    const { list, setUserProfileData } = props
+    const { list, setUserProfileData, setPreventUpdate, showBtn } = props
+
+    function toggleTransparency(e){
+        setPreventUpdate(true)
+        const parentDiv = e.currentTarget.parentElement
+        parentDiv.classList.toggle("transparent_section")
+    }
 
     return (
         list && list?.length > 0 ? (
@@ -21,14 +27,14 @@ export default function UserSearchSection(props){
                         <Link to={`/account/${user.id}`}>
                             {user.display_name}
                         </Link>
-                        <div
+                        {showBtn && <div
                         className="flex" 
                         style={{ justifyContent: "end" }}
                         onClick={(e) => toggleTransparency(e)}>
                             <ToggleFollowBtn 
                             currentUserId={user.id} 
                             setUserProfileData={setUserProfileData} />
-                        </div>
+                        </div>}
                     </div>
                 </section>
             ))

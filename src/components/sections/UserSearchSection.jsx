@@ -16,12 +16,6 @@ export default function UserSearchSection(props){
         followers: false,
     }))
 
-    function toggleTransparency(e){
-        setPreventUpdate(true)
-        const parentDiv = e.currentTarget.parentElement
-        parentDiv.classList.toggle("transparent_section")
-    }
-
     async function getUsersData(){
         setIsLoading(true)
         const userList = []
@@ -83,7 +77,9 @@ export default function UserSearchSection(props){
           { !isLoading ?       
           <UserList 
           list={userDataList}
-          setUserProfileData={setUserProfileData}/> :
+          setUserProfileData={setUserProfileData}
+          setPreventUpdate={setPreventUpdate}
+          showBtn={true}/> :
           <h3>Loading...</h3>
         }
         </div>
