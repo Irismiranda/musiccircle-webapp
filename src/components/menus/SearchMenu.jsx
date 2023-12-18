@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import {UserList, SimplifiedList} from ".."
 import { Axios } from "../../Axios-config"
 import useStore from "../../store"
@@ -30,6 +30,10 @@ export default function SearchMenu(){
         }
         
     }
+
+    useEffect(() => {
+        search()
+    }, [activeCategory])
 
     return (
         <>
