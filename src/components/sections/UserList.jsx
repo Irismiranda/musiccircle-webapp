@@ -72,7 +72,7 @@ export default function UserList(props){
 
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          {(userDataList && userDataList.length > 0) && <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />}
+          {(idList.length > 0) && <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />}
           { !isLoading ?       
           (userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
