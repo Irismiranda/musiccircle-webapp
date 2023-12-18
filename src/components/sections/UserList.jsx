@@ -6,6 +6,7 @@ import { Axios } from "../../Axios-config"
 export default function UserList(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
     const [userDataList, setUserDataList] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
     const userListRef = useRef(null)
     const userSsearchInputRef = useRef(null)
 
@@ -15,6 +16,7 @@ export default function UserList(props){
     }))
 
     async function getUsersData(){
+        setIsLoading(true)
         const userList = []
         idList.slice(0, 15).map(async (id) => {
             const response = await Axios.post("/api/account", {
@@ -27,9 +29,11 @@ export default function UserList(props){
         })
 
         setUserDataList(userList)
+        setIsLoading(false)
     }
 
     async function searchUsers(){
+        setIsLoading(true)
         const userList = []
         const searchTerm = userSsearchInputRef.current.value
 
@@ -46,6 +50,8 @@ export default function UserList(props){
             userList.push(response.data)
         })
 
+        console.log("user list is:", userList)
+
         let searchResults
 
         if(searchTerm === ""){
@@ -53,10 +59,10 @@ export default function UserList(props){
         } else {
             searchResults = userList.filter(user => user.display_name.includes(searchTerm))
         }
-
+        
         console.log("search results are", searchResults)
-
         setUserDataList(searchResults)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -68,7 +74,8 @@ export default function UserList(props){
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
           <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
-          {userDataList && userDataList.length > 0 ? (
+          { !isLoading ?       
+          userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
                 <section className="list_items_wrapper">
                     <div className="user_list_grid" key={user.id}>
@@ -89,7 +96,9 @@ export default function UserList(props){
             ))
           ) : (
             <h3>Nothing to see here...</h3>
-          )}
+          ) :
+          <h3>Loading...</h3>
+        }
         </div>
       )
     }      

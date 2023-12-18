@@ -926,7 +926,11 @@ h3{
 }
 
 .list_items_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   overflow-y: scroll;
+  height: 88%;
 }
 
 .user_list_wrapper input{
