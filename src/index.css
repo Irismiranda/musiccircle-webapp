@@ -912,7 +912,7 @@ h3{
   gap: 20px;
   height: 88%;
   overflow-y: scroll;
-  align-items: start;
+  align-items: center;
   padding-right: 15px;
 }
 

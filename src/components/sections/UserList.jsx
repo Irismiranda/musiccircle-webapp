@@ -48,7 +48,7 @@ export default function UserList(props){
 
         let searchResults
 
-        if(searchResults.value === ""){
+        if(searchResults.current.value === ""){
             searchResults = userList.slice(0, 15)
         } else {
             searchResults = userList.filter(user => user.display_name.includes(searchTerm))
@@ -70,20 +70,22 @@ export default function UserList(props){
           <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
-              <section className="user_list_grid" key={user.id}>
-                  <Link to={`/account/${user.id}`}>
-                    <img 
-                    className="profile_medium" 
-                    src={user.images[0].url} 
-                    alt={`Profile of ${user.display_name}`} />
-                  </Link>
-                  <Link to={`/account/${user.id}`}>
-                    {user.display_name}
-                  </Link>
-                  <ToggleFollowBtn 
-                  userId={user.id} 
-                  setUserProfileData={setUserProfileData} />
-              </section>
+                <section className="">
+                    <div className="user_list_grid" key={user.id}>
+                        <Link to={`/account/${user.id}`}>
+                            <img 
+                            className="profile_medium" 
+                            src={user.images[0].url} 
+                            alt={`Profile of ${user.display_name}`} />
+                        </Link>
+                        <Link to={`/account/${user.id}`}>
+                            {user.display_name}
+                        </Link>
+                        <ToggleFollowBtn 
+                        userId={user.id} 
+                        setUserProfileData={setUserProfileData} />
+                    </div>
+                </section>
             ))
           ) : (
             <h3>Nothing to see here...</h3>
