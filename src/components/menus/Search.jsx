@@ -11,9 +11,10 @@ export default function Search(){
 
     async function search(){
         const searchTerm = searchBarRef.current.value
+        console.log("search term is:", searchTerm)
         const options = {limit: 20}
 
-        if(!searchTerm || searchTerm === ""){
+        if(searchTerm === ""){
             return
         } else if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)
