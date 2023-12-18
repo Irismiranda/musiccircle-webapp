@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import { UserList } from "../components"
@@ -21,6 +21,7 @@ export default function Profile(){
     })
     const topArtistsSlider = useRef(null)
     const topTracksSlider = useRef(null)
+    const location = useLocation()
     
     async function getUser(id){
         const response = await Axios.post("/api/account", {
@@ -65,7 +66,7 @@ export default function Profile(){
         } else{
             userId && getUser(userId)
         }
-    }, [userId])
+    }, [userId, location])
 
     useEffect(() => {
         if(isLoggedUser && userTopArtists){
