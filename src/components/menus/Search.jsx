@@ -70,15 +70,16 @@ export default function Search(){
             className="search_bar" 
             placeholder="Search..." />
 
+            {searchResults && 
             <section>
                 {activeCategory === "users" ?
                 <UserList 
                 list={searchResults}
                 showBtn={false}/> :
                 <SimplifiedList 
-                list={searchResults} 
+                list={{items: searchResults}} 
                 category={activeCategory} />}
-            </section>
+            </section>}
 
         </div>
     )
