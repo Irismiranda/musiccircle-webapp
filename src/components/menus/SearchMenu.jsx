@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react"
-import {UserList, SimplifiedList} from "../"
+import {UserList, SimplifiedList} from ".."
 import { Axios } from "../../Axios-config"
 import { useStore } from "zustand"
 
-export default function Search(){
+export default function SearchMenu(){
     const [searchResults, setSearchResults] = useState(null)
     const [activeCategory, setActiveCategory] = useState(null)
     const { spotifyApi } = useStore()

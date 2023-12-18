@@ -1,7 +1,7 @@
 import React, { useState, createRef, useEffect, useLayoutEffect } from 'react'
 import { Outlet, useLocation, Link } from 'react-router-dom'
 import { SvgMusicCircle, SvgHomeIcon, SvgSearchIcon, SvgCommentBtn, SvgNotificationsIcon, SvgMoreIcon } from '../../../src/assets'
-import { Notifications, More, Search } from '../'
+import { Notifications, More, SearchMenu } from '../'
 import { useClickOutside } from "../../utils"
 import useStore from "../../store"
 
@@ -102,7 +102,7 @@ export default function SideMenu(){
                     </div>
                 </div>
                 {(activeMenu && (activeMenu !== "messages" && activeMenu !== "account" && activeMenu !== "home")) && <div ref={extendedMenu} className='side_menu_wrapper gap'>
-                    {activeMenu === "search" && <Search />}
+                    {activeMenu === "search" && <SearchMenu />}
                     {activeMenu === "notifications" && <Notifications />}
                     {activeMenu === "more" && <More />}
                 </div>}
