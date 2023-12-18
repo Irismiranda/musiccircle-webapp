@@ -48,7 +48,7 @@ export default function UserList(props){
 
         let searchResults
 
-        if(searchResults.current.value === ""){
+        if(searchTerm === ""){
             searchResults = userList.slice(0, 15)
         } else {
             searchResults = userList.filter(user => user.display_name.includes(searchTerm))
@@ -70,7 +70,7 @@ export default function UserList(props){
           <input ref={userSsearchInputRef} placeholder="Search..." onInput={() => searchUsers()} />
           {userDataList && userDataList.length > 0 ? (
             userDataList.map((user) => (
-                <section className="">
+                <section className="list_items_wrapper">
                     <div className="user_list_grid" key={user.id}>
                         <Link to={`/account/${user.id}`}>
                             <img 
