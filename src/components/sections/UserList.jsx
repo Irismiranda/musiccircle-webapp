@@ -8,7 +8,10 @@ export default function UserList(props){
     const [userDataList, setUserDataList] = useState(null)
     const userListRef = useRef(null)
 
-    useClickOutside(userListRef, null, setUserListVisibility(null))
+    useClickOutside(userListRef, null, setUserListVisibility({
+        following: false,
+        followers: false,
+    }))
 
     async function getUsersData(){
         const userList = []
