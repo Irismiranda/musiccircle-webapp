@@ -45,6 +45,8 @@ export default function Profile(){
     }
 
     function toggleVisibility(item){
+        if(!isLoggedUser) return
+
         item === "following" && setUserListVisibility({
             following: true,
             followers: false,
