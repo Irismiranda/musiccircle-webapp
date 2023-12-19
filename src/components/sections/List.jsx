@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { PlayBtn } from "../../utils"
 
 export default function List(props){
-    const { list, category } = props
+    const { list, category, showIndex } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
     return(
@@ -22,7 +22,7 @@ export default function List(props){
                                     className="cover_small" />
                                     <div>
                                         {category === "tracks" && <h5>{item.artistName}</h5>}
-                                        <h3>{index + 1}. {item.name}</h3>
+                                        {showIndex && <h3>{index + 1}. {item.name}</h3>}
                                         <h4>{item.type}</h4>
                                     </div>
                                 </div>

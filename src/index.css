@@ -742,7 +742,6 @@ h3{
 
 .list_wrapper{
   justify-content: space-between;
-  margin: 50px 0;
   display: grid;
   gap: 35px;
   grid-template-columns: repeat(auto-fit, 400px);

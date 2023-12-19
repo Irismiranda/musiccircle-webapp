@@ -85,7 +85,8 @@ export default function Artist(){
                 <h2> Popular Tracks</h2>
                 <List 
                 list={artistTopTracks} 
-                category={"tracks"}/>
+                category={"tracks"}
+                showIndex={true}/>
             </section>}
             {artistAlbums && <h2>Discography</h2>}
             {artistAlbums && 
