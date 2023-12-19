@@ -21,11 +21,11 @@ export default function SearchMenu(){
             setSearchResults(response.tracks.items)
         } else if(activeCategory === "artists"){
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            console.log(response.albums)
+            console.log(response)
             setSearchResults(response)
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
-            console.log(response.artists)
+            console.log(response)
             setSearchResults(response)
         } else if(activeCategory === "users"){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
