@@ -936,6 +936,12 @@ h3{
   padding: 12px 10px 15px 25px;
 }
 
+.search_list_wrapper{
+  width: 415px;
+  gap: 40px;
+  align-items: start;
+}
+
 .bullet_btn{
   margin: 0;
   border-radius: 50px;

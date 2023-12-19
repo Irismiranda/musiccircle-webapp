@@ -52,7 +52,7 @@ export default function SearchMenu(){
 
     return (
         <div
-        style={{ width: "500px" }}>
+        className="search_list_wrapper flex flex_column">
             <section 
             className="flex space_between">
                 <button 
