@@ -13,7 +13,6 @@ export default function SearchMenu(){
 
     async function search(){
         setIsLoading(true)
-        setSearchResults(null)
         const searchTerm = searchBarRef.current.value
         const options = {limit: 20}
 
@@ -82,7 +81,10 @@ export default function SearchMenu(){
                 <button 
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "users" ? "#F230AA" : ""}}
-                onClick={() => setActiveCategory("users")}>
+                onClick={() => {
+                    setSearchResults(null)
+                    setActiveCategory("users") 
+                    }}>
                     Users
                 </button>
             </section>
