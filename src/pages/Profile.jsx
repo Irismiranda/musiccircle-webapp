@@ -109,7 +109,7 @@ export default function Profile(){
                         <br/>
                         <span 
                         style={{ color: "#F230AA" }}
-                        >@{userProfileData?.display_name}#{userProfileData?.userId}
+                        >@{userProfileData?.display_name}#{userId}
                         </span>
                     </h2>
                     {!isLoggedUser && 

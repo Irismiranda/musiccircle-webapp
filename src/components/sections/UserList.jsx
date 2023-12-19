@@ -29,7 +29,13 @@ export default function UserSearchSection(props){
                             alt={`Profile of ${user.display_name}`} />
                         </Link>
                         <Link to={`/account/${user.id}`}>
-                            {user.display_name}
+                                <h3>
+                                {user.display_name}
+                                <span 
+                                style={{ color: "#F230AA" }}
+                                >@{user.display_name}#{user.id}
+                                </span>
+                            </h3>
                         </Link>
                         {showBtn && <div
                         className="flex" 
