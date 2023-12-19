@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { normalize } from 'normalize'
+import { normalizeText } from 'normalize-text'
 import {UserList, List} from ".."
 import { formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
@@ -53,7 +53,7 @@ export default function SearchMenu(){
 
         } else if(activeCategory === "users"){
             if(searchTerm !== ""){
-                const normalizedSearchTerm = normalize(searchTerm).replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                const normalizedSearchTerm = normalizeText(searchTerm).replace(/[\u0300-\u036f]/g, '').toLowerCase()
                 const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
 
                 console.log("response is:", response.data)
