@@ -21,12 +21,12 @@ export default function SearchMenu(){
             setSearchResults(response.tracks.items)
         } else if(activeCategory === "artists"){
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            console.log(respons.albums.items)
-            setSearchResults(response.albums.items)
+            console.log(response.artists.items)
+            setSearchResults(response.artists.items)
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
-            console.log(response)
-            setSearchResults(response)
+            console.log(response.albums.items)
+            setSearchResults(response.albums.items)
         } else if(activeCategory === "users"){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
             setSearchResults(response)
@@ -52,7 +52,7 @@ export default function SearchMenu(){
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "albums" ? "#F230AA" : ""}}
                 onClick={() => setActiveCategory("albums")}>
-                    ALbums
+                    Albums
                 </button>
 
                 <button 
