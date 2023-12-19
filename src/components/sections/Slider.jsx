@@ -12,8 +12,6 @@ export default function Slider(props){
     const [ listScroll, setListScroll ] = useState(0)
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
-    console.log("list is:", list)
-
     const { currentTrack } = playerState
 
     async function toggleItemVisibility(itemId, category){

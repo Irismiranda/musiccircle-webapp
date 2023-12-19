@@ -5,8 +5,6 @@ import { PlayBtn } from "../../utils"
 export default function List(props){
     const { list, category } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
-    
-    console.log("list is:", list)
 
     return(
         <div className="list_wrapper">

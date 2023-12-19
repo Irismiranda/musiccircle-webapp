@@ -6,7 +6,7 @@ import useStore from "../../store"
 
 export default function SearchMenu(){
     const [searchResults, setSearchResults] = useState(null)
-    const [activeCategory, setActiveCategory] = useState("tracks")
+    const [activeCategory, setActiveCategory] = useState(null)
     const { spotifyApi } = useStore()
     const searchBarRef = useRef(null)
 
