@@ -40,9 +40,13 @@ export default function SearchMenu(){
             const formatedData = formatListData(response.albums.items)
             setSearchResults(formatedData)
         } else if(activeCategory === "users"){
-            const response = await Axios.get(`/api/user/search/${searchTerm}`)
-            console.log("response is:", response.data)
-            setSearchResults(response.data)
+            if(searchTerm !== ""){
+                const response = await Axios.get(`/api/user/search/${searchTerm}`)
+                console.log("response is:", response.data)
+                setSearchResults(response.data)
+            } else {
+                setSearchResults(null)
+            }
         }
         
         setIsLoading(false)
