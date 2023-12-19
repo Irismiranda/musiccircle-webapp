@@ -61,7 +61,6 @@ export default function UserSearchSection(props){
             )
         }
         
-        console.log("search results are", searchResults)
         setUserDataList(searchResults)
     }
 

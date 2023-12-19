@@ -75,7 +75,6 @@ export default function PlayerManager() {
 
     async function getRecommendations(id){
         const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
-        console.log("recommendations are:", response.tracks)
         const uriList = response.tracks.map(track => {
             return track.uri
         })
@@ -84,9 +83,7 @@ export default function PlayerManager() {
     }
 
     async function setQueue() {
-        if (recommendations[queueIndex]) {
-            console.log("queue index is:", queueIndex, "recommendations length is:", recommendations.length)
-    
+        if (recommendations[queueIndex]) {    
             let retries = 0
             const maxRetries = 3
     
@@ -101,7 +98,6 @@ export default function PlayerManager() {
                     return 
                 } catch (err) {
                     if (err.status === 502) {
-                        console.log(`Retry attempt ${retries + 1} due to 502 Bad Gateway`)
                         retries++
                         await delay(1000)
                     } else {
