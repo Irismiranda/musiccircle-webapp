@@ -868,6 +868,7 @@ h3{
 .user_handle{
   color: rgb(242, 48, 170);
   font-size: 15px;
+  font-weight: 400;
 }
 
 .outline_button{
@@ -925,12 +926,7 @@ h3{
 }
 
 .list_items_wrapper{
-  display: flex;
-    flex-direction: column;
-    justify-content: start;
-    height: 94%;
-    margin-right: -40px;
-    padding-right: 25px;
+  margin-top: 20px;
 }
 
 .search_bar {
