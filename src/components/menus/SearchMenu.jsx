@@ -13,6 +13,7 @@ export default function SearchMenu(){
 
     async function search(){
         setIsLoading(true)
+        setSearchResults(null)
         const searchTerm = searchBarRef.current.value
         const options = {limit: 20}
 
