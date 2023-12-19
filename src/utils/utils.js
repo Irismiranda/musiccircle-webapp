@@ -21,8 +21,6 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 }
 
 function formatListData(items, category) {
-     
-  console.log("items are:", items)
 
   return items.map(item => {   
     let listItem = {
@@ -42,9 +40,7 @@ function formatListData(items, category) {
       }
       
     }
-    
-    console.log("formated data is", listItem)
-
+  
     return listItem
   })
 }

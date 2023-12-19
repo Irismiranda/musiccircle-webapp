@@ -5,7 +5,7 @@ import { ToggleFollowBtn } from "../../utils"
 export default function UserSearchSection(props){
     const { list, setUserProfileData, setPreventUpdate, showBtn } = props
 
-    console.log(list)
+    console.log("list is:", list)
 
     function toggleTransparency(e){
         setPreventUpdate(true)
