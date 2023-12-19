@@ -27,21 +27,18 @@ function formatListData(items, category) {
   return items.map(item => {   
     let listItem = {
       id: item.id,
+      type: item.type,
       uri: item.uri,
+      imageUrl: item.type === "track" ? item.album.images[0].url : item.images[0].url,
       name: item.name,
       isVisible: true,
-      type: item.type,
     }
 
     if (category !== "simplified") {
       if (category === "tracks") {
-        listItem.artistName = item.artists[0].name
         listItem.imageUrl = item.album.images[0].url
       } else if(category === "albums") {
-        listItem.imageUrl = item.images[0].url
         listItem.releaseDate = item.release_date
-      } else {
-        listItem.imageUrl = item.images[0].url
       }
       
     }
