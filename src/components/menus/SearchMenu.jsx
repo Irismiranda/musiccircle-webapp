@@ -27,8 +27,10 @@ export default function SearchMenu(){
             setSearchResults(formatedData)
         } else if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)
-            const formatedData = formatListData(response.tracks.items)
-            setSearchResults(formatedData)
+            if(response){
+                const formatedData = formatListData(response.tracks.items)
+                setSearchResults(formatedData)
+            } else setSearchResults(null)
         } else if(activeCategory === "artists"){
             const response = await spotifyApi.searchArtists(searchTerm, options)
             const formatedData = formatListData(response.artists.items)
