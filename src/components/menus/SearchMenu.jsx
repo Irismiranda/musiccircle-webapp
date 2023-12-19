@@ -39,6 +39,7 @@ export default function SearchMenu(){
             setSearchResults(formatedData)
         } else if(activeCategory === "users"){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
+            console.log("response is:", response)
             setSearchResults(response)
         }
         
