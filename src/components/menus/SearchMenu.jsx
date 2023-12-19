@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import {UserList, SimplifiedList} from ".."
+import {UserList, List} from ".."
 import { Axios } from "../../Axios-config"
 import useStore from "../../store"
 
@@ -82,7 +82,7 @@ export default function SearchMenu(){
                 <UserList 
                 list={searchResults}
                 showBtn={false}/> :
-                <SimplifiedList 
+                <List 
                 list={searchResults} 
                 category={activeCategory} />}
             </section>}
