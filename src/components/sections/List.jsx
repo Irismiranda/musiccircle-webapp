@@ -22,7 +22,7 @@ export default function List(props){
                                     className="cover_small" />
                                     <div>
                                         {category === "tracks" && <h5>{item.artistName}</h5>}
-                                        {showIndex && <h3>{index + 1}. {item.name}</h3>}
+                                        <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
                                         <h4>{item.type}</h4>
                                     </div>
                                 </div>
