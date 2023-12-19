@@ -6,11 +6,13 @@ import useStore from "../../store"
 
 export default function SearchMenu(){
     const [searchResults, setSearchResults] = useState(null)
-    const [activeCategory, setActiveCategory] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [activeCategory, setActiveCategory] = useState("tracks")
     const { spotifyApi } = useStore()
     const searchBarRef = useRef(null)
 
     async function search(){
+        setIsLoading(true)
         const searchTerm = searchBarRef.current.value
         const options = {limit: 20}
 
@@ -40,6 +42,7 @@ export default function SearchMenu(){
             setSearchResults(response)
         }
         
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -87,7 +90,7 @@ export default function SearchMenu(){
 
             {(searchBarRef?.current?.value === "") && <h3>Recently Listened</h3>}
 
-            {searchResults && 
+            {(!isLoading && searchResults?.length > 0) ? 
             <section
             style={{ overflowY: "scroll" }}>
                 {activeCategory === "users" ?
@@ -97,7 +100,9 @@ export default function SearchMenu(){
                 <List 
                 list={searchResults} 
                 category={activeCategory} />}
-            </section>}
+            </section> :
+            isLoading ? <h3>Loading...</h3> :
+            <h3>No {category} were found</h3>}
 
         </>
     )
