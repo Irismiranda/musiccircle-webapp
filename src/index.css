@@ -865,6 +865,11 @@ h3{
   background-position: 50% 25%;
 }
 
+.user_handle{
+  color: rgb(242, 48, 170);
+  font-size: 15px;
+}
+
 .outline_button{
   font-weight: 700;
   background-color: transparent;

@@ -31,9 +31,8 @@ export default function UserSearchSection(props){
                         <Link to={`/account/${user.id}`}>
                                 <h3>
                                 {user.display_name}
-                                <span 
-                                style={{ color: "#F230AA" }}
-                                >@{user.display_name}#{user.id}
+                                <span className="user_handle">
+                                    @{user.display_name}#{user.id}
                                 </span>
                             </h3>
                         </Link>
