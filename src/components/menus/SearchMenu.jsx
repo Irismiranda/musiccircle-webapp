@@ -77,7 +77,8 @@ export default function SearchMenu(){
             placeholder="Search..." />
 
             {searchResults && 
-            <section>
+            <section
+            style={{ overflowY: "scroll" }}>
                 {activeCategory === "users" ?
                 <UserList 
                 list={searchResults}
