@@ -63,8 +63,7 @@ export default function Slider(props){
                 <div className="btn_wrapper_right" onClick={() => slideRight()}>
                 <SvgRightBtn className="svg_left_right"/>
             </div>}
-            {list.items
-                .filter(item => item.isVisible === visibility)
+            {list.filter(item => item.isVisible === visibility)
                 .slice(0, 10)
                 .map((item) => {
                     return (
