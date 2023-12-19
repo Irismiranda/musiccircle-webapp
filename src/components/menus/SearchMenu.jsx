@@ -53,7 +53,7 @@ export default function SearchMenu(){
 
         } else if(activeCategory === "users"){
             if(searchTerm !== ""){
-                const normalizedSearchTerm = normalizeText(searchTerm).replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                const normalizedSearchTerm = normalizeText(searchTerm).toLowerCase()
                 const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
 
                 console.log("response is:", response.data)
