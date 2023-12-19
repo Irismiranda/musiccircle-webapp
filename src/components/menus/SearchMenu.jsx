@@ -21,8 +21,8 @@ export default function SearchMenu(){
             setSearchResults(response.tracks.items)
         } else if(activeCategory === "artists"){
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            console.log(response)
-            setSearchResults(response)
+            console.log(respons.albums.items)
+            setSearchResults(response.albums.items)
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
             console.log(response)
