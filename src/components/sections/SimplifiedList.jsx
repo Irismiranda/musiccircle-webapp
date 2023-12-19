@@ -9,7 +9,7 @@ export default function SimplifiedList(props){
     
     return(
         <div className="simplified_list_wrapper">
-            {list.items.map((item, index) => {
+            {list.map((item, index) => {
                     return (
                         <div 
                         key={item.id} 

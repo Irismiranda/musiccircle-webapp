@@ -7,7 +7,7 @@ export default function List(props){
     
     return(
         <div className="list_wrapper">
-            {list.items.map((item, index) => {
+            {list.map((item, index) => {
                     return (
                         <div key={item.id} style={{ position: "relative" }}>
                             <div 

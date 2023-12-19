@@ -22,13 +22,13 @@ export default function Artist(){
     async function getArtistTopTracks(){
         const response = await spotifyApi.getArtistTopTracks(artistId, loggedUser.country)
         const formatedData = formatListData(response.tracks, "tracks")
-        setArtistTopTracks({items: formatedData})
+        setArtistTopTracks(formatedData)
     }
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
         const formatedData = formatListData(response.items, "albums")
-        setArtistAlbums({items: formatedData})
+        setArtistAlbums(formatedData)
     }
 
     async function getIsFollowing(){
