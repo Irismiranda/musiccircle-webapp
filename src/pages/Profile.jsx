@@ -108,7 +108,7 @@ export default function Profile(){
                         {userProfileData?.display_name}
                         <br/>
                         <span className="user_handle">
-                            @{userProfileData?.display_name}#{userId}
+                            @{userProfileData?.display_name.replace(/\s+/g, '')}#{userId}
                         </span>
                     </h2>
                     {!isLoggedUser && 

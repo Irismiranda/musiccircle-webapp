@@ -31,8 +31,9 @@ export default function UserSearchSection(props){
                         <Link to={`/account/${user.id}`}>
                                 <h3>
                                 {user.display_name}
+                                <br/>
                                 <span className="user_handle">
-                                    @{user.display_name}#{user.id}
+                                    @{user.display_name.replace(/\s+/g, '')}#{user.id}
                                 </span>
                             </h3>
                         </Link>
