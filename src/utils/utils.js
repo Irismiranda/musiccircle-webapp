@@ -34,10 +34,10 @@ function formatListData(items, category) {
     }
 
     if (category !== "simplified") {
-      if (category === "tracks") {
+      if (item.type === "tracks") {
         listItem.artistName = item.artists[0].name
         listItem.imageUrl = item.album.images[0].url
-      } else if(category === "albums") {
+      } else if(item.type === "albums") {
         listItem.imageUrl = item.images[0].url
         listItem.releaseDate = item.release_date
       } else {
