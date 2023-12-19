@@ -104,9 +104,14 @@ export default function Profile(){
                 style={{ marginRight: "90px" }}/>
 
                 <div className="user_data_grid">
-                    <h2>{userProfileData?.display_name}</h2>
-                    <h3 
-                    style={{ color: "#F230AA" }}>@{userProfileData?.display_name}#{userProfileData?.userId}</h3>
+                    <h2>
+                        {userProfileData?.display_name}
+                        <br/>
+                        <span 
+                        style={{ color: "#F230AA" }}
+                        >@{userProfileData?.display_name}#{userProfileData?.userId}
+                        </span>
+                    </h2>
                     {!isLoggedUser && 
                     <ToggleFollowBtn id="follow_btn" 
                     currentUserId={userId} 
