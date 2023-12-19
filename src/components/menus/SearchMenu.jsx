@@ -39,10 +39,10 @@ export default function SearchMenu(){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
             const formatedData = formatListData(response.albums.items)
             setSearchResults(formatedData)
-        } else if(activeCategory === "users" && searchTerm !== ""){
+        } else if(activeCategory === "users"){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
-            console.log("response is:", response)
-            setSearchResults(response)
+            console.log("response is:", response.data)
+            setSearchResults(response.data)
         }
         
         setIsLoading(false)
