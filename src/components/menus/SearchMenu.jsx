@@ -81,7 +81,7 @@ export default function SearchMenu(){
             className="search_bar" 
             placeholder="Search..." />
 
-            {(searchBarRef.current.value === "") && <h3>Recently Listened</h3>}
+            {(searchBarRef?.current?.value === "") && <h3>Recently Listened</h3>}
 
             {searchResults && 
             <section
