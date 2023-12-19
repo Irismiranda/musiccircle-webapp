@@ -18,7 +18,7 @@ export default function SearchMenu(){
 
         if(!activeCategory) return
 
-        if(searchTerm === "" && activeCategory !== "user"){
+        if(searchTerm === "" && activeCategory !== "users"){
             const response = await spotifyApi.getMyRecentlyPlayedTracks()
             const tracks = response.items.map(item => {
                 return item.track
@@ -81,10 +81,7 @@ export default function SearchMenu(){
                 <button 
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "users" ? "#F230AA" : ""}}
-                onClick={() => {
-                    setIsLoading(true)
-                    setActiveCategory("users") 
-                    }}>
+                onClick={() => {setActiveCategory("users")}}>
                     Users
                 </button>
             </section>
