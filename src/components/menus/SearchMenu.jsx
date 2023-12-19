@@ -18,7 +18,7 @@ export default function SearchMenu(){
 
         if(!activeCategory) return
 
-        if(searchTerm === "" && activeCategory ==! "user"){
+        if(searchTerm === "" && activeCategory !== "user"){
             const response = await spotifyApi.getMyRecentlyPlayedTracks()
             const tracks = response.items.map(item => {
                 return item.track
@@ -37,7 +37,7 @@ export default function SearchMenu(){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
             const formatedData = formatListData(response.albums.items)
             setSearchResults(formatedData)
-        } else if(activeCategory === "users"){
+        } else if(activeCategory === "users" && searchTerm !== ""){
             const response = await Axios.get(`/api/user/search/${searchTerm}`)
             console.log("response is:", response)
             setSearchResults(response)
