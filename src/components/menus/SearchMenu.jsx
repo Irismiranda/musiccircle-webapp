@@ -82,7 +82,7 @@ export default function SearchMenu(){
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "users" ? "#F230AA" : ""}}
                 onClick={() => {
-                    setSearchResults(null)
+                    setIsLoading(true)
                     setActiveCategory("users") 
                     }}>
                     Users
