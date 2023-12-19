@@ -25,25 +25,39 @@ export default function SearchMenu(){
             })
             const formatedData = formatListData(tracks)
             setSearchResults(formatedData)
+
         } else if(activeCategory === "tracks"){
+
             const response = await spotifyApi.searchTracks(searchTerm, options)
+
             if(response){
+
                 const formatedData = formatListData(response.tracks.items)
+
                 setSearchResults(formatedData)
             } else setSearchResults(null)
+
         } else if(activeCategory === "artists"){
+
             const response = await spotifyApi.searchArtists(searchTerm, options)
             const formatedData = formatListData(response.artists.items)
+
             setSearchResults(formatedData)
+
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
             const formatedData = formatListData(response.albums.items)
+
             setSearchResults(formatedData)
+
         } else if(activeCategory === "users"){
             if(searchTerm !== ""){
-                const response = await Axios.get(`/api/search/user/${searchTerm}`)
+                const normalizedSearchTerm = normalize(searchTerm).replace(/[\u0300-\u036f]/g, '').toLowerCase()
+                const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
+
                 console.log("response is:", response.data)
                 setSearchResults(response.data)
+
             } else {
                 setSearchResults(null)
             }
