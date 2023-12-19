@@ -6,8 +6,6 @@ export default function SimplifiedList(props){
     const { list, category } = props
     const { playerState } = useStore()
     const [ hoverItemId, setHoverItemId ] = useState(null)
-
-    console.log("list is:", list)
     
     return(
         <div className="simplified_list_wrapper">
