@@ -50,7 +50,8 @@ export default function SearchMenu(){
     }, [activeCategory])
 
     return (
-        <>
+        <div
+        style={{ width: "500px" }}>
             <section 
             className="flex space_between">
                 <button 
@@ -105,6 +106,6 @@ export default function SearchMenu(){
             isLoading ? <h3>Loading...</h3> :
             <h3>No {category} were found</h3>}
 
-        </>
+        </div>
     )
 }
