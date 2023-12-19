@@ -222,7 +222,7 @@ svg{
   width: 35px;
   height: 35px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 100%;
 }
 
 .profile_medium{
@@ -454,11 +454,6 @@ a{
   font-size: 13px;
   line-height: 0px;
   cursor: pointer;
-}
-
-.side_menu_wrapper img{
-  border-radius: 100%;
-  margin-left: 3px;
 }
 
 .side_menu_wrapper svg{
@@ -940,7 +935,6 @@ h3{
   background-size: 10px;
   background-position: 9px;
   padding: 12px 10px 15px 25px;
-  margin-bottom: 25px;
 }
 
 .bullet_btn{
