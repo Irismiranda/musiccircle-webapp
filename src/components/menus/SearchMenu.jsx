@@ -18,7 +18,10 @@ export default function SearchMenu(){
 
         if(searchTerm === ""){
             const response = await spotifyApi.getMyRecentlyPlayedTracks()
-            const formatedData = formatListData(response.items)
+            const tracks = response.items.map(item => {
+                return item.track
+            })
+            const formatedData = formatListData(tracks)
             setSearchResults(formatedData)
         } else if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)

@@ -30,14 +30,14 @@ export default function SimplifiedList(props){
                                 uri={item.uri} 
                                 id={item.id}
                                 category={"simplified_list"} 
-                                type={category.slice(0, -1)} 
+                                type={item.type} 
                                 hoverItemId={hoverItemId}/>
                                 {(hoverItemId !== item.id) && <h3>{index + 1}.</h3>}
                             </div>
                             
                             <h3>{item.name}</h3>
                             {category === "playlist" && <h5>{item.artistName}</h5>}
-                            <h4>{category.slice(0, -1)}</h4>
+                            <h4>{item.type}</h4>
                                
                         </div>
                         )

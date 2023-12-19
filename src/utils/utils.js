@@ -30,6 +30,7 @@ function formatListData(items, category) {
       uri: item.uri,
       name: item.name,
       isVisible: true,
+      type: type,
     }
 
     if (category !== "simplified") {

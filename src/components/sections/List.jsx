@@ -23,7 +23,7 @@ export default function List(props){
                                     <div>
                                         {category === "tracks" && <h5>{item.artistName}</h5>}
                                         <h3>{index + 1}. {item.name}</h3>
-                                        <h4>{category.slice(0, -1)}</h4>
+                                        <h4>{item.type}</h4>
                                     </div>
                                 </div>
                             </Link>
@@ -32,7 +32,7 @@ export default function List(props){
                                 uri={item.uri} 
                                 id={item.id}
                                 category={"list"} 
-                                type={category.slice(0, -1)} 
+                                type={item.type} 
                                 hoverItemId={hoverItemId}/>
                             </div>
                         </div>

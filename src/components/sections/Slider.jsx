@@ -69,24 +69,24 @@ export default function Slider(props){
                     return (
                         <div className="slider_item_wrapper" key={item.id}>
                             <div className="slider_image_wrapper">
-                                <Link to={`/${category.slice(0, -1)}/${item.id}`}>
+                                <Link to={`/${item.type}/${item.id}`}>
                                     <div 
                                     onMouseEnter={() => setHoverItemId(item.id)}
                                     onMouseLeave={() => setHoverItemId(null)}
                                     style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
                                     </div>
                                 </Link>
-                                {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, category)}>{visibility ? "Hide" : "Show"}</button>}
+                                {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, item.type)}>{visibility ? "Hide" : "Show"}</button>}
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
                                     <PlayBtn 
                                     uri={item.uri} 
                                     id={item.id}
                                     category={"slider"} 
-                                    type={category.slice(0, -1)} 
+                                    type={item.type} 
                                     hoverItemId={hoverItemId}/>
                                 </div>
                             </div>
-                            <Link to={`/${category.slice(0, -1)}/${item.id}`}>
+                            <Link to={`/${item.type}/${item.id}`}>
                                 <h3>{item.name}</h3>
                                 {(category === "tracks" || category === "albums") && <h5>{item.artistName}</h5>}
                                 <h4>{(category === "albums" || category === "albums") && 
