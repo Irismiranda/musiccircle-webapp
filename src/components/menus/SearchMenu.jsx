@@ -107,7 +107,7 @@ export default function SearchMenu(){
                 showIndex={false} />}
             </section> :
             isLoading ? <h3>Loading...</h3> :
-            <h3>No {category} were found</h3>}
+            <h3>No {activeCategory} were found</h3>}
 
         </div>
     )
