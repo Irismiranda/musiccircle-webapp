@@ -139,7 +139,7 @@ export default function Profile(){
             <section style={{ position: "relative" }} className={topArtists?.show_top_artists ? "" : "transparent_section"}>
                 <div ref={topArtistsSlider} className={showVisibleTopArtists ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider 
-                    list={topArtists} 
+                    list={topArtists.items} 
                     category="artists" 
                     visibility={showVisibleTopArtists} 
                     isLoggedUser={isLoggedUser} 
@@ -158,7 +158,7 @@ export default function Profile(){
            <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
                 <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
                     <Slider 
-                    list={topTracks} 
+                    list={topTracks.items} 
                     category="tracks" 
                     visibility={showVisibleTopTracks} 
                     isLoggedUser={isLoggedUser} 
