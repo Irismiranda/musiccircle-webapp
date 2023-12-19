@@ -42,6 +42,8 @@ function formatListData(items, category) {
       }
       
     }
+    
+    console.log("formated data is", listItem)
 
     return listItem
   })
