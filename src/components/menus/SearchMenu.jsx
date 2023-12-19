@@ -13,13 +13,12 @@ export default function SearchMenu(){
 
     async function search(){
         setIsLoading(true)
-        setSearchResults(null)
         const searchTerm = searchBarRef.current.value
         const options = {limit: 20}
 
         if(!activeCategory) return
 
-        if(searchTerm === ""){
+        if(searchTerm === "" && activeCategory ==! "user"){
             const response = await spotifyApi.getMyRecentlyPlayedTracks()
             const tracks = response.items.map(item => {
                 return item.track
