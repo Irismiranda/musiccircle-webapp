@@ -18,7 +18,7 @@ export default function SearchMenu(){
 
         if(searchTerm === ""){
             const response = await spotifyApi.getMyRecentlyPlayedTracks()
-            const formatedData = formatListData(response.tracks.items)
+            const formatedData = formatListData(response.items)
             setSearchResults(formatedData)
         } else if(activeCategory === "tracks"){
             const response = await spotifyApi.searchTracks(searchTerm, options)
@@ -45,7 +45,8 @@ export default function SearchMenu(){
 
     return (
         <>
-            <section className="flex space_between" style={{ marginBottom: "20px" }}>
+            <section 
+            className="flex space_between">
                 <button 
                 className="bullet_btn"
                 style={{ backgroundColor: activeCategory === "tracks" ? "#F230AA" : ""}}
