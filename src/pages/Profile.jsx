@@ -123,15 +123,20 @@ export default function Profile(){
                         Send Message
                     </button>}
 
-                    <h3> {userProfileData?.posts?.length || 0} Posts </h3>
+                    <h3 
+                    style={{ gridArea: "d" }}>
+                        {userProfileData?.posts?.length || 0} Posts
+                    </h3>
                     <h3 
                     ref={followersRef}
                     onClick={() => { toggleVisibility("followers") }}
-                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "center", }}> {userProfileData?.following_you?.length || 0} Followers </h3>
+                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "center", gridArea: "e" }}> {userProfileData?.following_you?.length || 0} Followers 
+                    </h3>
                     <h3 
                     ref={followingRef}
                     onClick={() => { toggleVisibility("following") }}
-                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "end", }}> {userProfileData?.following?.length || 0} Following </h3>
+                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "end", gridArea: "f"  }}> {userProfileData?.following?.length || 0} Following 
+                    </h3>
 
                 </div>
             </section>
