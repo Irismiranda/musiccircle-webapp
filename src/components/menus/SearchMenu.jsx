@@ -56,8 +56,8 @@ export default function SearchMenu(){
                 const normalizedSearchTerm = normalizeText(searchTerm).replace(/\s/g,'').toLowerCase()
                 const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
 
-                console.log("response is:", response.data[0].userData)
                 setSearchResults(response.data[0].userData)
+                console.log("response is:", response.data[0].userData)
 
             } else {
                 setSearchResults(null)
@@ -102,8 +102,7 @@ export default function SearchMenu(){
                 style={{ backgroundColor: activeCategory === "users" ? "#F230AA" : ""}}
                 onClick={() => {
                     setIsLoading(true)
-                    setActiveCategory("users") 
-                    }}>
+                    setActiveCategory("users")}}>
                     Users
                 </button>
             </section>
