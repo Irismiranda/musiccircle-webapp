@@ -64,6 +64,11 @@ export default function Slider(props){
                 <SvgRightBtn className="svg_left_right"/>
             </div>}
             {list.filter(item => item.isVisible === visibility)
+                .sort((a, b) => {
+                    if (a.releaseDate && b.releaseDate) {
+                        return a.releaseDate.localeCompare(b.releaseDate)
+                    }
+                    return 0
                 .slice(0, 10)
                 .map((item) => {
                     return (
