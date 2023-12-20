@@ -56,8 +56,8 @@ export default function SearchMenu(){
                 const normalizedSearchTerm = normalizeText(searchTerm).replace(/\s/g,'').toLowerCase()
                 const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
 
-                console.log("response is:", response.data)
-                setSearchResults(response.data)
+                console.log("response is:", response.data.userData)
+                setSearchResults(response.data.userData)
 
             } else {
                 setSearchResults(null)

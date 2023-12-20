@@ -122,17 +122,17 @@ export default function Profile(){
                     className="message_btn">
                         Send Message
                     </button>}
-                    <div>
-                        <h3> {userProfileData?.posts?.length || 0} Posts </h3>
-                        <h3 
-                        ref={followersRef}
-                        onClick={() => { toggleVisibility("followers") }}
-                        style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "center", }}> {userProfileData?.following_you?.length || 0} Followers </h3>
-                        <h3 
-                        ref={followingRef}
-                        onClick={() => { toggleVisibility("following") }}
-                        style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "end", }}> {userProfileData?.following?.length || 0} Following </h3>
-                    </div>
+
+                    <h3> {userProfileData?.posts?.length || 0} Posts </h3>
+                    <h3 
+                    ref={followersRef}
+                    onClick={() => { toggleVisibility("followers") }}
+                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "center", }}> {userProfileData?.following_you?.length || 0} Followers </h3>
+                    <h3 
+                    ref={followingRef}
+                    onClick={() => { toggleVisibility("following") }}
+                    style={{ cursor: isLoggedUser ? "pointer" : "", textAlign: "end", }}> {userProfileData?.following?.length || 0} Following </h3>
+
                 </div>
             </section>
             <section className={ showVisibleTopArtists ? "flex space_between slider_wrapper aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
