@@ -63,14 +63,15 @@ export default function Slider(props){
                 <div className="btn_wrapper_right" onClick={() => slideRight()}>
                 <SvgRightBtn className="svg_left_right"/>
             </div>}
-            {list.filter(item => item.isVisible === visibility)
+            {list
+                .filter(item => item.isVisible === visibility)
                 .sort((a, b) => {
                     if (a.releaseDate && b.releaseDate) {
                         return b.releaseDate.localeCompare(a.releaseDate)
                     }
                     return 0
                 })
-                .slice(0, 10)
+                .slice(category === "tracks" ? 0 : undefined, category === "tracks" ? 10 : undefined)
                 .map((item) => {
                     return (
                         <div className="slider_item_wrapper" key={item.id}>
