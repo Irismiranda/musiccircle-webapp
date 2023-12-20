@@ -20,6 +20,7 @@
 
 h1, h2, h3, h4, h5, h6{
   text-transform: capitalize;
+  margin: 0px;
 }
 
 h4, h5{
@@ -823,19 +824,14 @@ h3{
   grid-area: a; 
 }
 
-.user_data_grid #message_btn{
+.user_data_grid .message_btn{
   grid-area: b; 
+  justify-self: center;
 }
 
-.user_data_grid #follow_btn{
+.user_data_grid .follow_btn{
   grid-area: c; 
-}
-
-
-.user_data_grid div{
-  grid-area: d;
-  display: flex;
-  justify-content: space-between;
+  text-align: end;
 }
 
 .svg_left_right{
@@ -845,6 +841,7 @@ h3{
 
 .profile button{
   justify-self: end;
+  align-self: start;  
   margin: 0px;
   font-size: 12px;
 }
