@@ -27,7 +27,6 @@ function formatListData(items, category) {
       id: item.id,
       type: item.type,
       uri: item.uri,
-      imageUrl: item.type === "track" ? item.album.images[0].url : item.images[0].url,
       name: item.name,
       isVisible: true,
     }
@@ -36,6 +35,7 @@ function formatListData(items, category) {
       if (category === "tracks") {
         listItem.imageUrl = item.album.images[0].url
       } else if(category === "albums") {
+        listItem.imageUrl = item.images[0].url
         listItem.releaseDate = item.release_date
       }
       
