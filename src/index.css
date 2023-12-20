@@ -812,7 +812,7 @@ h3{
   display: grid;
   grid-template:
   "a b c"
-  "d d d";
+  "d e f";
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px 65px;
   align-items: center;
@@ -934,8 +934,15 @@ h3{
 
 .search_list_wrapper{
   width: 415px;
+  height: 100%;
   gap: 40px;
   align-items: start;
+}
+
+.search_list_inner_wrapper{
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
 }
 
 .bullet_btn{
