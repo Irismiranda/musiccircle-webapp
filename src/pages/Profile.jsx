@@ -43,7 +43,7 @@ export default function Profile(){
             userId: loggedUser.id
         })
         category === "top_artists" && setUserTopArtists(response.data)
-        category === "top_track" && setUserTopTracks(response.data)
+        category === "top_tracks" && setUserTopTracks(response.data)
     }
 
     function toggleVisibility(item){
