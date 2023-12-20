@@ -6,7 +6,7 @@ import { SvgRightBtn, SvgLeftBtn } from "../../assets"
 import { PlayBtn } from "../../utils"
 
 export default function Slider(props){
-    const { list, visibility, category, isLoggedUser, parentRef } = props
+    const { list, visibility, category, isLoggedUser, parentRef, type } = props
     const { loggedUser, setUserTopTracks, setUserTopArtists, playerState } = useStore()
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
@@ -71,7 +71,7 @@ export default function Slider(props){
                     }
                     return 0
                 })
-                .slice(category === "tracks" ? 0 : undefined, category === "tracks" ? 10 : undefined)
+                .slice(type === "top_list" ? 0 : undefined, type === "top_list" ? 10 : undefined)
                 .map((item) => {
                     return (
                         <div className="slider_item_wrapper" key={item.id}>

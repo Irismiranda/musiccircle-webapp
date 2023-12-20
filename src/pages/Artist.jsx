@@ -97,7 +97,8 @@ export default function Artist(){
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
-                    parentRef={albumsSlider}/>
+                    parentRef={albumsSlider}
+                    type={"list"}/>
                 </div>
             </section>}
         </div>

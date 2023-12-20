@@ -82,7 +82,8 @@ export default function Album(){
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
-                    parentRef={albumsSlider}/>
+                    parentRef={albumsSlider}
+                    type={"list"}/>
                 </div>
             </section>}
         </div>

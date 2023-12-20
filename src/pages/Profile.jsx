@@ -156,7 +156,8 @@ export default function Profile(){
                     category="artists" 
                     visibility={showVisibleTopArtists} 
                     isLoggedUser={isLoggedUser} 
-                    parentRef={topArtistsSlider}/>
+                    parentRef={topArtistsSlider}
+                    type={"top_list"}/>
                 </div>
            </section>}
            <section className={ showVisibleTopTracks ? "slider_wrapper flex space_between aling_start" : "slider_wrapper flex space_between hidden_items_section aling_start" }>
@@ -175,7 +176,8 @@ export default function Profile(){
                     category="tracks" 
                     visibility={showVisibleTopTracks} 
                     isLoggedUser={isLoggedUser} 
-                    parentRef={topTracksSlider}/>
+                    parentRef={topTracksSlider}
+                    type={"top_list"}/>
                 </div>
            </section>}
            <h2> Posts </h2>
