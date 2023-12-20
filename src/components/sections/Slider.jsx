@@ -69,6 +69,7 @@ export default function Slider(props){
                         return b.releaseDate.localeCompare(a.releaseDate)
                     }
                     return 0
+                })
                 .slice(0, 10)
                 .map((item) => {
                     return (
