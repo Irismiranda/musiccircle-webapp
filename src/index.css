@@ -249,8 +249,8 @@ svg{
 }
 
 .cover_medium{
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   object-fit: cover;
   background-size: cover;
   border-radius: 10px;  
