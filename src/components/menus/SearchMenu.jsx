@@ -120,8 +120,7 @@ export default function SearchMenu(){
             {(searchBarRef?.current?.value === "" && searchResults?.length > 0) && <h2>Recently Listened</h2>}
 
             {(!isLoading && searchResults?.length > 0) ? 
-            <section
-            style={{ overflowY: "scroll" }}>
+            <section className="search_list_wrapper">
                 {activeCategory === "users" ?
                 <UserList 
                 list={searchResults}
