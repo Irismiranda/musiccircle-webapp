@@ -3,7 +3,7 @@ import { devtools } from 'zustand/middleware'
 
 const useStore = create(devtools((set, get) => ({
   accessToken: null,
-  loggedUser: {},
+  loggedUser: null,
   spotifyApi: null,
   artistUri: null,
   seedTrackId: null,
