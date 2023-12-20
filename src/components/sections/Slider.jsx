@@ -15,12 +15,12 @@ export default function Slider(props){
     const { currentTrack } = playerState
 
     async function toggleItemVisibility(itemId, category){
-        const response = await Axios.post(`/api/user/top_${category}/hide_item`, {
+        const response = await Axios.post(`/api/user/top_${category}s/hide_item`, {
             userId: loggedUser.id,
             itemId: itemId,
         })
-        category === "tracks" && setUserTopTracks(response.data.top_tracks)
-        category === "artists" && setUserTopArtists(response.data.top_artists)
+        category === "track" && setUserTopTracks(response.data.top_tracks)
+        category === "artist" && setUserTopArtists(response.data.top_artists)
     }
 
     function slideLeft(){
