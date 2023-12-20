@@ -76,7 +76,7 @@ export default function Slider(props){
                     return (
                         <div className="slider_item_wrapper" key={item.id}>
                             <div className="slider_image_wrapper">
-                                <Link to={`/${item.type}/${item.id}`}>
+                                <Link to={category === "track" ? "" : `/${item.type}/${item.id}`}>
                                     <div 
                                     onMouseEnter={() => setHoverItemId(item.id)}
                                     onMouseLeave={() => setHoverItemId(null)}
@@ -93,7 +93,7 @@ export default function Slider(props){
                                     hoverItemId={hoverItemId}/>
                                 </div>
                             </div>
-                            <Link to={`/${item.type}/${item.id}`}>
+                            <Link to={category === "track" ? "" : `/${item.type}/${item.id}`}>
                                 <h3>{item.name}</h3>
                                 {(category === "tracks" || category === "albums") && <h5>{item.artistName}</h5>}
                                 <h4>{(category === "albums" || category === "albums") && 
