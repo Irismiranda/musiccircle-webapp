@@ -66,7 +66,7 @@ export default function Slider(props){
             {list.filter(item => item.isVisible === visibility)
                 .sort((a, b) => {
                     if (a.releaseDate && b.releaseDate) {
-                        return a.releaseDate.localeCompare(b.releaseDate)
+                        return b.releaseDate.localeCompare(a.releaseDate)
                     }
                     return 0
                 .slice(0, 10)
