@@ -93,7 +93,7 @@ export default function SideMenu(){
                         {isTextVisible && <h2>Notifications</h2>}
                     </div>
                     <Link to={`/account/${loggedUser?.id}`} className='menu_item_wrapper' onClick={() => switchActiveMenu("account")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
-                        { loggedUser.images && <img src={`${loggedUser.images[0].url}`} className='profile_small'/> }
+                        { loggedUser?.images && <img src={`${loggedUser?.images[0].url}`} className='profile_small'/> }
                         {isTextVisible && <h2 style={{ color: activeMenu === "account" ? "#F230AA" : "white", fontWeight: activeMenu === "account" ? "500" : ""  }}>My Profile</h2>}
                     </Link>
                     <div className='menu_item_wrapper' onClick={() => switchActiveMenu("more")} style={{ gridTemplateColumns: isTextVisible ? "1fr 2fr" : "" }}>
