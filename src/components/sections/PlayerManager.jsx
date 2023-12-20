@@ -409,6 +409,7 @@ export default function PlayerManager() {
 
                     { isShareMenuVisibile &&
                         <div 
+                        ref={shareMenuRef}
                         className="share_menu_wrapper wrapper default_padding sticky full_width" 
                         style={{ 
                             left: isMinimized ? "18%" : "", 

@@ -620,7 +620,7 @@ h3{
   position: fixed;
   left: 50%;
   top: 50%;
-  z-index: 3;
+  z-index: 4;
   height: 500px;
   width: 400px;
   transform: translate(-50%, -50%);
@@ -751,18 +751,18 @@ h3{
 }
 
 .play_btn_slider{
-  top: 155px;
+  top: 108px;
   left: 10px;
 }
 
 .play_btn_cover{
-  top: 155px;
+  top: 108px;
   left: 10px;
 }
 
 .play_btn_list{
-  top: 35px;
-  left: 35px;
+  top: 20px;
+  left: 20px;
 }
 
 .simplified_list_wrapper .grid{
@@ -791,13 +791,13 @@ h3{
 .btn_wrapper_left{
   position: absolute;
   z-index: 2;
-  top: 165px;
+  top: 140px;
 }
 
 .btn_wrapper_right{
   position: absolute;
   z-index: 2;
-  top: 165px;
+  top: 140px;
   right: -10px;
 }
 
@@ -926,7 +926,7 @@ h3{
 }
 
 .search_list_wrapper{
-  width: 100%;
+  width: 415px;
   height: 100%;
   gap: 25px;
   align-items: start;
