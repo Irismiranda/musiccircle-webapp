@@ -33,7 +33,7 @@ export default function UserSearchSection(props){
                                 {user.display_name}
                                 <br/>
                                 <span className="user_handle">
-                                    @{user.display_name.replace(/\s+/g, '')}#{user.id}
+                                    @{user.user_handle}
                                 </span>
                             </h3>
                         </Link>

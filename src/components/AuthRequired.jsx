@@ -3,6 +3,7 @@
   import { Axios } from "../Axios-config"
   import { io } from "socket.io-client"
   import { formatListData } from "../utils"
+  import { normalizeText } from 'normalize-text'
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
@@ -51,6 +52,8 @@
     async function getUser() {
       try{       
         const userData = await spotifyApi.getMe()
+        userData.user_handle = `${normalizeText(userData.display_name).replace(/\s/g,'')}#${userData.id}`
+        console.log("user handle is:", userData.user_handle)
         
         const response = await Axios.post("/api/account", {
           userData: userData,
@@ -182,7 +185,7 @@
         }
       }
       
-      if(spotifyApi){
+      if(spotifyApi && loggedUser){
         getTopList("top_tracks")
         getTopList("top_artists")
       }
