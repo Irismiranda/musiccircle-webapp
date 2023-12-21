@@ -39,8 +39,10 @@ export default function UserSearchSection(props){
     }
 
     async function searchUsers() {
-        const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
+        const searchTerm = userSsearchInputRef.current.value?.toLowerCase()        
         let searchResults
+
+        console.log(searchTerm)
         
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)

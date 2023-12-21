@@ -58,12 +58,17 @@ export default function ShareMenu(){
             placeholder="Find a friend..." 
             onInput={() => searchUsers()} />
 
-            { !isLoading ? 
-            <Slider 
-            list={userDataList}
-            category="user"
-            type="user_list"/> :
-            <h3>Loading...</h3>}
+            {(userDataList?.length > 0) ?
+            <section>
+                !isLoading ? 
+                <Slider 
+                list={userDataList}
+                category="user"
+                type="user_list"/> :
+                <h3>Loading...</h3> 
+            </section> :
+            <h3>No results found...</h3>
+            }
 
             <div className="flex">
                 <SvgLinkIcon className="svg" />

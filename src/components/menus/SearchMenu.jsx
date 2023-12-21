@@ -67,11 +67,7 @@ export default function SearchMenu(){
         
         setIsLoading(false)
     }
-
-    useEffect(() => {
-        console.log("search results are", searchResults)
-    }, [searchResults])
-
+    
     useEffect(() => {
         search()
     }, [activeCategory])

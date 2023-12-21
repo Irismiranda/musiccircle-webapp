@@ -53,7 +53,6 @@
       try{       
         const userData = await spotifyApi.getMe()
         userData.user_handle = `${normalizeText(userData.display_name).replace(/\s/g,'')}#${userData.id}`
-        console.log("user handle is:", userData.user_handle)
         
         const response = await Axios.post("/api/account", {
           userData: userData,
