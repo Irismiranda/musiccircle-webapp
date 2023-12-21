@@ -22,7 +22,7 @@ export default function ShareMenu(props){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
         } else if(sendList){ 
-            setSendList(sendList ? (prevList) => [...prevList, handle] : {handle})
+            setSendList([...prevList, handle])
         }
     }
 
