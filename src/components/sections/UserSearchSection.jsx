@@ -70,7 +70,7 @@ export default function UserSearchSection(props){
           onInput={() => searchUsers()} />
           
           { !isLoading ?       
-          <UserList 
+          <UserList
           list={userDataList}
           setUserProfileData={setUserProfileData}
           setPreventUpdate={setPreventUpdate}
