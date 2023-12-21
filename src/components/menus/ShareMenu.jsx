@@ -42,7 +42,11 @@ export default function ShareMenu(props){
             })
         )
 
+        console.log("user list is:", userList)
+
         const formatedData = formatListData(userList, "user")
+
+        console.log("formated data is", formatedData)
 
         setUserDataList(formatedData)
         setSearchResult(formatedData)
@@ -51,13 +55,9 @@ export default function ShareMenu(props){
 
     async function searchUsers() {
         const searchTerm = userSearchInputRef.current.value
-        console.log("search term is", searchTerm)
         
         const normalizedSearchTerm = normalizeText(searchTerm).toLowerCase()        
         let searchResults
-
-        console.log("normalized search term is", normalizedSearchTerm)
-
         
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)
