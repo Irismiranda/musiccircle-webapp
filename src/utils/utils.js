@@ -22,22 +22,21 @@ const useClickOutside = (ref, exceptionRef, callback) => {
 
 function formatListData(items, category) {
 
-  console.log("items are", items, "category is:", category)
-
   return items.map(item => {   
     let listItem = {
       id: item.id,
       type: item.type,
       uri: item.uri,
-      name: item.name,
+      name: item.type === "user" ? item.display_name : item.name,
       isVisible: true,
     }
 
     if (category !== "simplified") {
       if (category === "tracks") {
         listItem.imageUrl = item.album.images[0].url
-      } else if(category === "albums") {
+      } else if(category === "user" || category === "album"){
         listItem.imageUrl = item.images[0].url
+      } else if(category === "albums") {
         listItem.releaseDate = item.release_date
       }
       
