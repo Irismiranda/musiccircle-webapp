@@ -7,6 +7,7 @@ import { formatListData } from "../../utils"
 export default function UserSearchSection(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
     const [userDataList, setUserDataList] = useState(null)
+    const [searchResult, setSearchResult] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [preventUpdate, setPreventUpdate] = useState(false)
     const userListRef = useRef(null)
@@ -35,6 +36,7 @@ export default function UserSearchSection(props){
         const formatedData = formatListData(userList, "user")
 
         setUserDataList(formatedData)
+        setSearchResult(formatedData)
         setIsLoading(false)
     }
 
@@ -52,7 +54,7 @@ export default function UserSearchSection(props){
             )
         }
         
-        setUserDataList(searchResults)
+        setSearchResult(searchResults)
     }
 
     useEffect(() => {
@@ -71,7 +73,7 @@ export default function UserSearchSection(props){
           
           { !isLoading ?       
           <UserList
-          list={userDataList}
+          list={searchResult}
           setUserProfileData={setUserProfileData}
           setPreventUpdate={setPreventUpdate}
           showBtn={true}/> :
