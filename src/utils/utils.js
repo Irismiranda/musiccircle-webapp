@@ -34,13 +34,17 @@ function formatListData(items, category) {
     if (category !== "simplified") {
       if (category === "tracks") {
         listItem.imageUrl = item.album.images[0].url
-      } else if(category === "user"){
-        listItem.imageUrl = item.images[0].url
-        listItem.userHandle = item.user_handle
-      } else if(category === "albums") {
-        listItem.releaseDate = item.release_date
+      } else {
         listItem.imageUrl = item.images[0].url
       }
+      
+      if(category === "user"){
+        listItem.userHandle = item.user_handle
+      } 
+      
+      if(category === "albums") {
+        listItem.releaseDate = item.release_date
+      
       
     }
   
