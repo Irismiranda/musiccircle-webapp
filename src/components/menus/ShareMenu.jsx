@@ -28,8 +28,7 @@ export default function ShareMenu(props){
     }
 
     function copyToClipboard(){
-        console.log(track)
-        navigator.clipboard.writeText(track.spotify)
+        navigator.clipboard.writeText(`https://open.spotify.com/track/${track.id}`)
         setShowMessage(true)
         setTimeout(() => setShowMessage(false), 5000)
     }
