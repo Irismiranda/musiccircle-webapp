@@ -951,6 +951,17 @@ h3{
   width: 25%;
 }
 
+.user_slider_grid{
+  position: relative;
+  margin-top: 15px;
+  display: grid;
+  gap: 15px;
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fill, 190px);
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;

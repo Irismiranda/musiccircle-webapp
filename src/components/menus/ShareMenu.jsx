@@ -17,7 +17,7 @@ export default function ShareMenu(props){
 
     const { contentId } = props
 
-    function addToSendList(handle){
+    function toggleSendList(handle){
         if(sendList?.includes(handle)){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
@@ -96,7 +96,7 @@ export default function ShareMenu(props){
                 list={userDataList}
                 />   
                     <div 
-                    className="slider_grid"
+                    className="user_slider_grid"
                     ref={parentRef}
                     style={{ position: "relative" }}>
                         {searchResult.map((user) => {
@@ -104,7 +104,7 @@ export default function ShareMenu(props){
                                 <div 
                                 className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
                                 key={user.id}
-                                onClick={() => addToSendList(user.userHandle)}>
+                                onClick={() => toggleSendList(user.userHandle)}>
                                     <img 
                                     className="profile_small"
                                     src={user.imageUrl}/>
@@ -125,7 +125,11 @@ export default function ShareMenu(props){
                 <div>
                     {sendList.map((handle) => {
                         return (
-                            <div className="bullet_btn">handle</div>
+                            <button 
+                            onClick={toggleSendList(handle)}
+                            className="bullet_btn">
+                                {handle}
+                            </button>
                         )
                     })}
                 </div>
@@ -134,18 +138,22 @@ export default function ShareMenu(props){
                 ref={textAreaRef}/>
             </section>}
 
-            <button 
+            <button
+            className="full_width" 
             disabled={sendList?.length > 0} 
             onClick={() => sendMessage()}>
                 send
             </button>
 
-            <div className="flex">
-                <SvgLinkIcon className="svg" />
-            </div>
-            <div className="flex">
-                <SvgFeedIcon className="svg"/>
-            </div>
+            <section className="flex">
+                <div>
+                    <SvgLinkIcon className="svg" />
+                </div>
+                <div>
+                    <SvgFeedIcon className="svg"/>
+                </div>
+            </section>
+
         </div>
     )
 }
