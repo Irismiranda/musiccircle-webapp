@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
-import { SliderScrollBtns } from "../../utils"
+import { SliderScrollBtns, formatListData } from "../../utils"
+import { normalizeText } from "normalize-text"
 import useStore from "../../store"
 
 export default function ShareMenu(props){
@@ -72,7 +73,7 @@ export default function ShareMenu(props){
     }, [])
 
     return (
-        <div className="share_menu_wrapper">
+        <div className="share_menu_inner_wrapper">
             <input 
             ref={userSearchInputRef} 
             className="search_bar" 

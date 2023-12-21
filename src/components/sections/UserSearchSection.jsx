@@ -65,20 +65,23 @@ export default function UserSearchSection(props){
     }, [idList])
 
     return (
-        <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
-          <input 
-          ref={userSearchInputRef} 
-          className="search_bar" 
-          placeholder="Search..." 
-          onInput={() => searchUsers()} />
-          
-          { !isLoading ?       
-          <UserList
-          list={searchResult}
-          setUserProfileData={setUserProfileData}
-          setPreventUpdate={setPreventUpdate}
-          showBtn={true}/> :
-          <h3>Loading...</h3>
+        <div ref={userListRef} 
+        className="user_list_wrapper wrapper default_padding">
+        <input 
+        ref={userSearchInputRef} 
+        className="search_bar" 
+        placeholder="Search..." 
+        onInput={() => searchUsers()} />
+            { !isLoading ?       
+            <UserList
+            list={searchResult}
+            setUserProfileData={setUserProfileData}
+            setPreventUpdate={setPreventUpdate}
+            showBtn={true}/> :
+            <h3 
+            style={{ marginBottom: "20px" }}>
+                Loading...
+            </h3>
         }
         </div>
       )
