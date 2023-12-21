@@ -42,12 +42,8 @@ export default function ShareMenu(props){
             })
         )
 
-        console.log("user list is:", userList)
-
         const formatedData = formatListData(userList, "user")
-
-        console.log("formated data is", formatedData)
-
+        
         setUserDataList(formatedData)
         setSearchResult(formatedData)
         setIsLoading(false)
@@ -79,6 +75,10 @@ export default function ShareMenu(props){
         getUsersData(loggedUser.following)
     }, [])
 
+    useEffect(() => {
+        console.log(sendList)
+    }, [sendList])
+
     return (
         <div className="share_menu_inner_wrapper">
             <input 
@@ -87,38 +87,40 @@ export default function ShareMenu(props){
             placeholder="Find a friend..." 
             onInput={() => searchUsers()} />
 
-            {!isLoading ?
-            <section>
-                {(searchResult?.length > 0) ? 
-                <section>
-                    <div 
-                    className="user_slider_grid"
-                    ref={parentRef}
-                    style={{ position: "relative" }}>
-                        {searchResult.map((user) => {
-                            return (
-                                <div 
-                                className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
-                                key={user.id}
-                                onClick={() => toggleSendList(user.userHandle)}>
-                                    <img 
-                                    className="profile_small"
-                                    src={user.imageUrl}/>
-                                    <h3>{user.name}</h3>
-                                    <h5>@{user.userHandle}</h5>
-                                </div>
-                            )
-                        })}
-                    </div>
-                <SliderScrollBtns 
-                parentRef={parentRef}
-                list={userDataList}
-                />   
-                </section> :
-                <h3>No results found...</h3>} 
-            </section> :
-            <h3>Loading...</h3>
-            }
+            <section style={{ height: "80px" }}>
+                {!isLoading ?
+                <div>
+                    {(searchResult?.length > 0) ? 
+                    <div>
+                        <div 
+                        className="user_slider_grid"
+                        ref={parentRef}
+                        style={{ position: "relative" }}>
+                            {searchResult.map((user) => {
+                                return (
+                                    <div 
+                                    className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
+                                    key={user.id}
+                                    onClick={() => toggleSendList(user.userHandle)}>
+                                        <img 
+                                        className="profile_small"
+                                        src={user.imageUrl}/>
+                                        <h3>{user.name}</h3>
+                                        <h5>@{user.userHandle}</h5>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    <SliderScrollBtns 
+                    parentRef={parentRef}
+                    list={userDataList}
+                    />   
+                    </div> :
+                    <h3>No results found...</h3>} 
+                </div> :
+                <h3>Loading...</h3>
+                }
+            </section>
 
             { sendList?.length > 0 && 
             <section>
