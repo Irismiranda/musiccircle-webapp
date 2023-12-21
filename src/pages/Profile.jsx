@@ -108,7 +108,7 @@ export default function Profile(){
                         {userProfileData?.display_name}
                         <br/>
                         <span className="user_handle">
-                            @{userProfileData?.userHandle}
+                            @{userProfileData?.user_handle}
                         </span>
                     </h2>
                     {!isLoggedUser && 
