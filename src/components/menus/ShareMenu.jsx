@@ -22,7 +22,7 @@ export default function ShareMenu(props){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
         } else { 
-            setSendList((prevList) => sendList ? [...prevList, handle] : [handle])
+            setSendList(sendList ? (prevList) => [...prevList, handle] : [handle])
         }
     }
 
@@ -87,14 +87,10 @@ export default function ShareMenu(props){
             placeholder="Find a friend..." 
             onInput={() => searchUsers()} />
 
-            {(searchResult?.length > 0) ?
+            {!isLoading ?
             <section>
-                {!isLoading ? 
+                {(searchResult?.length > 0) ? 
                 <section>
-                <SliderScrollBtns 
-                parentRef={parentRef}
-                list={userDataList}
-                />   
                     <div 
                     className="user_slider_grid"
                     ref={parentRef}
@@ -114,15 +110,19 @@ export default function ShareMenu(props){
                             )
                         })}
                     </div>
+                <SliderScrollBtns 
+                parentRef={parentRef}
+                list={userDataList}
+                />   
                 </section> :
-                <h3>Loading...</h3>} 
+                <h3>No results found...</h3>} 
             </section> :
-            <h3>No results found...</h3>
+            <h3>Loading...</h3>
             }
 
             { sendList?.length > 0 && 
             <section>
-                <div>
+                <div className="flex">
                     {sendList.map((handle) => {
                         return (
                             <button 
@@ -145,7 +145,9 @@ export default function ShareMenu(props){
                 Send
             </button>
 
-            <section className="flex">
+            <section 
+            className="flex full_width"
+            style={{ marginTop: "20px", justifyContent: "space-around" }}>
                 <div>
                     <SvgLinkIcon className="svg" />
                 </div>
