@@ -58,7 +58,7 @@ export default function ShareMenu(props){
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)
         } else {
-            searchResults = userDataList.filter((user) =>
+            searchResults = userDataList?.filter((user) =>
             normalizeText(user.userHandle).toLowerCase().includes(normalizedSearchTerm) ||
             normalizeText(user.name).toLowerCase().includes(normalizedSearchTerm)
             )
