@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useRef } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
@@ -25,7 +25,7 @@ export default function Slider(props){
         className="slider_grid"
         ref={parentRef}
         style={{ position: "relative" }} >
-            
+
             <SliderScrollBtns 
             parentRef={parentRef}
             list={list}/>
