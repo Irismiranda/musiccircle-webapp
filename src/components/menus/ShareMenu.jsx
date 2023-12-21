@@ -138,17 +138,10 @@ export default function ShareMenu(props){
 
             <section> 
                 {sendList?.length > 0 && 
-                    <div className="flex">
-                        {sendList.map((handle) => {
-                            return (
-                                <button 
-                                onClick={() => toggleSendList(handle)}
-                                className="bullet_btn">
-                                    {handle}
-                                </button>
-                            )
-                        })}
-                    </div>}
+                    <textarea 
+                    placeholder="Say something about this..."
+                    className="share_menu_textarea" 
+                    ref={textAreaRef}/>}
                 <button
                 className="full_width" 
                 disabled={sendList?.length === 0} 
