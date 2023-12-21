@@ -10,7 +10,7 @@ export default function ShareMenu(props){
     const [isLoading, setIsLoading] = useState(true)
     const [userDataList, setUserDataList] = useState(null)
     const [searchResult, setSearchResult] = useState(null)
-    const [sendList, setSendList] = useState(false)
+    const [sendList, setSendList] = useState(null)
     const userSearchInputRef = useRef(null)
     const parentRef = useRef(null)
     const textAreaRef = useRef(null)
