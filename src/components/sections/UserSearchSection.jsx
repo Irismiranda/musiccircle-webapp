@@ -31,7 +31,9 @@ export default function UserSearchSection(props){
             })
         )
 
-        setUserDataList(userList)
+        const formatedData = formatListData(userList, "user")
+
+        setUserDataList(formatedData)
         setIsLoading(false)
     }
 

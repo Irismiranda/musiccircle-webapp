@@ -58,10 +58,7 @@ export default function SearchMenu(){
 
                 const formatedData = formatListData(response.data, "user")
 
-                console.log("formated data is:", formatedData)
-
-                setSearchResults(response.data)
-                console.log("response is:", response.data)
+                setSearchResults(formatedData)
 
             } else {
                 setSearchResults(null)

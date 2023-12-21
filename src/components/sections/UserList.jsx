@@ -25,15 +25,15 @@ export default function UserSearchSection(props){
                         <Link to={`/account/${user.id}`}>
                             <img 
                             className="profile_medium" 
-                            src={user.images[0].url} 
-                            alt={`Profile of ${user.display_name}`} />
+                            src={user.imageUrl} 
+                            alt={`Profile of ${user.name}`} />
                         </Link>
                         <Link to={`/account/${user.id}`}>
                                 <h3>
-                                {user.display_name}
+                                {user.name}
                                 <br/>
                                 <span className="user_handle">
-                                    @{user.user_handle}
+                                    @{user.name}
                                 </span>
                             </h3>
                         </Link>
