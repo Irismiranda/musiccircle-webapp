@@ -473,6 +473,11 @@ a{
   gap: 30px;
 }
 
+.player_inner_wrapper{
+  width: 100%;
+  position: relative;
+}
+
 .player_minimized{
   max-width: 700px;
   max-height: 280px;
@@ -613,7 +618,7 @@ h3{
   width: 300px;
   height: 250px;
   top: 95%;
-  left: 68%;
+  right: 10px;
 }
 
 .post_wrapper{
