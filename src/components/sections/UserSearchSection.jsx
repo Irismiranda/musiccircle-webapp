@@ -39,28 +39,14 @@ export default function UserSearchSection(props){
     }
 
     async function searchUsers() {
-        const userList = []
         const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
-        await Promise.all(
-            idList.map(async (id) => {
-            const response = await Axios.post("/api/account", {
-                userData: {
-                id: id,
-                type: "user",
-                },
-            })
-        
-            userList.push(response.data)
-            })
-        )
-
         let searchResults
         
         if (searchTerm === "") {
-            searchResults = userList.slice(0, 15)
+            searchResults = userDataList.slice(0, 15)
         } else {
-            searchResults = userList.filter((user) =>
-            user.display_name.toLowerCase().includes(searchTerm)
+            searchResults = userDataList.filter((user) =>
+            user.user_handle.toLowerCase().includes(searchTerm)
             )
         }
         

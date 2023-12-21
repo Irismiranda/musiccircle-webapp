@@ -77,11 +77,13 @@ export default function Slider(props){
                         <div className={type === "user_list" ? "" : "slider_item_wrapper"} key={item.id}>
                             <div className={type === "user_list" ? "" : "slider_image_wrapper"}>
                                 <Link to={category === "tracks" ? "" : `/${item.type}/${item.id}`}>
+                                    {type === "user_list" ? 
+                                    <img src={`${item.imageUrl}`}/> : 
                                     <div 
                                     onMouseEnter={() => setHoverItemId(item.id)}
                                     onMouseLeave={() => setHoverItemId(null)}
                                     style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
-                                    </div>
+                                    </div>}
                                 </Link>
                                 {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, item.type)}>{visibility ? "Hide" : "Show"}</button>}
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>

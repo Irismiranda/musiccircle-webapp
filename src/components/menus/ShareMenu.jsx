@@ -50,15 +50,21 @@ export default function ShareMenu(){
         getUsersData(loggedUser.following)
     }, [])
 
-
-
     return (
         <div>
-            <input placeholder="Find a friend..."/>
+            <input 
+            ref={userSsearchInputRef} 
+            className="search_bar" 
+            placeholder="Find a friend..." 
+            onInput={() => searchUsers()} />
+
+            { !isLoading ? 
             <Slider 
             list={userDataList}
             category="user"
-            type="user_list"/>
+            type="user_list"/> :
+            <h3>Loading...</h3>}
+
             <div className="flex">
                 <SvgLinkIcon className="svg" />
             </div>
