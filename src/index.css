@@ -825,11 +825,12 @@ h3{
 }
 
 .user_data_grid{
+  width: 615px;
   display: grid;
   grid-template:
-  "a b c"
-  "d e f";
-  grid-template-columns: 1fr 1fr 1fr;
+      "a b c"
+      "d e f";
+  grid-template-columns: 30%;
   gap: 30px 65px;
   align-items: center;
 }
@@ -970,11 +971,14 @@ h3{
   position: relative;
   display: grid;
   gap: 15px;
-  width: calc(100% + 40px);
-  margin-left: -20px;
+  width: calc(100% + 80px);
+  margin-left: -40px;
   grid-auto-flow: column;
-  grid-template-columns: repeat(auto-fill, 190px);
+  grid-template-columns: repeat(auto-fill,180px);
   cursor: pointer;
+  overflow-x: hidden;
+  text-wrap: wrap;
+  text-align: center;
 }
 
 .share_menu_inner_wrapper textarea{
@@ -994,6 +998,7 @@ h3{
 
 .user_slider_item{
   padding: 15px 0px;
+  width: 180px;
 }
 
 button:disabled{
