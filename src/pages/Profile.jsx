@@ -156,6 +156,7 @@ export default function Profile(){
                     category="artists" 
                     visibility={showVisibleTopArtists} 
                     isLoggedUser={isLoggedUser} 
+                    slidePercent={0.2} 
                     type={"top_list"}/>
                 </div>
            </section>}
@@ -175,6 +176,7 @@ export default function Profile(){
                     category="tracks" 
                     visibility={showVisibleTopTracks} 
                     isLoggedUser={isLoggedUser} 
+                    slidePercent={0.2} 
                     type={"top_list"}/>
                 </div>
            </section>}

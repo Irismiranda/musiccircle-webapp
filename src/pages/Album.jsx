@@ -78,7 +78,8 @@ export default function Album(){
             list={artistAlbums} 
             visibility={true} 
             category="albums" 
-            isLoggedUser={false} 
+            isLoggedUser={false}
+            slidePercent={0.2} 
             type={"list"}/>}
         </div>
     )

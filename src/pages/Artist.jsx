@@ -96,6 +96,7 @@ export default function Artist(){
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
+                    slidePercent={0.2} 
                     type={"list"}/>
                 </div>}
         </div>

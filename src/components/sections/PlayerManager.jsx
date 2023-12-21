@@ -419,7 +419,8 @@ export default function PlayerManager() {
                                 }}
                                 >
                                     <ShareMenu 
-                                    content={currentTrack}/>
+                                    content={currentTrack}
+                                    closeMenu={() => setIsShareMenuVisibile(true)}/>
                             </div>}
 
                             <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>

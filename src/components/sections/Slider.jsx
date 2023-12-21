@@ -5,7 +5,7 @@ import { Axios } from "../../Axios-config"
 import { PlayBtn, SliderScrollBtns } from "../../utils"
 
 export default function Slider(props){
-    const { list, visibility, category, isLoggedUser, type } = props
+    const { list, visibility, category, isLoggedUser, type, slidePercent } = props
     const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
     const parentRef = useRef(null)
     
@@ -24,7 +24,8 @@ export default function Slider(props){
         <>
             <SliderScrollBtns 
             parentRef={parentRef}
-            list={list}/>
+            list={list}
+            slidePercent={slidePercent}/>
 
             <div 
             className="slider_grid"

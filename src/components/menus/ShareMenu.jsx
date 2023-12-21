@@ -12,11 +12,12 @@ export default function ShareMenu(props){
     const [searchResult, setSearchResult] = useState(null)
     const [sendList, setSendList] = useState([])
     const [showMessage, setShowMessage] = useState(false)
+    const [publishing, setPublishing] = useState(false)
     const userSearchInputRef = useRef(null)
     const parentRef = useRef(null)
     const textAreaRef = useRef(null)
 
-    const { content } = props
+    const { content, closeMenu } = props
 
     function toggleSendList(name){
         if(sendList.includes(name)){
@@ -79,7 +80,13 @@ export default function ShareMenu(props){
     }
 
     async function postMessage(){
-        Axios.post(`/api/${loggedUser.id}/post/${content.id}`)
+        setPublishing(true)
+
+        Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
+            message: textAreaRef.current.value,
+            type: content.type
+        })
+        closeMenu()
     }
 
     useEffect(() => {
@@ -91,7 +98,7 @@ export default function ShareMenu(props){
     }, [sendList])
 
     return (
-        <div className="share_menu_inner_wrapper">
+        <div className={publishing ? "share_menu_inner_wrapper posting_wrapper" : "share_menu_inner_wrapper"}>
             <input 
             ref={userSearchInputRef} 
             className="search_bar" 
@@ -125,6 +132,7 @@ export default function ShareMenu(props){
                     <SliderScrollBtns 
                     parentRef={parentRef}
                     list={userDataList}
+                    slidePercent={0.5}
                     />   
                     </div> :
                     <h3>No results found...</h3>} 
@@ -150,9 +158,9 @@ export default function ShareMenu(props){
 
             <section> 
                 <textarea 
-                placeholder="Say something about this..."
-                className="share_menu_textarea" 
-                ref={textAreaRef}/>
+                ref={textAreaRef} 
+                className="share_menu_textarea"
+                placeholder="Say something about this..."/>
 
                 <button
                 className="full_width" 

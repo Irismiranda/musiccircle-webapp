@@ -5,14 +5,14 @@ export default function SliderScrollBtns(props){
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
     const [ listScroll, setListScroll ] = useState(0)
 
-    const { parentRef, list } = props
+    const { parentRef, list, slidePercent } = props
 
     function slideLeft(){
-        parentRef.current.scrollBy({ left: - (maxScrollLeft * 0.2), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: - (maxScrollLeft * slidePercent), behavior: 'smooth' })
     }
     
     function slideRight(){
-        parentRef.current.scrollBy({ left: (maxScrollLeft * 0.2), behavior: 'smooth' })
+        parentRef.current.scrollBy({ left: (maxScrollLeft * slidePercent), behavior: 'smooth' })
     }
 
     useEffect(() => {
