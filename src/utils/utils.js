@@ -44,7 +44,7 @@ function formatListData(items, category) {
       
       if(category === "albums") {
         listItem.releaseDate = item.release_date
-      
+      }
       
     }
   
