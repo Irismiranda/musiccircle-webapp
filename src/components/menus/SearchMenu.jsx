@@ -24,7 +24,7 @@ export default function SearchMenu(){
             const tracks = response.items.map(item => {
                 return item.track
             })
-            const formatedData = formatListData(tracks)
+            const formatedData = formatListData(tracks, "tracks")
             setSearchResults(formatedData)
 
         } else if(activeCategory === "tracks"){
@@ -33,7 +33,7 @@ export default function SearchMenu(){
 
             if(response){
 
-                const formatedData = formatListData(response.tracks.items)
+                const formatedData = formatListData(response.tracks.items, "tracks")
 
                 setSearchResults(formatedData)
             } else setSearchResults(null)
@@ -41,13 +41,13 @@ export default function SearchMenu(){
         } else if(activeCategory === "artists"){
 
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            const formatedData = formatListData(response.artists.items)
+            const formatedData = formatListData(response.artists.items, "artists")
 
             setSearchResults(formatedData)
 
         } else if(activeCategory === "albums"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
-            const formatedData = formatListData(response.albums.items)
+            const formatedData = formatListData(response.albums.items, "albums")
 
             setSearchResults(formatedData)
 
