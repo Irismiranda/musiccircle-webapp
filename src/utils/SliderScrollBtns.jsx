@@ -1,5 +1,5 @@
 import React from "react"
-import { SvgRightBtn, SvgLeftBtn } from "../../assets"
+import { SvgRightBtn, SvgLeftBtn } from "../assets"
 
 export default function SliderScrollBtns(props){
     const [ maxScrollLeft, setMaxScrollLeft ] = useState(0)
@@ -36,8 +36,6 @@ export default function SliderScrollBtns(props){
             if (sliderElement) sliderElement.removeEventListener('scroll', handleScroll)
         }
     }, [list])
-
-
 
     return (
         <>
