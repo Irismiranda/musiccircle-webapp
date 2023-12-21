@@ -6,12 +6,11 @@ import useStore from "../../store"
 
 export default function ShareMenu(){
     const { loggedUser } = useStore()
-    const [friendList, setFriendList] = useState(null)
     const [userDataList, setUserDataList] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const userSsearchInputRef = useRef(null)
 
-    async function getUsersData(){
+    async function getUsersData(idList){
         setIsLoading(true)
         const userList = []
         await Promise.all(
@@ -32,8 +31,23 @@ export default function ShareMenu(){
         setIsLoading(false)
     }
 
-    useEffect(() => {
+    async function searchUsers() {
+        const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
+        let searchResults
+        
+        if (searchTerm === "") {
+            searchResults = userDataList.slice(0, 15)
+        } else {
+            searchResults = userDataList.filter((user) =>
+            user.user_handle.toLowerCase().includes(searchTerm)
+            )
+        }
+        
+        setUserDataList(searchResults)
+    }
 
+    useEffect(() => {
+        getUsersData(loggedUser.following)
     }, [])
 
 
@@ -42,7 +56,7 @@ export default function ShareMenu(){
         <div>
             <input placeholder="Find a friend..."/>
             <Slider 
-            list={friendList}
+            list={userDataList}
             category="user"
             type="user_list"/>
             <div className="flex">
