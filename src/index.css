@@ -963,6 +963,13 @@ h3{
   grid-template-columns: repeat(auto-fill, 190px);
 }
 
+.slider_inner_wrapper{
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   border-radius: 100px;

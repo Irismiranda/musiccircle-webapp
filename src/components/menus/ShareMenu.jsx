@@ -21,8 +21,8 @@ export default function ShareMenu(props){
         if(sendList?.includes(handle)){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
-        } else { 
-            setSendList(sendList ? (prevList) => [...prevList, handle] : handle)
+        } else if(sendList){ 
+            setSendList(sendList ? (prevList) => [...prevList, handle] : {handle})
         }
     }
 
@@ -43,7 +43,7 @@ export default function ShareMenu(props){
         )
 
         const formatedData = formatListData(userList, "user")
-        
+
         setUserDataList(formatedData)
         setSearchResult(formatedData)
         setIsLoading(false)
@@ -87,15 +87,14 @@ export default function ShareMenu(props){
             placeholder="Find a friend..." 
             onInput={() => searchUsers()} />
 
-            <section style={{ height: "80px" }}>
+            <section className="slider_inner_wrapper">
                 {!isLoading ?
                 <div>
                     {(searchResult?.length > 0) ? 
                     <div>
                         <div 
                         className="user_slider_grid"
-                        ref={parentRef}
-                        style={{ position: "relative" }}>
+                        ref={parentRef}>
                             {searchResult.map((user) => {
                                 return (
                                     <div 
