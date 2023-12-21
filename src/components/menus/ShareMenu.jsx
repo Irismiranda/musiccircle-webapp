@@ -132,7 +132,7 @@ export default function ShareMenu(props){
                     <SliderScrollBtns 
                     parentRef={parentRef}
                     list={userDataList}
-                    slidePercent={0.5}
+                    slidePercent={0.8}
                     />   
                     </div> :
                     <h3>No results found...</h3>} 
