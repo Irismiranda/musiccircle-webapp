@@ -25,6 +25,7 @@ export default function Slider(props){
         className="slider_grid"
         ref={parentRef}
         style={{ position: "relative" }} >
+            
             <SliderScrollBtns 
             parentRef={parentRef}
             list={list}/>

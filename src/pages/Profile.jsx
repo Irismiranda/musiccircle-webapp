@@ -19,8 +19,6 @@ export default function Profile(){
         following: false,
         followers: false,
     })
-    const topArtistsSlider = useRef(null)
-    const topTracksSlider = useRef(null)
     const followersRef = useRef(null)
     const followingRef = useRef(null)
     
@@ -170,13 +168,12 @@ export default function Profile(){
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
            <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
-                <div ref={topTracksSlider} className={showVisibleTopTracks ? "slider_grid" : "slider_grid hidden_items_grid"}>
+                <div className={showVisibleTopTracks ? "" : "hidden_items_grid"}>
                     <Slider 
                     list={topTracks.items} 
                     category="tracks" 
                     visibility={showVisibleTopTracks} 
                     isLoggedUser={isLoggedUser} 
-                    parentRef={topTracksSlider}
                     type={"top_list"}/>
                 </div>
            </section>}
