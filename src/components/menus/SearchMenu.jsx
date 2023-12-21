@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { normalizeText } from 'normalize-text'
-import {UserList, List} from ".."
 import { formatListData } from "../../utils"
+import {UserList, List} from ".."
 import { Axios } from "../../Axios-config"
 import useStore from "../../store"
 

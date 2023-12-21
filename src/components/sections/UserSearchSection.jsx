@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { useClickOutside } from "../../utils"
 import { UserList } from "../"
 import { Axios } from "../../Axios-config"
+import { formatListData } from "../../utils"
 
 export default function UserSearchSection(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
