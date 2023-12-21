@@ -11,7 +11,6 @@ export default function Album(){
     const [ artistAlbums, setArtistAlbums] = useState(null)
     const [ albumTracks, setAlbumTracks ] = useState(null)
     const [ hoverItemId, setHoverItemId ] = useState(null)
-    const albumsSlider = useRef(null)
 
     async function getAlbumData(){
         const response = await spotifyApi.getAlbum(albumId)
@@ -75,17 +74,12 @@ export default function Album(){
             </section>}
             {artistAlbums && <h2>More on {albumData?.artists[0].name}</h2>}
             {(artistAlbums && albumData) && 
-            <section style={{ position: "relative" }} >
-                <div ref={albumsSlider} className="slider_grid">
-                    <Slider 
-                    list={artistAlbums} 
-                    visibility={true} 
-                    category="albums" 
-                    isLoggedUser={false} 
-                    parentRef={albumsSlider}
-                    type={"list"}/>
-                </div>
-            </section>}
+            <Slider 
+            list={artistAlbums} 
+            visibility={true} 
+            category="albums" 
+            isLoggedUser={false} 
+            type={"list"}/>}
         </div>
     )
 }

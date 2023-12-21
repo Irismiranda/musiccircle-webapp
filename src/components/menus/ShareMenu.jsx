@@ -66,7 +66,9 @@ export default function ShareMenu(){
                     <SliderScrollBtns 
                     parentRef={parentRef}
                     list={userDataList}
-                    />    
+                    />   
+
+                    
                 </section> :
                 <h3>Loading...</h3> 
             </section> :

@@ -90,17 +90,14 @@ export default function Artist(){
             </section>}
             {artistAlbums && <h2>Discography</h2>}
             {artistAlbums && 
-            <section style={{ position: "relative" }} >
-                <div ref={albumsSlider} className="slider_grid">
+                <div>
                     <Slider 
                     list={artistAlbums} 
                     visibility={true} 
                     category="albums" 
                     isLoggedUser={false} 
-                    parentRef={albumsSlider}
                     type={"list"}/>
-                </div>
-            </section>}
+                </div>}
         </div>
     )
 }

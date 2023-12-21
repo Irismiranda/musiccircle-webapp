@@ -5,8 +5,9 @@ import { Axios } from "../../Axios-config"
 import { PlayBtn, SliderScrollBtns } from "../../utils"
 
 export default function Slider(props){
-    const { list, visibility, category, isLoggedUser, parentRef, type } = props
+    const { list, visibility, category, isLoggedUser, type } = props
     const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
+    const parentRef = useRef(null)
     
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
@@ -20,7 +21,10 @@ export default function Slider(props){
     }
 
     return(
-        <>
+        <div 
+        className="slider_grid"
+        ref={parentRef}
+        style={{ position: "relative" }} >
             <SliderScrollBtns 
             parentRef={parentRef}
             list={list}/>
@@ -65,7 +69,7 @@ export default function Slider(props){
                         )
                     })   
                 }     
-        </>
+        </div>
     )
 }
 
