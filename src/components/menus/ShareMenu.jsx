@@ -30,7 +30,7 @@ export default function ShareMenu(props){
     function copyToClipboard(){
         navigator.clipboard.writeText(track.spotify)
         setShowMessage(true)
-        setTimeout(setShowMessage(false), 5000)
+        setTimeout(() => setShowMessage(false), 5000)
     }
 
     async function getUsersData(idList){

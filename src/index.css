@@ -972,8 +972,7 @@ h3{
 .share_menu_inner_wrapper textarea{
   height: 60px;
   border-radius: 0px;
-  width: calc(100% + 40px);
-  margin: 10px -20px 10px 0px;
+  margin: 10px 0px;
   background-color: transparent;
   border: solid 1px #4b4a4a;
   border-style: solid none none;
