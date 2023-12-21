@@ -18,7 +18,7 @@ export default function ShareMenu(props){
     const { contentId } = props
 
     function addToSendList(handle){
-        if(sendList.includes(handle)){
+        if(sendList?.includes(handle)){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
         } else {
@@ -105,9 +105,11 @@ export default function ShareMenu(props){
                                 className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
                                 key={user.id}
                                 onClick={() => addToSendList(user.userHandle)}>
-                                    <img src={user.imgUrl}/>
+                                    <img 
+                                    className="profile_small"
+                                    src={user.imageUrl}/>
                                     <h3>{user.name}</h3>
-                                    <h5>@{user.handle}</h5>
+                                    <h5>@{user.userHandle}</h5>
                                 </div>
                             )
                         })}
