@@ -56,11 +56,11 @@ export default function SearchMenu(){
                 const normalizedSearchTerm = normalizeText(searchTerm).replace(/\s/g,'').toLowerCase()
                 const response = await Axios.get(`/api/search/user/${normalizedSearchTerm}`)
 
-                const formatedData = formatListData(response.data)
+                const formatedData = formatListData(response.data, "user")
 
                 console.log("formated data is:", formatedData)
 
-                setSearchResults(response.data, "user")
+                setSearchResults(response.data)
                 console.log("response is:", response.data)
 
             } else {
