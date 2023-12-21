@@ -31,7 +31,7 @@ export default function UserSearchSection(props){
                                 {user.name}
                                 <br/>
                                 <span className="user_handle">
-                                    @{user.name}
+                                    @{user.userHandle}
                                 </span>
                             </h3>
                         </Link>
