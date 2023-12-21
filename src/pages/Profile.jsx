@@ -4,6 +4,7 @@ import { Slider } from "../components"
 import { Axios } from "../Axios-config"
 import { UserSearchSection } from "../components"
 import { ToggleFollowBtn } from "../utils"
+import { placeholder_img } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
@@ -97,7 +98,7 @@ export default function Profile(){
             exceptionRef={followersRef}/>}
             
             <section className="flex" style={{ marginBottom: "30px" }}>
-                <img src={`${userProfileData?.images[1].url}`} 
+                <img src={userProfileData?.images[1] ? `${userProfileData?.images[1].url}` : placeholder_img} 
                 className="profile_large" 
                 style={{ marginRight: "90px" }}/>
 
