@@ -28,6 +28,7 @@ export default function ShareMenu(props){
 
     async function getUsersData(idList){
         setIsLoading(true)
+        console.log("id list is:", idList)
         const userList = []
         await Promise.all(
             idList.slice(0, 15).map(async (id) => {
