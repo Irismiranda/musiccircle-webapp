@@ -619,6 +619,7 @@ h3{
   height: 250px;
   top: 95%;
   right: 10px;
+  overflow: hidden;
 }
 
 .post_wrapper{

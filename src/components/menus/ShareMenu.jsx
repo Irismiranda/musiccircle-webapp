@@ -22,7 +22,7 @@ export default function ShareMenu(props){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
         } else { 
-            setSendList((prevList) => prevList  ? [...prevList, handle] : [handle])
+            setSendList((prevList) => sendList ? [...prevList, handle] : [handle])
         }
     }
 
@@ -142,7 +142,7 @@ export default function ShareMenu(props){
             className="full_width" 
             disabled={sendList?.length > 0} 
             onClick={() => sendMessage()}>
-                send
+                Send
             </button>
 
             <section className="flex">
