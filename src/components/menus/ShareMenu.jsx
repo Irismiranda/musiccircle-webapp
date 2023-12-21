@@ -11,11 +11,12 @@ export default function ShareMenu(props){
     const [userDataList, setUserDataList] = useState(null)
     const [searchResult, setSearchResult] = useState(null)
     const [sendList, setSendList] = useState([])
+    const [showMessage, setShowMessage] = useState(false)
     const userSearchInputRef = useRef(null)
     const parentRef = useRef(null)
     const textAreaRef = useRef(null)
 
-    const { contentId } = props
+    const { track } = props
 
     function toggleSendList(handle){
         if(sendList.includes(handle)){
@@ -24,6 +25,12 @@ export default function ShareMenu(props){
         } else if(sendList){ 
             setSendList((prevList) => [...prevList, handle])
         }
+    }
+
+    function copyToClipboard(){
+        navigator.clipboard.writeText(track.spotify)
+        setShowMessage(true)
+        setTimeout(setShowMessage(false), 5000)
     }
 
     async function getUsersData(idList){
@@ -68,7 +75,7 @@ export default function ShareMenu(props){
     }
 
     async function sendMessage(){
-        console.log("content id is", contentId)
+        console.log("track is", track)
     }
 
     useEffect(() => {
@@ -98,7 +105,9 @@ export default function ShareMenu(props){
                             {searchResult.map((user) => {
                                 return (
                                     <div 
-                                    className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
+                                    className={sendList?.includes(user.userHandle) ? 
+                                        "flex flex_column user_slider_item user_slider_selected" : 
+                                        "flex flex_column user_slider_item"}
                                     key={user.id}
                                     onClick={() => toggleSendList(user.userHandle)}>
                                         <img 
@@ -137,11 +146,11 @@ export default function ShareMenu(props){
             </div>}
 
             <section> 
-                {sendList?.length > 0 && 
-                    <textarea 
-                    placeholder="Say something about this..."
-                    className="share_menu_textarea" 
-                    ref={textAreaRef}/>}
+                <textarea 
+                placeholder="Say something about this..."
+                className="share_menu_textarea" 
+                ref={textAreaRef}/>
+
                 <button
                 className="full_width" 
                 disabled={sendList?.length === 0} 
@@ -156,8 +165,11 @@ export default function ShareMenu(props){
                 <div>
                     <SvgLinkIcon className="svg" />
                 </div>
-                <div>
+                <div 
+                className="flex"
+                onClick={() => copyToClipboard()}>
                     <SvgFeedIcon className="svg"/>
+                    {showMessage && <h5>Copied to Clipboard</h5>}
                 </div>
             </section>
 

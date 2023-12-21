@@ -618,12 +618,13 @@ h3{
 
 .share_menu_wrapper{
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   padding: 13px 20px;
-  width: 300px;
-  top: 95%;
-  right: 10px;
+  width: 550px;
+  top: 50%;
+  left: 50%;
   overflow: hidden;
+  transform: translate(-50%, -50%);
 }
 
 .post_wrapper{
@@ -785,6 +786,7 @@ h3{
   grid-template-columns: 50px auto 100px;
   align-items: center;
   gap: 20px;
+  height: 35px;
 }
 
 .simplified_list_wrapper .play_btn{
@@ -980,8 +982,11 @@ h3{
 
 .user_slider_selected{
   background-color: #1a1a1a;
-  padding: 15px 0px;
   border-radius: 6px;
+}
+
+.user_slider_item{
+  padding: 15px 0px;
 }
 
 button:disabled{
