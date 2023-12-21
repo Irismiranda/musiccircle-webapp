@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { placeholder_img } from "../assets"
 
 const useClickOutside = (ref, exceptionRef, callback) => {
   useEffect(() => {
@@ -35,7 +36,7 @@ function formatListData(items, category) {
       if (category === "tracks") {
         listItem.imageUrl = item.album.images[0].url
       } else {
-        listItem.imageUrl = item.images[0].url
+        listItem.imageUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
       }
       
       if(category === "user"){
