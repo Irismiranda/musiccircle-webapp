@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
-import { Slider } from "../"
+import { SliderScrollBtns } from "../../utils"
 import useStore from "../../store"
 
 export default function ShareMenu(){
@@ -9,6 +9,7 @@ export default function ShareMenu(){
     const [userDataList, setUserDataList] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const userSsearchInputRef = useRef(null)
+    const parentRef = useRef(null)
 
     async function getUsersData(idList){
         setIsLoading(true)
@@ -61,10 +62,12 @@ export default function ShareMenu(){
             {(userDataList?.length > 0) ?
             <section>
                 !isLoading ? 
-                <Slider 
-                list={userDataList}
-                category="user"
-                type="user_list"/> :
+                <section ref={parentRef}>
+                    <SliderScrollBtns 
+                    parentRef={parentRef}
+                    list={userDataList}
+                    />    
+                </section> :
                 <h3>Loading...</h3> 
             </section> :
             <h3>No results found...</h3>

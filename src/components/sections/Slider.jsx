@@ -6,7 +6,7 @@ import { PlayBtn, SliderScrollBtns } from "../../utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, parentRef, type } = props
-    const { loggedUser, setUserTopTracks, setUserTopArtists, playerState } = useStore()
+    const { loggedUser, setUserTopTracks, setUserTopArtists } = useStore()
     
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
