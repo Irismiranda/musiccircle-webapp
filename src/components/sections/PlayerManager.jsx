@@ -416,7 +416,8 @@ export default function PlayerManager() {
                             top: isMinimized ? "90%" : ""
                         }}
                         >
-                            <ShareMenu />
+                            <ShareMenu 
+                            contentId={currentTrack.id}/>
                     </div>}
 
                     <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>

@@ -3,6 +3,7 @@ import { useClickOutside } from "../../utils"
 import { UserList } from "../"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
+import { normalizeText } from "normalize-text"
 
 export default function UserSearchSection(props){
     const { idList, setUserProfileData, setUserListVisibility, exceptionRef } = props
@@ -11,7 +12,7 @@ export default function UserSearchSection(props){
     const [isLoading, setIsLoading] = useState(true)
     const [preventUpdate, setPreventUpdate] = useState(false)
     const userListRef = useRef(null)
-    const userSsearchInputRef = useRef(null)
+    const userSearchInputRef = useRef(null)
 
     useClickOutside(userListRef, exceptionRef, () => setUserListVisibility({
         following: false,
@@ -41,16 +42,16 @@ export default function UserSearchSection(props){
     }
 
     async function searchUsers() {
-        const searchTerm = userSsearchInputRef.current.value?.toLowerCase()        
+        const searchTerm = userSearchInputRef.current.value?.toLowerCase() 
+        const normalizedSearchTerm = normalizeText(searchTerm)       
         let searchResults
-
-        console.log(searchTerm)
         
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)
         } else {
             searchResults = userDataList.filter((user) =>
-            user.userHandle.toLowerCase().includes(searchTerm)
+            normalizeText(user.userHandle).toLowerCase().includes(normalizedSearchTerm) ||
+            normalizeText(user.name).toLowerCase().includes(normalizedSearchTerm)
             )
         }
         
@@ -66,7 +67,7 @@ export default function UserSearchSection(props){
     return (
         <div ref={userListRef} className="user_list_wrapper wrapper default_padding">
           <input 
-          ref={userSsearchInputRef} 
+          ref={userSearchInputRef} 
           className="search_bar" 
           placeholder="Search..." 
           onInput={() => searchUsers()} />

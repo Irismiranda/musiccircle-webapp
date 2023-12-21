@@ -4,12 +4,26 @@ import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
 import { SliderScrollBtns } from "../../utils"
 import useStore from "../../store"
 
-export default function ShareMenu(){
+export default function ShareMenu(props){
     const { loggedUser } = useStore()
-    const [userDataList, setUserDataList] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const userSsearchInputRef = useRef(null)
+    const [userDataList, setUserDataList] = useState(null)
+    const [searchResult, setSearchResult] = useState(null)
+    const [sendList, setSendList] = useState(false)
+    const userSearchInputRef = useRef(null)
     const parentRef = useRef(null)
+    const textAreaRef = useRef(null)
+
+    const { contentId } = props
+
+    function addToSendList(handle){
+        if(sendList.includes(handle)){
+            const updatedList = sendList.filter(item => item !== handle)
+            setSendList(updatedList)
+        } else {
+            setSendList((prevList) => [...prevList, handle])
+        }
+    }
 
     async function getUsersData(idList){
         setIsLoading(true)
@@ -33,18 +47,24 @@ export default function ShareMenu(){
     }
 
     async function searchUsers() {
-        const searchTerm = userSsearchInputRef.current.value.toLowerCase()        
+        const searchTerm = userSearchInputRef.current.value?.toLowerCase() 
+        const normalizedSearchTerm = normalizeText(searchTerm)       
         let searchResults
         
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)
         } else {
             searchResults = userDataList.filter((user) =>
-            user.userHandle.toLowerCase().includes(searchTerm)
+            normalizeText(user.userHandle).toLowerCase().includes(normalizedSearchTerm) ||
+            normalizeText(user.name).toLowerCase().includes(normalizedSearchTerm)
             )
         }
         
-        setUserDataList(searchResults)
+        setSearchResult(searchResults)
+    }
+
+    async function sendMessage(){
+        console.log("content id is", contentId)
     }
 
     useEffect(() => {
@@ -52,28 +72,63 @@ export default function ShareMenu(){
     }, [])
 
     return (
-        <div>
+        <div className="share_menu_wrapper">
             <input 
-            ref={userSsearchInputRef} 
+            ref={userSearchInputRef} 
             className="search_bar" 
             placeholder="Find a friend..." 
             onInput={() => searchUsers()} />
 
-            {(userDataList?.length > 0) ?
+            {(searchResult?.length > 0) ?
             <section>
-                !isLoading ? 
-                <section ref={parentRef}>
-                    <SliderScrollBtns 
-                    parentRef={parentRef}
-                    list={userDataList}
-                    />   
-
-                    
+                {!isLoading ? 
+                <section>
+                <SliderScrollBtns 
+                parentRef={parentRef}
+                list={userDataList}
+                />   
+                    <div 
+                    className="slider_grid"
+                    ref={parentRef}
+                    style={{ position: "relative" }}>
+                        {searchResult.map((user) => {
+                            return (
+                                <div 
+                                className={sendList.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
+                                key={user.id}
+                                onClick={() => addToSendList(user.userHandle)}>
+                                    <img src={user.imgUrl}/>
+                                    <h3>{user.name}</h3>
+                                    <h5>@{user.handle}</h5>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </section> :
-                <h3>Loading...</h3> 
+                <h3>Loading...</h3>} 
             </section> :
             <h3>No results found...</h3>
             }
+
+            { sendList?.length > 0 && 
+            <section>
+                <div>
+                    {sendList.map((handle) => {
+                        return (
+                            <div className="bullet_btn">handle</div>
+                        )
+                    })}
+                </div>
+                <textarea 
+                className="share_menu_textarea" 
+                ref={textAreaRef}/>
+            </section>}
+
+            <button 
+            disabled={sendList?.length > 0} 
+            onClick={() => sendMessage()}>
+                send
+            </button>
 
             <div className="flex">
                 <SvgLinkIcon className="svg" />
