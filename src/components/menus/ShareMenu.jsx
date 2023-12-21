@@ -28,7 +28,7 @@ export default function ShareMenu(props){
 
     async function getUsersData(idList){
         setIsLoading(true)
-        console.log("id list is:", idList)
+
         const userList = []
         await Promise.all(
             idList.slice(0, 15).map(async (id) => {
@@ -45,13 +45,19 @@ export default function ShareMenu(props){
         const formatedData = formatListData(userList, "user")
 
         setUserDataList(formatedData)
+        setSearchResult(formatedData)
         setIsLoading(false)
     }
 
     async function searchUsers() {
-        const searchTerm = userSearchInputRef.current.value?.toLowerCase() 
-        const normalizedSearchTerm = normalizeText(searchTerm)       
+        const searchTerm = userSearchInputRef.current.value
+        console.log("search term is", searchTerm)
+        
+        const normalizedSearchTerm = normalizeText(searchTerm).toLowerCase()        
         let searchResults
+
+        console.log("normalized search term is", normalizedSearchTerm)
+
         
         if (searchTerm === "") {
             searchResults = userDataList.slice(0, 15)
