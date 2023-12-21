@@ -586,17 +586,12 @@ h3{
   margin: 0px;
 }
 
-.minMaxBtn{
-  top: 12px;
-  right: 15px;
-}
-
 .draggable_handle{
   position: absolute;
   width: 22px;
   height: 22px;
-  bottom: 3px;
-  right: 3px;
+  bottom: -2px;
+  right: -32px;
   cursor: pointer;
 }
 
@@ -604,6 +599,16 @@ h3{
   position: absolute;
   height: 15px;
   cursor: pointer;
+}
+
+.player_default .minMaxBtn{
+  top: 0px;
+  right: -15px;
+}
+
+.player_minimized .minMaxBtn{
+  top: 6px;
+  right: -30px;
 }
 
 .side_menu_expanded{
