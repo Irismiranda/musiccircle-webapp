@@ -10,7 +10,7 @@ export default function ShareMenu(props){
     const [isLoading, setIsLoading] = useState(true)
     const [userDataList, setUserDataList] = useState(null)
     const [searchResult, setSearchResult] = useState(null)
-    const [sendList, setSendList] = useState(null)
+    const [sendList, setSendList] = useState({})
     const userSearchInputRef = useRef(null)
     const parentRef = useRef(null)
     const textAreaRef = useRef(null)
@@ -127,7 +127,7 @@ export default function ShareMenu(props){
                     {sendList.map((handle) => {
                         return (
                             <button 
-                            onClick={toggleSendList(handle)}
+                            onClick={() => toggleSendList(handle)}
                             className="bullet_btn">
                                 {handle}
                             </button>
