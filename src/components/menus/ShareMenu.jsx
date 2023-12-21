@@ -18,12 +18,12 @@ export default function ShareMenu(props){
 
     const { track } = props
 
-    function toggleSendList(handle){
-        if(sendList.includes(handle)){
-            const updatedList = sendList.filter(item => item !== handle)
+    function toggleSendList(name){
+        if(sendList.includes(name)){
+            const updatedList = sendList.filter(item => item !== name)
             setSendList(updatedList)
         } else if(sendList){ 
-            setSendList((prevList) => [...prevList, handle])
+            setSendList((prevList) => [...prevList, name])
         }
     }
 
@@ -105,16 +105,15 @@ export default function ShareMenu(props){
                             {searchResult.map((user) => {
                                 return (
                                     <div 
-                                    className={sendList?.includes(user.userHandle) ? 
+                                    className={sendList?.includes(user.name) ? 
                                         "flex flex_column user_slider_item user_slider_selected" : 
                                         "flex flex_column user_slider_item"}
                                     key={user.id}
-                                    onClick={() => toggleSendList(user.userHandle)}>
+                                    onClick={() => toggleSendList(user.name)}>
                                         <img 
                                         className="profile_small"
                                         src={user.imageUrl}/>
                                         <h3>{user.name}</h3>
-                                        <h5>@{user.userHandle}</h5>
                                     </div>
                                 )
                             })}
@@ -134,12 +133,12 @@ export default function ShareMenu(props){
             <div 
             className="flex"
             style={{ flexWrap: "wrap" }}>
-                {sendList.map((handle) => {
+                {sendList.map((name) => {
                     return (
                         <button 
-                        onClick={() => toggleSendList(handle)}
+                        onClick={() => toggleSendList(name)}
                         className="bullet_btn">
-                            {handle}
+                            {name}
                         </button>
                     )
                 })}
