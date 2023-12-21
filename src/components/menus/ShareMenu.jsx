@@ -120,31 +120,42 @@ export default function ShareMenu(props){
                 <h3>Loading...</h3>
                 }
             </section>
+            
+            {sendList?.length > 0 && 
+            <div 
+            className="flex"
+            style={{ flexWrap: "wrap" }}>
+                {sendList.map((handle) => {
+                    return (
+                        <button 
+                        onClick={() => toggleSendList(handle)}
+                        className="bullet_btn">
+                            {handle}
+                        </button>
+                    )
+                })}
+            </div>}
 
-            { sendList?.length > 0 && 
-            <section>
-                <div className="flex">
-                    {sendList.map((handle) => {
-                        return (
-                            <button 
-                            onClick={() => toggleSendList(handle)}
-                            className="bullet_btn">
-                                {handle}
-                            </button>
-                        )
-                    })}
-                </div>
-                <textarea 
-                className="share_menu_textarea" 
-                ref={textAreaRef}/>
-            </section>}
-
-            <button
-            className="full_width" 
-            disabled={sendList?.length > 0} 
-            onClick={() => sendMessage()}>
-                Send
-            </button>
+            <section> 
+                {sendList?.length > 0 && 
+                    <div className="flex">
+                        {sendList.map((handle) => {
+                            return (
+                                <button 
+                                onClick={() => toggleSendList(handle)}
+                                className="bullet_btn">
+                                    {handle}
+                                </button>
+                            )
+                        })}
+                    </div>}
+                <button
+                className="full_width" 
+                disabled={sendList?.length === 0} 
+                onClick={() => sendMessage()}>
+                    Send
+                </button>
+            </section>
 
             <section 
             className="flex full_width"

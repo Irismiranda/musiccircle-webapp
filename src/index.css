@@ -333,7 +333,7 @@ input{
   margin-top: 3px;
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: none;
 }
 
@@ -950,10 +950,10 @@ h3{
 }
 
 .bullet_btn{
-  margin: 0;
   border-radius: 50px;
-  padding: 3px 10px 6px;
-  width: 25%;
+  padding: 5px 22px 7px;
+  margin: 5px 0px;
+  font-size: 11px;
 }
 
 .user_slider_grid{
@@ -967,15 +967,38 @@ h3{
   cursor: pointer;
 }
 
+.share_menu_inner_wrapper textarea{
+  height: 60px;
+  border-radius: 0px;
+  width: calc(100% + 40px);
+  margin: 10px -20px 10px 0px;
+  background-color: transparent;
+  border: solid 1px #4b4a4a;
+  border-style: solid none none;
+  padding-top: 15px;
+}
+
+.user_slider_selected{
+  background-color: #1a1a1a;
+  padding: 15px 0px;
+  border-radius: 6px;
+}
+
 button:disabled{
   opacity: 0.5;
 }
 
 .slider_inner_wrapper{
-  height: 110px;
+  height: 135px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.user_slider_selected .bullet{
+  color: #000000;
+  background-color: #4b4a4a
 }
 
 ::-webkit-scrollbar {
