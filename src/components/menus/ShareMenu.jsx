@@ -39,7 +39,7 @@ export default function ShareMenu(){
             searchResults = userDataList.slice(0, 15)
         } else {
             searchResults = userDataList.filter((user) =>
-            user.user_handle.toLowerCase().includes(searchTerm)
+            user.userHandle.toLowerCase().includes(searchTerm)
             )
         }
         
