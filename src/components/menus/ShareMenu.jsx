@@ -16,7 +16,7 @@ export default function ShareMenu(props){
     const parentRef = useRef(null)
     const textAreaRef = useRef(null)
 
-    const { track } = props
+    const { content } = props
 
     function toggleSendList(name){
         if(sendList.includes(name)){
@@ -28,7 +28,7 @@ export default function ShareMenu(props){
     }
 
     function copyToClipboard(){
-        navigator.clipboard.writeText(`https://open.spotify.com/track/${track.id}`)
+        navigator.clipboard.writeText(`https://open.spotify.com/${content.type}/${content.id}`)
         setShowMessage(true)
         setTimeout(() => setShowMessage(false), 5000)
     }
@@ -75,7 +75,11 @@ export default function ShareMenu(props){
     }
 
     async function sendMessage(){
-        console.log("track is", track)
+        console.log(content.type," is", content)
+    }
+
+    async function postMessage(){
+        Axios.post(`/api/${loggedUser.id}/post/${content.id}`)
     }
 
     useEffect(() => {
@@ -168,7 +172,8 @@ export default function ShareMenu(props){
                     {showMessage && <h5>Copied to Clipboard!</h5>}
                 </div>
                 <div 
-                className="flex full_width justify_center">
+                className="flex full_width justify_center"
+                onClick={() => postMessage()}>
                     <SvgFeedIcon className="svg"/>
                 </div>
             </section>

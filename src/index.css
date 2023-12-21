@@ -173,6 +173,7 @@ svg{
   border-radius: 10px;
   margin: 5px 0px 10px auto;
   box-shadow: 0px 10px 23px -4px rgba(0,0,0,0.8);
+  overflow: hidden;
 }
 
 .default_padding{
@@ -876,6 +877,9 @@ h3{
 }
 
 .user_handle{
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: rgb(242, 48, 170);
   font-size: 15px;
   font-weight: 400;
@@ -928,7 +932,7 @@ h3{
 
 .user_list_grid{
   display: grid;
-  grid-template-columns: 50px auto 1fr;
+  grid-template-columns: 50px 150px 80px;
   gap: 20px;
   height: 60px;
   align-items: center;
