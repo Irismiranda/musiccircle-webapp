@@ -102,7 +102,7 @@ export default function ShareMenu(props){
                         {searchResult.map((user) => {
                             return (
                                 <div 
-                                className={sendList.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
+                                className={sendList?.includes(user.userHandle) ? "flex flex_column user_slider_selected" : "flex flex_column"}
                                 key={user.id}
                                 onClick={() => addToSendList(user.userHandle)}>
                                     <img src={user.imgUrl}/>
