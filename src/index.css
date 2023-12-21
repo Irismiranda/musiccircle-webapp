@@ -107,6 +107,10 @@ svg{
   gap: 2px 15px;
 }
 
+.justify_center{
+  justify-content: center;
+}
+
 .sticky{
   position: sticky;
   left: 100%;

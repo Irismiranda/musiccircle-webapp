@@ -28,7 +28,7 @@ export default function ShareMenu(props){
     }
 
     function copyToClipboard(){
-        console.log(track.spotify)
+        console.log(track)
         navigator.clipboard.writeText(track.spotify)
         setShowMessage(true)
         setTimeout(() => setShowMessage(false), 5000)
@@ -162,15 +162,16 @@ export default function ShareMenu(props){
 
             <section 
             className="flex full_width"
-            style={{ marginTop: "20px", justifyContent: "space-around" }}>
-                <div>
+            style={{ marginTop: "20px"}}>
+                <div 
+                className="flex full_width justify_center"
+                onClick={() => copyToClipboard()}>
                     <SvgLinkIcon className="svg" />
+                    {showMessage && <h5>Copied to Clipboard!</h5>}
                 </div>
                 <div 
-                className="flex"
-                onClick={() => copyToClipboard()}>
+                className="flex full_width justify_center">
                     <SvgFeedIcon className="svg"/>
-                    {showMessage && <h5>Copied to Clipboard</h5>}
                 </div>
             </section>
 
