@@ -18,7 +18,7 @@ export default function ShareMenu(props){
     const { contentId } = props
 
     function toggleSendList(handle){
-        if(sendList?.includes(handle)){
+        if(sendList.includes(handle)){
             const updatedList = sendList.filter(item => item !== handle)
             setSendList(updatedList)
         } else if(sendList){ 
