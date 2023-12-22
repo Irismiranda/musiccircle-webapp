@@ -818,8 +818,8 @@ h3{
 }
 
 .share_menu_wrapper .btn_wrapper_left{
-  top: 165px;
-  right: 40px;
+  top: 156px;
+  left: 40px;
 }
 
 .btn_wrapper_right{
@@ -830,7 +830,8 @@ h3{
 }
 
 .share_menu_wrapper .btn_wrapper_right{
-  top: 165px;
+  top: 156px;
+  right: 40px;
 }
 
 .user_data_grid{
@@ -1014,6 +1015,7 @@ h3{
 .user_slider_item{
   padding: 10px;
   width: 180px;
+  box-sizing: border-box;
 }
 
 button:disabled{
