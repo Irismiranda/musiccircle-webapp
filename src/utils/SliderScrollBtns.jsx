@@ -17,8 +17,8 @@ export default function SliderScrollBtns(props){
 
     useEffect(() => {
         if(parentRef.current){
-            console.log("max scroll is:", maxScroll)
             const maxScroll = parentRef.current.scrollWidth - parentRef.current.clientWidth
+            console.log("max scroll is:", maxScroll)
             setMaxScrollLeft(maxScroll)
         }
     }, [list])
