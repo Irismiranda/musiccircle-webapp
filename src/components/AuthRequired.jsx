@@ -183,14 +183,15 @@
           getUser()
         }
       }
-      
+      setIsLoading(false)
+    }, [spotifyApi])
+
+    useEffect(() => {
       if(spotifyApi && loggedUser){
         getTopList("top_tracks")
         getTopList("top_artists")
       }
-
-      setIsLoading(false)
-    }, [spotifyApi])
+    }, [spotifyApi, loggedUser])
 
     useEffect(() => {
       if(loggedUser){
