@@ -59,8 +59,10 @@ export default function Artist(){
     }, [artistId])
     
     return(
-        <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            <section style={{ position: "relative" }}>
+        <div 
+        className="wrapper default_padding" 
+        style={{ width: standardWrapperWidth, overflow: "hidden", position: "relative" }}>
+            <section>
                 <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
                 </div>
                 <div 

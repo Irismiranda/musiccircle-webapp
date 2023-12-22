@@ -97,7 +97,9 @@ export default function Profile(){
             setUserListVisibility={setUserListVisibility}
             exceptionRef={followersRef}/>}
             
-            <section className="flex" style={{ marginBottom: "30px" }}>
+            <section 
+            className="flex" 
+            style={{ marginBottom: "30px" }}>
                 <img src={userProfileData?.images[1] ? `${userProfileData?.images[1].url}` : placeholder_img} 
                 className="profile_large" 
                 style={{ marginRight: "90px" }}/>
@@ -148,7 +150,9 @@ export default function Profile(){
             </section>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_artists || isLoggedUser)) && 
-            <section style={{ position: "relative" }} className={topArtists?.show_top_artists ? "" : "transparent_section"}>
+            <section 
+            style={{ position: "relative" }} 
+            className={topArtists?.show_top_artists ? "" : "transparent_section"}>
                 <div 
                 className={showVisibleTopArtists ? "" : "hidden_items_grid"}>
                     <Slider 
@@ -169,7 +173,9 @@ export default function Profile(){
            </section>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
-           <section style={{ position: "relative" }} className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
+           <section 
+           style={{ position: "relative" }} 
+           className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
                 <div className={showVisibleTopTracks ? "" : "hidden_items_grid"}>
                     <Slider 
                     list={topTracks.items} 

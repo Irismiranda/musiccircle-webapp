@@ -43,8 +43,10 @@ export default function Album(){
     }, [albumData])
     
     return(
-        <div className="wrapper default_padding" style={{ width: standardWrapperWidth, overflow: "hidden" }}>
-            <section style={{ position: "relative" }}>
+        <div 
+        className="wrapper default_padding" 
+        style={{ width: standardWrapperWidth, overflow: "hidden", position: "relative" }}>
+            <section>
                 <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
                 </div>
                 <div 
