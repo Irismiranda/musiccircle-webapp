@@ -826,7 +826,7 @@ h3{
   position: absolute;
   z-index: 2;
   top: 140px;
-  right: 25px;
+  right: -10px;
 }
 
 .user_slider_grid .btn_wrapper_right{
