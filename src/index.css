@@ -1021,7 +1021,7 @@ button:disabled{
 }
 
 .posting_wrapper::after{
-  
+  background-color: #0000003f;
 }
 
 .slider_inner_wrapper{
