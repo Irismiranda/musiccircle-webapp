@@ -77,7 +77,6 @@ export default function ShareMenu(props){
 
     async function sendMessage(){
         setPublishing(true)
-        console.log(content.type," is", content)
         closeMenu()
     }
 
@@ -95,10 +94,6 @@ export default function ShareMenu(props){
     useEffect(() => {
         getUsersData(loggedUser.following)
     }, [])
-
-    useEffect(() => {
-        console.log(sendList)
-    }, [sendList])
 
     return (
         <div className={publishing ? "share_menu_inner_wrapper posting_wrapper" : "share_menu_inner_wrapper"}>

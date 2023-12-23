@@ -39,6 +39,7 @@ export default function Profile(){
     }
 
     async function getPosts(userId){
+        console.log("get posts function ran")
         const response = await Axios.get(`/api/${userId}/posts`)
         console.log(response.data)
         setPosts(response.data)

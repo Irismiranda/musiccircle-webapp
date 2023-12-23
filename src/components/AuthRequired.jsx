@@ -4,6 +4,7 @@
   import { io } from "socket.io-client"
   import { formatListData } from "../utils"
   import { normalizeText } from 'normalize-text'
+  import { Error } from "../components"
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
@@ -256,7 +257,9 @@
 
     }, [userTopTracks, userTopTracks, offset])
 
-    if (accessToken && !isLoading) {
+    if(loggedUser.product === "free"){
+      return <Error/>
+    } else if (accessToken && !isLoading) {
       return <Outlet/>
     } else {
       return (
