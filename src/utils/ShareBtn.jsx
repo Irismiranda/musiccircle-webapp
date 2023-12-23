@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react"
+import { Link } from "react-router-dom"
 import { SvgShareBtn } from "../assets"
 import { ShareMenu } from "../components"
 import { useClickOutside } from "./utils"
