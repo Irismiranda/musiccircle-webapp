@@ -15,6 +15,7 @@
     const [expired, setExpired] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [offset, setOffset] = useState(0)
+    const [isUserPremium, setIsUserPremium] = useState(true)
     const newSpotifyApi = new Spotify()
     const navigate = useNavigate()
 
@@ -53,6 +54,10 @@
     async function getUser() {
       try{       
         const userData = await spotifyApi.getMe()
+        if(userData.product === "free"){
+          setIsUserPremium(false)
+          return
+        }
         userData.user_handle = `${normalizeText(userData.display_name).replace(/\s/g,'')}#${userData.id}`
         
         const response = await Axios.post("/api/account", {
@@ -257,7 +262,7 @@
 
     }, [userTopTracks, userTopTracks, offset])
 
-    if(loggedUser.product === "free"){
+    if(!isUserPremium){
       return <Error/>
     } else if (accessToken && !isLoading) {
       return <Outlet/>
