@@ -23,10 +23,13 @@ export default function ShareBtn(props){
                 content={content}
                 closeMenu={() => setIsShareMenuVisibile(false)}/>}
             </div>
-            <SvgShareBtn 
-            ref={shareBtnRef}
-            className="svg" 
-            onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+            <div 
+            className="share_menu_wrapper wrapper">
+                <SvgShareBtn 
+                ref={shareBtnRef}
+                className="svg" 
+                onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+            </div>
         </section>
     )
   }
