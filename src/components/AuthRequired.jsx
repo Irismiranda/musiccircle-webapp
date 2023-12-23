@@ -4,7 +4,7 @@
   import { io } from "socket.io-client"
   import { formatListData } from "../utils"
   import { normalizeText } from 'normalize-text'
-  import { Error } from "../components"
+  import { Error } from "../pages"
   import Cookies from 'js-cookie'
   import Spotify from "spotify-web-api-js"
   import useStore from "../store"
