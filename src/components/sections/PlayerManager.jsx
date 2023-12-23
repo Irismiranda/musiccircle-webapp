@@ -409,56 +409,53 @@ export default function PlayerManager() {
                     height: isMinimized ? `${playerSize.height}px` : "",
                     left: isMinimized ?  playerPosStyle.left : "",
                     top: isMinimized ? playerPosStyle.top : ""}}>
+                    
+                    <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
+                        <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
+                    </div>
 
-                        <div className="player_inner_wrapper">
-                            <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
-                                <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
-                            </div>
+                    { (!isScrolled && !isMinimized) &&
+                    <div 
+                    className="full_width"
+                    ref={playerRef}>
+                        <PlayerMaximized
+                        postWindowRef={postWindowRef}
+                        playerState={playerState}
+                        playerFunctionalProps={playerFunctionalProps}
+                    />
+                    </div>
+                    }
 
-                            { (!isScrolled && !isMinimized) &&
-                            <div 
-                            className="full_width"
-                            ref={playerRef}>
-                                <PlayerMaximized
-                                postWindowRef={postWindowRef}
-                                playerState={playerState}
-                                playerFunctionalProps={playerFunctionalProps}
-                            />
-                            </div>
-                            }
+                    { (isScrolled && !isMinimized) 
+                    && 
+                    <div 
+                    className="full_width"
+                    ref={playerRef}>
+                        <PlayerOnScroll 
+                        postWindowRef={postWindowRef}
+                        playerState={playerState}
+                        playerFunctionalProps={playerFunctionalProps}
+                    />
+                    </div>
+                    }
 
-                            { (isScrolled && !isMinimized) 
-                            && 
-                            <div 
-                            className="full_width"
-                            ref={playerRef}>
-                                <PlayerOnScroll 
-                                postWindowRef={postWindowRef}
-                                playerState={playerState}
-                                playerFunctionalProps={playerFunctionalProps}
-                            />
-                            </div>
-                            }
-
-                            { isMinimized && 
-                            <div 
-                            className={playerSize.width > 615 ? "grid" : "min_layout"}
-                            style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
-                            ref={playerRef}>
-                                <PlayerMinimized 
-                                postWindowRef={postWindowRef}
-                                playerState={playerState}
-                                playerFunctionalProps={playerFunctionalProps}
-                            />
-                            <div 
-                                className="draggable_handle" 
-                                ref={draggableHandleRef}
-                                onMouseDown={(e) => getInitialPos(e)}>
-                                    <SvgResizeHandle />
-                                </div>
-                            </div>}
+                    { isMinimized && 
+                    <div 
+                    className={playerSize.width > 615 ? "grid" : "min_layout"}
+                    style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
+                    ref={playerRef}>
+                        <PlayerMinimized 
+                        postWindowRef={postWindowRef}
+                        playerState={playerState}
+                        playerFunctionalProps={playerFunctionalProps}
+                    />
+                    <div 
+                        className="draggable_handle" 
+                        ref={draggableHandleRef}
+                        onMouseDown={(e) => getInitialPos(e)}>
+                            <SvgResizeHandle />
                         </div>
-
+                    </div>}   
                 </div>
                 <Outlet />
             </>

@@ -630,6 +630,7 @@ h3{
   left: 50%;
   overflow: hidden;
   transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
 .post_wrapper{
@@ -1016,13 +1017,14 @@ h3{
 }
 
 .user_slider_item{
+  width: 180px;
   box-sizing: border-box;
   padding: 10px;
-  border-radius: 10px;
+  gap: 15px;
   background-color: #1a1a1a;
-  border-color: #191414;
+  border-radius: 10px;
   border: 2px solid;
-  width: 180px;
+  border-color: #191414;
 }
 
 button:disabled{
