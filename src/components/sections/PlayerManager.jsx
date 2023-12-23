@@ -6,7 +6,6 @@ import { setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
-    // const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [recommendations, setRecommendations] = useState(null)
     const [currentQueue, setCurrentQueue] = useState(null)
@@ -14,7 +13,6 @@ export default function PlayerManager() {
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
-    // const shareMenuRef = useRef(null)
     const playerRef = useRef(null)
     const playerWrapperRef = useRef(null)
     const draggableHandleRef = useRef(null)
@@ -404,21 +402,6 @@ export default function PlayerManager() {
                     top: isMinimized ? playerPosStyle.top : ""}}>
 
                         <div className="player_inner_wrapper">
-
-                            {/* { isShareMenuVisibile &&
-                                <div 
-                                ref={shareMenuRef}
-                                className="share_menu_wrapper wrapper default_padding sticky full_width" 
-                                style={{ 
-                                    left: isMinimized ? "18%" : "", 
-                                    top: isMinimized ? "90%" : ""
-                                }}
-                                >
-                                    <ShareMenu 
-                                    content={currentTrack}
-                                    closeMenu={() => setIsShareMenuVisibile(true)}/>
-                            </div>} */}
-
                             <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
                                 <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>
                             </div>
@@ -428,7 +411,6 @@ export default function PlayerManager() {
                             className="full_width"
                             ref={playerRef}>
                                 <PlayerMaximized
-                                shareMenuRef={shareMenuRef}
                                 postWindowRef={postWindowRef}
                                 playerState={playerState}
                                 playerFunctionalProps={playerFunctionalProps}
@@ -442,7 +424,6 @@ export default function PlayerManager() {
                             className="full_width"
                             ref={playerRef}>
                                 <PlayerOnScroll 
-                                shareMenuRef={shareMenuRef}
                                 postWindowRef={postWindowRef}
                                 playerState={playerState}
                                 playerFunctionalProps={playerFunctionalProps}
@@ -456,7 +437,6 @@ export default function PlayerManager() {
                             style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
                             ref={playerRef}>
                                 <PlayerMinimized 
-                                shareMenuRef={shareMenuRef}
                                 postWindowRef={postWindowRef}
                                 playerState={playerState}
                                 playerFunctionalProps={playerFunctionalProps}

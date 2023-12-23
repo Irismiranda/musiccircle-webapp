@@ -32,14 +32,13 @@ const PlayerOnScroll = ((props) => {
         setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
-    const { shareMenuRef, postWindowRef } = props
+    const { postWindowRef } = props
 
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
     const artistName = currentTrack.artists[0].name
     const songId = currentTrack.id
 
-    useClickOutside(shareMenuRef, shareBtnRef, () => setIsShareMenuVisibile(false))
     useClickOutside(postWindowRef, commentBtnRef, () => setIsPostVisible(false))
 
     return (
