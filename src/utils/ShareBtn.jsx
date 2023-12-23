@@ -16,14 +16,14 @@ export default function ShareBtn(props){
     return (
         <section
         className="relative">
-            <div 
+            {isShareMenuVisibile && <div 
             className="share_menu_wrapper wrapper"
             ref={shareMenuRef}>
-                {isShareMenuVisibile && 
+                
                 <ShareMenu 
                 content={content}
-                closeMenu={() => setIsShareMenuVisibile(false)}/>}
-            </div>
+                closeMenu={() => setIsShareMenuVisibile(false)}/>
+            </div>}
             <div>
                 <SvgShareBtn 
                 ref={shareBtnRef}

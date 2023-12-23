@@ -1,4 +1,5 @@
 import React, { useRef } from "react"
+import { Link } from "react-router-dom"
 import useStore from "../../store"
 import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
 import { useClickOutside, HeartBtn } from "../../utils"
@@ -29,7 +30,6 @@ const PlayerOnScroll = ((props) => {
         handleTimelineClick,
         isPostVisible, 
         setIsPostVisible,
-        setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
     const { postWindowRef } = props

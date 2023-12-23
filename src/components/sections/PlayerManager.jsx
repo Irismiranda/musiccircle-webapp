@@ -32,7 +32,15 @@ export default function PlayerManager() {
         left: 0,
     })
     
-    const { spotifyApi, accessToken, setArtistUri, artistUri, standardWrapperWidth, playerState, setPlayerState, seedTrackId } = useStore()
+    const { 
+        spotifyApi, 
+        accessToken, 
+        setArtistUri, 
+        artistUri, 
+        standardWrapperWidth, 
+        playerState, 
+        setPlayerState, 
+        seedTrackId } = useStore()
 
     const { 
         isMinimized,
@@ -363,6 +371,7 @@ export default function PlayerManager() {
         setIsPostVisible,
         handleResize,
         getInitialPos,
+        playerSize,
       }
 
     if (!currentTrack) {
