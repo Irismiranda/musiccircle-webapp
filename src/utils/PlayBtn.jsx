@@ -27,7 +27,6 @@ export default function PlayBtn(props){
                         spotifyApi.queue(id)
                     }))
         
-                    setSeedTracks({ids: ids.slice(0, 5), type: "tracks"})
                 } catch (err) {
                     if (err.status === 502) {
                         retries++
@@ -37,6 +36,7 @@ export default function PlayBtn(props){
                     }
                 }
             }
+            setSeedTracks({ids: ids.slice(0, 5), type: "tracks"})
             throw new Error(`Failed after ${maxRetries} retries`)
         } else if (type === "artist"){
             let retries = 0
@@ -54,7 +54,6 @@ export default function PlayBtn(props){
                         spotifyApi.queue(id)
                     }))
         
-                    setSeedTracks({ids: [id], type: "artists"})
                 } catch (err) {
                     if (err.status === 502) {
                         retries++
@@ -64,6 +63,7 @@ export default function PlayBtn(props){
                     }
                 }
             }
+            setSeedTracks({ids: [id], type: "artists"})
             throw new Error(`Failed after ${maxRetries} retries`)
         }
     }
