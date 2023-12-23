@@ -39,11 +39,11 @@ export default function Post(props){
             <div 
             className="cover_medium"
             style={{ backgroundImage: `url('${item?.imgUrl}')`}}
-            onMouseOver={setHoverItemId(item.id)}>
+            onMouseOver={() => setHoverItemId([`${data.type}_id`])}>
             </div>
             <PlayBtn 
-            uri={`spotify:${item.type}:${item.id}`} 
-            id={item.id}
+            uri={`spotify:${item.type}:${[`${data.type}_id`]}`} 
+            id={[`${data.type}_id`]}
             category={"cover"} 
             type={item.type} 
             hoverItemId={hoverItemId}/>
