@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
-import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, Post, ShareMenu } from ".."
+import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, Post } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
 import { setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
-    const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
+    // const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [recommendations, setRecommendations] = useState(null)
     const [currentQueue, setCurrentQueue] = useState(null)
@@ -14,7 +14,7 @@ export default function PlayerManager() {
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
     const postWindowRef = useRef(null)
-    const shareMenuRef = useRef(null)
+    // const shareMenuRef = useRef(null)
     const playerRef = useRef(null)
     const playerWrapperRef = useRef(null)
     const draggableHandleRef = useRef(null)
@@ -409,7 +409,7 @@ export default function PlayerManager() {
 
                         <div className="player_inner_wrapper">
 
-                            { isShareMenuVisibile &&
+                            {/* { isShareMenuVisibile &&
                                 <div 
                                 ref={shareMenuRef}
                                 className="share_menu_wrapper wrapper default_padding sticky full_width" 
@@ -421,7 +421,7 @@ export default function PlayerManager() {
                                     <ShareMenu 
                                     content={currentTrack}
                                     closeMenu={() => setIsShareMenuVisibile(true)}/>
-                            </div>}
+                            </div>} */}
 
                             <div onClick={() => setPlayerState({ isMinimized: !isMinimized })}>
                                 <SvgMinMaxBtn className="minMaxBtn" is_minimized={isMinimized.toString()}/>

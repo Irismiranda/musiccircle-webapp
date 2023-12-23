@@ -1,7 +1,8 @@
 import React, { useRef } from "react"
+import { Link } from "react-router-dom"
 import useStore from "../../store"
-import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { useClickOutside, HeartBtn } from "../../utils"
+import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+import { useClickOutside, HeartBtn, ShareBtn } from "../../utils"
 
 const PlayerMaximized = ((props) => {
     const { playerState, setPlayerState } = useStore()
@@ -27,8 +28,7 @@ const PlayerMaximized = ((props) => {
         trackVolumePosition,
         handleTimelineClick,
         isPostVisible, 
-        setIsPostVisible,
-        isShareMenuVisibile, 
+        setIsPostVisible, 
         setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
@@ -46,11 +46,13 @@ const PlayerMaximized = ((props) => {
         <div className="player_wrapper">
             <img src={albumImg} className="cover_medium"/>   
             <div className="flex flex_column full_width" style={{ alignItems: "start"}}>
-                <div className="flex">
+                <div className="flex"> 
                     <h2> {trackName} </h2>
                     <HeartBtn songId={songId} isLiked={isLiked}/>
                 </div>
-                <h3> {artistName} </h3>
+                <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                    <h3> {artistName} </h3>
+                </Link>
 
                 <div className="flex full_width">
                     <div className="flex" onClick={() => { player.previousTrack() }}>
@@ -101,7 +103,8 @@ const PlayerMaximized = ((props) => {
                             <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
                         </div>
                         <div className="flex" ref={shareBtnRef}>
-                            <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+                            <ShareBtn
+                            content={currentTrack}/>
                         </div>
                     </div>
                 </div>

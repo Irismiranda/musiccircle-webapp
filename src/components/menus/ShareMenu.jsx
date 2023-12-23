@@ -76,14 +76,16 @@ export default function ShareMenu(props){
     }
 
     async function sendMessage(){
+        setPublishing(true)
         console.log(content.type," is", content)
+        closeMenu()
     }
 
     async function postMessage(){
         setPublishing(true)
 
         Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
-            message: textAreaRef.current.value,
+            comment: textAreaRef.current.value,
             type: content.type
         })
         closeMenu()
@@ -123,7 +125,7 @@ export default function ShareMenu(props){
                                     onClick={() => toggleSendList(user.name)}>
                                         <img 
                                         className="profile_small"
-                                        src={user.imageUrl}/>
+                                        src={user.imgUrl}/>
                                         <h3>{user.name}</h3>
                                     </div>
                                 )

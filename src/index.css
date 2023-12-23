@@ -819,7 +819,7 @@ h3{
 
 .share_menu_wrapper .btn_wrapper_left{
   top: 156px;
-  left: 40px;
+  left: 20px;
 }
 
 .btn_wrapper_right{
@@ -831,7 +831,7 @@ h3{
 
 .share_menu_wrapper .btn_wrapper_right{
   top: 156px;
-  right: 40px;
+  right: 20px;
 }
 
 .user_data_grid{
@@ -983,18 +983,22 @@ h3{
 }
 
 .user_slider_grid{
-  padding: 0px 20px;
+  padding: 0 20px;
   position: relative;
   display: grid;
   gap: 15px;
   width: calc(100% + 80px);
-  margin-left: -40px;
+  margin: 0px 0px 20px -40px;
   grid-auto-flow: column;
   grid-template-columns: repeat(auto-fill,180px);
   cursor: pointer;
   overflow-x: hidden;
   text-wrap: wrap;
   text-align: center;
+}
+
+.share_menu_inner_wrapper{
+  position: relative;
 }
 
 .share_menu_inner_wrapper textarea{
@@ -1008,14 +1012,17 @@ h3{
 }
 
 .user_slider_selected{
-  background-color: #1a1a1a;
-  border-radius: 6px;
+  border-color: #b7b7b7 !important;
 }
 
 .user_slider_item{
-  padding: 10px;
-  width: 180px;
   box-sizing: border-box;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #1a1a1a;
+  border-color: #191414;
+  border: 2px solid;
+  width: 180px;
 }
 
 button:disabled{
@@ -1023,11 +1030,22 @@ button:disabled{
 }
 
 .posting_wrapper::after{
-  background-color: #0000003f;
+  background-color: #00000063;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    margin-left: -20px;
+    margin-top: -20px;
+    content: '';
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)"><stop offset="0" stop-color="%23F230AA"></stop><stop offset=".3" stop-color="%23F230AA" stop-opacity=".9"></stop><stop offset=".6" stop-color="%23F230AA" stop-opacity=".6"></stop><stop offset=".8" stop-color="%23F230AA" stop-opacity=".3"></stop><stop offset="1" stop-color="%23F230AA" stop-opacity="0"></stop></radialGradient><circle transform-origin="center" fill="none" stroke="url(%23a12)" stroke-width="15" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform></circle><circle transform-origin="center" fill="none" opacity=".2" stroke="%23F230AA" stroke-width="15" stroke-linecap="round" cx="100" cy="100" r="70"></circle></svg>');
+    background-size: 15%;
+    background-position: 50%;
+    background-repeat: no-repeat;
 }
 
 .slider_inner_wrapper{
-  height: 145px;
+  height: 165px;
   padding: 0px 20px;
   display: flex;
   flex-direction: column;

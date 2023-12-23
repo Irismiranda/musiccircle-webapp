@@ -28,9 +28,8 @@ export default function Slider(props){
             slidePercent={slidePercent}/>
 
             <div 
-            className="slider_grid"
-            ref={parentRef}
-            style={{ position: "relative" }} >
+            className="slider_grid relative"
+            ref={parentRef}>
                 {list
                     .filter(item => item.isVisible === visibility)
                     .sort((a, b) => {
@@ -48,7 +47,7 @@ export default function Slider(props){
                                         <div 
                                         onMouseEnter={() => setHoverItemId(item.id)}
                                         onMouseLeave={() => setHoverItemId(null)}
-                                        style={{ backgroundImage: `url('${item.imageUrl}')`}} className="cover_medium cover_wrapper">
+                                        style={{ backgroundImage: `url('${item.imgUrl}')`}} className="cover_medium cover_wrapper">
                                         </div>
                                     </Link>
                                     {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, item.type)}>{visibility ? "Hide" : "Show"}</button>}

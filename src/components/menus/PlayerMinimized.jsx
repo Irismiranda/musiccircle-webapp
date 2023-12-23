@@ -1,6 +1,6 @@
         import React, { useRef } from "react"
         import useStore from "../../store"
-        import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+        import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
         import { useClickOutside, HeartBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
@@ -29,9 +29,7 @@
                 handleTimelineClick,
                 isPostVisible, 
                 setIsPostVisible,
-                isShareMenuVisibile, 
                 setIsShareMenuVisibile,
-                getInitialPos,
                 playerSize,
             } = props.playerFunctionalProps
 
@@ -55,14 +53,17 @@
                             <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
                         </div>
                         <div ref={shareBtnRef}>
-                            <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+                            <ShareBtn
+                            content={currentTrack}/>
                         </div>
                         <HeartBtn songId={songId} isLiked={isLiked}/>
                     </div>
                         </div>
                 
                         <h2> {trackName} </h2>
-                        <h3> {artistName} </h3>
+                        <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                            <h3> {artistName} </h3>
+                        </Link>
                         
                     <div className="flex main_btns">
                         <div onClick={() => { player.previousTrack() }}>
@@ -161,9 +162,12 @@
                             <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
                         </div>
                         <div ref={shareBtnRef}>
-                            <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+                            <ShareBtn
+                            content={currentTrack}/>
                         </div>
-                        <HeartBtn songId={songId} isLiked={isLiked}/>
+                        <HeartBtn 
+                        songId={songId} 
+                        isLiked={isLiked}/>
                     </div>} 
                 </> 
             )

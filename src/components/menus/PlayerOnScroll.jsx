@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import useStore from "../../store"
-import { SvgCommentBtn, SvgShareBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
 import { useClickOutside, HeartBtn } from "../../utils"
 
 
@@ -29,7 +29,6 @@ const PlayerOnScroll = ((props) => {
         handleTimelineClick,
         isPostVisible, 
         setIsPostVisible,
-        isShareMenuVisibile, 
         setIsShareMenuVisibile 
     } = props.playerFunctionalProps
 
@@ -46,7 +45,14 @@ const PlayerOnScroll = ((props) => {
     return (
             <div className="flex_column gap">
                 <div className="flex">
-                    <h3 style={{ lineHeight: "50px"}}>  {trackName} by {artistName} </h3>
+                    <h3 
+                    style={{ lineHeight: "50px"}}>  
+                    {trackName} 
+                    by 
+                    <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                        <h3> {artistName} </h3>
+                    </Link>
+                    </h3>
                     <HeartBtn songId={songId} isLiked={isLiked}/>
                 </div>
                 <div className="flex">
@@ -95,7 +101,8 @@ const PlayerOnScroll = ((props) => {
                             <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
                         </div>
                         <div className="flex" ref={shareBtnRef}>
-                            <SvgShareBtn className="svg" onClick={() => setIsShareMenuVisibile(!isShareMenuVisibile)}/>
+                            <ShareBtn
+                            content={currentTrack}/>
                         </div>
                     </div>
                 </div>

@@ -34,9 +34,9 @@ function formatListData(items, category) {
 
     if (category !== "simplified") {
       if (category === "tracks") {
-        listItem.imageUrl = item.album.images[0].url
+        listItem.imgUrl = item.album.images[0].url
       } else {
-        listItem.imageUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
+        listItem.imgUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
       }
       
       if(category === "user"){

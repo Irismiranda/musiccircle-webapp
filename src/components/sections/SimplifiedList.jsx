@@ -8,12 +8,11 @@ export default function SimplifiedList(props){
     const [ hoverItemId, setHoverItemId ] = useState(null)
     
     return(
-        <div className="simplified_list_wrapper">
+        <div className="simplified_list_wrapper relative">
             {list.map((item, index) => {
                     return (
                         <div 
-                        key={item.id} 
-                        style={{ position: "relative" }} 
+                        key={item.id}
                         className="grid"                
                         onMouseEnter={() => {
                         if(playerState.currentTrack){ 

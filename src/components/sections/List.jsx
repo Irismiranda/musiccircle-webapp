@@ -7,18 +7,17 @@ export default function List(props){
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
     return(
-        <div className="list_wrapper">
+        <div className="list_wrapper relative">
             {list.map((item, index) => {
                     return (
                         <div 
-                        key={item.id} 
-                        style={{ position: "relative" }}>
+                        key={item.id}>
                             <Link to={category !== "tracks" ? `/${category.slice(0, -1)}/${item.id}` : ""}>
                                 <div 
                                 className="flex"                          
                                 onMouseEnter={() => setHoverItemId(item.id)}
                                 onMouseLeave={() => setHoverItemId(null)}>
-                                    <img src={`${item.imageUrl}`} 
+                                    <img src={`${item.imgUrl}`} 
                                     className="cover_small" />
                                     <div>
                                         {category === "tracks" && <h5>{item.artistName}</h5>}

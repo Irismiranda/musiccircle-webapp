@@ -19,7 +19,7 @@ export default function UserSearchSection(props){
                         <Link to={`/account/${user.id}`}>
                             <img
                                 className="profile_medium"
-                                src={user.imageUrl}
+                                src={user.imgUrl}
                                 alt={`Profile of ${user.name}`}
                             />
                         </Link>

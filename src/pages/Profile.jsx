@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Slider } from "../components"
+import { Slider, Post } from "../components"
 import { Axios } from "../Axios-config"
 import { UserSearchSection } from "../components"
 import { ToggleFollowBtn } from "../utils"
@@ -14,6 +14,7 @@ export default function Profile(){
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracks, setTopTracks ] = useState(null)
     const [ topArtists, setTopArtists ] = useState(null)
+    const [ posts, setPosts ] = useState(null)
     const [ showVisibleTopTracks, setShowVisibleTopTracks ] = useState(true)
     const [ showVisibleTopArtists, setShowVisibleTopArtists ] = useState(true)
     const [ userListVisibility, setUserListVisibility ] = useState({
@@ -35,8 +36,29 @@ export default function Profile(){
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
         setTopTracks(topTracksList.data)
         setTopArtists(topArtistsList.data)
+        getPosts()
     }
 
+    async function getPosts(){
+        const response = await Axios.get(`/api/${userId}/posts`)
+        setPosts(response.data)
+    }
+
+    
+    function toggleVisibility(item){
+        if(!isLoggedUser || !userProfileData) return
+        
+        item === "following" && setUserListVisibility({
+            following: true,
+            followers: false,
+        })
+        
+        item === "followers" && setUserListVisibility({
+            following: false,
+            followers: true,
+        })
+    }
+    
     async function hideSection(category){
         const response = await Axios.post(`/api/user/${category}/hide_category`, {
             userId: loggedUser.id
@@ -45,20 +67,6 @@ export default function Profile(){
         category === "top_tracks" && setUserTopTracks(response.data)
     }
 
-    function toggleVisibility(item){
-        if(!isLoggedUser || !userProfileData) return
-
-        item === "following" && setUserListVisibility({
-            following: true,
-            followers: false,
-        })
-
-        item === "followers" && setUserListVisibility({
-            following: false,
-            followers: true,
-        })
-    }
-    
     useEffect(() => {
         if(userId === loggedUser.id){
             setIsLoggedUser(true)
@@ -150,9 +158,8 @@ export default function Profile(){
             </section>
             {!topArtists && <h3>Loading...</h3>}
             {(topArtists && topArtists.items.length > 0 && (topArtists?.show_top_artists || isLoggedUser)) && 
-            <section 
-            style={{ position: "relative" }} 
-            className={topArtists?.show_top_artists ? "" : "transparent_section"}>
+            <section
+            className={topArtists?.show_top_artists ? "relative" : "transparent_section relative"}>
                 <div 
                 className={showVisibleTopArtists ? "" : "hidden_items_grid"}>
                     <Slider 
@@ -173,9 +180,8 @@ export default function Profile(){
            </section>
            {!topTracks && <h3>Loading...</h3>}
            {(topTracks && topTracks.items.length > 0 && (topTracks?.show_top_tracks || isLoggedUser)) && 
-           <section 
-           style={{ position: "relative" }} 
-           className={topTracks?.show_top_tracks ? "" : "transparent_section"}>
+           <section
+           className={topTracks?.show_top_tracks ? "relative" : "transparent_section relative"}>
                 <div className={showVisibleTopTracks ? "" : "hidden_items_grid"}>
                     <Slider 
                     list={topTracks.items} 
@@ -186,10 +192,17 @@ export default function Profile(){
                     type={"top_list"}/>
                 </div>
            </section>}
+           {(posts && posts.length > 0) && 
+           <section>
            <h2> Posts </h2>
-           <div>
-
-           </div>
+            { posts.map(post => {
+                return (
+                    <Post 
+                    data={post} />        
+                )
+            })
+            }
+           </section>}
         </div>
     )
 }
