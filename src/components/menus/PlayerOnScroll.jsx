@@ -47,9 +47,9 @@ const PlayerOnScroll = ((props) => {
                     <h3 
                     style={{ lineHeight: "50px"}}>  
                     {trackName} 
-                    by 
+                     by 
                     <Link to={`/artist/${currentTrack.artists[0].id}`}>
-                        <h3> {artistName} </h3>
+                        <span style={{ fontSize: "18.5px"}}> {artistName} </span>
                     </Link>
                     </h3>
                     <HeartBtn songId={songId} isLiked={isLiked}/>

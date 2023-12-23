@@ -595,25 +595,17 @@ h3{
   position: absolute;
   width: 22px;
   height: 22px;
-  bottom: -2px;
-  right: -32px;
+  bottom: 5px;
+  right: 5px;
   cursor: pointer;
 }
 
 .minMaxBtn{
   position: absolute;
   height: 15px;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
-}
-
-.player_default .minMaxBtn{
-  top: 0px;
-  right: -15px;
-}
-
-.player_minimized .minMaxBtn{
-  top: 6px;
-  right: -30px;
 }
 
 .side_menu_expanded{
