@@ -88,7 +88,8 @@ export default function ShareMenu(props){
             comment: textAreaRef.current.value,
             type: content.type
         })
-        closeMenu()
+
+        setTimeout(closeMenu(), 5000)
     }
 
     useEffect(() => {
