@@ -21,14 +21,15 @@ export default function Slider(props){
     }
 
     return(
-        <>
+        <section 
+        className="relative">
             <SliderScrollBtns 
             parentRef={parentRef}
             list={list}
             slidePercent={slidePercent}/>
 
             <div 
-            className="slider_grid relative"
+            className="slider_grid"
             ref={parentRef}>
                 {list
                     .filter(item => item.isVisible === visibility)
@@ -72,7 +73,7 @@ export default function Slider(props){
                         })   
                     }     
             </div>
-        </>
+        </section>
     )
 }
 
