@@ -74,7 +74,7 @@ export default function Artist(){
                         uri={artistData?.uri} 
                         id={artistData?.id}
                         category={"cover"} 
-                        type={"track"} 
+                        type={"artist"} 
                         hoverItemId={hoverItemId}/>
                     </div>
                     <h4>Artist</h4>

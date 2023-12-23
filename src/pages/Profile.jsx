@@ -41,6 +41,7 @@ export default function Profile(){
 
     async function getPosts(){
         const response = await Axios.get(`/api/${userId}/posts`)
+        console.log(response.data)
         setPosts(response.data)
     }
 
@@ -192,7 +193,7 @@ export default function Profile(){
                     type={"top_list"}/>
                 </div>
            </section>}
-           {(posts && posts.length > 0) && 
+           {posts?.length > 0 && 
            <section>
            <h2> Posts </h2>
             { posts.map(post => {
