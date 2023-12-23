@@ -112,7 +112,12 @@
         } else return (           
             <>
                 <div className="flex secondary_btns">
-                    <h4> {trackName} by {artistName} </h4>
+                    <h4> 
+                        {trackName} by 
+                        <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                            <h3> {artistName} </h3>
+                        </Link>
+                    </h4>
                     {(playerSize.height > 120 || playerSize.width > 580) && <div className="flex">
                         <div onClick={() => handleShuffleClick()}>
                             <SvgRandom className="svg" style={{ fill: shuffleState ? '#F230AA' : '#AFADAD' }} />

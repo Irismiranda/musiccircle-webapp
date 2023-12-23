@@ -6,7 +6,10 @@ const useStore = create(devtools((set, get) => ({
   loggedUser: null,
   spotifyApi: null,
   artistUri: null,
-  seedTrackId: null,
+  seedTracks: {
+    ids: null,
+    type: null,
+  },
   socket: null,
   standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
   userTopTracks: null,
@@ -32,11 +35,18 @@ const useStore = create(devtools((set, get) => ({
   setLoggedUser: (user) => set({ loggedUser: user }),
   setSpotifyApi: (api) => set({ spotifyApi: api }),
   setArtistUri: (artist) => set({ artistUri: artist }),
-  setStandardWrapperWidth: (sideMenuWidth) => set({ standardWrapperWidth: `calc(100vw - ${sideMenuWidth}px - (${window.innerWidth}px - ${document.documentElement.clientWidth}px) - 12.5px)` }), // 12.5px for padding
+  setStandardWrapperWidth: (sideMenuWidth) => set({ 
+    standardWrapperWidth: 
+    `calc(100vw - ${sideMenuWidth}px - (${window.innerWidth}px - ${document.documentElement.clientWidth}px) - 12.5px)` }), // 12.5px for padding
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
-  setSeedTrackId: (id) => set({ seedTrackId: id }),
+  setSeedTracks: (ids, type) => set({ 
+    seedTracks: { 
+      ids: ids,
+      type: type, 
+    } 
+  }),
   setPlayerState: (newPlayerState) => set((state) => ({
     ...state,
     playerState: {

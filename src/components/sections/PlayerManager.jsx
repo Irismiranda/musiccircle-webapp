@@ -40,7 +40,7 @@ export default function PlayerManager() {
         standardWrapperWidth, 
         playerState, 
         setPlayerState, 
-        seedTrackId } = useStore()
+        seedTracks } = useStore()
 
     const { 
         isMinimized,
@@ -79,8 +79,8 @@ export default function PlayerManager() {
         }
     }
 
-    async function getRecommendations(id){
-        const response = await spotifyApi.getRecommendations({ seed_tracks: [id], limit: 100 })
+    async function getRecommendations(ids, type){
+        const response = await spotifyApi.getRecommendations({ [`seed_${type}`]: [ids], limit: 100 })
         const uriList = response.tracks.map(track => {
             return track.uri
         })
@@ -99,7 +99,7 @@ export default function PlayerManager() {
                     if (queueIndex < recommendations.length - 1) {
                         setQueueIndex(prevIndex => prevIndex + 1)
                     } else {
-                        getRecommendations(currentTrack.id)
+                        getRecommendations(currentTrack.id, "track")
                     }
                     return 
                 } catch (err) {
@@ -111,7 +111,7 @@ export default function PlayerManager() {
                     }
                 }
             }
-            throw new Error(`Failed after ${maxRetries} retries`);
+            throw new Error(`Failed after ${maxRetries} retries`)
         }
     }
     
@@ -355,10 +355,10 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        if(seedTrackId && currentQueue.length < 10 && recommendations){
+        if(seedTracks && currentQueue.length < 10 && recommendations){
             setQueue()
-        } else if(seedTrackId && !recommendations){
-            getRecommendations(seedTrackId)
+        } else if(seedTracks && !recommendations){
+            getRecommendations(seedTracks.ids, seedTracks.type)
         }
     }, [currentQueue])
 
