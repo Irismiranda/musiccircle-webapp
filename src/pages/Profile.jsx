@@ -36,10 +36,9 @@ export default function Profile(){
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
         setTopTracks(topTracksList.data)
         setTopArtists(topArtistsList.data)
-        getPosts()
     }
 
-    async function getPosts(){
+    async function getPosts(userId){
         const response = await Axios.get(`/api/${userId}/posts`)
         console.log(response.data)
         setPosts(response.data)
@@ -72,9 +71,11 @@ export default function Profile(){
         if(userId === loggedUser.id){
             setIsLoggedUser(true)
             setUserProfileData(loggedUser)
+            getPosts(loggedUser.id)
         } else{
             userId && getUser(userId)
             setIsLoggedUser(false)
+            getPosts(userId)
         }
     }, [userId])
 
