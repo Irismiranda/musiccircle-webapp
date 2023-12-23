@@ -47,7 +47,10 @@ const PlayerMaximized = ((props) => {
             <div className="flex flex_column full_width" style={{ alignItems: "start"}}>
                 <div className="flex"> 
                     <h2> {trackName} </h2>
-                    <HeartBtn songId={songId} isLiked={isLiked}/>
+                    <HeartBtn 
+                    style={{ marginTop: "5px" }}
+                    songId={songId} 
+                    isLiked={isLiked}/>
                 </div>
                 <Link to={`/artist/${currentTrack.artists[0].id}`}>
                     <h3> {artistName} </h3>
