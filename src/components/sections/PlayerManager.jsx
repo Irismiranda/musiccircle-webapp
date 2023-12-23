@@ -362,13 +362,9 @@ export default function PlayerManager() {
         handleRepeatClick,
         trackVolumePosition,
         handleTimelineClick,
-        isPostVisible, 
         setIsPostVisible,
-        isShareMenuVisibile, 
-        setIsShareMenuVisibile,
         handleResize,
         getInitialPos,
-        playerSize,
       }
 
     if (!currentTrack) {
