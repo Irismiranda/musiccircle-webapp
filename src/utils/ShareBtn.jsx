@@ -17,10 +17,10 @@ export default function ShareBtn(props){
         className="relative">
             {isShareMenuVisibile && 
             <div 
+            ref={shareMenuRef}
             className="share_menu_wrapper wrapper">
                 
                 <ShareMenu 
-                ref={shareMenuRef}
                 content={content}
                 closeMenu={() => setIsShareMenuVisibile(false)}/>
             </div>}
