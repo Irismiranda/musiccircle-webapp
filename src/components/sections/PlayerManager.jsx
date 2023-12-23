@@ -355,7 +355,7 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        if(seedTracks && currentQueue.length < 10 && recommendations){
+        if(seedTracks && currentQueue?.length < 10 && recommendations){
             setQueue()
         } else if(seedTracks && !recommendations){
             getRecommendations(seedTracks.ids, seedTracks.type)
