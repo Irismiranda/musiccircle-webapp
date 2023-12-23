@@ -118,7 +118,7 @@ export default function ShareMenu(props){
                             {searchResult.map((user) => {
                                 return (
                                     <div 
-                                    className={sendList?.includes(user.name) ? 
+                                    className={sendList.includes(user.name) ? 
                                         "flex flex_column user_slider_item user_slider_selected" : 
                                         "flex flex_column user_slider_item"}
                                     key={user.id}
@@ -143,7 +143,7 @@ export default function ShareMenu(props){
                 }
             </section>
             
-            {sendList?.length > 0 && 
+            {sendList.length > 0 && 
             <div 
             className="flex"
             style={{ flexWrap: "wrap" }}>

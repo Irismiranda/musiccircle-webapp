@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react"
-import { Link } from "react-router-dom"
 import { SvgShareBtn } from "../assets"
 import { ShareMenu } from "../components"
 import { useClickOutside } from "./utils"
@@ -16,7 +15,8 @@ export default function ShareBtn(props){
     return (
         <section
         className="relative">
-            {isShareMenuVisibile && <div 
+            {isShareMenuVisibile && 
+            <div 
             className="share_menu_wrapper wrapper"
             ref={shareMenuRef}>
                 
