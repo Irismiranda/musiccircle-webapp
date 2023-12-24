@@ -34,6 +34,7 @@ function formatListData(items, category) {
 
     if (category !== "simplified") {
       if (category === "tracks") {
+        console.log(item.album)
         listItem.imgUrl = item.album.images[0].url
       } else {
         listItem.imgUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
