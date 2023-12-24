@@ -9,6 +9,7 @@ export default function Post(props){
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
     async function getitem(){
+        console.log(data)
         if(data.type === "track"){
             const item = await spotifyApi.getTrack(data.id)
             const formatedItem = formatListData([item], "tracks")
