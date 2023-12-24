@@ -15,12 +15,10 @@ export default function Post(props){
             setItem(formatedItem)
         } else if(data.type === "album"){
             const item = await spotifyApi.getAlbum(data.id)
-            setItem(item)
             const formatedItem = formatListData([item], "albums")
             setItem(formatedItem)
         } else if(data.type === "artist"){
             const item = await spotifyApi.getArtist(data.id)
-            setItem(item)
             const formatedItem = formatListData([item], "artists")
             setItem(formatedItem)
         }
