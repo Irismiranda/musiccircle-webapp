@@ -9,21 +9,11 @@ export default function Post(props){
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
     async function getitem(){
-        console.log(data)
-        if(data.type === "track"){
-            const item = await spotifyApi.getTrack(data.id)
-            const formatedItem = formatListData([item], "tracks")
-            setItem(formatedItem)
-        } else if(data.type === "album"){
-            const item = await spotifyApi.getAlbum(data.id)
-            const formatedItem = formatListData([item], "albums")
-            setItem(formatedItem)
-        } else if(data.type === "artist"){
-            const item = await spotifyApi.getArtist(data.id)
-            const formatedItem = formatListData([item], "artists")
-            setItem(formatedItem)
-        }
-    }
+        const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
+        const item = await spotifyApi[methodName](data.id)
+        console.log(item)
+        const formatedItem = formatListData([item], `${data.type}s`)
+        setItem(formatedItem)
 
     useEffect(() => {
         if(data){
