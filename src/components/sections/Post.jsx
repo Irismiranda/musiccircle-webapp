@@ -11,17 +11,17 @@ export default function Post(props){
     async function getitem(){
         if(data.type === "track"){
             const item = await spotifyApi.getTrack(data.id)
-            const formatedItem = formatListData([item], "track")
+            const formatedItem = formatListData([item], "tracks")
             setItem(formatedItem)
         } else if(data.type === "album"){
             const item = await spotifyApi.getAlbum(data.id)
             setItem(item)
-            const formatedItem = formatListData([item], "album")
+            const formatedItem = formatListData([item], "albums")
             setItem(formatedItem)
         } else if(data.type === "artist"){
             const item = await spotifyApi.getArtist(data.id)
             setItem(item)
-            const formatedItem = formatListData([item], "artist")
+            const formatedItem = formatListData([item], "artists")
             setItem(formatedItem)
         }
     }
