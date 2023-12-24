@@ -14,6 +14,7 @@ export default function Post(props){
         console.log(item)
         const formatedItem = formatListData([item], `${data.type}s`)
         setItem(formatedItem)
+    }
 
     useEffect(() => {
         if(data){
