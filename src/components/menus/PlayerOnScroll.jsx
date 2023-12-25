@@ -46,8 +46,7 @@ const PlayerOnScroll = ((props) => {
                 <div className="flex">
                     <h3 
                     style={{ lineHeight: "50px"}}>  
-                    {trackName} 
-                     by 
+                    {trackName} by 
                     <Link to={`/artist/${currentTrack.artists[0].id}`}>
                         <span style={{ fontSize: "18.5px"}}> {artistName} </span>
                     </Link>

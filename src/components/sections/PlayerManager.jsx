@@ -227,6 +227,7 @@ export default function PlayerManager() {
         if (currentTrack) {
             getIsTrackSaved()
         }
+        console.log("current track is" ,currentTrack)
     }, [currentTrack])
 
     useEffect(() => {
