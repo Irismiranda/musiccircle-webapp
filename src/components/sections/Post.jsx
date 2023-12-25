@@ -21,7 +21,7 @@ export default function Post(props){
     async function getUser(id){
         const response = await Axios.get(`/api/account/${id}`)
         const formatedData = formatListData([response.data], "user")
-        
+
         setUser(formatedData[0])
     }
 
@@ -58,15 +58,15 @@ export default function Post(props){
                 <div>
                     <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     <p>{data.comment}</p>
-                    <div 
-                    className="flex">
-                        <Link to={`/account/${user?.id}`}>
-                            <img 
-                            src={user?.imgUrl}
-                            className="profile_small" />
-                            <h4>{user?.name}</h4>
-                        </Link>
-                    </div>
+                    <Link to={`/account/${user?.id}`}>
+                        <div 
+                        className="flex">
+                                <img 
+                                src={user?.imgUrl}
+                                className="profile_small" />
+                                <h4>{user?.name}</h4>
+                        </div>
+                    </Link>
                     <div 
                     className="flex">
                         <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
