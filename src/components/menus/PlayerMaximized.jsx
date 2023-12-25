@@ -52,7 +52,7 @@ const PlayerMaximized = ((props) => {
                     songId={songId} 
                     isLiked={isLiked}/>
                 </div>
-                <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                <Link to={`/artist/${currentTrack.artists[0].uri.slice(0, 15)}`}>
                     <h3> {artistName} </h3>
                 </Link>
 

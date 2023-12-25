@@ -35,6 +35,8 @@ function formatListData(items, category) {
     if (category !== "simplified") {
       if (category === "tracks") {
         listItem.imgUrl = item.album.images[0].url
+        listItem.artist_name = item.artists[0].name
+        listItem.artist_id = currentTrack.artists[0].uri.slice(0, 15)
       } else {
         listItem.imgUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
       }

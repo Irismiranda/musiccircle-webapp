@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import useStore from "../../store"
 import { formatListData, PlayBtn } from "../../utils"
+import { Link } from "react-router-dom"
 
 export default function Post(props){
     const [ item, setItem ] = useState(null)
@@ -14,7 +15,7 @@ export default function Post(props){
         console.log(item)
         const formatedItem = formatListData([item], `${data.type}s`)
         console.log(formatedItem)
-        setItem(formatedItem)
+        setItem(formatedItem[0])
     }
 
     useEffect(() => {
@@ -31,23 +32,23 @@ export default function Post(props){
                 style={{ padding: "0px 25px 0px 0px" }}>
                 <div 
                     className="cover_medium cover_post"
-                    style={{ backgroundImage: `url('${item[0].imgUrl}')`}}
-                    onMouseEnter={() => setHoverItemId(item[0].id)}
+                    style={{ backgroundImage: `url('${item.imgUrl}')`}}
+                    onMouseEnter={() => setHoverItemId(item.id)}
                     onMouseLeave={() => setHoverItemId(null)}
                 >
                 </div>
                 <div 
-                onMouseEnter={() => setHoverItemId(item[0].id)}>
+                onMouseEnter={() => setHoverItemId(item.id)}>
                     <PlayBtn 
-                        uri={`spotify:${item[0].type}:${item[0].id}`} 
-                        id={item[0].id}
+                        uri={`spotify:${item.type}:${item.id}`} 
+                        id={item.id}
                         category={"cover"} 
                         type={item[0].type} 
                         hoverItemId={hoverItemId}
                     />
                 </div>
                 <div>
-                    <h3>{item[0].name}</h3>
+                    <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     <p>{data.comment}</p>
                 </div>
             </section>

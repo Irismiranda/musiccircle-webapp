@@ -111,6 +111,10 @@ svg{
   justify-content: center;
 }
 
+.align_stretch{
+  align-items: stretch;
+}
+
 .sticky{
   position: sticky;
   left: 100%;

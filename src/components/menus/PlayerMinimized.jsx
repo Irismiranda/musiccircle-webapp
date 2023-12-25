@@ -60,7 +60,7 @@
                         </div>
                 
                         <h2> {trackName} </h2>
-                        <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                        <Link to={`/artist/${currentTrack.artists[0].uri.slice(0, 15)}`}>
                             <h3> {artistName} </h3>
                         </Link>
                         
@@ -114,7 +114,7 @@
                 <div className="flex secondary_btns">
                     <h4> 
                         {trackName} by 
-                        <Link to={`/artist/${currentTrack.artists[0].id}`}>
+                        <Link to={`/artist/${currentTrack.artists[0].uri.slice(0, 15)}`}>
                             <h3> {artistName} </h3>
                         </Link>
                     </h4>
