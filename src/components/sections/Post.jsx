@@ -43,7 +43,7 @@ export default function Post(props){
                         uri={`spotify:${item.type}:${item.id}`} 
                         id={item.id}
                         category={"cover"} 
-                        type={item[0].type} 
+                        type={item.type} 
                         hoverItemId={hoverItemId}
                     />
                 </div>
