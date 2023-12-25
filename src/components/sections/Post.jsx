@@ -30,20 +30,20 @@ export default function Post(props){
                 className="flex relative">
                 <div 
                     className="cover_medium"
-                    style={{ backgroundImage: `url('${item.imgUrl}')`}}
-                    onMouseEnter={() => setHoverItemId(item.id)}
+                    style={{ backgroundImage: `url('${item[0].imgUrl}')`}}
+                    onMouseEnter={() => setHoverItemId(item[0].id)}
                     onMouseLeave={() => setHoverItemId(null)}
                 >
                 </div>
                 <PlayBtn 
-                    uri={`spotify:${item.type}:${item.id}`} 
-                    id={item.id}
+                    uri={`spotify:${item[0].type}:${item[0].id}`} 
+                    id={item[0].id}
                     category={"cover"} 
-                    type={item.type} 
+                    type={item[0].type} 
                     hoverItemId={hoverItemId}
                 />
                 <div>
-                    <h3>{item.name}</h3>
+                    <h3>{item[0].name}</h3>
                     <p>{data.comment}</p>
                 </div>
             </section>
