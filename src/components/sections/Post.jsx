@@ -27,21 +27,25 @@ export default function Post(props){
         item && (
             <section 
                 key={data.post_id}
-                className="flex relative">
+                className="flex relative inner_wrapper"
+                style={{ padding: "0px 25px 0px 0px" }}>
                 <div 
-                    className="cover_medium"
+                    className="cover_medium cover_post"
                     style={{ backgroundImage: `url('${item[0].imgUrl}')`}}
                     onMouseEnter={() => setHoverItemId(item[0].id)}
                     onMouseLeave={() => setHoverItemId(null)}
                 >
                 </div>
-                <PlayBtn 
-                    uri={`spotify:${item[0].type}:${item[0].id}`} 
-                    id={item[0].id}
-                    category={"cover"} 
-                    type={item[0].type} 
-                    hoverItemId={hoverItemId}
-                />
+                <div 
+                onMouseEnter={() => setHoverItemId(item[0].id)}>
+                    <PlayBtn 
+                        uri={`spotify:${item[0].type}:${item[0].id}`} 
+                        id={item[0].id}
+                        category={"cover"} 
+                        type={item[0].type} 
+                        hoverItemId={hoverItemId}
+                    />
+                </div>
                 <div>
                     <h3>{item[0].name}</h3>
                     <p>{data.comment}</p>
