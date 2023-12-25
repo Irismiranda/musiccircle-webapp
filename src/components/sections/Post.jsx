@@ -5,7 +5,7 @@ import { formatListData, PlayBtn } from "../../utils"
 export default function Post(props){
     const [ item, setItem ] = useState(null)
     const { data } = props
-    const { spotifyApi } = useStore()
+    const { spotifyApi,  } = useStore()
     const [ hoverItemId, setHoverItemId ] = useState(null)
 
     async function getitem(){
@@ -13,6 +13,7 @@ export default function Post(props){
         const item = await spotifyApi[methodName](data.id)
         console.log(item)
         const formatedItem = formatListData([item], `${data.type}s`)
+        console.log(formatedItem)
         setItem(formatedItem)
     }
 
@@ -30,7 +31,8 @@ export default function Post(props){
                 <div 
                     className="cover_medium"
                     style={{ backgroundImage: `url('${item.imgUrl}')`}}
-                    onMouseOver={() => setHoverItemId(item.id)}
+                    onMouseEnter={() => setHoverItemId(item.id)}
+                    onMouseLeave={() => setHoverItemId(null)}
                 >
                 </div>
                 <PlayBtn 
