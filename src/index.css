@@ -261,6 +261,18 @@ svg{
   border-radius: 10px;  
 }
 
+.cover_large{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  background-size: cover;
+  border-radius: 10px;  
+}
+
+.cover_post{
+  border-radius: 10px 0px 0px 10px;
+}
+
 .cover_flexible{
   height: 100%;
   background-size: 100% !important;
@@ -654,7 +666,7 @@ h3{
   overflow-x: hidden;
 }
 
-.slider_item_wrapper{
+.inner_wrapper{
   background-color: #261e1e;
   padding: 25px;
   border-radius: 10px;
@@ -772,6 +784,10 @@ h3{
 .play_btn_list{
   top: 20px;
   left: 20px;
+}
+
+.cover_large .play_btn{
+  top: 155px;
 }
 
 .simplified_list_wrapper{

@@ -195,7 +195,8 @@ export default function Profile(){
                 </div>
            </section>}
            {posts?.length > 0 && 
-           <section>
+           <section 
+           className="flex flex_column">
            <h2> Posts </h2>
             { posts.map(post => {
                 return (

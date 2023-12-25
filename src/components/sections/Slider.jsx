@@ -42,7 +42,7 @@ export default function Slider(props){
                     .slice(type === "top_list" ? 0 : undefined, type === "top_list" ? 10 : undefined)
                     .map((item) => {
                         return (
-                            <div className="slider_item_wrapper" key={item.id}>
+                            <div className="inner_wrapper" key={item.id}>
                                 <div className="slider_image_wrapper">
                                     <Link to={category === "tracks" ? "" : `/${item.type}/${item.id}`}>
                                         <div 
