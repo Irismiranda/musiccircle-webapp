@@ -115,6 +115,10 @@ svg{
   align-items: stretch;
 }
 
+.align_start{
+  align-items: start;
+}
+
 .sticky{
   position: sticky;
   left: 100%;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import useStore from "../../store"
-import { formatListData, PlayBtn } from "../../utils"
+import { formatListData, PlayBtn, ShareBtn } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 
@@ -44,18 +44,18 @@ export default function Post(props){
                     onMouseEnter={() => setHoverItemId(item.id)}
                     onMouseLeave={() => setHoverItemId(null)}
                 >
+                    <div 
+                    onMouseEnter={() => setHoverItemId(item.id)}>
+                        <PlayBtn 
+                            uri={`spotify:${item.type}:${item.id}`} 
+                            id={item.id}
+                            category={"cover"} 
+                            type={item.type} 
+                            hoverItemId={hoverItemId}
+                        />
+                    </div>
                 </div>
-                <div 
-                onMouseEnter={() => setHoverItemId(item.id)}>
-                    <PlayBtn 
-                        uri={`spotify:${item.type}:${item.id}`} 
-                        id={item.id}
-                        category={"cover"} 
-                        type={item.type} 
-                        hoverItemId={hoverItemId}
-                    />
-                </div>
-                <div className="flex flex_column">
+                <div className="flex flex_column align_start">
                     <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     <p>{data.comment}</p>
                     <Link to={`/account/${user?.id}`}>
@@ -68,10 +68,14 @@ export default function Post(props){
                                 <h4>{user?.name}</h4>
                         </div>
                     </Link>
-                    <div 
-                    className="flex">
-                        <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                        <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                    <div>
+                        <div 
+                        className="flex">
+                            <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                            <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                        </div>
+                        <ShareBtn 
+                        content={data}/>
                     </div>
                 </div>
             </section>
