@@ -2,20 +2,26 @@ import React, { useEffect, useState } from "react"
 import useStore from "../../store"
 import { formatListData, PlayBtn } from "../../utils"
 import { Link } from "react-router-dom"
+import { Axios } from "../../Axios-config"
 
 export default function Post(props){
     const [ item, setItem ] = useState(null)
     const { data } = props
     const { spotifyApi,  } = useStore()
     const [ hoverItemId, setHoverItemId ] = useState(null)
+    const [ user, setUser ] = useState(null)
 
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
         const item = await spotifyApi[methodName](data.id)
-        console.log(item)
         const formatedItem = formatListData([item], `${data.type}s`)
-        console.log(formatedItem)
         setItem(formatedItem[0])
+    }
+
+    async function getUser(id){
+        const response = await Axios.get(`/api/account/${id}`)
+        const formatedData = formatListData(response.data, "user")
+        setUser(formatedData)
     }
 
     useEffect(() => {
@@ -23,6 +29,10 @@ export default function Post(props){
             getitem()
         }
     }, [data])
+
+    useEffect(() => {
+        getUser(data.user_id)
+    }, [item])
 
     return (
         item && (
@@ -50,6 +60,18 @@ export default function Post(props){
                 <div>
                     <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     <p>{data.comment}</p>
+                    <div 
+                    className="flex">
+                        <Link to={`/account/${user.id}`}>
+                            <img src={user.imgUrl} />
+                            <h4>{user.name}</h4>
+                        </Link>
+                    </div>
+                    <div 
+                    className="flex">
+                        <h4>{item.likes?.length} Likes</h4>
+                        <h4>{item.comments?.length} Likes</h4>
+                    </div>
                 </div>
             </section>
         )

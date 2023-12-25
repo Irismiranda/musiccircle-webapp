@@ -85,7 +85,7 @@ export default function ShareMenu(props){
 
         Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
             comment: textAreaRef.current.value,
-            type: content.type
+            type: content.type,
         })
 
         setTimeout(() => closeMenu(), 5000)
