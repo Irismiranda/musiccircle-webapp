@@ -27,12 +27,9 @@ export default function Post(props){
     useEffect(() => {
         if(data.id){
             getitem()
+            getUser(data.user_id)
         }
     }, [data])
-
-    useEffect(() => {
-        getUser(data.user_id)
-    }, [item])
 
     return (
         item && (
@@ -64,9 +61,9 @@ export default function Post(props){
                     className="flex">
                         <Link to={`/account/${user.id}`}>
                             <img 
-                            src={user.imgUrl}
+                            src={user?.imgUrl}
                             className="profile_small" />
-                            <h4>{user.name}</h4>
+                            <h4>{user?.name}</h4>
                         </Link>
                     </div>
                     <div 
