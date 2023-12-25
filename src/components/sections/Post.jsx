@@ -19,7 +19,7 @@ export default function Post(props){
     }
 
     useEffect(() => {
-        if(data){
+        if(data.id){
             getitem()
         }
     }, [data])
