@@ -59,7 +59,7 @@ export default function Post(props){
                     <p>{data.comment}</p>
                     <div 
                     className="flex">
-                        <Link to={`/account/${user.id}`}>
+                        <Link to={`/account/${user?.id}`}>
                             <img 
                             src={user?.imgUrl}
                             className="profile_small" />
