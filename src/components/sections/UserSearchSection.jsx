@@ -23,7 +23,7 @@ export default function UserSearchSection(props){
         setIsLoading(true)
         const userList = []
         await Promise.all(
-            idList.slice(0, 15).map(async (id) => {
+            idList.slice(15).map(async (id) => {
                 const response = await Axios.post("/api/account", {
                     userData: {
                         id: id,
@@ -47,7 +47,7 @@ export default function UserSearchSection(props){
         let searchResults
         
         if (searchTerm === "") {
-            searchResults = userDataList.slice(0, 15)
+            searchResults = userDataList.slice(15)
         } else {
             searchResults = userDataList.filter((user) =>
             normalizeText(user.userHandle).toLowerCase().includes(normalizedSearchTerm) ||

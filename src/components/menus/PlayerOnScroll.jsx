@@ -47,7 +47,7 @@ const PlayerOnScroll = ((props) => {
                     <h3 
                     style={{ lineHeight: "50px"}}>  
                     {trackName} by 
-                    <Link to={`/artist/${currentTrack.artists[0].uri.slice(0, 15)}`}>
+                    <Link to={`/artist/${currentTrack.artists[0].uri.slice(15)}`}>
                         <span style={{ fontSize: "18.5px"}}> {artistName} </span>
                     </Link>
                     </h3>
