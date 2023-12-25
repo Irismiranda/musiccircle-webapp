@@ -21,7 +21,8 @@ export default function Post(props){
     async function getUser(id){
         const response = await Axios.get(`/api/account/${id}`)
         const formatedData = formatListData([response.data], "user")
-        setUser(formatedData)
+        
+        setUser(formatedData[0])
     }
 
     useEffect(() => {
@@ -68,8 +69,8 @@ export default function Post(props){
                     </div>
                     <div 
                     className="flex">
-                        <h4>{item.likes?.length} Likes</h4>
-                        <h4>{item.comments?.length} Likes</h4>
+                        <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                        <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
                     </div>
                 </div>
             </section>
