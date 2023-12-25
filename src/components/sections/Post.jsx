@@ -21,12 +21,12 @@ export default function Post(props){
     async function getUser(id){
         const response = await Axios.get(`/api/account/${id}`)
         const formatedData = formatListData([response.data], "user")
-
         setUser(formatedData[0])
     }
 
     useEffect(() => {
         if(data.id){
+            console.log(data)
             getitem()
             getUser(data.user_id)
         }
@@ -39,7 +39,7 @@ export default function Post(props){
                 className="flex relative inner_wrapper"
                 style={{ padding: "0px 25px 0px 0px" }}>
                 <div 
-                    className="cover_medium cover_post"
+                    className="cover_large cover_post"
                     style={{ backgroundImage: `url('${item.imgUrl}')`}}
                     onMouseEnter={() => setHoverItemId(item.id)}
                     onMouseLeave={() => setHoverItemId(null)}
@@ -55,12 +55,13 @@ export default function Post(props){
                         hoverItemId={hoverItemId}
                     />
                 </div>
-                <div>
+                <div className="flex flex_column">
                     <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     <p>{data.comment}</p>
                     <Link to={`/account/${user?.id}`}>
                         <div 
-                        className="flex">
+                        className="flex"
+                        style={{ marginBottom: "10px" }}>
                                 <img 
                                 src={user?.imgUrl}
                                 className="profile_small" />
