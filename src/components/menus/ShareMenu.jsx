@@ -52,6 +52,7 @@ export default function ShareMenu(props){
             })
         )
 
+        console.log("user list is", userList)
         const formatedData = formatListData(userList, "user")
         console.log("formated user data is", formatedData)
 
