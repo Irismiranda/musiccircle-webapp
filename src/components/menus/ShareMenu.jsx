@@ -35,6 +35,7 @@ export default function ShareMenu(props){
     }
 
     async function getUsersData(idList){
+        console.log("id list is", idList)
         setIsLoading(true)
 
         const userList = []
@@ -46,11 +47,13 @@ export default function ShareMenu(props){
                         type: "user",
                     }
                 })
+                console.log("user is", response.data)
                 userList.push(response.data)
             })
         )
 
         const formatedData = formatListData(userList, "user")
+        console.log("formated user data is", formatedData)
 
         setUserDataList(formatedData)
         setSearchResult(formatedData)
