@@ -53,7 +53,7 @@ export default function Post(props){
     }, [data])
 
     return (
-        (item && (data.show_post || isLoggedUser))(
+        (item && (!data.hide_post || isLoggedUser))(
             <section 
                 key={data.post_id}
                 className={data.hide_post ? 
