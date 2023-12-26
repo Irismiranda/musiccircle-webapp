@@ -34,15 +34,13 @@ export default function Post(props){
 
     async function toggleHidePost(id){
         const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/toggle_hide_post`)
-        const formatedData = formatListData([response.data], "user")
-        setPosts(formatedData)
+        setPosts(response.data)
         setShowMenuVisibility(false)
     }
 
     async function deletePost(id){
         const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
-        const formatedData = formatListData([response.data], "user")
-        setPosts(formatedData)
+        setPosts(response.data)
         setShowMenuVisibility(false)
     }
 
