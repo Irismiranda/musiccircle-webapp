@@ -359,7 +359,7 @@ export default function PlayerManager() {
             setQueue()
         } else if(recommendationSeed.ids && !recommendations){
             getRecommendations(recommendationSeed.ids, recommendationSeed.type)
-        } else {
+        } else if(currentTrack && !recommendationSeed.ids && !recommendations){
             getRecommendations([currentTrack.id], "tracks")
         }
     }, [currentQueue, currentTrack])
