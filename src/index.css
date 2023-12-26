@@ -668,6 +668,25 @@ h3{
   margin: 0px;
 }
 
+.post_drop_menu{
+  position: absolute;
+  right: 30px;
+  top: 55px;
+  z-index: 1;
+  padding: 20px 10px;
+  width: 150px;
+  text-align: center;
+  background-color: #261e1e;
+}
+
+.post_drop_menu h3{
+  cursor: pointer;
+}
+
+.post_drop_menu hr{
+  opacity: 0.2;
+}
+
 .player_minimized .interaction_btns{
   grid-area: h;
   margin-bottom: 5px;

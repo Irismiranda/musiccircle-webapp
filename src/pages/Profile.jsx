@@ -201,7 +201,9 @@ export default function Profile(){
             { posts.map(post => {
                 return (
                     <Post 
-                    data={post} />        
+                    data={post}
+                    isLoggedUser={isLoggedUser} 
+                    setPosts={setPosts}/>        
                 )
             })
             }

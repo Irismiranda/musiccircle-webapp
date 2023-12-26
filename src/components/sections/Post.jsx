@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import useStore from "../../store"
 import { formatListData, PlayBtn, ShareBtn, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
@@ -6,12 +6,18 @@ import { Axios } from "../../Axios-config"
 import { SvgDots } from "../../assets"
 
 export default function Post(props){
-    const { data } = props
-    const { spotifyApi,  } = useStore()
+    const { spotifyApi, loggedUser } = useStore()
     const [ item, setItem ] = useState(null)
     const [ hoverItemId, setHoverItemId ] = useState(null)
     const [ user, setUser ] = useState(null)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
+    
+    const { data, isLoggedUser, setPosts } = props
+
+    const dropMenuRef = useRef(null)
+    const dotsIconRef = useRef(null)
+
+    useClickOutside(dropMenuRef, dotsIconRef, setShowMenuVisibility(false))
 
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
@@ -26,6 +32,18 @@ export default function Post(props){
         setUser(formatedData[0])
     }
 
+    async function toggleHidePost(id){
+        const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/toggle_hide_post`)
+        setPosts(response.data)
+        setShowMenuVisibility(false)
+    }
+
+    async function deletePost(id){
+        const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
+        setPosts(response.data)
+        setShowMenuVisibility(false)
+    }
+
     useEffect(() => {
         if(data.id){
             console.log(data)
@@ -38,7 +56,9 @@ export default function Post(props){
         item && (
             <section 
                 key={data.post_id}
-                className="flex relative inner_wrapper"
+                className={data.hide_post ? 
+                    "flex relative inner_wrapper transparent_section" : 
+                    "flex relative inner_wrapper"}
                 style={{ padding: "0px 25px 0px 0px" }}>
 
                 <div 
@@ -61,14 +81,19 @@ export default function Post(props){
                 <div className="grid post_grid">
                     <div className="flex space_between full_width">
                         <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                        {isLoggedUser && 
                         <SvgDots 
+                        ref={dotsIconRef}
                         className="svg"
-                        onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>
+                        onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>}
                     </div>
-                    {showMenuVisibility && <div className="wrapper default_padding post_drop_menu">
-                        <h3>Hide Post</h3>
+                    {showMenuVisibility && 
+                    <div
+                    ref={dropMenuRef} 
+                    className="wrapper default_padding post_drop_menu">
+                        <h3 onClick={() => toggleHidePost()}>{data.hide_post ? "Show Post" : "Hide Post"}</h3>
                         <hr />
-                        <h3>Delete Post</h3>
+                        <h3 onClick={() => deletePost()}>Delete Post</h3>
                     </div>}
                     <Link to={`/account/${user?.id}`}>
                         <div 
