@@ -41,6 +41,7 @@ export default function ShareMenu(props){
         const userList = []
         await Promise.all(
             idList.slice(0, 15).map(async (id) => {
+                console.log("id is", id)
                 const response = await Axios.post("/api/account", {
                     userData: {
                         id: id,
