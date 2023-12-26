@@ -23,12 +23,12 @@ export default function PlayBtn(props){
       
           while (retries < maxRetries) {
             try {
-              ids = response.tracks.map((track) => track.id)
+              ids = response?.tracks?.map((track) => track.id)
       
               await Promise.all(ids.map((id) => spotifyApi.queue(id)))
               setRecommendationSeed({ 
                 ids: type === "artist" ? uri : ids.slice(0, 5), 
-                type: type })
+                type: type === "artist" ? "artists" : "tracks" })
               return 
             } catch (err) {
               if (err.status === 502) {

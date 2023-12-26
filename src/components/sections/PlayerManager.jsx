@@ -359,8 +359,10 @@ export default function PlayerManager() {
             setQueue()
         } else if(recommendationSeed.ids && !recommendations){
             getRecommendations(recommendationSeed.ids, recommendationSeed.type)
+        } else {
+            getRecommendations([currentTrack.id], "tracks")
         }
-    }, [currentQueue])
+    }, [currentQueue, currentTrack])
 
     const playerFunctionalProps = {
         setProperties,
