@@ -2,17 +2,19 @@ import React from "react"
 import useStore from "../store"
 
 export default function PlayBtn(props){
-    const { spotifyApi, playerState, setRecommendationSeed, loggedUser } = useStore()
+    const { spotifyApi, playerState, setRecommendationSeed } = useStore()
     const { uri, id, category, type, hoverItemId } = props
     const { deviceId, currentTrack } = playerState
 
     async function playItem() {
         if (type === "track") {
           await spotifyApi.play({ uris: [uri], device_id: deviceId })
-          setRecommendationSeed({ ids: [id], type: "tracks" })
+          setRecommendationSeed({ 
+            ids: [id], 
+            type: "tracks" })
         } else{
           await spotifyApi.play({ context_uri: uri, device_id: deviceId })
-          const methodName = `get${type.charAt(0).toUpperCase() + data.type.slice(1)}`
+          const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
           const response = await spotifyApi[methodName](id)
       
           let retries = 0
