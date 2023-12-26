@@ -92,10 +92,12 @@ export default function Post(props){
                     <div className="flex space_between full_width">
                         <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                         {isLoggedUser && 
-                        <SvgDots 
-                        ref={dotsIconRef}
-                        className="svg"
-                        onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>}
+                        <div ref={dotsIconRef}>
+                            <SvgDots 
+                            className="svg"
+                            onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>
+                        </div>
+                        }
                     </div>
                     {showMenuVisibility && 
                     <div
