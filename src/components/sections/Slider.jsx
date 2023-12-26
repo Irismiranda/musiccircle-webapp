@@ -45,8 +45,7 @@ export default function Slider(props){
                             <div className="inner_wrapper" key={item.id}>
                                 <div className="slider_image_wrapper">
                                     <Link 
-                                    to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}
-                                    onClick={(item.type === "track") && ((e) => e.preventDefault())}>
+                                    to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}>
                                         <div 
                                         onMouseEnter={() => setHoverItemId(item.id)}
                                         onMouseLeave={() => setHoverItemId(null)}
