@@ -1,10 +1,14 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { PlayBtn } from "../../utils"
 
 export default function List(props){
     const { list, category, showIndex } = props
     const [ hoverItemId, setHoverItemId ] = useState(null)
+
+    useEffect(() => {
+        console.log("hover item id is:", hoverItemId)
+    }, [hoverItemId])
 
     return(
         <div className="list_wrapper relative">
