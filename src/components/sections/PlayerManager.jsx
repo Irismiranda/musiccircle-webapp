@@ -40,7 +40,7 @@ export default function PlayerManager() {
         standardWrapperWidth, 
         playerState, 
         setPlayerState, 
-        seedTracks } = useStore()
+        recommendationSeed } = useStore()
 
     const { 
         isMinimized,
@@ -355,10 +355,10 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        if(seedTracks.ids && currentQueue?.length < 10 && recommendations){
+        if(recommendationSeed.ids && currentQueue?.length < 10 && recommendations){
             setQueue()
-        } else if(seedTracks.ids && !recommendations){
-            getRecommendations(seedTracks.ids, seedTracks.type)
+        } else if(recommendationSeed.ids && !recommendations){
+            getRecommendations(recommendationSeed.ids, recommendationSeed.type)
         }
     }, [currentQueue])
 

@@ -35,7 +35,6 @@ export default function Post(props){
     async function toggleHidePost(){
         try {
             const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/toggle_hide_post`)
-            console.log("Toggle hide post response:", response.data)
             setPosts(response.data)
             setShowMenuVisibility(false)
           } catch (error) {
@@ -46,7 +45,6 @@ export default function Post(props){
     async function deletePost(){
         try {
             const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
-            console.log("Delete post response:", response.data)
             setPosts(response.data)
             setShowMenuVisibility(false)
           } catch (error) {
@@ -56,7 +54,6 @@ export default function Post(props){
 
     useEffect(() => {
         if(data.id){
-            console.log(data)
             getitem()
             getUser(data.user_id)
         }
@@ -115,6 +112,8 @@ export default function Post(props){
                             <img 
                             src={user?.imgUrl}
                             className="profile_small" />
+                        </Link>
+                        <Link to={`/account/${user?.id}`}>
                             <h4>{user?.name}</h4>
                         </Link>
                     </div>

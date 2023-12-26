@@ -6,7 +6,7 @@ const useStore = create(devtools((set, get) => ({
   loggedUser: null,
   spotifyApi: null,
   artistUri: null,
-  seedTracks: {
+  recommendationSeed: {
     ids: null,
     type: null,
   },
@@ -41,12 +41,13 @@ const useStore = create(devtools((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
-  setSeedTracks: (ids, type) => set({ 
-    seedTracks: { 
-      ids: ids,
-      type: type, 
-    } 
-  }),
+  setRecommendationSeed: (newSeed) => set((prevState) => ({ 
+    ...prevState, 
+    recommendationSeed: { 
+      ...prevState.newSeed,
+      ...newSeed, 
+    }, 
+  })),
   setPlayerState: (newPlayerState) => set((state) => ({
     ...state,
     playerState: {
