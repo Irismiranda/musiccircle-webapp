@@ -107,16 +107,18 @@ export default function Post(props){
                         <hr />
                         <h3 onClick={() => deletePost()}>Delete Post</h3>
                     </div>}
-                    <Link to={`/account/${user?.id}`}>
-                        <div 
-                        className="flex"
-                        style={{ marginBottom: "10px" }}>
-                                <img 
-                                src={user?.imgUrl}
-                                className="profile_small" />
-                                <h4>{user?.name}</h4>
-                        </div>
-                    </Link>
+                    
+                    <div 
+                    className="flex"
+                    style={{ marginBottom: "10px" }}>
+                        <Link to={`/account/${user?.id}`}>
+                            <img 
+                            src={user?.imgUrl}
+                            className="profile_small" />
+                            <h4>{user?.name}</h4>
+                        </Link>
+                    </div>
+
                     <p>{data.comment}</p>
                     <div className="flex space_between full_width">
                         <div 
