@@ -12,7 +12,8 @@ export default function List(props){
                     return (
                         <div 
                         key={item.id}>
-                            <Link to={category !== "tracks" && `/${category.slice(0, -1)}/${item.id}`}>
+                            <Link to={item.type !== "tracks" ? 
+                            `/${category.slice(0, -1)}/${item.id}` : preventDefault()}>
                                 <div 
                                 className="flex"                          
                                 onMouseEnter={() => setHoverItemId(item.id)}
