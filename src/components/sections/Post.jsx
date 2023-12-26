@@ -38,6 +38,7 @@ export default function Post(props){
                 key={data.post_id}
                 className="flex relative inner_wrapper"
                 style={{ padding: "0px 25px 0px 0px" }}>
+                    
                 <div 
                     className="cover_large cover_post"
                     style={{ backgroundImage: `url('${item.imgUrl}')`}}
@@ -57,7 +58,6 @@ export default function Post(props){
                 </div>
                 <div className="flex flex_column align_start">
                     <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
-                    <p>{data.comment}</p>
                     <Link to={`/account/${user?.id}`}>
                         <div 
                         className="flex"
@@ -68,6 +68,7 @@ export default function Post(props){
                                 <h4>{user?.name}</h4>
                         </div>
                     </Link>
+                    <p>{data.comment}</p>
                     <div>
                         <div 
                         className="flex">

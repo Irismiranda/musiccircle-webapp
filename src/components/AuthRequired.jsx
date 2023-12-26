@@ -140,7 +140,7 @@
       setAccessToken(token)
       setExpiringTime(timeLeft)
       setRefreshToken(storedRefreshToken)
-      } else if(!storedAccessToken && (storedRefreshToken)){
+      } else if(!storedAccessToken && storedRefreshToken){
         setRefreshToken(storedRefreshToken)
         getNewToken(storedRefreshToken)
       } else {
@@ -216,10 +216,14 @@
     }, [expiringTime])
 
     useEffect(() => {
-      if(expired && refreshToken){
-        getNewToken(refreshToken)
-      }
-    }, [expired])
+      const refreshInterval = setInterval(() => {
+        if (expired && refreshToken) {
+          getNewToken(refreshToken)
+        }
+      }, 1800000)
+    
+      return () => clearInterval(refreshInterval)
+    }, [expired, refreshToken])
 
     useEffect(() => {
     async function fetchMoreItems(category, list){
