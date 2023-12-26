@@ -32,16 +32,26 @@ export default function Post(props){
         setUser(formatedData[0])
     }
 
-    async function toggleHidePost(id){
-        const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/toggle_hide_post`)
-        setPosts(response.data)
-        setShowMenuVisibility(false)
+    async function toggleHidePost(){
+        try {
+            const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/toggle_hide_post`)
+            console.log("Toggle hide post response:", response.data)
+            setPosts(response.data)
+            setShowMenuVisibility(false)
+          } catch (error) {
+            console.error("Toggle hide post error:", error)
+          }
     }
 
-    async function deletePost(id){
-        const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
-        setPosts(response.data)
-        setShowMenuVisibility(false)
+    async function deletePost(){
+        try {
+            const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
+            console.log("Delete post response:", response.data)
+            setPosts(response.data)
+            setShowMenuVisibility(false)
+          } catch (error) {
+            console.error("Delete post error:", error)
+          }
     }
 
     useEffect(() => {
