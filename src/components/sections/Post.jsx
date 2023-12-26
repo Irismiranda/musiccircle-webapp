@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react"
 import useStore from "../../store"
-import { formatListData, PlayBtn, ShareBtn } from "../../utils"
+import { formatListData, PlayBtn, ShareBtn, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
+import { SvgDots } from "../../assets"
 
 export default function Post(props){
-    const [ item, setItem ] = useState(null)
     const { data } = props
     const { spotifyApi,  } = useStore()
+    const [ item, setItem ] = useState(null)
     const [ hoverItemId, setHoverItemId ] = useState(null)
     const [ user, setUser ] = useState(null)
+    const [showMenuVisibility, setShowMenuVisibility] = useState(false)
 
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
@@ -38,7 +40,7 @@ export default function Post(props){
                 key={data.post_id}
                 className="flex relative inner_wrapper"
                 style={{ padding: "0px 25px 0px 0px" }}>
-                    
+
                 <div 
                     className="cover_large cover_post"
                     style={{ backgroundImage: `url('${item.imgUrl}')`}}
@@ -56,8 +58,18 @@ export default function Post(props){
                         />
                     </div>
                 </div>
-                <div className="flex flex_column align_start">
-                    <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                <div className="grid post_grid">
+                    <div className="flex space_between full_width">
+                        <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                        <SvgDots 
+                        className="svg"
+                        onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>
+                    </div>
+                    {showMenuVisibility && <div className="wrapper default_padding post_drop_menu">
+                        <h3>Hide Post</h3>
+                        <hr />
+                        <h3>Delete Post</h3>
+                    </div>}
                     <Link to={`/account/${user?.id}`}>
                         <div 
                         className="flex"
@@ -69,7 +81,7 @@ export default function Post(props){
                         </div>
                     </Link>
                     <p>{data.comment}</p>
-                    <div>
+                    <div className="flex space_between full_width">
                         <div 
                         className="flex">
                             <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
