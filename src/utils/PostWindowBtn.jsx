@@ -16,6 +16,7 @@ export default function PostWindowBtn(props){
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
+    const inputRef = useRef(null)
 
     useClickOutside(postWindowRef, commentsBtnRef, () => setIsPostVisible(false))
 

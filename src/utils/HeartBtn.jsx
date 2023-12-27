@@ -18,14 +18,14 @@ export default function HeartBtn(props){
         if (!isLiked) {
             try{
                 await spotifyApi.addToMySavedTracks(trackIds)
-                setPlayerState({ isLiked: true })
+                setIsLiked(true)
             } catch(err){
                 console.log(err)
             }
         } else {
             try{
                 await spotifyApi.removeFromMySavedTracks(trackIds)
-                setPlayerState({ isLiked: false })
+                setIsLiked(false)
             } catch(err){
                 console.log(err)
             }
