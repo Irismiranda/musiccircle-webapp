@@ -214,17 +214,8 @@
     }, [expiringTime])
 
     useEffect(() => {
-      if (expiringTime) {
-        setTimeout(() => {
-          if (expired && refreshToken) {
-            getNewToken(refreshToken)
-            }
-          }, 1800000)
-        }
-
       console.log("token expires in", expiringTime)
-      
-    }, [expired, refreshToken, expiringTime])
+    }, [expiringTime])
 
     useEffect(() => {
     async function fetchMoreItems(category, list){

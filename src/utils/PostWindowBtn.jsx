@@ -44,7 +44,7 @@ export default function PostWindowBtn(props){
     }, [content, id])
 
     useEffect(() => {
-        if(item){
+        if(item?.artists){
             getArtist(item.artists[0].id)
         }
     }, [item])
