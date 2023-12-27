@@ -62,18 +62,15 @@ export default function Post(props){
     return (
         (item && (!data.hide_post || isLoggedUser)) && (
             <section 
-            className="flex relative inner_wrapper ">
+            className="inner_wrapper ">
                 <div 
                     key={data.post_id}
-                    className={data.hide_post ? "transparent_section" : ""}
-                    style={{ padding: "0px 25px 0px 0px" }}>
-
+                    className={data.hide_post ? "transparent_section flex" : "flex"}>
                     <div 
                         className="cover_large cover_post"
                         style={{ backgroundImage: `url('${item.imgUrl}')`}}
                         onMouseEnter={() => setHoverItemId(item.id)}
-                        onMouseLeave={() => setHoverItemId(null)}
-                    >
+                        onMouseLeave={() => setHoverItemId(null)}>
                         <div 
                         onMouseEnter={() => setHoverItemId(item.id)}>
                             <PlayBtn 
