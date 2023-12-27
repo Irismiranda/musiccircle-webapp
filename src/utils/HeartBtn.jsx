@@ -15,7 +15,7 @@ export default function HeartBtn(props){
 
     useEffect(() => {
         if (songId) {
-            getIsTrackSaved()
+            getIsTrackSaved(songId)
         }
     }, [songId])
 
