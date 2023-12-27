@@ -73,7 +73,7 @@ export default function Profile(){
     }, [userId])
 
     useEffect(() => {
-        if(isLoggedUser){
+        if(isLoggedUser && userProfileData){
             setLoggedUser(userProfileData)
         }
 
