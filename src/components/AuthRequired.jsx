@@ -23,7 +23,6 @@
 
     function setCookies(accessToken, refreshToken, expiringTime){
       const tokenExpiringDate = new Date(Date.now() + expiringTime)
-      console.log("tokenExpiringDate is", tokenExpiringDate, "")
       const refreshTokenExpiringDate = new Date(Date.now() + 86400000)
         const tokenData = {
           token: accessToken,
@@ -44,7 +43,6 @@
         })
         const accessToken = response.data.access_token
         const expiresIn = response.data.expires_in * 1000
-        console.log("token expires in", expiresIn, "ms")
         setExpiringTime(expiresIn - 6000)
         setAccessToken(accessToken)
         setCookies(accessToken, refreshToken, expiresIn)
@@ -139,8 +137,7 @@
       const storedAccessTokenData = JSON.parse(storedAccessToken)
       const { token, expiringTimeStamp } = storedAccessTokenData 
       const timeLeft = calculateTimeLeft(expiringTimeStamp)
-      setAccessToken(token)
-      setExpiringTime(timeLeft)
+      setAccessToken(token)      
       setRefreshToken(storedRefreshToken)
       } else if(!storedAccessToken && storedRefreshToken){
         setRefreshToken(storedRefreshToken)
@@ -222,10 +219,12 @@
         if (expired && refreshToken) {
           getNewToken(refreshToken)
         }
-      }, 1800000)
+      }, expiringTime)
+
+      console.log("toke expires in", expiringTime)
     
       return () => clearInterval(refreshInterval)
-    }, [expired, refreshToken])
+    }, [expired, refreshToken, expiringTime])
 
     useEffect(() => {
     async function fetchMoreItems(category, list){
@@ -266,7 +265,7 @@
         }
       }
 
-    }, [userTopTracks, userTopTracks, offset])
+    }, [userTopTracks, userTopArtists, offset])
 
     if(!isUserPremium){
       return <Error/>

@@ -82,10 +82,7 @@ export default function UserSearchSection(props){
             setUserProfileData={setUserProfileData}
             setPreventUpdate={setPreventUpdate}
             showBtn={true}/> :
-            <div
-            style={{ justifySelf: "center" }}>
-                <h3> Loading...</h3>
-            </div>
+            <h3 style={{ margin: "auto" }}> Loading...</h3>
         }
         </div>
       )
