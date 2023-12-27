@@ -216,7 +216,7 @@
 
     useEffect(() => {
       if (expiringTime) {
-        const refreshInterval = setInterval(() => {
+        setInterval(() => {
           if (expired && refreshToken) {
             getNewToken(refreshToken)
             }
@@ -224,12 +224,6 @@
         }
 
       console.log("token expires in", expiringTime)
-
-      return () => {
-        if (refreshInterval) {
-          clearInterval(refreshInterval)
-        }
-      }
       
     }, [expired, refreshToken, expiringTime])
 
