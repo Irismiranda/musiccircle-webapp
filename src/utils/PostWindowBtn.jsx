@@ -79,34 +79,36 @@ export default function PostWindowBtn(props){
                         category={"cover"} 
                         type={item.type} 
                         hoverItemId={hoverItemId}/>
-                        <div
-                        className="flex">
-                            {artistPic && <img src={artistPic}
-                            className="cover_medium"/>}
-                            <div>
-                                <h1>{item.name}</h1>
-                                <h3><Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
-                            </div>
-                            <HeartBtn 
-                            id={item.id}/>
-                        </div>
-
                     </div>
+                    
+                    {artistPic && 
+                    <img src={artistPic}
+                    className="cover_medium"/>}
+                    <div
+                    className="flex">
+                        <h2>{item.name}</h2>
+                        <HeartBtn 
+                        id={item.id}/>
+                    </div>
+                    <h3><Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                    
                 </div>
-                <div 
-                className="flex">
-                    <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                    <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
-                </div>
-                <input 
-                ref={inputRef}
-                placeholder={`say something cool about this ${item.type}`}/>
-                <div
-                onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
-                    <EmojiBar 
-                    textAreaRef={inputRef}/>
-                    <SvgSendBtn 
-                    className="svg"/>
+                <div>    
+                    <div 
+                    className="flex">
+                        <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                        <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                    </div>
+                    <input 
+                    ref={inputRef}
+                    placeholder={`say something cool about this ${item.type}`}/>
+                    <div
+                    onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                        <EmojiBar 
+                        textAreaRef={inputRef}/>
+                        <SvgSendBtn 
+                        className="svg"/>
+                    </div>
                 </div>
             </section>}
         </>
