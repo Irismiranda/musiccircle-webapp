@@ -206,17 +206,16 @@
     }, [loggedUser])
 
     useEffect(() => {
-      if (expiringTime){
-        const timeInMs = expiringTime
-        setTimeout(() => {
-          setExpired(true)
-        }, timeInMs)
-      }
+      const timeInMs = expiringTime || 0
+      setTimeout(() => {
+        setExpired(true)
+      }, timeInMs)
+      
     }, [expiringTime])
 
     useEffect(() => {
       if (expiringTime) {
-        setInterval(() => {
+        setTimeout(() => {
           if (expired && refreshToken) {
             getNewToken(refreshToken)
             }
