@@ -2,8 +2,7 @@ import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import useStore from "../../store"
 import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { HeartBtn, ShareBtn } from "../../utils"
-import { PostWindowed } from ".."
+import { HeartBtn, ShareBtn, PostWindowBtn } from "../../utils"
 
 const PlayerMaximized = ((props) => {
     const { playerState, setPlayerState } = useStore()
@@ -14,8 +13,7 @@ const PlayerMaximized = ((props) => {
         player, 
         isPaused,
         currentTrack, 
-        listened, 
-        isLiked, 
+        listened,
         shuffleState, 
         repeatState, 
         volumePercentage, 
@@ -47,8 +45,7 @@ const PlayerMaximized = ((props) => {
                     <h2> {trackName} </h2>
                     <div style={{ marginTop: "6px" }}>
                         <HeartBtn 
-                        songId={songId} 
-                        isLiked={isLiked}/>
+                        songId={songId}/>
                     </div>
                 </div>
                 <Link to={`/artist/${currentTrack.artists[0].uri.slice(15)}`}>
@@ -100,7 +97,7 @@ const PlayerMaximized = ((props) => {
                     </div>
 
                     <div className="flex social_btns">
-                            <PostWindowed
+                            <PostWindowBtn
                             id={songId}
                             type={"track"}/>
                         <div className="flex" ref={shareBtnRef}>

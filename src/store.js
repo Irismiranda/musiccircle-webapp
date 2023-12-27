@@ -22,7 +22,6 @@ const useStore = create(devtools((set, get) => ({
       isActive: false,
       currentTrack: null,
       listened: (0.1),
-      isLiked: false,
       shuffleState: false,
       repeatState: false,
       volumePercentage: 1,

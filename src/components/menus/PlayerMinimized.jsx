@@ -2,8 +2,7 @@
         import { Link } from "react-router-dom"
         import useStore from "../../store"
         import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { HeartBtn, ShareBtn } from "../../utils"
-        import { PostWindowed } from ".."
+        import { HeartBtn, ShareBtn, PostWindowBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()
@@ -16,7 +15,6 @@
                 isPaused,
                 currentTrack, 
                 listened, 
-                isLiked, 
                 shuffleState, 
                 repeatState, 
                 volumePercentage, 
@@ -44,14 +42,15 @@
                 <>
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
-                            <PostWindowed
+                            <PostWindowBtn
                             id={songId}
                             type={"track"}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
                         </div>
-                        <HeartBtn songId={songId} isLiked={isLiked}/>
+                        <HeartBtn 
+                        songId={songId}/>
                     </div>
                         </div>
                 
@@ -158,7 +157,7 @@
                 </div>
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
-                            <PostWindowed
+                            <PostWindowBtn
                             id={songId}
                             type={"track"}/>
                         <div ref={shareBtnRef}>
@@ -166,8 +165,7 @@
                             content={currentTrack}/>
                         </div>
                         <HeartBtn 
-                        songId={songId} 
-                        isLiked={isLiked}/>
+                        songId={songId}/>
                     </div>} 
                 </> 
             )

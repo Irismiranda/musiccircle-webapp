@@ -2,8 +2,7 @@ import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import useStore from "../../store"
 import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { HeartBtn, ShareBtn } from "../../utils"
-import { PostWindowed } from ".."
+import { HeartBtn, ShareBtn, PostWindowBtn } from "../../utils"
 
 const PlayerOnScroll = ((props) => {
     const { playerState, setPlayerState } = useStore()
@@ -15,7 +14,6 @@ const PlayerOnScroll = ((props) => {
         isPaused,
         currentTrack, 
         listened, 
-        isLiked, 
         shuffleState, 
         repeatState, 
         volumePercentage, 
@@ -48,7 +46,8 @@ const PlayerOnScroll = ((props) => {
                         <span style={{ fontSize: "18.5px"}}> {artistName} </span>
                     </Link>
                     </h3>
-                    <HeartBtn songId={songId} isLiked={isLiked}/>
+                    <HeartBtn 
+                    songId={songId}/>
                 </div>
                 <div className="flex">
                     <div onClick={() => { player.previousTrack() }}>
@@ -92,7 +91,7 @@ const PlayerOnScroll = ((props) => {
                         </div>
                     </div>
                     <div className="flex">
-                            <PostWindowed
+                            <PostWindowBtn
                             id={songId}
                             type={"track"}/>
                         <div className="flex" ref={shareBtnRef}>

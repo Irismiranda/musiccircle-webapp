@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
-import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, PostWindowed } from ".."
+import { PlayerMaximized, PlayerMinimized, PlayerOnScroll } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
-import { setProperties } from "../../utils"
+import { setProperties, PostWindowBtn } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
@@ -46,7 +46,6 @@ export default function PlayerManager() {
         isMinimized,
         player, 
         currentTrack, 
-        isLiked, 
         shuffleState, 
         repeatState, 
         isScrolled,
@@ -216,18 +215,6 @@ export default function PlayerManager() {
             window.removeEventListener("scroll", handleScroll)
         }
     }, [])
-
-    useEffect(() => {
-        async function getIsTrackSaved() {
-            const trackIds = [currentTrack.id]
-            const response = await spotifyApi.containsMySavedTracks(trackIds)
-            setPlayerState({ isLiked: response[0] })
-        }
-
-        if (currentTrack) {
-            getIsTrackSaved()
-        }
-    }, [currentTrack])
 
     useEffect(() => {
         const script = document.createElement("script")

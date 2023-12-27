@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import useStore from "../../store"
-import { formatListData, PlayBtn, ShareBtn, useClickOutside } from "../../utils"
+import { PlayBtn, ShareBtn, PostWindowBtn, formatListData, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgDots } from "../../assets"
-import { PostWindowed } from "../"
 
 export default function Post(props){
     const { spotifyApi, loggedUser } = useStore()
@@ -86,7 +85,8 @@ export default function Post(props){
                     </div>
                     <div className="grid post_grid">
                         <div className="flex space_between full_width">
-                            <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                            <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link>
+                            </h3>
                             {isLoggedUser && 
                             <div ref={dotsIconRef}>
                                 <SvgDots 
@@ -128,9 +128,9 @@ export default function Post(props){
                     </div>
                 </div>
                 <div
-                className="absolute"
+                className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
-                    <PostWindowed 
+                    <PostWindowBtn 
                     content={item}
                     /> 
                     <ShareBtn 
