@@ -47,9 +47,9 @@ export default function PostWindowBtn(props){
     useEffect(() => {
         if((item?.artists || item?.artist_id) && isPostVisible){
             getArtist(item.artists[0].id || item?.artist_id)
+            console.log("item is", item)
         }
 
-        console.log("item is", item)
     }, [item])
 
     return (
