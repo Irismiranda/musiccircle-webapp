@@ -25,7 +25,7 @@ export default function UserSearchSection(props){
         setIsLoading(true)
         const userList = []
         await Promise.all(
-            idList.slice(15).map(async (id) => {
+            idList.slice(0, 15).map(async (id) => {
                 const response = await Axios.post("/api/account", {
                     userData: {
                         id: id,
@@ -35,10 +35,10 @@ export default function UserSearchSection(props){
                 userList.push(response.data)
                 console.log("response is:", response.data)
             })
-        )
-
-        const formatedData = formatListData(userList, "user")
-        console.log("formated data is", formatedData)
+            )
+            
+            const formatedData = formatListData(userList, "user")
+            console.log("formated data is", formatedData)
 
         setUserDataList(formatedData)
         setSearchResult(formatedData)
