@@ -20,7 +20,8 @@
                                     className="flex"                          
                                     onMouseEnter={() => setHoverItemId(item.id)}
                                     onMouseLeave={() => setHoverItemId(null)}>
-                                        <img src={`${item.imgUrl}`} 
+                                        <img 
+                                        src={`${item.imgUrl}`} 
                                         className="cover_small" />
                                         <div>
                                             {category === "tracks" && <h5>{item.artistName}</h5>}

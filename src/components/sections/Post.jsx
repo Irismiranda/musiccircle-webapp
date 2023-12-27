@@ -62,72 +62,73 @@ export default function Post(props){
     return (
         (item && (!data.hide_post || isLoggedUser)) && (
             <section 
-                key={data.post_id}
-                className={data.hide_post ? 
-                    "flex relative inner_wrapper transparent_section" : 
-                    "flex relative inner_wrapper"}
-                style={{ padding: "0px 25px 0px 0px" }}>
-
+            className="flex relative inner_wrapper ">
                 <div 
-                    className="cover_large cover_post"
-                    style={{ backgroundImage: `url('${item.imgUrl}')`}}
-                    onMouseEnter={() => setHoverItemId(item.id)}
-                    onMouseLeave={() => setHoverItemId(null)}
-                >
-                    <div 
-                    onMouseEnter={() => setHoverItemId(item.id)}>
-                        <PlayBtn 
-                            uri={`spotify:${item.type}:${item.id}`} 
-                            id={item.id}
-                            category={"cover"} 
-                            type={item.type} 
-                            hoverItemId={hoverItemId}
-                        />
-                    </div>
-                </div>
-                <div className="grid post_grid">
-                    <div className="flex space_between full_width">
-                        <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
-                        {isLoggedUser && 
-                        <div ref={dotsIconRef}>
-                            <SvgDots 
-                            className="svg"
-                            onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>
-                        </div>
-                        }
-                    </div>
-                    {showMenuVisibility && 
-                    <div
-                    ref={dropMenuRef} 
-                    className="wrapper default_padding post_drop_menu">
-                        <h3 onClick={() => toggleHidePost()}>{data.hide_post ? "Show Post" : "Hide Post"}</h3>
-                        <hr />
-                        <h3 onClick={() => deletePost()}>Delete Post</h3>
-                    </div>}
-                    
-                    <div 
-                    className="flex"
-                    style={{ marginBottom: "10px" }}>
-                        <Link to={`/account/${user?.id}`}>
-                            <img 
-                            src={user?.imgUrl}
-                            className="profile_small" />
-                        </Link>
-                        <Link to={`/account/${user?.id}`}>
-                            <h4>{user?.name}</h4>
-                        </Link>
-                    </div>
+                    key={data.post_id}
+                    className={data.hide_post ? "transparent_section" : ""}
+                    style={{ padding: "0px 25px 0px 0px" }}>
 
-                    <p>{data.comment}</p>
-                    <div className="flex space_between full_width">
+                    <div 
+                        className="cover_large cover_post"
+                        style={{ backgroundImage: `url('${item.imgUrl}')`}}
+                        onMouseEnter={() => setHoverItemId(item.id)}
+                        onMouseLeave={() => setHoverItemId(null)}
+                    >
                         <div 
-                        className="flex">
-                            <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                            <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                        onMouseEnter={() => setHoverItemId(item.id)}>
+                            <PlayBtn 
+                                uri={`spotify:${item.type}:${item.id}`} 
+                                id={item.id}
+                                category={"cover"} 
+                                type={item.type} 
+                                hoverItemId={hoverItemId}
+                            />
                         </div>
-                        <ShareBtn 
-                        content={data}/>
                     </div>
+                    <div className="grid post_grid">
+                        <div className="flex space_between full_width">
+                            <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                            {isLoggedUser && 
+                            <div ref={dotsIconRef}>
+                                <SvgDots 
+                                className="svg"
+                                onClick={() => setShowMenuVisibility(!showMenuVisibility)}/>
+                            </div>
+                            }
+                        </div>
+                        {showMenuVisibility && 
+                        <div
+                        ref={dropMenuRef} 
+                        className="wrapper default_padding post_drop_menu">
+                            <h3 onClick={() => toggleHidePost()}>{data.hide_post ? "Show Post" : "Hide Post"}</h3>
+                            <hr />
+                            <h3 onClick={() => deletePost()}>Delete Post</h3>
+                        </div>}
+                        
+                        <div 
+                        className="flex"
+                        style={{ marginBottom: "10px" }}>
+                            <Link to={`/account/${user?.id}`}>
+                                <img 
+                                src={user?.imgUrl}
+                                className="profile_small" />
+                            </Link>
+                            <Link to={`/account/${user?.id}`}>
+                                <h4>{user?.name}</h4>
+                            </Link>
+                        </div>
+
+                        <p>{data.comment}</p>
+                        <div className="flex space_between full_width">
+                            <div 
+                            className="flex">
+                                <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                                <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <ShareBtn 
+                    content={data}/>
                 </div>
             </section>
         )
