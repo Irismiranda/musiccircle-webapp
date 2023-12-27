@@ -23,6 +23,7 @@
 
     function setCookies(accessToken, refreshToken, expiringTime){
       const tokenExpiringDate = new Date(Date.now() + expiringTime)
+      console.log("tokenExpiringDate is", tokenExpiringDate, "")
       const refreshTokenExpiringDate = new Date(Date.now() + 86400000)
         const tokenData = {
           token: accessToken,
@@ -43,6 +44,7 @@
         })
         const accessToken = response.data.access_token
         const expiresIn = response.data.expires_in * 1000
+        console.log("token expires in", expiresIn, "ms")
         setExpiringTime(expiresIn - 6000)
         setAccessToken(accessToken)
         setCookies(accessToken, refreshToken, expiresIn)

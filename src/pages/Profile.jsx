@@ -89,6 +89,10 @@ export default function Profile(){
             setTopTracks(userTopTracks)
         }
     }, [userTopTracks, isLoggedUser])
+
+    useEffect(() => {
+        console.log("current user porfile data is:", userProfileData)
+    }, [userProfileData])
     
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>

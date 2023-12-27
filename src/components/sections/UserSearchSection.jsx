@@ -70,19 +70,20 @@ export default function UserSearchSection(props){
 
     return (
         <div ref={userListRef} 
-        className="user_list_wrapper wrapper default_padding">
-        <input 
-        ref={userSearchInputRef} 
-        className="search_bar" 
-        placeholder="Search..." 
-        onInput={() => searchUsers()} />
+        className="user_list_wrapper wrapper default_padding flex flex_column">
+            <input 
+            ref={userSearchInputRef} 
+            className="search_bar" 
+            placeholder="Search..." 
+            onInput={() => searchUsers()} />
             { !isLoading ?       
             <UserList
             list={searchResult}
             setUserProfileData={setUserProfileData}
             setPreventUpdate={setPreventUpdate}
             showBtn={true}/> :
-            <div>
+            <div
+            style={{ justifySelf: "center" }}>
                 <h3> Loading...</h3>
             </div>
         }

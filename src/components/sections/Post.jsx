@@ -62,7 +62,7 @@ export default function Post(props){
     return (
         (item && (!data.hide_post || isLoggedUser)) && (
             <section 
-            className="inner_wrapper"
+            className="inner_wrapper relative"
             style={{ padding: "0px 20px 0px 0px" }}>
                 <div 
                     key={data.post_id}
