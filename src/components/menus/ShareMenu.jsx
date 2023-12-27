@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
 import { SliderScrollBtns, formatListData } from "../../utils"
+import { EmojiBar } from "../sections"
 import { normalizeText } from "normalize-text"
 import useStore from "../../store"
 
@@ -154,7 +155,8 @@ export default function ShareMenu(props){
                 ref={textAreaRef} 
                 className="share_menu_textarea"
                 placeholder="Say something about this..."/>
-
+                <EmojiBar 
+                textAreaRef={textAreaRef}/>
                 <button
                 className="full_width" 
                 disabled={sendList?.length === 0} 

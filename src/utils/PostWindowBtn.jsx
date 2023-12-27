@@ -100,6 +100,8 @@ export default function PostWindowBtn(props){
                 placeholder={`say something cool about this ${item.type}`}/>
                 <div
                 onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                    <EmojiBar 
+                textAreaRef={textAreaRef}/>
                     <SvgSendBtn 
                     className="svg"/>
                 </div>

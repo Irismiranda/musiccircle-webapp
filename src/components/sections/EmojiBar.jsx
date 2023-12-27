@@ -1,8 +1,9 @@
 import React, { useEffect, useState, createRef } from "react"
 import { Axios } from "../../Axios-config"
+import { useClickOutside } from "../../utils"
 
 export default function EmojiBar(props){
-    const emoji_searchbar = createRef(null)
+    const [showEmojiBar, setShowEmojiBar] = useState(false)
     const [emojiList, setEmojiList] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -36,6 +37,24 @@ export default function EmojiBar(props){
             emoji: '🏳️‍🌈'
         }
     ]
+
+    const { textAreaRef } = props
+    
+    const emoji_searchbar = createRef(null)
+    const emojiBtnRef = useRef(null)
+    const emojiBarRef = useRef(null)
+
+    useClickOutside(emojiBarRef, emojiBtnRef, () => {
+        setShowEmojiBar(false)
+    })
+
+    function insertEmoji(emoji){
+        if(textAreaRef.current.value){
+        textAreaRef.current.value += emoji
+        } else {
+        textAreaRef.current.value = emoji
+        }
+    }
     
     async function getEmojis(category){
         setSelectedCategory(category)
@@ -44,7 +63,7 @@ export default function EmojiBar(props){
             category: category
          })
          const emojis = response.data.map(emoji => {
-             return <p style={{cursor: "pointer"}} key={emoji.slug} onClick={() => props.insertEmoji(emoji.character)}>{emoji.character}</p>
+             return <p style={{cursor: "pointer"}} key={emoji.slug} onClick={() => insertEmoji(emoji.character)}>{emoji.character}</p>
          })
          setEmojiList(emojis)
          setIsLoading(false)
@@ -61,7 +80,7 @@ export default function EmojiBar(props){
 
          if(response.data.length > 0){
              const emojis = response.data.map(emoji => {
-                 return <p style={{cursor: "pointer"}} onClick={() => props.insertEmoji(emoji.character)}>{emoji.character}</p>
+                 return <p style={{cursor: "pointer"}} onClick={() => insertEmoji(emoji.character)}>{emoji.character}</p>
             })
             setEmojiList(emojis)
          } else {
@@ -76,24 +95,29 @@ export default function EmojiBar(props){
     }, [])
 
     return (
-        <div className="wrapper default_padding emoji_bar">
-            <input 
-            ref={emoji_searchbar} 
-            className="search_bar"
-            placeholder="Search..." 
-            onInput={() => searchEmojis()}/>
-            <div className="categories flex" >
-                {
-                    categories.map( category => {
-                        return (
-                            <span key={category.slug} className={ selectedCategory === category.slug ? "selected" : "" } style={{cursor: "pointer"}} onClick={() => getEmojis(category.slug)}> {category.emoji} </span>
-                        )
-                    })
-                }
+        <>
+            {showEmojiBar && <div className="wrapper default_padding emoji_bar">
+                <input 
+                ref={emoji_searchbar} 
+                className="search_bar"
+                placeholder="Search..." 
+                onInput={() => searchEmojis()}/>
+                <div className="categories flex" >
+                    {
+                        categories.map( category => {
+                            return (
+                                <span key={category.slug} className={ selectedCategory === category.slug ? "selected" : "" } style={{cursor: "pointer"}} onClick={() => getEmojis(category.slug)}> {category.emoji} </span>
+                            )
+                        })
+                    }
+                </div>
+                <div className="emoji_list">
+                    {!emojiList || isLoading ? <h5 style={{width: "150px", color: "grey", marginTop: "auto", textAlign: "center"}}>Loading...</h5> : emojiList}
+                </div>
+            </div>}
+            <div ref={emojiBtnRef} onClick={() => setShowEmojiBar(!showEmojiBar)}>
+                <SvgEmojiBtn className="emojiBtn" />
             </div>
-            <div className="emoji_list">
-                {!emojiList || isLoading ? <h5 style={{width: "150px", color: "grey", marginTop: "auto", textAlign: "center"}}>Loading...</h5> : emojiList}
-            </div>
-        </div>
+        </>
     )
 }

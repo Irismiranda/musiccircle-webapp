@@ -1,14 +1,11 @@
         import React, { useEffect, useState, useRef, createRef } from "react"
         import { v4 as uuidv4 } from 'uuid'
-        import { SvgPinned, SvgSendBtn, SvgEmojiBtn } from "../../assets"
+        import { SvgPinned, SvgSendBtn } from "../../assets"
         import { EmojiBar, Messages } from "../index"
-        import { useClickOutside } from "../../utils"
         import useStore from "../../store"
 
         export default function Chat(){
             const messageTextArea = createRef(null)
-            const emojiBtnRef = useRef(null)
-            const emojiBarRef = useRef(null)
             const { artistUri, spotifyApi, loggedUser, socket, standardWrapperWidth } = useStore()
             const [chatState, setChatState] = useState({
                     artistData: null,
@@ -16,11 +13,6 @@
                     chatId: null,
                     isPinned: false,
                 })
-            const [showEmojis, setShowEmojis] = useState(false)
-
-            useClickOutside(emojiBarRef, emojiBtnRef, () => {
-                setShowEmojis(false)
-            })
 
             function setChatProperties(property, value){
                 setChatState((prevState) => ({
@@ -81,14 +73,6 @@
 
                 }
             }
-
-            function insertEmoji(emoji){
-                if(messageTextArea.current.value){
-                messageTextArea.current.value += emoji
-                } else {
-                messageTextArea.current.value = emoji
-                }
-            }
                     
             if(chatState.artistData){
                 const { artistId, artistData, isPinned } = chatState
@@ -114,18 +98,12 @@
                             }}>
                             </textarea>
                             <div className="input_menu_wrapper">
+                                <EmojiBar
+                                textAreaRef={messageTextArea}/>
                                 <div onClick={() => sendMessage()}>
                                     <SvgSendBtn className="sendBtn"/>
                                 </div>
-                                <div ref={emojiBtnRef} onClick={() => setShowEmojis(!showEmojis)}>
-                                    <SvgEmojiBtn className="emojiBtn"/>
-                                </div>
                             </div>
-                            { showEmojis && 
-                                <div ref={emojiBarRef}>
-                                    <EmojiBar insertEmoji={(emoji) => insertEmoji(emoji)}/>
-                                </div>
-                            }
                         </div>
                     </div>
                 )
