@@ -131,7 +131,7 @@ export default function Post(props){
                 className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
                     <PostWindowBtn 
-                    content={item}
+                    content={data}
                     /> 
                     <ShareBtn 
                     content={data}/>
