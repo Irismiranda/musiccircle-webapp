@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { SvgLinkIcon, SvgFeedIcon } from "../../assets"
 import { SliderScrollBtns, formatListData } from "../../utils"
-import { EmojiBar } from "../sections"
+import { EmojiBar } from "../"
 import { normalizeText } from "normalize-text"
 import useStore from "../../store"
 
@@ -152,7 +152,7 @@ export default function ShareMenu(props){
 
             <section> 
                 <textarea 
-                ref={textAreaRef} 
+                ref={textAreaRef}
                 className="share_menu_textarea"
                 placeholder="Say something about this..."/>
                 <EmojiBar 
