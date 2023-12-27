@@ -62,7 +62,8 @@ export default function Post(props){
     return (
         (item && (!data.hide_post || isLoggedUser)) && (
             <section 
-            className="inner_wrapper ">
+            className="inner_wrapper"
+            style={{ padding: "0px 20px 0px 0px" }}>
                 <div 
                     key={data.post_id}
                     className={data.hide_post ? "transparent_section flex" : "flex"}>
@@ -116,17 +117,21 @@ export default function Post(props){
                         </div>
 
                         <p>{data.comment}</p>
-                        <div className="flex space_between full_width">
-                            <div 
-                            className="flex">
-                                <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                                <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
-                            </div>
+                        
+                        <div 
+                        className="flex">
+                            <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                            <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
                         </div>
+                        
                     </div>
                 </div>
-                <ShareBtn 
-                content={data}/>
+                <div
+                className="absolute"
+                style={{ right: "20px", bottom: "20px" }}>    
+                    <ShareBtn 
+                    content={data}/>
+                </div>
             </section>
         )
     )
