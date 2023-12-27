@@ -1,4 +1,4 @@
-        import React, { useEffect, useState, useRef, createRef } from "react"
+        import React, { useEffect, useState, createRef } from "react"
         import { v4 as uuidv4 } from 'uuid'
         import { SvgPinned, SvgSendBtn } from "../../assets"
         import { EmojiBar, Messages } from "../index"

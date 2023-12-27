@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { useClickOutside } from "../../utils"
 
@@ -40,7 +40,7 @@ export default function EmojiBar(props){
 
     const { textAreaRef } = props
     
-    const emoji_searchbar = createRef(null)
+    const emoji_searchbar = useRef(null)
     const emojiBtnRef = useRef(null)
     const emojiBarRef = useRef(null)
 
