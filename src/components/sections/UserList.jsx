@@ -5,7 +5,6 @@ import { UserList } from ".."
 
 export default function UserSearchSection(props){
     const { list, setUserProfileData, setPreventUpdate, showBtn } = props
-    console.log("user list it", UserList)
 
     function toggleTransparency(e){
         setPreventUpdate(true)

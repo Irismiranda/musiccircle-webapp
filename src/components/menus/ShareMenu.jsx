@@ -35,23 +35,17 @@ export default function ShareMenu(props){
     }
 
     async function getUsersData(idList){
-        console.log("id list is", idList)
         setIsLoading(true)
 
         const userList = []
         await Promise.all(
             idList.slice(0, 15).map(async (id) => {
-                console.log("id is", id)
                 const response = await Axios.get(`/api/account/${id}`)
-
-                console.log("user is", response.data)
                 userList.push(response.data)
             })
         )
 
-        console.log("user list is", userList)
         const formatedData = formatListData(userList, "user")
-        console.log("formated user data is", formatedData)
 
         setUserDataList(formatedData)
         setSearchResult(formatedData)

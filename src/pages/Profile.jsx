@@ -62,7 +62,7 @@ export default function Profile(){
     }
 
     useEffect(() => {
-        if(userId === loggedUser.id){
+        if(userId === loggedUser?.id){
             setIsLoggedUser(true)
             setUserProfileData(loggedUser)
             getPosts(loggedUser.id)
@@ -85,10 +85,6 @@ export default function Profile(){
         }
     }, [userTopTracks, isLoggedUser])
 
-    useEffect(() => {
-        console.log("current user porfile data is:", userProfileData)
-    }, [userProfileData])
-    
     return(
         <div className="wrapper default_padding profile" style={{ width: standardWrapperWidth }}>
             {userListVisibility.following &&

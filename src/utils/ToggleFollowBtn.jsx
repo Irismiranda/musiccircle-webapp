@@ -29,8 +29,10 @@ export default function ToggleFollowBtn(props){
     }
 
     useEffect(() => {
-        getIsFollowing(currentUserId)
-    }, [currentUserId])
+        if(loggedUser){
+            getIsFollowing(currentUserId)
+        }
+    }, [currentUserId, loggedUser])
 
     return (
         <>
