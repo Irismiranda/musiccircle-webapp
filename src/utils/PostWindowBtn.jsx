@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { Chat } from "../components"
+import { Chat, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn } from "../assets"
 import { useClickOutside, formatListData, HeartBtn, PlayBtn } from "."
 import useStore from "../store"
