@@ -101,7 +101,7 @@ export default function PostWindowBtn(props){
                 <div
                 onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
                     <EmojiBar 
-                textAreaRef={textAreaRef}/>
+                    textAreaRef={inputRef}/>
                     <SvgSendBtn 
                     className="svg"/>
                 </div>
