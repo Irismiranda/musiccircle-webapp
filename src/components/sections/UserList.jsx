@@ -1,9 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { ToggleFollowBtn } from "../../utils"
+import { UserList } from ".."
 
 export default function UserSearchSection(props){
     const { list, setUserProfileData, setPreventUpdate, showBtn } = props
+    console.log("user list it", UserList)
 
     function toggleTransparency(e){
         setPreventUpdate(true)

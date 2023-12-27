@@ -14,12 +14,14 @@ export default function UserSearchSection(props){
     const userListRef = useRef(null)
     const userSearchInputRef = useRef(null)
 
+    
     useClickOutside(userListRef, exceptionRef, () => setUserListVisibility({
         following: false,
         followers: false,
     }))
-
+    
     async function getUsersData(){
+        console.log("id list is", idList)
         setIsLoading(true)
         const userList = []
         await Promise.all(
@@ -31,10 +33,12 @@ export default function UserSearchSection(props){
                     }
                 })
                 userList.push(response.data)
+                console.log("response is:", response.data)
             })
         )
 
         const formatedData = formatListData(userList, "user")
+        console.log("formated data is", formatedData)
 
         setUserDataList(formatedData)
         setSearchResult(formatedData)
