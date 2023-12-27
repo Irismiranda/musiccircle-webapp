@@ -8,7 +8,7 @@ import { placeholder_img } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, loggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
+    const { standardWrapperWidth, loggedUser, setLoggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -62,18 +62,21 @@ export default function Profile(){
     }
 
     useEffect(() => {
+        userId && getUser(userId)
         if(userId === loggedUser?.id){
             setIsLoggedUser(true)
-            setUserProfileData(loggedUser)
             getPosts(loggedUser.id)
         } else{
-            userId && getUser(userId)
-            userId && getPosts(userId)
             setIsLoggedUser(false)
+            userId && getPosts(userId)
         }
     }, [userId])
 
     useEffect(() => {
+        if(isLoggedUser){
+            setLoggedUser(userProfileData)
+        }
+
         if(isLoggedUser && userTopArtists){
             setTopArtists(userTopArtists)
         }
