@@ -48,6 +48,8 @@ export default function PostWindowBtn(props){
         if(item?.artists){
             getArtist(item.artists[0].id)
         }
+
+        console.log("item is", item)
     }, [item])
 
     return (
