@@ -13,12 +13,6 @@ export default function HeartBtn(props){
         setIsLiked(response)
     }
 
-    useEffect(() => {
-        if (songId) {
-            getIsTrackSaved(songId)
-        }
-    }, [songId])
-
     async function handleHeartClick(id) {
         const trackIds = [id]
         if (!isLiked) {
@@ -37,6 +31,13 @@ export default function HeartBtn(props){
             }
         }
     }
+
+    useEffect(() => {
+        if (songId) {
+            getIsTrackSaved(songId)
+        }
+    }, [songId])
+
 
     return (
         <div onClick={() => handleHeartClick(songId)}>
