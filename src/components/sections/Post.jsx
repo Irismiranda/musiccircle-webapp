@@ -134,7 +134,10 @@ export default function Post(props){
                     content={data}
                     /> 
                     <ShareBtn 
-                    content={data}/>
+                    content={{
+                        data: data,
+                        item: item,
+                        }}/>
                 </div>
             </section>
         )
