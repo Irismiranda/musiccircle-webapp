@@ -140,6 +140,14 @@ svg{
   z-index: 2;
 }
 
+.windowed{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  position: fixed;
+}
+
 .bar{
   position: relative;
   margin: 20px 0px;
@@ -325,6 +333,10 @@ svg{
 
 .absolute{
   position: absolute;
+}
+
+.fixed{
+  position: fixed;
 }
 
 textarea, input{
@@ -624,8 +636,8 @@ h3{
   position: absolute;
   width: 22px;
   height: 22px;
-  bottom: 5px;
-  right: 5px;
+  bottom: 12px;
+  right: 12px;
   cursor: pointer;
 }
 
@@ -644,24 +656,14 @@ h3{
 
 .share_menu_wrapper{
   box-sizing: border-box;
-  position: fixed;
   padding: 13px 20px;
   width: 550px;
-  top: 50%;
-  left: 50%;
   overflow: hidden;
-  transform: translate(-50%, -50%);
-  z-index: 3;
 }
 
 .post_wrapper{
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  z-index: 4;
   height: 500px;
   width: 400px;
-  transform: translate(-50%, -50%);
 }
 
 .post_grid{
@@ -694,6 +696,10 @@ h3{
 
 .post_drop_menu hr{
   opacity: 0.2;
+}
+
+.post_windowed_wrapper{
+
 }
 
 .player_minimized .interaction_btns{
@@ -991,9 +997,6 @@ h3{
 
 .user_list_wrapper{
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   height: 500px;
   width: 400px;
   z-index: 3;

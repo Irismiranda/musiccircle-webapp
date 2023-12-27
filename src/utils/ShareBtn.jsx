@@ -18,7 +18,7 @@ export default function ShareBtn(props){
             {isShareMenuVisibile && 
             <div 
             ref={shareMenuRef}
-            className="share_menu_wrapper wrapper">
+            className="share_menu_wrapper wrapper windowed">
                 
                 <ShareMenu 
                 content={content}

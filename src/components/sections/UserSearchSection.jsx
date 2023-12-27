@@ -62,7 +62,7 @@ export default function UserSearchSection(props){
 
     return (
         <div ref={userListRef} 
-        className="user_list_wrapper wrapper default_padding flex flex_column">
+        className="user_list_wrapper windowed wrapper default_padding flex flex_column">
             <input 
             ref={userSearchInputRef} 
             className="search_bar" 
