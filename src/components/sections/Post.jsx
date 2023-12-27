@@ -127,9 +127,9 @@ export default function Post(props){
                             </div>
                         </div>
                     </div>
-                    <ShareBtn 
-                    content={data}/>
                 </div>
+                <ShareBtn 
+                content={data}/>
             </section>
         )
     )
