@@ -136,6 +136,7 @@
       const storedAccessTokenData = JSON.parse(storedAccessToken)
       const { token, expiringTimeStamp } = storedAccessTokenData 
       const timeLeft = calculateTimeLeft(expiringTimeStamp)
+      setExpiringTime(timeLeft - 6000)
       setAccessToken(token)      
       setRefreshToken(storedRefreshToken)
       } else if(!storedAccessToken && storedRefreshToken){
@@ -214,13 +215,15 @@
     }, [expiringTime])
 
     useEffect(() => {
-      const refreshInterval = setInterval(() => {
-        if (expired && refreshToken) {
-          getNewToken(refreshToken)
-        }
-      }, expiringTime)
+      if(expiringTime){
+        const refreshInterval = setInterval(() => {
+          if (expired && refreshToken) {
+            getNewToken(refreshToken)
+          }
+        }, expiringTime)
+      }
 
-      console.log("toke expires in", expiringTime)
+      console.log("token expires in", expiringTime)
     
       return () => clearInterval(refreshInterval)
     }, [expired, refreshToken, expiringTime])
