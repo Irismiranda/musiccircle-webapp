@@ -60,9 +60,7 @@
         }
         userData.user_handle = `${normalizeText(userData.display_name).replace(/\s/g,'')}#${userData.id}`
         
-        const response = await Axios.post("/api/account", {
-          userData: userData,
-        })
+        const response = await Axios.post(`/api/account/${userData.id}`)
         
         setLoggedUser(response.data)
         
