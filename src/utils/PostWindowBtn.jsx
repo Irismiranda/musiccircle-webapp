@@ -40,6 +40,7 @@ export default function PostWindowBtn(props){
         if(content && isPostVisible){
             setItem(content.item)
         } else if(id && type && isPostVisible){
+            console.log("id and type are:", id, type)
             getitem(id, type)
         }
     }, [content, id])
