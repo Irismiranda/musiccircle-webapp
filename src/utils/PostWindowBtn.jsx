@@ -54,7 +54,8 @@ export default function PostWindowBtn(props){
             <div
             ref={commentsBtnRef}
             onClick={() => setIsPostVisible(!isPostVisible)}>
-                <SvgCommentBtn />
+                <SvgCommentBtn 
+                className="svg"/>
             </div>
 
             {(isPostVisible && item) && 

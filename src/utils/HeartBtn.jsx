@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react"
 import useStore from "../store"
 import { SvgHeart } from "../assets"
 
-export default function LikeBtn(props){
+export default function HeartBtn(props){
     const { spotifyApi, setPlayerState } = useStore()
     const [isLiked, setIsLiked] = useState(false)
+
+    const { songId } = props
 
     async function getIsTrackSaved(id) {
         const response = await spotifyApi.containsMySavedTracks([id])
