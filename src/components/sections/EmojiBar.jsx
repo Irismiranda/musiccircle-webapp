@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Axios } from "../../Axios-config"
 import { useClickOutside } from "../../utils"
+import { SvgEmojiBtn } from "../../assets"
 
 export default function EmojiBar(props){
     const [showEmojiBar, setShowEmojiBar] = useState(false)
