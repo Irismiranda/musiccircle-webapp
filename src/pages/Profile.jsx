@@ -198,7 +198,7 @@ export default function Profile(){
            {posts?.length > 0 && 
            <section 
            className="flex flex_column align_stretch"
-           style={{ gap: "15px" }}>
+           style={{ gap: "30px" }}>
            <h2> Posts </h2>
             { posts.map(post => {
                 return (

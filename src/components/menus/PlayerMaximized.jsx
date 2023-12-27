@@ -1,13 +1,13 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import useStore from "../../store"
-import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { useClickOutside, HeartBtn, ShareBtn } from "../../utils"
+import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+import { HeartBtn, ShareBtn } from "../../utils"
+import { PostWindowed } from ".."
 
 const PlayerMaximized = ((props) => {
     const { playerState, setPlayerState } = useStore()
     const shareBtnRef = useRef(null)
-    const commentBtnRef = useRef(null)
     const volumeBarRef = useRef(null)
     const trackTimelineRef = useRef(null)
     const { 
@@ -38,8 +38,6 @@ const PlayerMaximized = ((props) => {
     const trackName = currentTrack.name
     const artistName = currentTrack.artists[0].name
     const songId = currentTrack.id
-
-    useClickOutside(postWindowRef, commentBtnRef, () => setIsPostVisible(false))
 
     return (
         <div className="player_wrapper">
@@ -102,9 +100,9 @@ const PlayerMaximized = ((props) => {
                     </div>
 
                     <div className="flex social_btns">
-                        <div className="flex" ref={commentBtnRef}>
-                            <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
-                        </div>
+                            <PostWindowed
+                            id={songId}
+                            type={"track"}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

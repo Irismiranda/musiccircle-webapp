@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
-import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, Post } from ".."
+import { PlayerMaximized, PlayerMinimized, PlayerOnScroll, PostWindowed } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
 import { setProperties } from "../../utils"
 import useStore from "../../store"
@@ -396,12 +396,6 @@ export default function PlayerManager() {
         const { isScrolled, isMinimized } = playerState
         return (
             <> 
-            { isPostVisible && 
-                <div 
-                className="post_wrapper wrapper default_padding" 
-                ref={postWindowRef}>
-                    <Post />
-                </div> }
                 <div 
                 ref={playerWrapperRef}
                 className={isMinimized ? "player_minimized wrapper fixed" : "player_default wrapper sticky"}

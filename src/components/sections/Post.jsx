@@ -4,6 +4,7 @@ import { formatListData, PlayBtn, ShareBtn, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgDots } from "../../assets"
+import { PostWindowed } from "../"
 
 export default function Post(props){
     const { spotifyApi, loggedUser } = useStore()
@@ -128,7 +129,10 @@ export default function Post(props){
                 </div>
                 <div
                 className="absolute"
-                style={{ right: "20px", bottom: "20px" }}>    
+                style={{ right: "20px", bottom: "20px" }}>   
+                    <PostWindowed 
+                    content={item}
+                    /> 
                     <ShareBtn 
                     content={data}/>
                 </div>

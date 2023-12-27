@@ -1,13 +1,13 @@
         import React, { useRef } from "react"
         import { Link } from "react-router-dom"
         import useStore from "../../store"
-        import { SvgCommentBtn, SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { useClickOutside, HeartBtn, ShareBtn } from "../../utils"
+        import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
+        import { HeartBtn, ShareBtn } from "../../utils"
+        import { PostWindowed } from ".."
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()
             const shareBtnRef = useRef(null)
-            const commentBtnRef = useRef(null)
             const volumeBarRef = useRef(null)
             const trackTimelineRef = useRef(null)
 
@@ -33,14 +33,10 @@
                 playerSize,
             } = props.playerFunctionalProps
 
-            const { postWindowRef } = props
-
             const albumImg = currentTrack.album.images[0].url
             const trackName = currentTrack.name
             const artistName = currentTrack.artists[0].name
             const songId = currentTrack.id
-
-            useClickOutside(postWindowRef, commentBtnRef, () => setIsPostVisible(false))
 
             if(playerSize.width > 615){
                 
@@ -48,9 +44,9 @@
                 <>
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
-                        <div ref={commentBtnRef}>
-                            <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
-                        </div>
+                            <PostWindowed
+                            id={songId}
+                            type={"track"}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
@@ -162,9 +158,9 @@
                 </div>
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
-                        <div ref={commentBtnRef}>
-                            <SvgCommentBtn className="svg" fill={"#AFADAD"} onClick={() => setIsPostVisible(!isPostVisible)}/>
-                        </div>
+                            <PostWindowed
+                            id={songId}
+                            type={"track"}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

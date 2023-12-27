@@ -220,7 +220,7 @@
           if (expired && refreshToken) {
             getNewToken(refreshToken)
             }
-          }, expiringTime)
+          }, 1800000)
         }
 
       console.log("token expires in", expiringTime)
