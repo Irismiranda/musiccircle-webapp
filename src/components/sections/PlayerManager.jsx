@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
 import { PlayerMaximized, PlayerMinimized, PlayerOnScroll } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
-import { setProperties, PostWindowBtn } from "../../utils"
+import { setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
