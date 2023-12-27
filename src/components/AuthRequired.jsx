@@ -66,7 +66,7 @@
           userData: userData,
         })
         
-        setLoggedUser(userData)
+        setLoggedUser(response.data)
         
       } catch(err){
         console.log(err)
