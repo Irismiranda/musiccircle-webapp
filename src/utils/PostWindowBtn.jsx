@@ -37,6 +37,7 @@ export default function PostWindowBtn(props){
     }
 
     useEffect(() => {
+        console.log("content is", content)
         if(content){
             setItem(content.item)
         } else if(id && type){

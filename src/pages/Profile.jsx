@@ -81,10 +81,6 @@ export default function Profile(){
             setTopArtists(userTopArtists)
         }
     }, [userTopArtists, isLoggedUser])
-
-    useEffect(() => {
-        console.log("logged user is", loggedUser)
-    }, [loggedUser])
     
     useEffect(() => {
         if(isLoggedUser && userTopTracks){
