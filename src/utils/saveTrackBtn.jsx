@@ -3,7 +3,7 @@ import useStore from "../store"
 import { SvgHeart } from "../assets"
 
 export default function SaveTrackBtn(props){
-    const { spotifyApi, setPlayerState } = useStore()
+    const { spotifyApi } = useStore()
     const [isLiked, setIsLiked] = useState(false)
 
     const { songId } = props
