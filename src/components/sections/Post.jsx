@@ -85,7 +85,8 @@ export default function Post(props){
                     </div>
                     <div className="grid post_grid">
                         <div className="flex space_between full_width">
-                            <h3>{item.name} by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link>
+                            <h3>{item.name} 
+                            {item.type !== "artist" && <span> by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></span>}
                             </h3>
                             {isLoggedUser && 
                             <div ref={dotsIconRef}>

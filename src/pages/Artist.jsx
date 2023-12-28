@@ -83,13 +83,14 @@ export default function Artist(){
                     <h1>{artistData?.name}</h1>
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
+                {artistData && 
                 <div
                 className="flex">
                     <ShareBtn 
                     content={artistData}/>
                     <CommentBtn 
                     content={artistData}/>
-                </div>
+                </div>}
             </section>
             {artistTopTracks && 
             <section>
