@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
-import { PlayBtn, SliderScrollBtns } from "../../utils"
+import { PlayBtn, SliderScrollBtns, ShareBtn, CommentBtn } from "../../utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, type, slidePercent } = props

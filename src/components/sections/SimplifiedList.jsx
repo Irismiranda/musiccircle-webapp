@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { PlayBtn } from "../../utils"
+import { PlayBtn, ShareBtn, CommentBtn } from "../../utils"
 import useStore from "../../store"
 
 export default function SimplifiedList(props){
