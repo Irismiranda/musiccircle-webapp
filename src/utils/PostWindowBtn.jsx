@@ -117,7 +117,7 @@ export default function PostWindowBtn(props){
                     <div 
                     className="flex">
                         <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
-                        <h4>{postData.comments ? postData?.comments?.length : 0} Comments</h4>
+                        <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <section 
                     className="relative full_width"
