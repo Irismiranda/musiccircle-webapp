@@ -120,7 +120,8 @@ export default function PostWindowBtn(props){
                             </p> 
                             { (descriptionRef?.current?.scrollHeight > 200) &&
                             <span 
-                            className="show_more"
+                            className={showFullDescription ? 
+                            "show_more_toggle show_less" : "show_more_toggle show_more"}
                             onClick={() => setShowFullDescription(!showFullDescription)}>
                                 {showFullDescription ? "Hide" : "Show More..."}
                             </span>} 

@@ -735,6 +735,19 @@ h3{
   overflow: hidden;
 }
 
+.show_more_toggle{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.show_more::after{
+  content: "▼";
+}
+
+.show_less::before{
+  content: "▲";
+}
+
 .cover_long{
   height: 500px;
   width: 500px;
