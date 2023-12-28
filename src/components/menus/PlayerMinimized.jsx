@@ -2,7 +2,7 @@
         import { Link } from "react-router-dom"
         import useStore from "../../store"
         import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { saveTrackBtn, ShareBtn, PostWindowBtn } from "../../utils"
+        import { SaveTrackBtn, ShareBtn, CommentBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()
@@ -42,7 +42,7 @@
                 <>
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
-                            <PostWindowBtn
+                            <CommentBtn
                             content={{
                                 id: songId,
                                 type: "track"
@@ -51,7 +51,7 @@
                             <ShareBtn
                             content={currentTrack}/>
                         </div>
-                        <saveTrackBtn 
+                        <SaveTrackBtn 
                         songId={songId}/>
                     </div>
                         </div>
@@ -159,7 +159,7 @@
                 </div>
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
-                            <PostWindowBtn
+                            <CommentBtn
                             content={{
                                 id: songId,
                                 type: "track"
@@ -168,7 +168,7 @@
                             <ShareBtn
                             content={currentTrack}/>
                         </div>
-                        <saveTrackBtn 
+                        <SaveTrackBtn 
                         songId={songId}/>
                     </div>} 
                 </> 

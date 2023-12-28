@@ -63,7 +63,9 @@ export default function Artist(){
         className="wrapper default_padding relative" 
         style={{ width: standardWrapperWidth, overflow: "hidden" }}>
             <section>
-                <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
+                <div 
+                className="flex profile_cover blur_cover" 
+                style={{ backgroundImage: `url("${artistData?.images[0].url}")` }}>
                 </div>
                 <div 
                 className="cover_data_grid"
@@ -80,6 +82,13 @@ export default function Artist(){
                     <h4>Artist</h4>
                     <h1>{artistData?.name}</h1>
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
+                </div>
+                <div
+                className="flex">
+                    <ShareBtn 
+                    content={artistData}/>
+                    <CommentBtn 
+                    content={artistData}/>
                 </div>
             </section>
             {artistTopTracks && 

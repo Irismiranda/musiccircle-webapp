@@ -30,6 +30,13 @@
                                         </div>
                                     </div>
                                 </Link>
+                                <div
+                                className="flex">
+                                    <ShareBtn 
+                                    content={item}/>
+                                    <CommentBtn 
+                                    content={item}/>
+                                </div>
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
                                     <PlayBtn 
                                     uri={item.uri} 

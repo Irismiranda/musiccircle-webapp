@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { Slider, SimplifiedList } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData, PlayBtn  } from "../utils"
+import { formatListData, PlayBtn, ShareBtn, CommentBtn  } from "../utils"
 import useStore from "../store"
 
 export default function Album(){
@@ -47,7 +48,9 @@ export default function Album(){
         className="wrapper default_padding relative" 
         style={{ width: standardWrapperWidth, overflow: "hidden" }}>
             <section>
-                <div className="flex profile_cover blur_cover" style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
+                <div 
+                className="flex profile_cover blur_cover" 
+                style={{ backgroundImage: `url("${albumData?.images[0].url}")` }}>
                 </div>
                 <div 
                 className="cover_data_grid"
@@ -63,7 +66,16 @@ export default function Album(){
                     </div>
                     <h4>Album</h4>
                     <h1>{albumData?.name}</h1>
-                    <h2>{albumData?.artists[0].name}</h2>
+                    <Link to={`/artist/${albumData?.artists[0].id}`}>
+                        <h2>{albumData?.artists[0].name}</h2>
+                    </Link>
+                    <div
+                    className="flex">
+                        <ShareBtn 
+                        content={albumData}/>
+                        <CommentBtn 
+                        content={albumData}/>
+                    </div>
                 </div>
             </section>
             

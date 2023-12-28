@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import useStore from "../../store"
-import { PlayBtn, ShareBtn, PostWindowBtn, formatListData, useClickOutside } from "../../utils"
+import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgDots } from "../../assets"
@@ -130,7 +130,7 @@ export default function Post(props){
                 <div
                 className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
-                    <PostWindowBtn 
+                    <CommentBtn 
                     content={{
                         data: data,
                         item: item,

@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { Chat, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn } from "../assets"
-import { useClickOutside, formatListData, saveTrackBtn, PlayBtn } from "."
+import { useClickOutside, formatListData, SaveTrackBtn, PlayBtn } from "."
 import useStore from "../store"
 
-export default function PostWindowBtn(props){
+export default function CommentBtn(props){
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
@@ -56,7 +56,7 @@ export default function PostWindowBtn(props){
     }, [postData, isPostVisible])
 
     useEffect(() => {
-        descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0 })
+        descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
     }, [showFullDescription])
 
     return (
@@ -95,7 +95,7 @@ export default function PostWindowBtn(props){
                     <div
                     className="flex">
                         <h2>{postData?.name}</h2>
-                        {(postData?.type === "track") && <saveTrackBtn 
+                        {(postData?.type === "track") && <SaveTrackBtn 
                         id={postData?.id}/>}
                     </div>
                     <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>

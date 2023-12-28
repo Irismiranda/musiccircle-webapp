@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import { Link } from "react-router-dom"
 import useStore from "../../store"
 import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-import { saveTrackBtn, ShareBtn, PostWindowBtn } from "../../utils"
+import { SaveTrackBtn, ShareBtn, CommentBtn } from "../../utils"
 
 const PlayerOnScroll = ((props) => {
     const { playerState, setPlayerState } = useStore()
@@ -46,7 +46,7 @@ const PlayerOnScroll = ((props) => {
                         <span style={{ fontSize: "18.5px"}}> {artistName} </span>
                     </Link>
                     </h3>
-                    <saveTrackBtn 
+                    <SaveTrackBtn 
                     songId={songId}/>
                 </div>
                 <div className="flex">
@@ -91,7 +91,7 @@ const PlayerOnScroll = ((props) => {
                         </div>
                     </div>
                     <div className="flex">
-                            <PostWindowBtn
+                            <CommentBtn
                             content={{
                                 id: songId,
                                 type: "track"

@@ -70,6 +70,13 @@ export default function Slider(props){
                                     <span>{item.releaseDate.slice(0, -6)} • </span>}
                                     {category.slice(0, -1)}</h4>
                                 </Link>
+                                <div
+                                className="flex">
+                                    <ShareBtn 
+                                    content={item}/>
+                                    <CommentBtn 
+                                    content={item}/>
+                                </div>
                             </div>
                             )
                         })   
