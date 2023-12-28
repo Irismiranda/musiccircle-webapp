@@ -114,7 +114,7 @@ export default function PostWindowBtn(props){
                             </Link>
                         </div>
                             <p 
-                            className={showFullDescription ? "" : "hide_description"}
+                            className={showFullDescription ? "show_description" : "hide_description"}
                             ref={descriptionRef}>
                                 {data?.comment}
                             </p> 
