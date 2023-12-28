@@ -69,8 +69,8 @@ export default function PostWindowBtn(props){
             ref={postWindowRef}>
                 <section 
                 className="cover_long flex flex_column relative"
-                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${postData.imgUrl}')`}}
-                onMouseEnter={() => setHoverItemId(postData.id)}
+                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${postData?.imgUrl}')`}}
+                onMouseEnter={() => setHoverItemId(postData?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     
                     {artistPic && 
@@ -78,22 +78,22 @@ export default function PostWindowBtn(props){
                     style={{ backgroundImage: `url('${artistPic}')`}}
                     className="cover_medium">
                         <div 
-                        onMouseEnter={() => setHoverItemId(postData.id)}>
+                        onMouseEnter={() => setHoverItemId(postData?.id)}>
                             <PlayBtn 
-                            uri={`spotify:${postData.type}:${postData.id}`} 
-                            id={postData.id}
+                            uri={`spotify:${postData?.type}:${postData?.id}`} 
+                            id={postData?.id}
                             category={"cover"} 
-                            type={postData.type} 
+                            type={postData?.type} 
                             hoverItemId={hoverItemId}/>
                         </div>
                     </div>}
                     <div
                     className="flex">
-                        <h2>{postData.name}</h2>
+                        <h2>{postData?.name}</h2>
                         <HeartBtn 
-                        id={postData.id}/>
+                        id={postData?.id}/>
                     </div>
-                    <h3><Link to={`/artist/${postData.artist_id}`}>{postData.artist_name}</Link></h3>
+                    <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>
                     
                 </section>
                 <div
@@ -124,7 +124,7 @@ export default function PostWindowBtn(props){
                     style={{ marginTop: "10px" }}>
                         <textarea 
                         ref={textAreaRef}
-                        placeholder={`say something cool about this ${postData.type}`}/>
+                        placeholder={`say something cool about this ${postData?.type}`}/>
                         <div
                         className="flex absolute"
                         style={{ top: "10px", right: "15px", gap: "5px" }}>
