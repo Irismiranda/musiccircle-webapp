@@ -115,13 +115,15 @@ export default function PostWindowBtn(props){
                         </div>
                             <p 
                             className={showFullDescription ? "" : "hide_description"}
-                            ref={descriptionRef}>{data?.comment}</p> 
-                            { (descriptionRef?.current?.scrollHeight > descriptionRef?.current?.clientHeight ) &&
-                            <span 
-                            className="show_more"
-                            onClick={() => setShowFullDescription(!showFullDescription)}>
-                                {showFullDescription ? "Hide" : "Show More..."}
-                            </span>} 
+                            ref={descriptionRef}>
+                                {data?.comment}
+                                { (descriptionRef?.current?.clientHeight > 300) &&
+                                <span 
+                                className="show_more"
+                                onClick={() => setShowFullDescription(!showFullDescription)}>
+                                    {showFullDescription ? "Hide" : "Show More..."}
+                                </span>} 
+                            </p> 
                     </section>}
                     <div 
                     className="flex">

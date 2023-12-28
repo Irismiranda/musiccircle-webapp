@@ -728,7 +728,7 @@ h3{
   resize: none;
 }
 
-.hidde_description{
+.hide_description{
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
