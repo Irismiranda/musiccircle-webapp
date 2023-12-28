@@ -1,5 +1,5 @@
 export { default as PlayBtn } from "./PlayBtn"
-export { default as HeartBtn } from "./HeartBtn"
+export { default as saveTrackBtn } from "./saveTrackBtn"
 export { default as ShareBtn } from "./ShareBtn" 
 export { default as PostWindowBtn } from "./PostWindowBtn"
 export { default as ToggleFollowBtn } from "./ToggleFollowBtn"

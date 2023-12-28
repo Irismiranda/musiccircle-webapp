@@ -2,7 +2,7 @@
         import { Link } from "react-router-dom"
         import useStore from "../../store"
         import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { HeartBtn, ShareBtn, PostWindowBtn } from "../../utils"
+        import { saveTrackBtn, ShareBtn, PostWindowBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState } = useStore()
@@ -51,7 +51,7 @@
                             <ShareBtn
                             content={currentTrack}/>
                         </div>
-                        <HeartBtn 
+                        <saveTrackBtn 
                         songId={songId}/>
                     </div>
                         </div>
@@ -168,7 +168,7 @@
                             <ShareBtn
                             content={currentTrack}/>
                         </div>
-                        <HeartBtn 
+                        <saveTrackBtn 
                         songId={songId}/>
                     </div>} 
                 </> 

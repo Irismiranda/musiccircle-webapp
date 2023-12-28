@@ -142,7 +142,7 @@ export default function Messages(props) {
           })}
       </div>
     ) : (
-      type === "artists" && 
+      type === "artist" && 
       <div className="no_messages">
         <img src={chat_illustration} />
         <h3>Everyone is comming to chat, be the first one to break the ice</h3>

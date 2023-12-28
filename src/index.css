@@ -729,6 +729,13 @@ h3{
   resize: none;
 }
 
+.hidde_description{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .cover_long{
   height: 500px;
   width: 500px;

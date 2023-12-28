@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { Chat, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn } from "../assets"
-import { useClickOutside, formatListData, HeartBtn, PlayBtn } from "."
+import { useClickOutside, formatListData, saveTrackBtn, PlayBtn } from "."
 import useStore from "../store"
 
 export default function PostWindowBtn(props){
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
-    
+    const [showFullDescription, setShowFullDescription] = useState(false)
     const { spotifyApi } = useStore()
     const { content } = props
     const { user, item, id, type, data } = content
@@ -18,6 +18,7 @@ export default function PostWindowBtn(props){
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
     const textAreaRef = useRef(null)
+    const descriptionRef = useRef(null)
 
     useClickOutside(postWindowRef, commentsBtnRef, () => setIsPostVisible(false))
 
@@ -76,7 +77,7 @@ export default function PostWindowBtn(props){
                     {artistPic && 
                     <div 
                     style={{ backgroundImage: `url('${artistPic}')`}}
-                    className="cover_medium">
+                    className="cover_medium relative">
                         <div 
                         onMouseEnter={() => setHoverItemId(postData?.id)}>
                             <PlayBtn 
@@ -90,14 +91,14 @@ export default function PostWindowBtn(props){
                     <div
                     className="flex">
                         <h2>{postData?.name}</h2>
-                        <HeartBtn 
-                        id={postData?.id}/>
+                        {(postData.type === "track") && <saveTrackBtn 
+                        id={postData?.id}/>}
                     </div>
                     <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>
                     
                 </section>
                 <div
-                className="post_comments_wrapper"> 
+                className="post_comments_wrapper">
                     {user && 
                     <section>
                         <div 
@@ -112,7 +113,15 @@ export default function PostWindowBtn(props){
                                 <h4>{user.name}</h4>
                             </Link>
                         </div>
-                            <p>{data?.comment}</p>   
+                            <p 
+                            className={showFullDescription ? "" : "hide_description"}
+                            ref={descriptionRef}>{data?.comment}</p> 
+                            { (descriptionRef.current.scrollHeight > descriptionRef.current.clientHeight ) &&
+                            <span 
+                            className="show_more"
+                            onClick={() => setShowFullDescription(!showFullDescription)}>
+                                {showFullDescription ? "Hide" : "Show More..."}
+                            </span>} 
                     </section>}
                     <div 
                     className="flex">
@@ -124,7 +133,7 @@ export default function PostWindowBtn(props){
                     style={{ marginTop: "10px" }}>
                         <textarea 
                         ref={textAreaRef}
-                        placeholder={`say something cool about this ${postData?.type}`}/>
+                        placeholder={`Say something cool about this ${postData?.type}`}/>
                         <div
                         className="flex absolute"
                         style={{ top: "10px", right: "15px", gap: "5px" }}>

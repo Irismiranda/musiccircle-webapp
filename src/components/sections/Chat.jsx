@@ -88,7 +88,11 @@
                                 <SvgPinned className="svg_medium pinned" is_pinned={isPinned ? "true" : "false"} style={{ fill: isPinned ? '#AFADAD' : 'none', }}/>
                             </div> 
                         </div>
-                        <Messages chatId={chatState.chatId} chatProfileId={artistId} type={"artists"} key={chatState.chatId}/>
+                        <Messages 
+                        chatId={chatState.chatId} 
+                        chatProfileId={artistId} 
+                        type={"artist"} 
+                        key={chatState.chatId}/>
                         <div className="flex relative">
                             <textarea id="chatInput" ref={messageTextArea} placeholder={`Say something nice to other ${artistName} fans...`} onKeyDown={(e) => {
                                 if (e.key === "Enter" && !e.shiftKey) {
