@@ -97,7 +97,10 @@ export default function EmojiBar(props){
 
     return (
         <>
-            {showEmojiBar && <div className="wrapper default_padding emoji_bar">
+            {showEmojiBar && 
+            <div 
+            ref={emojiBarRef}
+            className="wrapper default_padding emoji_bar">
                 <input 
                 ref={emoji_searchbar} 
                 className="search_bar"
@@ -116,7 +119,10 @@ export default function EmojiBar(props){
                     {!emojiList || isLoading ? <h5 style={{width: "150px", color: "grey", marginTop: "auto", textAlign: "center"}}>Loading...</h5> : emojiList}
                 </div>
             </div>}
-            <div ref={emojiBtnRef} onClick={() => setShowEmojiBar(!showEmojiBar)}>
+
+            <div 
+            ref={emojiBtnRef} 
+            onClick={() => setShowEmojiBar(!showEmojiBar)}>
                 <SvgEmojiBtn className="emoji_btn" />
             </div>
         </>

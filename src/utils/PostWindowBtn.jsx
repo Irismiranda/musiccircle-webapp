@@ -16,7 +16,7 @@ export default function PostWindowBtn(props){
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
-    const inputRef = useRef(null)
+    const textAreaRef = useRef(null)
 
     useClickOutside(postWindowRef, commentsBtnRef, () => setIsPostVisible(false))
 
@@ -67,7 +67,7 @@ export default function PostWindowBtn(props){
             className="windowed wrapper post_windowed_wrapper flex"
             ref={postWindowRef}>
                 <section 
-                className="cover_long"
+                className="cover_long flex flex_column"
                 style={{ backgroundImage: `url('${item.imgUrl}')`}}
                 onMouseEnter={() => setHoverItemId(item.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
@@ -93,7 +93,8 @@ export default function PostWindowBtn(props){
                     <h3><Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     
                 </section>
-                <div> 
+                <div
+                className="post_comments_wrapper"> 
                     {user && 
                     <section>
                         <div 
@@ -116,16 +117,21 @@ export default function PostWindowBtn(props){
                         <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
                     </div>
                     <section 
-                    className="relative">
-                        <input 
-                        ref={inputRef}
+                    className="relative full_width"
+                    style={{ marginTop: "10px" }}>
+                        <textarea 
+                        ref={textAreaRef}
                         placeholder={`say something cool about this ${item.type}`}/>
                         <div
-                        onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                        className="flex absolute"
+                        style={{ top: "5px", right: "15px", gap: "5px" }}>
                             <EmojiBar 
-                            textAreaRef={inputRef}/>
-                            <SvgSendBtn 
-                            className="svg"/>
+                            textAreaRef={textAreaRef}/>
+                            <div 
+                            onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                                <SvgSendBtn 
+                                className="svg"/>
+                            </div>
                         </div>
                     </section>
                 </div>

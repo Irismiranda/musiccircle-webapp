@@ -709,9 +709,27 @@ h3{
 }
 
 .post_windowed_wrapper{
+  width: 800px;
+  align-self: end;
+}
+
+.post_comments_wrapper{
+  width: calc(100% - 400px);
+  padding: 20px 20px 20px 5px;
+  box-sizing: border-box;
+}
+
+.post_comments_wrapper textarea{
+  padding: 10px 55px 3px 27px;
+  resize: none;
+}
+
+.cover_long{
+  height: 500px;
+  width: 400px;
   justify-content: end;
   align-items: start;
-  gap: 10px;
+  gap: 15px;
   padding: 25px;
   box-sizing: border-box;
 }
