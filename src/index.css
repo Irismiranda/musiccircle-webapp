@@ -661,6 +661,16 @@ h3{
   overflow: hidden;
 }
 
+.share_menu_wrapper .emoji_btn{
+  position: absolute;
+  top: 210px;
+  right: 0px;
+}
+
+.share_menu_wrapper textarea{
+  padding: 12px 30px 0 30px;
+}
+
 .post_wrapper{
   height: 500px;
   width: 400px;

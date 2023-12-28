@@ -117,7 +117,7 @@ export default function EmojiBar(props){
                 </div>
             </div>}
             <div ref={emojiBtnRef} onClick={() => setShowEmojiBar(!showEmojiBar)}>
-                <SvgEmojiBtn className="emojiBtn" />
+                <SvgEmojiBtn className="emoji_btn" />
             </div>
         </>
     )
