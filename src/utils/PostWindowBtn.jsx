@@ -67,8 +67,8 @@ export default function PostWindowBtn(props){
             className="windowed wrapper post_windowed_wrapper flex"
             ref={postWindowRef}>
                 <section 
-                className="cover_long flex flex_column"
-                style={{ backgroundImage: `url('${item.imgUrl}')`}}
+                className="cover_long flex flex_column relative"
+                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${item.imgUrl}')`}}
                 onMouseEnter={() => setHoverItemId(item.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     <div 
@@ -124,7 +124,7 @@ export default function PostWindowBtn(props){
                         placeholder={`say something cool about this ${item.type}`}/>
                         <div
                         className="flex absolute"
-                        style={{ top: "5px", right: "15px", gap: "5px" }}>
+                        style={{ top: "10px", right: "15px", gap: "5px" }}>
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 

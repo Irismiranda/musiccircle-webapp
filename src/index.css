@@ -726,12 +726,14 @@ h3{
 
 .cover_long{
   height: 500px;
-  width: 400px;
+  width: 500px;
   justify-content: end;
   align-items: start;
   gap: 15px;
   padding: 25px;
   box-sizing: border-box;
+  background-size: cover;
+  background-position: 50%;
 }
 
 .player_minimized .interaction_btns{
@@ -856,6 +858,7 @@ h3{
   content: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3Csvg viewBox='0 0 500 500' width='104.742' height='165.842' xmlns='http://www.w3.org/2000/svg' xmlns:bx='https://boxy-svg.com'%3E%3Cpath d='M 220.654 167.691 L 303.575 272.433 L 137.733 272.433 L 220.654 167.691 Z' style='stroke-linejoin: round; stroke-width: 16px; stroke: rgb(255, 255, 255); fill: rgb(255, 255, 255); transform-origin: 177.781px 150.232px;' transform='matrix(0, 1, -1, 0, 167.131576538086, 56.89501953125)' bx:shape='triangle 137.733 167.691 165.842 104.742 0.5 0 1@fc71f886'/%3E%3C/svg%3E");
   box-shadow: 0 0 23px 1px #f230aa;
   cursor: pointer;
+  z-index: 1;
 }
 
 .play_btn_slider{
@@ -875,6 +878,11 @@ h3{
 
 .cover_large .play_btn{
   top: 155px;
+}
+
+.cover_long .play_btn{
+  bottom: 25px;
+  right: 385px;
 }
 
 .simplified_list_wrapper{
@@ -1008,19 +1016,13 @@ h3{
   opacity: 0.85;
 }
 
-.gradient_wrapper{
-  display: flex;
-  justify-content: start;
-  align-items: end;
-  gap: 50px;
+.gradient_effect{
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   background: linear-gradient(180deg,rgba(0,0,0,0) 46%,rgba(0,0,0,.5578606442577031) 100%);
-  padding: 20px 40px;
-  box-sizing: border-box;
 }
 
 .artist_profile_cover h1{
