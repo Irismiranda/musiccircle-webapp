@@ -832,6 +832,7 @@ h3{
   margin-top: 20px;
   gap: 25px;
   align-self: end;
+  justify-content: center;
 }
 
 .cover_data_grid{

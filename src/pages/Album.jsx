@@ -69,13 +69,14 @@ export default function Album(){
                     <Link to={`/artist/${albumData?.artists[0].id}`}>
                         <h2>{albumData?.artists[0].name}</h2>
                     </Link>
+                    {albumData && 
                     <div
                     className="flex">
                         <ShareBtn 
                         content={albumData}/>
                         <CommentBtn 
                         content={albumData}/>
-                    </div>
+                    </div>}
                 </div>
             </section>
             
