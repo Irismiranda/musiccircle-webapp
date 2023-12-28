@@ -714,7 +714,7 @@ h3{
 
 .post_windowed_wrapper{
   width: 800px;
-  height: 5000px;
+  height: 500px;
   align-self: end;
 }
 
@@ -768,8 +768,8 @@ h3{
   gap: 15px;
   padding: 25px;
   box-sizing: border-box;
-  background-size: cover;
-  background-position: 50%;
+  background-size: cover !important;
+  background-position: 50% !important;
 }
 
 .player_default .cover_long {
