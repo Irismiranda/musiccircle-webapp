@@ -117,7 +117,7 @@ export default function PostWindowBtn(props){
                             className={showFullDescription ? "" : "hide_description"}
                             ref={descriptionRef}>
                                 {data?.comment}
-                                { (descriptionRef?.current?.scrollHeight > 325) &&
+                                { (descriptionRef?.current?.scrollHeight > 200) &&
                                 <span 
                                 className="show_more"
                                 onClick={() => setShowFullDescription(!showFullDescription)}>
