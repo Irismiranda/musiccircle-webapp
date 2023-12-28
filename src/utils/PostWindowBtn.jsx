@@ -45,14 +45,14 @@ export default function PostWindowBtn(props){
             console.log("id and type are:", id, type)
             getitem(id, type)
         }
-    }, [content, id])
+    }, [content, id, isPostVisible])
 
     useEffect(() => {
         if(isPostVisible){
             postData?.artists && getArtist(postData.artists[0].id)
             postData?.artist_id && getArtist(postData?.artist_id)
         }
-    }, [postData])
+    }, [postData, isPostVisible])
 
     return (
         <>
