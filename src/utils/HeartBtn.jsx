@@ -40,8 +40,14 @@ export default function HeartBtn(props){
 
 
     return (
-        <div onClick={() => handleHeartClick(songId)}>
-            <SvgHeart className="svg" style={{ fill: isLiked ? '#F230AA' : 'none', stroke: isLiked ? "#F230AA" : "#AFADAD" }} />
+        <div 
+        style={{ height: "16px" }}
+        onClick={() => handleHeartClick(songId)}>
+            <SvgHeart 
+            className="svg"
+            style={{ 
+                fill: isLiked ? '#F230AA' : 'none', 
+                stroke: isLiked ? "#F230AA" : "#AFADAD"}}/>
         </div>
     )
   }

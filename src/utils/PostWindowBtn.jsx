@@ -7,7 +7,7 @@ import useStore from "../store"
 
 export default function PostWindowBtn(props){
     const [isPostVisible, setIsPostVisible] = useState(false)
-    const [ hoverItemId, setHoverItemId ] = useState(null)
+    const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     
     const { spotifyApi } = useStore()
@@ -46,7 +46,6 @@ export default function PostWindowBtn(props){
     }, [content, id])
 
     useEffect(() => {
-        console.log("item is", item)
         if(isPostVisible){
             item?.artists && getArtist(item.artists[0].id)
             item?.artist_id && getArtist(item?.artist_id)
