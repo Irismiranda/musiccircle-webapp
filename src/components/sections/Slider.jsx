@@ -42,7 +42,7 @@ export default function Slider(props){
                     .slice(type === "top_list" ? 0 : undefined, type === "top_list" ? 10 : undefined)
                     .map((item) => {
                         return (
-                            <div className="inner_wrapper" key={item.id}>
+                            <div className="inner_wrapper grid" key={item.id}>
                                 <div className="slider_image_wrapper">
                                     <Link 
                                     to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}
@@ -71,7 +71,8 @@ export default function Slider(props){
                                     {category.slice(0, -1)}</h4>
                                 </Link>
                                 <div
-                                className="flex">
+                                className="flex slider_btns_wrapper"
+                                style={{ marginTop: "15px" }}>
                                     <ShareBtn 
                                     content={item}/>
                                     <CommentBtn 

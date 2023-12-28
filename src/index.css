@@ -828,6 +828,12 @@ h3{
   right: 10px;
 }
 
+.slider_btns_wrapper{
+  margin-top: 20px;
+  gap: 25px;
+  align-self: end;
+}
+
 .cover_data_grid{
   display: grid;
   align-items: center;
