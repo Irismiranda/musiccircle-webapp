@@ -133,7 +133,7 @@ export default function Profile(){
 
                     <h3 
                     style={{ gridArea: "d" }}>
-                        {userProfileData?.posts?.length || 0} Posts
+                        {posts?.length || 0} Posts
                     </h3>
                     <h3 
                     ref={followersRef}
