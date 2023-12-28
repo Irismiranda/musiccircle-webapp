@@ -63,7 +63,7 @@ export default function PostWindowBtn(props){
                 className="svg"/>
             </div>
 
-            {(isPostVisible && postData) && 
+            {isPostVisible && 
             <div
             className="windowed wrapper post_windowed_wrapper flex"
             ref={postWindowRef}>
