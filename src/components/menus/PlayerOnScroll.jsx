@@ -92,8 +92,10 @@ const PlayerOnScroll = ((props) => {
                     </div>
                     <div className="flex">
                             <PostWindowBtn
-                            id={songId}
-                            type={"track"}/>
+                            content={{
+                                id: songId,
+                                type: "track"
+                                }}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

@@ -43,8 +43,10 @@
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
                             <PostWindowBtn
-                            id={songId}
-                            type={"track"}/>
+                            content={{
+                                id: songId,
+                                type: "track"
+                                }}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
@@ -158,8 +160,10 @@
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
                             <PostWindowBtn
-                            id={songId}
-                            type={"track"}/>
+                            content={{
+                                id: songId,
+                                type: "track"
+                                }}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

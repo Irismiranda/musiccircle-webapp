@@ -98,8 +98,10 @@ const PlayerMaximized = ((props) => {
 
                     <div className="flex social_btns">
                             <PostWindowBtn
-                            id={songId}
-                            type={"track"}/>
+                            content={{
+                                id: songId,
+                                type: "track"
+                                }}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

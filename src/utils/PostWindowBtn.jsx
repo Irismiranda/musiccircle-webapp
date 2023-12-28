@@ -11,7 +11,8 @@ export default function PostWindowBtn(props){
     const [artistPic, setArtistPic] = useState(null)
     
     const { spotifyApi } = useStore()
-    const { user, content, id, type } = props
+    const { content } = props
+    const { user, id, type } = content
     const [item, setItem] = useState(null)
 
     const postWindowRef = useRef(null)
