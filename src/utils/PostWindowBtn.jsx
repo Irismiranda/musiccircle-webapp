@@ -50,6 +50,8 @@ export default function PostWindowBtn(props){
             item?.artists && getArtist(item.artists[0].id)
             item?.artist_id && getArtist(item?.artist_id)
         }
+
+        console.log("user is", user)
     }, [item])
 
     return (
@@ -70,19 +72,21 @@ export default function PostWindowBtn(props){
                 style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${item.imgUrl}')`}}
                 onMouseEnter={() => setHoverItemId(item.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
-                    <div 
-                    onMouseEnter={() => setHoverItemId(item.id)}>
-                        <PlayBtn 
-                        uri={`spotify:${item.type}:${item.id}`} 
-                        id={item.id}
-                        category={"cover"} 
-                        type={item.type} 
-                        hoverItemId={hoverItemId}/>
-                    </div>
                     
                     {artistPic && 
-                    <img src={artistPic}
-                    className="cover_medium"/>}
+                    <div 
+                    style={{ backgroundImage: `url('${artistPic}')`}}
+                    className="cover_medium">
+                        <div 
+                        onMouseEnter={() => setHoverItemId(item.id)}>
+                            <PlayBtn 
+                            uri={`spotify:${item.type}:${item.id}`} 
+                            id={item.id}
+                            category={"cover"} 
+                            type={item.type} 
+                            hoverItemId={hoverItemId}/>
+                        </div>
+                    </div>}
                     <div
                     className="flex">
                         <h2>{item.name}</h2>
@@ -99,13 +103,13 @@ export default function PostWindowBtn(props){
                         <div 
                         className="flex"
                         style={{ marginBottom: "10px" }}>
-                            <Link to={`/account/${user?.id}`}>
+                            <Link to={`/account/${user.id}`}>
                                 <img 
-                                src={user?.imgUrl}
+                                src={user.imgUrl}
                                 className="profile_small" />
                             </Link>
-                            <Link to={`/account/${user?.id}`}>
-                                <h4>{user?.name}</h4>
+                            <Link to={`/account/${user.id}`}>
+                                <h4>{user.name}</h4>
                             </Link>
                         </div>
                             <p>{data?.comment}</p>   
