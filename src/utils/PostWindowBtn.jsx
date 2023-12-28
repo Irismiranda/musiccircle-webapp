@@ -56,7 +56,7 @@ export default function PostWindowBtn(props){
     }, [postData, isPostVisible])
 
     useEffect(() => {
-        descriptionRef.current.scrollBy({ top: 0 })
+        descriptionRef?.current?.scrollBy({ top: 0 })
     }, [showFullDescription])
 
     return (
