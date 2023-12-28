@@ -91,7 +91,7 @@ export default function PostWindowBtn(props){
                     <div
                     className="flex">
                         <h2>{postData?.name}</h2>
-                        {(postData.type === "track") && <saveTrackBtn 
+                        {(postData?.type === "track") && <saveTrackBtn 
                         id={postData?.id}/>}
                     </div>
                     <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>
@@ -142,7 +142,7 @@ export default function PostWindowBtn(props){
                             <div 
                             onClick={() => sendComment(postData?.post_id ? postData?.post_id : postData?.id)}>
                                 <SvgSendBtn 
-                                className="svg"/>
+                                className="send_btn"/>
                             </div>
                         </div>
                     </section>

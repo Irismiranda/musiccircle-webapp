@@ -105,7 +105,7 @@
                                 <EmojiBar
                                 textAreaRef={messageTextArea}/>
                                 <div onClick={() => sendMessage()}>
-                                    <SvgSendBtn className="sendBtn"/>
+                                    <SvgSendBtn className="send_btn"/>
                                 </div>
                             </div>
                         </div>

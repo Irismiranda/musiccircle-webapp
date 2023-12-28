@@ -372,10 +372,9 @@ input{
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.sendBtn{
+.send_btn{
   height: 20px;
   cursor: pointer;
-  margin-top: 5px;
 }
 
 .emojiBtn{
