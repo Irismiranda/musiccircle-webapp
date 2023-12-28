@@ -12,8 +12,8 @@ export default function PostWindowBtn(props){
     
     const { spotifyApi } = useStore()
     const { content } = props
-    const { user, id, type, data } = content
-    const [item, setItem] = useState(null)
+    const { user, item, id, type, data } = content
+    const [postData, setPostData] = useState(null)
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -23,9 +23,9 @@ export default function PostWindowBtn(props){
 
     async function getitem(id, type){
         const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
-        const item = await spotifyApi[methodName](id)
-        const formatedItem = formatListData([item], `${type}s`)
-        setItem(formatedItem[0])
+        const data = await spotifyApi[methodName](id)
+        const formatedItem = formatListData([data], `${type}s`)
+        setPostData(formatedItem[0])
     }
 
     async function getArtist(id){
@@ -38,8 +38,8 @@ export default function PostWindowBtn(props){
     }
 
     useEffect(() => {
-        if(content && isPostVisible){
-            setItem(content.item)
+        if(item && isPostVisible){
+            setPostData(item)
         } else if(id && type && isPostVisible){
             console.log("id and type are:", id, type)
             getitem(id, type)
@@ -48,12 +48,10 @@ export default function PostWindowBtn(props){
 
     useEffect(() => {
         if(isPostVisible){
-            item?.artists && getArtist(item.artists[0].id)
-            item?.artist_id && getArtist(item?.artist_id)
+            postData?.artists && getArtist(postData.artists[0].id)
+            postData?.artist_id && getArtist(postData?.artist_id)
         }
-
-        console.log("user is", user)
-    }, [item])
+    }, [postData])
 
     return (
         <>
@@ -64,14 +62,14 @@ export default function PostWindowBtn(props){
                 className="svg"/>
             </div>
 
-            {(isPostVisible && item) && 
+            {(isPostVisible && postData) && 
             <div
             className="windowed wrapper post_windowed_wrapper flex"
             ref={postWindowRef}>
                 <section 
                 className="cover_long flex flex_column relative"
-                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${item.imgUrl}')`}}
-                onMouseEnter={() => setHoverItemId(item.id)}
+                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${postData.imgUrl}')`}}
+                onMouseEnter={() => setHoverItemId(postData.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     
                     {artistPic && 
@@ -79,22 +77,22 @@ export default function PostWindowBtn(props){
                     style={{ backgroundImage: `url('${artistPic}')`}}
                     className="cover_medium">
                         <div 
-                        onMouseEnter={() => setHoverItemId(item.id)}>
+                        onMouseEnter={() => setHoverItemId(postData.id)}>
                             <PlayBtn 
-                            uri={`spotify:${item.type}:${item.id}`} 
-                            id={item.id}
+                            uri={`spotify:${postData.type}:${postData.id}`} 
+                            id={postData.id}
                             category={"cover"} 
-                            type={item.type} 
+                            type={postData.type} 
                             hoverItemId={hoverItemId}/>
                         </div>
                     </div>}
                     <div
                     className="flex">
-                        <h2>{item.name}</h2>
+                        <h2>{postData.name}</h2>
                         <HeartBtn 
-                        id={item.id}/>
+                        id={postData.id}/>
                     </div>
-                    <h3><Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
+                    <h3><Link to={`/artist/${postData.artist_id}`}>{postData.artist_name}</Link></h3>
                     
                 </section>
                 <div
@@ -117,22 +115,22 @@ export default function PostWindowBtn(props){
                     </section>}
                     <div 
                     className="flex">
-                        <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                        <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                        <h4>{postData.likes ? postData.likes?.length : 0} Likes</h4>
+                        <h4>{postData.comments ? postData.comments?.length : 0} Comments</h4>
                     </div>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
                         <textarea 
                         ref={textAreaRef}
-                        placeholder={`say something cool about this ${item.type}`}/>
+                        placeholder={`say something cool about this ${postData.type}`}/>
                         <div
                         className="flex absolute"
                         style={{ top: "10px", right: "15px", gap: "5px" }}>
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 
-                            onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                            onClick={() => sendComment(postData.post_id ? postData.post_id : postData.id)}>
                                 <SvgSendBtn 
                                 className="svg"/>
                             </div>
