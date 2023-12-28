@@ -744,7 +744,7 @@ h3{
   content: "▼";
 }
 
-.show_less::before{
+.show_less::after{
   content: "▲";
 }
 
