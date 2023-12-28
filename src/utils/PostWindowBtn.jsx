@@ -116,8 +116,8 @@ export default function PostWindowBtn(props){
                     </section>}
                     <div 
                     className="flex">
-                        <h4>{postData.likes ? postData.likes?.length : 0} Likes</h4>
-                        <h4>{postData.comments ? postData.comments?.length : 0} Comments</h4>
+                        <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
+                        <h4>{postData.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <section 
                     className="relative full_width"
@@ -131,7 +131,7 @@ export default function PostWindowBtn(props){
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 
-                            onClick={() => sendComment(postData.post_id ? postData.post_id : postData.id)}>
+                            onClick={() => sendComment(postData?.post_id ? postData?.post_id : postData?.id)}>
                                 <SvgSendBtn 
                                 className="svg"/>
                             </div>
