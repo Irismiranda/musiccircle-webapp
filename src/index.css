@@ -699,7 +699,11 @@ h3{
 }
 
 .post_windowed_wrapper{
-
+  justify-content: end;
+  align-items: start;
+  gap: 10px;
+  padding: 25px;
+  box-sizing: border-box;
 }
 
 .player_minimized .interaction_btns{

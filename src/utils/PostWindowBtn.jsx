@@ -11,7 +11,7 @@ export default function PostWindowBtn(props){
     const [artistPic, setArtistPic] = useState(null)
     
     const { spotifyApi } = useStore()
-    const { content, id, type } = props
+    const { user, content, id, type } = props
     const [item, setItem] = useState(null)
 
     const postWindowRef = useRef(null)
@@ -63,10 +63,10 @@ export default function PostWindowBtn(props){
             </div>
 
             {(isPostVisible && item) && 
-            <section
+            <div
             className="windowed wrapper post_windowed_wrapper flex"
             ref={postWindowRef}>
-                <div 
+                <section 
                 className="cover_long"
                 style={{ backgroundImage: `url('${item.imgUrl}')`}}
                 onMouseEnter={() => setHoverItemId(item.id)}
@@ -92,25 +92,44 @@ export default function PostWindowBtn(props){
                     </div>
                     <h3><Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></h3>
                     
-                </div>
-                <div>    
+                </section>
+                <div> 
+                    {user && 
+                    <section>
+                        <div 
+                        className="flex"
+                        style={{ marginBottom: "10px" }}>
+                            <Link to={`/account/${user?.id}`}>
+                                <img 
+                                src={user?.imgUrl}
+                                className="profile_small" />
+                            </Link>
+                            <Link to={`/account/${user?.id}`}>
+                                <h4>{user?.name}</h4>
+                            </Link>
+                        </div>
+                            <p>{data?.comment}</p>   
+                    </section>}
                     <div 
                     className="flex">
                         <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
                         <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
                     </div>
-                    <input 
-                    ref={inputRef}
-                    placeholder={`say something cool about this ${item.type}`}/>
-                    <div
-                    onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
-                        <EmojiBar 
-                        textAreaRef={inputRef}/>
-                        <SvgSendBtn 
-                        className="svg"/>
-                    </div>
+                    <section 
+                    className="relative">
+                        <input 
+                        ref={inputRef}
+                        placeholder={`say something cool about this ${item.type}`}/>
+                        <div
+                        onClick={() => sendComment(item.post_id ? item.post_id : item.id)}>
+                            <EmojiBar 
+                            textAreaRef={inputRef}/>
+                            <SvgSendBtn 
+                            className="svg"/>
+                        </div>
+                    </section>
                 </div>
-            </section>}
+            </div>}
         </>
         
     )

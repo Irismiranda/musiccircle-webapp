@@ -134,6 +134,7 @@ export default function Post(props){
                     content={{
                         data: data,
                         item: item,
+                        usesr: user,
                         }}
                     /> 
                     <ShareBtn 
