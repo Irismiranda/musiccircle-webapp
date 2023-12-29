@@ -43,7 +43,7 @@ export default function CommentBtn(props){
             poster_id: user.id || undefined,
             timestamp: timestamp.toISOString()
         })
-        
+
         textAreaRef.current.value = ""
     }
 
@@ -58,7 +58,7 @@ export default function CommentBtn(props){
 
     useEffect(() => {
         if(isPostVisible){
-            postData?.artists && getArtist(postData.artists[0].id)
+            postData?.artists && getArtist(postData?.artists[0].id)
             postData?.artist_id && getArtist(postData?.artist_id)
         }
         console.log("post data is", postData)
@@ -146,7 +146,7 @@ export default function CommentBtn(props){
                         <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <Comments 
-                    postId={postData.post_id || postData.id}/>
+                    postId={postData?.post_id || postData?.id}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
