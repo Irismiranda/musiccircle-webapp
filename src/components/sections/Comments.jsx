@@ -36,7 +36,7 @@ export default function Comments(props) {
             console.log("updated comment is", updatedComments)
             
             call === "loadAllComments" && setComments(updatedComments)
-            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComment])
+            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments])
          } catch(err){
             console.log(err)
          }
