@@ -13,7 +13,7 @@ export default function CommentBtn(props){
     const [showFullDescription, setShowFullDescription] = useState(false)
     const { spotifyApi, loggedUser } = useStore()
     const { content } = props
-    const { user, item, id, type, data } = content
+    const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
 
     const postWindowRef = useRef(null)
