@@ -160,7 +160,7 @@ export default function CommentBtn(props){
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 
-                            onClick={() => sendComment(user_id ? postData?.post_id : postData?.id)}>
+                            onClick={() => sendComment(user ? postData?.post_id : postData?.id)}>
                                 <SvgSendBtn 
                                 className="send_btn"/>
                             </div>
