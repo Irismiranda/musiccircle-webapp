@@ -11,6 +11,7 @@ export default function CommentBtn(props){
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
+    const [commentsNumber, setCommentsNumber] = useState(0)
     const { spotifyApi, loggedUser } = useStore()
     const { content } = props
     const { user, data, item, id, type } = content
@@ -154,14 +155,15 @@ export default function CommentBtn(props){
                     <div 
                     className="flex">
                         <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
-                        <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
+                        <h4>{commentsNumber} Comments</h4>
                     </div>
                     <Comments 
                     postId={data?.post_id || postData?.id}
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
-                    setReplyTo={setReplyTo}/>
+                    setReplyTo={setReplyTo}
+                    setCommentsNumber={setCommentsNumber}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>

@@ -7,7 +7,7 @@ export default function Comments(props) {
     const [comments, setComments] = useState(null)
     const [showReplies, setShowReplies] = useState(false)
 
-    const { postId, posterId, artistId, setReplyTo } = props
+    const { postId, posterId, artistId, setReplyTo, setCommentsNumber } = props
     const { socket, loggedUser } = useStore()
 
     function replyToComment(name, comment_id){
@@ -72,6 +72,12 @@ export default function Comments(props) {
             socket.off('loadNewComment')
         }
     }, [socket])
+
+    useEffect(() => {
+        if(comments){
+            setCommentsNumber(comments.length)
+        }
+    }, [comments])
 
     return (
         <>
