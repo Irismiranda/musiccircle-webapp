@@ -52,8 +52,8 @@ export default function Comments(props) {
     }, [socket])
 
     useEffect(() => {
-        socket?.on('loadAllComments', (comment) => {
-            const updatedComments = getUserData(comment)
+        socket?.on('loadAllComments', async (comment) => {
+            const updatedComments = await getUserData(comment)
             setComments(updatedComments)
         })
 
@@ -63,8 +63,8 @@ export default function Comments(props) {
     }, [socket])
 
     useEffect(() => {
-        socket?.on('loadNewComment', (comment) => {
-            const updatedComment = getUserData(comment)
+        socket?.on('loadNewComment', async (comment) => {
+            const updatedComment = await getUserData(comment)
             setComments(prevComments => [...prevComments, updatedComment])
         })
 
