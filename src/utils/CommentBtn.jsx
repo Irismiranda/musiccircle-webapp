@@ -158,8 +158,8 @@ export default function CommentBtn(props){
                     </div>
                     <Comments 
                     postId={data?.post_id || postData?.id}
-                    posterId={user.id}
-                    artistId={artist_id}
+                    posterId={user?.id}
+                    artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
                     setReplyTo={setReplyTo}/>
                     <section 
