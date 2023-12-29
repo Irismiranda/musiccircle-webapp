@@ -28,6 +28,8 @@ export default function Comments(props) {
                     updatedComment.user = formatedUser
                 }
             }))
+
+            console.log("updated comment is", updatedComments)
             
             call === "loadAllComments" && setComments(updatedComments)
             call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComment])
