@@ -25,7 +25,7 @@ export default function Profile(){
     const followingRef = useRef(null)
     
     async function getUser(id){
-        const response = await Axios.get(`/api/account/${id}`)
+        const response = await Axios.get(`/api/user/${id}`)
         setUserProfileData(response.data)
         const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
         const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)

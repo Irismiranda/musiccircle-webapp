@@ -25,7 +25,7 @@ export default function UserSearchSection(props){
         const userList = []
         await Promise.all(
             idList.slice(0, 15).map(async (id) => {
-                const response = await Axios.get(`/api/account/${id}`)
+                const response = await Axios.get(`/api/user/${id}`)
                 userList.push(response.data)
             })
             )

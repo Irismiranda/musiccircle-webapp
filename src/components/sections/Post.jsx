@@ -27,7 +27,7 @@ export default function Post(props){
     }
 
     async function getUser(id){
-        const response = await Axios.get(`/api/account/${id}`)
+        const response = await Axios.get(`/api/user/${id}`)
         const formatedData = formatListData([response.data], "user")
         setUser(formatedData[0])
     }
