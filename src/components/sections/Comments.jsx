@@ -92,7 +92,9 @@ export default function Comments(props) {
             comments
             .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
             .map(comment => {
+                console.log("comment is", comment)
                 const { user, comment_id, text, likes, timestamp, replies } = comment
+                console.log("user is", user)
                 return (
                     <section key={comment_id}>
                         <div className="flex">
