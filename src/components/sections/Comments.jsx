@@ -20,6 +20,7 @@ export default function Comments(props) {
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
                 const updatedComment = {...comment}
+                console.log("comment data is", comment)
 
                 const user = await Axios.get(`api/user/${comment.user_id}`)
                 if(user.data){
