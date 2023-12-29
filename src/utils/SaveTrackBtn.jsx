@@ -36,6 +36,7 @@ export default function SaveTrackBtn(props){
         if (trackId) {
             getIsTrackSaved(trackId)
         }
+        console.log("track id is", trackId)
     }, [trackId])
 
 
