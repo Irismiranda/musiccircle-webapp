@@ -53,6 +53,7 @@ export default function CommentBtn(props){
             postData?.artists && getArtist(postData.artists[0].id)
             postData?.artist_id && getArtist(postData?.artist_id)
         }
+        console.log("post data is", postData)
     }, [postData, isPostVisible])
 
     useEffect(() => {
