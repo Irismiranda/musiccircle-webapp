@@ -28,7 +28,7 @@ export default function Comments(props) {
                     console.log("user is", user.data)
 
                     const formatedUser = formatListData([user.data], user.data.type)
-                    updatedComment.user = formatedUser
+                    updatedComment.user = formatedUser[0]
                     return updatedComment
                 }
             }))
