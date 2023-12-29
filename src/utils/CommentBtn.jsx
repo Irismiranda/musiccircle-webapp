@@ -147,7 +147,7 @@ export default function CommentBtn(props){
                         <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <Comments 
-                    postId={user_id ? postData?.post_id : postData?.id}/>
+                    postId={user ? postData?.post_id : postData?.id}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
