@@ -147,7 +147,7 @@ export default function CommentBtn(props){
                         <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <Comments 
-                    postId={user ? postData?.post_id : postData?.id}/>
+                    postId={data?.post_id || postData?.id}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
@@ -160,7 +160,7 @@ export default function CommentBtn(props){
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 
-                            onClick={() => sendComment(user ? postData?.post_id : postData?.id)}>
+                            onClick={() => sendComment(data?.post_id || postData?.id)}>
                                 <SvgSendBtn 
                                 className="send_btn"/>
                             </div>
