@@ -15,7 +15,7 @@ export default function Comments(props) {
         setReplyTo(comment_id)
     }
 
-    async function getUserData(data){
+    async function handleData(data, call){
          try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
@@ -26,10 +26,11 @@ export default function Comments(props) {
                     const formatedUser = formatListData(user)
     
                     updatedComment.user = formatedUser
-                    return updatedComment
                 }
             }))
-            return updatedComments
+            
+            call === "loadAllComments" && setComments(updatedComments)
+            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComment])
          } catch(err){
             console.log(err)
          }
@@ -52,9 +53,8 @@ export default function Comments(props) {
     }, [socket])
 
     useEffect(() => {
-        socket?.on('loadAllComments', async (comment) => {
-            const updatedComments = await getUserData(comment)
-            setComments(updatedComments)
+        socket?.on('loadAllComments', (comment) => {
+            handleData(comment, "loadAllComments")
         })
 
         return () => {
@@ -63,9 +63,8 @@ export default function Comments(props) {
     }, [socket])
 
     useEffect(() => {
-        socket?.on('loadNewComment', async (comment) => {
-            const updatedComment = await getUserData(comment)
-            setComments(prevComments => [...prevComments, updatedComment])
+        socket?.on('loadNewComment', (comment) => {
+            handleData(comment, "loadNewComment")           
         })
 
         return () => {
