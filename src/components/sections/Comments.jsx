@@ -84,8 +84,7 @@ export default function Comments(props) {
     return (
         <>
             {comments &&
-            comments
-            .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
+            comments?.sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
             .map(comment => {
                 const { user, comment_id, text, likes, timestamp, replies } = comment
                 return (
