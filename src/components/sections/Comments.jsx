@@ -21,7 +21,7 @@ export default function Comments(props) {
                 data.map(async (comment) => {
                 const updatedComment = {...comment}
 
-                const user = await Axios.get(`user/${comment.user_id}`)
+                const user = await Axios.get(`api/user/${comment.user_id}`)
                 if(user.data){
                     const formatedUser = formatListData(user)
     
