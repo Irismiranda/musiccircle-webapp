@@ -29,6 +29,7 @@ export default function Comments(props) {
 
                     const formatedUser = formatListData([user.data], user.data.type)
                     updatedComment.user = formatedUser
+                    return updatedComment
                 }
             }))
 
