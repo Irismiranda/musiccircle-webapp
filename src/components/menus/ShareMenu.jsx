@@ -80,7 +80,7 @@ export default function ShareMenu(props){
         setPublishing(true)
 
         Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
-            comment: textAreaRef.current.value,
+            description: textAreaRef.current.value,
             type: content.type,
         })
 

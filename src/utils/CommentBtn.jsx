@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { Chat, EmojiBar } from "../components"
+import { Comments, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn } from "../assets"
 import { useClickOutside, formatListData, SaveTrackBtn, PlayBtn } from "."
 import useStore from "../store"
+import { Axios } from "../Axios-config"
 
 export default function CommentBtn(props){
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
-    const { spotifyApi } = useStore()
+    const { spotifyApi, loggedUser } = useStore()
     const { content } = props
     const { user, item, id, type, data } = content
     const [postData, setPostData] = useState(null)
@@ -36,7 +37,14 @@ export default function CommentBtn(props){
     }
 
     async function sendComment(id){
+        await Axios.post(`/api/${id}/add_comment`, {
+            comment: textAreaRef.current.value,
+            user_id: loggedUser.id,
+            poster_id: user.id || undefined,
+            timestamp: timestamp.toISOString()
+        })
         
+        textAreaRef.current.value = ""
     }
 
     useEffect(() => {
@@ -122,7 +130,7 @@ export default function CommentBtn(props){
                             <p 
                             className={showFullDescription ? "show_description" : "hide_description"}
                             ref={descriptionRef}>
-                                {data?.comment}
+                                {data?.description}
                             </p> 
                             { (descriptionRef?.current?.scrollHeight > 200) &&
                             <span 
@@ -137,6 +145,8 @@ export default function CommentBtn(props){
                         <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
                         <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
+                    <Comments 
+                    postId={postData.post_id || postData.id}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>

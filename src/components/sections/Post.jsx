@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import useStore from "../../store"
-import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgDots } from "../../assets"
+import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
 
 export default function Post(props){
     const { spotifyApi, loggedUser } = useStore()
@@ -118,7 +118,7 @@ export default function Post(props){
                             </Link>
                         </div>
 
-                        <p>{data.comment}</p>
+                        <p>{data.description}</p>
                         
                         <div 
                         className="flex">
