@@ -29,7 +29,6 @@ export default function CommentBtn(props){
         const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
         const data = await spotifyApi[methodName](id)
         const formatedItem = formatListData([data], `${type}s`)
-        console.log("formated data is", formatedItem)
         setPostData(formatedItem[0])
     }
 
@@ -73,7 +72,6 @@ export default function CommentBtn(props){
             postData?.artists && getArtist(postData?.artists[0].id)
             postData?.artist_id && getArtist(postData?.artist_id)
         }
-        console.log("post data is", postData)
     }, [postData, isPostVisible])
 
     useEffect(() => {

@@ -16,6 +16,7 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
+        console.log("data is", data)
          try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
