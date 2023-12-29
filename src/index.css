@@ -449,9 +449,11 @@ a{
 }
 
 .emoji_list{
+  gap: 20px 0px;
+  padding-top: 5px;
   margin-top: 9px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5,1fr);
   overflow-y: auto;
   width: 100%;
   height: 65px;

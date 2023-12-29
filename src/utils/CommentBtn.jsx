@@ -37,6 +37,7 @@ export default function CommentBtn(props){
     }
 
     async function sendComment(id){
+        const timestamp = new Date()
         await Axios.post(`/api/${id}/add_comment`, {
             comment: textAreaRef.current.value,
             user_id: loggedUser.id,
