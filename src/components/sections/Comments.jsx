@@ -23,8 +23,7 @@ export default function Comments(props) {
 
                 const user = await Axios.get(`api/user/${comment.user_id}`)
                 if(user.data){
-                    const formatedUser = formatListData(user)
-    
+                    const formatedUser = formatListData([user])
                     updatedComment.user = formatedUser
                 }
             }))
