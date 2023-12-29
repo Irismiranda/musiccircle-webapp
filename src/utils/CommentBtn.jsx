@@ -15,6 +15,7 @@ export default function CommentBtn(props){
     const { content } = props
     const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
+    const [replyTo, setReplyTo] = useState(null)
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -37,15 +38,24 @@ export default function CommentBtn(props){
     }
 
     async function sendComment(id){
-        const timestamp = new Date()
-        await Axios.post(`/api/${id}/add_comment`, {
-            comment: textAreaRef.current.value,
+        const endpointPath = replyTo ? 
+        `/api/${id}/reply_to/${replyTo}` :
+        `/api/${id}/add_comment`
+
+        const commentData = {
+            text: textAreaRef.current.value,
             user_id: loggedUser.id,
             poster_id: user.id || undefined,
-            timestamp: timestamp.toISOString()
-        })
+            timestamp: new Date().toLocaleString()
+        }
 
-        textAreaRef.current.value = ""
+        replyTo && commentData.reply_to === replyTo
+        !user && commentData.artist_id === postData.artist_id
+        
+        if(textAreaRef.current.value !== ""){
+            await Axios.post(endpointPath, commentData)
+            textAreaRef.current.value = ""
+        }
     }
 
     useEffect(() => {
@@ -147,7 +157,11 @@ export default function CommentBtn(props){
                         <h4>{postData?.comments ? postData?.comments?.length : 0} Comments</h4>
                     </div>
                     <Comments 
-                    postId={data?.post_id || postData?.id}/>
+                    postId={data?.post_id || postData?.id}
+                    posterId={user.id}
+                    artistId={artist_id}
+                    textAreaRef={textAreaRef}
+                    setReplyTo={setReplyTo}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
