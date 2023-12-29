@@ -77,6 +77,8 @@ export default function Comments(props) {
         if(comments){
             setCommentsNumber(comments.length)
         }
+
+        console.log("comments are", comments)
     }, [comments])
 
     return (
