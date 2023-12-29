@@ -95,7 +95,8 @@ export default function CommentBtn(props){
                     <div
                     className="flex">
                         <h2>{postData?.name}</h2>
-                        {(postData?.type === "track") && <SaveTrackBtn 
+                        {(postData?.type === "track") && 
+                        <SaveTrackBtn 
                         id={postData?.id}/>}
                     </div>
                     <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>

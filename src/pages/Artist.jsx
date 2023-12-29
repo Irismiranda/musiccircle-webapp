@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Slider, List } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData, PlayBtn, ShareBtn, CommentBtn } from "../utils"
+import { formatListData, PlayBtn } from "../utils"
 import useStore from "../store"
 
 export default function Artist(){
@@ -83,14 +83,6 @@ export default function Artist(){
                     <h1>{artistData?.name}</h1>
                     <button onClick={() => toggleFollow()} className="outline_button">{isFollowing ? "Following" : "Follow"}</button>
                 </div>
-                {artistData && 
-                <div
-                className="flex">
-                    <ShareBtn 
-                    content={artistData}/>
-                    <CommentBtn 
-                    content={artistData}/>
-                </div>}
             </section>
             {artistTopTracks && 
             <section>

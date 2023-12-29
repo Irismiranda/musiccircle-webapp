@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
-import { PlayBtn, SliderScrollBtns, ShareBtn, CommentBtn } from "../../utils"
+import { PlayBtn, SliderScrollBtns } from "../../utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, type, slidePercent } = props
@@ -70,14 +70,6 @@ export default function Slider(props){
                                     <span>{item.releaseDate.slice(0, -6)} • </span>}
                                     {category.slice(0, -1)}</h4>
                                 </Link>
-                                <div
-                                className="flex slider_btns_wrapper"
-                                style={{ marginTop: "15px" }}>
-                                    <ShareBtn 
-                                    content={item}/>
-                                    <CommentBtn 
-                                    content={item}/>
-                                </div>
                             </div>
                             )
                         })   

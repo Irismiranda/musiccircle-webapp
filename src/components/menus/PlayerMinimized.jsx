@@ -34,7 +34,7 @@
             const albumImg = currentTrack.album.images[0].url
             const trackName = currentTrack.name
             const artistName = currentTrack.artists[0].name
-            const songId = currentTrack.id
+            const trackId = currentTrack.id
 
             if(playerSize.width > 615){
                 
@@ -44,7 +44,7 @@
                         <div className="flex social_btns">
                             <CommentBtn
                             content={{
-                                id: songId,
+                                id: trackId,
                                 type: "track"
                                 }}/>
                         <div ref={shareBtnRef}>
@@ -52,7 +52,7 @@
                             content={currentTrack}/>
                         </div>
                         <SaveTrackBtn 
-                        songId={songId}/>
+                        trackId={trackId}/>
                     </div>
                         </div>
                 
@@ -161,7 +161,7 @@
                     {playerSize.height > 145 && <div className="flex social_btns">  
                             <CommentBtn
                             content={{
-                                id: songId,
+                                id: trackId,
                                 type: "track"
                                 }}/>
                         <div ref={shareBtnRef}>
@@ -169,7 +169,7 @@
                             content={currentTrack}/>
                         </div>
                         <SaveTrackBtn 
-                        songId={songId}/>
+                        trackId={trackId}/>
                     </div>} 
                 </> 
             )

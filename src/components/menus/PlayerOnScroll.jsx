@@ -34,7 +34,7 @@ const PlayerOnScroll = ((props) => {
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
     const artistName = currentTrack.artists[0].name
-    const songId = currentTrack.id
+    const trackId = currentTrack.id
 
     return (
             <div className="flex_column gap">
@@ -47,7 +47,7 @@ const PlayerOnScroll = ((props) => {
                     </Link>
                     </h3>
                     <SaveTrackBtn 
-                    songId={songId}/>
+                    trackId={trackId}/>
                 </div>
                 <div className="flex">
                     <div onClick={() => { player.previousTrack() }}>
@@ -93,7 +93,7 @@ const PlayerOnScroll = ((props) => {
                     <div className="flex">
                             <CommentBtn
                             content={{
-                                id: songId,
+                                id: trackId,
                                 type: "track"
                                 }}/>
                         <div className="flex" ref={shareBtnRef}>

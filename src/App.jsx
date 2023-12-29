@@ -9,7 +9,7 @@ export default function App() {
       <Route path="/welcome" element={<Welcome />} />
       <Route path="/error" element={<Error />} />
         <Route path="/" element={<AuthRequired />}>
-            <Route path="/:songId?" element={<PlayerManager />}>
+            <Route path="/:trackId?" element={<PlayerManager />}>
               <Route element={<SideMenu />}>
                 <Route index element={<Home />}/> 
                 <Route path="inbox" element={<Inbox />}/> 

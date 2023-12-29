@@ -1,6 +1,6 @@
     import React, { useEffect, useState } from "react"
     import { Link } from "react-router-dom"
-    import { PlayBtn, ShareBtn, CommentBtn } from "../../utils"
+    import { PlayBtn} from "../../utils"
 
     export default function List(props){
         const { list, category, showIndex } = props
@@ -30,13 +30,6 @@
                                         </div>
                                     </div>
                                 </Link>
-                                <div
-                                className="flex">
-                                    <ShareBtn 
-                                    content={item}/>
-                                    <CommentBtn 
-                                    content={item}/>
-                                </div>
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
                                     <PlayBtn 
                                     uri={item.uri} 

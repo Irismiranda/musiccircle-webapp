@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { PlayBtn, ShareBtn, CommentBtn } from "../../utils"
+import { PlayBtn } from "../../utils"
 import useStore from "../../store"
 
 export default function SimplifiedList(props){
@@ -37,13 +37,6 @@ export default function SimplifiedList(props){
                             <h3>{item.name}</h3>
                             {category === "playlist" && <h5>{item.artistName}</h5>}
                             <h4>{item.type}</h4>
-                            <div
-                            className="flex">
-                                <ShareBtn 
-                                content={item}/>
-                                <CommentBtn 
-                                content={item}/>
-                            </div>
                         </div>
                         )
                     })   

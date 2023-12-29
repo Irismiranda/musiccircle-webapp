@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Slider, SimplifiedList } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData, PlayBtn, ShareBtn, CommentBtn  } from "../utils"
+import { formatListData, PlayBtn } from "../utils"
 import useStore from "../store"
 
 export default function Album(){
@@ -69,14 +69,6 @@ export default function Album(){
                     <Link to={`/artist/${albumData?.artists[0].id}`}>
                         <h2>{albumData?.artists[0].name}</h2>
                     </Link>
-                    {albumData && 
-                    <div
-                    className="flex">
-                        <ShareBtn 
-                        content={albumData}/>
-                        <CommentBtn 
-                        content={albumData}/>
-                    </div>}
                 </div>
             </section>
             

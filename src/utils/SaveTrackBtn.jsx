@@ -6,7 +6,7 @@ export default function SaveTrackBtn(props){
     const { spotifyApi } = useStore()
     const [isLiked, setIsLiked] = useState(false)
 
-    const { songId } = props
+    const { trackId } = props
 
     async function getIsTrackSaved(id) {
         const response = await spotifyApi.containsMySavedTracks([id])
@@ -33,16 +33,16 @@ export default function SaveTrackBtn(props){
     }
 
     useEffect(() => {
-        if (songId) {
-            getIsTrackSaved(songId)
+        if (trackId) {
+            getIsTrackSaved(trackId)
         }
-    }, [songId])
+    }, [trackId])
 
 
     return (
         <div 
         style={{ height: "16px" }}
-        onClick={() => handleHeartClick(songId)}>
+        onClick={() => handleHeartClick(trackId)}>
             <SvgHeart 
             className="svg"
             style={{ 

@@ -35,7 +35,7 @@ const PlayerMaximized = ((props) => {
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
     const artistName = currentTrack.artists[0].name
-    const songId = currentTrack.id
+    const trackId = currentTrack.id
 
     return (
         <div className="player_wrapper">
@@ -45,7 +45,7 @@ const PlayerMaximized = ((props) => {
                     <h2> {trackName} </h2>
                     <div style={{ marginTop: "6px" }}>
                         <SaveTrackBtn 
-                        songId={songId}/>
+                        trackId={trackId}/>
                     </div>
                 </div>
                 <Link to={`/artist/${currentTrack.artists[0].uri.slice(15)}`}>
@@ -99,7 +99,7 @@ const PlayerMaximized = ((props) => {
                     <div className="flex social_btns">
                             <CommentBtn
                             content={{
-                                id: songId,
+                                id: trackId,
                                 type: "track"
                                 }}/>
                         <div className="flex" ref={shareBtnRef}>
