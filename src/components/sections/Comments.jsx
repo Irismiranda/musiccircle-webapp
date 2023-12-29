@@ -4,7 +4,7 @@ import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
 
 export default function Comments(props) {
-    const [comments, setComments] = useState(null)
+    const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
 
     const { postId, posterId, artistId, setReplyTo, setCommentsNumber } = props
@@ -83,7 +83,7 @@ export default function Comments(props) {
 
     return (
         <>
-            {comments &&
+            {   
             comments
             .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
             .map(comment => {
