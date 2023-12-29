@@ -83,7 +83,7 @@ export default function Comments(props) {
 
     return (
         <>
-            {   
+            {(comments.length > 0) &&
             comments
             .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
             .map(comment => {
