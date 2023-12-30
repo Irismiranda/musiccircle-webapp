@@ -165,9 +165,9 @@ export default function CommentBtn(props){
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
-                    descriptionMenuRef={descriptionMenuRef}/>
+                    descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
-                    setCommentsNumber={setCommentsNumber}
+                    setCommentsNumber={setCommentsNumber}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
