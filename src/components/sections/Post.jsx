@@ -44,7 +44,7 @@ export default function Post(props){
     }
 
     async function likePost(){
-        await Axios.post(`/api/${user?.id}/${artistId}/toggle_post_like/${postData.id}`, {
+        await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_post_like/${data.post_id}`, {
             logged_user_id: loggedUser
         })
     }
@@ -132,7 +132,7 @@ export default function Post(props){
                             <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
                             <h4>{commentsNumber} Comments</h4>
                             <div
-                            onClick={() => likePost(user?.name, comment_id)}>
+                            onClick={() => likePost()}>
                                 <SvgHeart 
                                 className="svg"
                                 style={{ 
