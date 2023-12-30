@@ -87,18 +87,21 @@ export default function Comments(props) {
     }, [comments])
 
     return (
-        <>
+        <div 
+        className="flex flex_column comments_inner_wrapper">
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))
             .map(comment => {
                 console.log("comment is", comment)
                 const { user, comment_id, text, likes, timestamp, replies } = comment
-                console.log("user is", user)
                 return (
-                    <section key={comment_id}>
+                    <section 
+                    key={comment_id}
+                    className="flex flex_column"
+                    style={{ gap: "10px" }}>
                         <div className="flex">
-                            <img src={user?.imgUrl}/>
+                            <img className="profile_small" src={user?.imgUrl}/>
                             <h3>{user?.name}</h3>
                         </div>
                         <p>{text}</p>
@@ -108,7 +111,7 @@ export default function Comments(props) {
                             {(user?.id !== loggedUser.id) && 
                             <h4 onClick={() => replyToComment(user?.name, comment_id)}>Reply</h4>}
                             {(user?.id === loggedUser.id) &&
-                            <h4 onClick={() => deleteComment(postId, comment_id)}>Delete Comment</h4>}
+                            <h4 onClick={() => deleteComment(postId, comment_id)}>delete comment</h4>}
                         </div>
                         {replies && 
                         <h4 onClick={() => setShowReplies(!showReplies)}> 
@@ -144,6 +147,6 @@ export default function Comments(props) {
                 )
             })
             }
-        </>
+        </div>
     )
 }
