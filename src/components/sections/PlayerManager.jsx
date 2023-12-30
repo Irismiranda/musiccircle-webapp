@@ -354,7 +354,7 @@ export default function PlayerManager() {
 
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef.current)
-    }, playerRef)
+    }, [playerRef])
 
     const playerFunctionalProps = {
         setProperties,
