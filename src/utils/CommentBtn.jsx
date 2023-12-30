@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { Comments, EmojiBar } from "../components"
-import { SvgCommentBtn, SvgSendBtn } from "../assets"
+import { SvgCommentBtn, SvgSendBtn, SvgHeart } from "../assets"
 import { useClickOutside, formatListData, SaveTrackBtn, PlayBtn } from "."
 import useStore from "../store"
 import { Axios } from "../Axios-config"
@@ -59,6 +59,12 @@ export default function CommentBtn(props){
             await Axios.post(endpointPath, commentData)
             textAreaRef.current.value = ""
         }
+    }
+
+    async function likePost(){
+        await Axios.post(`/api/${user?.id}/${artistId}/toggle_post_like/${postData.id}`, {
+            logged_user_id: loggedUser
+        })
     }
 
     useEffect(() => {
@@ -160,11 +166,23 @@ export default function CommentBtn(props){
                                     {showFullDescription ? "Hide" : "Show More..."}
                                 </span>} 
                         </section>}
-                        <div 
-                        className="flex">
-                            <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
-                            <h4>{commentsNumber} Comments</h4>
-                        </div>
+                        <section 
+                        className="flex space_between ">
+                            <div 
+                            className="flex">
+                                <h4>{postData?.likes?.length || 0} Likes</h4>
+                                <h4>{commentsNumber} Comments</h4>
+                            </div>
+                            <div
+                            onClick={() => likePost()}>
+                                <SvgHeart 
+                                className="svg"
+                                style={{ 
+                                    fill: postData?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: postData?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    }}/>
+                            </div>
+                        </section>
                     </div>
                     <Comments 
                     postId={data?.post_id || postData?.id}

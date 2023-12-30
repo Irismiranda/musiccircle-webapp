@@ -143,7 +143,7 @@ export default function Comments(props) {
                         </div>
                         <div className="flex">
                             <h4>{timestamp}</h4>
-                            <h4>{likes || 0} Likes</h4>
+                            <h4>{likes?.length || 0} Likes</h4>
                             {(user?.id !== loggedUser.id) && 
                             <h4 
                             className="pointer"
