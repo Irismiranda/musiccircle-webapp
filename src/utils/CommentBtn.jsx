@@ -123,37 +123,40 @@ export default function CommentBtn(props){
                 </section>
                 <div
                 className="post_comments_wrapper">
-                    {user && 
-                    <section>
-                        <div 
-                        className="flex"
-                        style={{ marginBottom: "10px" }}>
-                            <Link to={`/account/${user.id}`}>
-                                <img 
-                                src={user.imgUrl}
-                                className="profile_small" />
-                            </Link>
-                            <Link to={`/account/${user.id}`}>
-                                <h4>{user.name}</h4>
-                            </Link>
-                        </div>
-                            <p 
-                            className={showFullDescription ? "show_description" : "hide_description"}
-                            ref={descriptionRef}>
-                                {data?.description}
-                            </p> 
-                            { (descriptionRef?.current?.scrollHeight > 200) &&
-                            <span 
-                            className={showFullDescription ? 
-                            "show_more_toggle show_less" : "show_more_toggle show_more"}
-                            onClick={() => setShowFullDescription(!showFullDescription)}>
-                                {showFullDescription ? "Hide" : "Show More..."}
-                            </span>} 
-                    </section>}
                     <div 
-                    className="flex">
-                        <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
-                        <h4>{commentsNumber} Comments</h4>
+                    className="post_description_menu">
+                        {user && 
+                        <section>
+                            <div 
+                            className="flex"
+                            style={{ marginBottom: "10px" }}>
+                                <Link to={`/account/${user.id}`}>
+                                    <img 
+                                    src={user.imgUrl}
+                                    className="profile_small" />
+                                </Link>
+                                <Link to={`/account/${user.id}`}>
+                                    <h4>{user.name}</h4>
+                                </Link>
+                            </div>
+                                <p 
+                                className={showFullDescription ? "show_description" : "hide_description"}
+                                ref={descriptionRef}>
+                                    {data?.description}
+                                </p> 
+                                { (descriptionRef?.current?.scrollHeight > 200) &&
+                                <span 
+                                className={showFullDescription ? 
+                                "show_more_toggle show_less" : "show_more_toggle show_more"}
+                                onClick={() => setShowFullDescription(!showFullDescription)}>
+                                    {showFullDescription ? "Hide" : "Show More..."}
+                                </span>} 
+                        </section>}
+                        <div 
+                        className="flex">
+                            <h4>{postData?.likes ? postData?.likes?.length : 0} Likes</h4>
+                            <h4>{commentsNumber} Comments</h4>
+                        </div>
                     </div>
                     <Comments 
                     postId={data?.post_id || postData?.id}

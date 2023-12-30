@@ -98,7 +98,7 @@ export default function Comments(props) {
                 return (
                     <section 
                     key={comment_id}
-                    className="flex flex_column"
+                    className="flex flex_column align_start full_width"
                     style={{ gap: "10px" }}>
                         <div className="flex">
                             <img className="profile_small" src={user?.imgUrl}/>
@@ -111,7 +111,7 @@ export default function Comments(props) {
                             {(user?.id !== loggedUser.id) && 
                             <h4 onClick={() => replyToComment(user?.name, comment_id)}>Reply</h4>}
                             {(user?.id === loggedUser.id) &&
-                            <h4 onClick={() => deleteComment(postId, comment_id)}>delete comment</h4>}
+                            <h4 onClick={() => deleteComment(postId, comment_id)}>Delete Comment</h4>}
                         </div>
                         {replies && 
                         <h4 onClick={() => setShowReplies(!showReplies)}> 
