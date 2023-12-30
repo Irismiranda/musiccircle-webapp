@@ -120,10 +120,11 @@ export default function Comments(props) {
                     className="flex flex_column align_start full_width"
                     style={{ gap: "15px" }}>
                         <div 
-                        className="flex">
+                        className="flex space_between">
                             <div>
                                 <div 
-                                className="flex">
+                                className="flex"
+                                style={{ marginBottom: "15px" }}>
                                 <img 
                                 className="profile_small"
                                 src={user?.imgUrl}/>

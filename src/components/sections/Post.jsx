@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
-import { SvgDots } from "../../assets"
+import { SvgDots, SvgHeart } from "../../assets"
 import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
 
 export default function Post(props){
@@ -10,6 +10,7 @@ export default function Post(props){
     const [ item, setItem ] = useState(null)
     const [ hoverItemId, setHoverItemId ] = useState(null)
     const [ user, setUser ] = useState(null)
+    const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
     
     const { data, isLoggedUser, setPosts } = props
@@ -123,7 +124,16 @@ export default function Post(props){
                         <div 
                         className="flex">
                             <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
-                            <h4>{item.comments ? item.comments?.length : 0} Comments</h4>
+                            <h4>{commentsNumber} Comments</h4>
+                            <div
+                            onClick={() => likePost(user?.name, comment_id)}>
+                                <SvgHeart 
+                                className="svg"
+                                style={{ 
+                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    }}/>
+                            </div>
                         </div>
                         
                     </div>
@@ -137,6 +147,8 @@ export default function Post(props){
                         item: item,
                         user: user,
                         }}
+                    commentsNumber={commentsNumber}
+                    setCommentsNumber={setCommentsNumber}
                     /> 
                     <ShareBtn 
                     content={data}/>

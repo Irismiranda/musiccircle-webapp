@@ -11,9 +11,8 @@ export default function CommentBtn(props){
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
-    const [commentsNumber, setCommentsNumber] = useState(0)
     const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { content } = props
+    const { content, setCommentsNumber, commentsNumber } = props
     const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
     const [artistId, setArtistId] = useState(null)
