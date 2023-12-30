@@ -46,7 +46,7 @@ export default function CommentBtn(props){
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,
-            poster_id: user.id ? user.id : undefined,
+            poster_id: user?.id || undefined,
             timestamp: new Date().toLocaleString()
         }
 
