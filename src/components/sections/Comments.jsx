@@ -122,8 +122,11 @@ export default function Comments(props) {
                         <div 
                         className="flex">
                             <div>
-                                <div className="flex">
-                                <img src={user?.imgUrl}/>
+                                <div 
+                                className="flex">
+                                <img 
+                                className="profile_small"
+                                src={user?.imgUrl}/>
                                 <h3>{user?.name}</h3>
                                 </div>
                                 <p>{text}</p>
@@ -163,11 +166,14 @@ export default function Comments(props) {
                                 return (
                                     <section key={reply.comment_id}>
                                         <div 
-                                        className="flex">
+                                        className="flex space-between">
                                             <div>
-                                                <div className="flex">
-                                                <img src={reply.user?.imgUrl}/>
-                                                <h3>{reply.user?.name}</h3>
+                                                <div className="flex"
+                                                style={{ marginBottom: "10px" }}>
+                                                    <img 
+                                                    className="profile_small"
+                                                    src={reply.user?.imgUrl}/>
+                                                    <h3>{reply.user?.name}</h3>
                                                 </div>
                                                 <p>{text}</p>
                                             </div>
