@@ -46,12 +46,13 @@ export default function CommentBtn(props){
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,
-            poster_id: user?.id || undefined,
-            timestamp: new Date().toLocaleString()
+            poster_id: user?.id,
+            timestamp: new Date().toLocaleString(),
+            artist_id: postData?.artists[0].id || postData?.artist_id
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === postData.artist_id
+        !user && commentData.artist_id === postData?.artists[0].id || postData?.artist_id
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
@@ -63,7 +64,6 @@ export default function CommentBtn(props){
         if(item && isPostVisible){
             setPostData(item)
         } else if(id && type && isPostVisible){
-            console.log("id and type are:", id, type)
             getitem(id, type)
         }
     }, [content, id, isPostVisible])
