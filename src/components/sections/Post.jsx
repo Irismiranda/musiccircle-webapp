@@ -129,15 +129,15 @@ export default function Post(props){
                         
                         <div 
                         className="flex">
-                            <h4>{item.likes ? item.likes?.length : 0} Likes</h4>
+                            <h4>{item?.likes?.length || 0} Likes</h4>
                             <h4>{commentsNumber} Comments</h4>
                             <div
                             onClick={() => likePost()}>
                                 <SvgHeart 
                                 className="svg"
                                 style={{ 
-                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: item?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: item?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
                             </div>
                         </div>
