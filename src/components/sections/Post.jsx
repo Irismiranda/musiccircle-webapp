@@ -43,6 +43,12 @@ export default function Post(props){
           }
     }
 
+    async function likePost(){
+        await Axios.post(`/api/${user?.id}/${artistId}/toggle_post_like/${postData.id}`, {
+            logged_user_id: loggedUser
+        })
+    }
+
     async function deletePost(){
         try {
             const response = await Axios.post(`/api/${loggedUser.id}/${data.post_id}/delete_post`)
