@@ -91,7 +91,7 @@ export default function Comments(props) {
     }, [comments])
 
     return (
-        isLoading ? (
+        !isLoading ? (
         <div 
         className="flex flex_column comments_inner_wrapper"
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
@@ -162,7 +162,8 @@ export default function Comments(props) {
         </div>
         ) : (
         <div 
-        className="loading_comments">
+        className="loading_comments"
+        style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
         </div>
         )
     )
