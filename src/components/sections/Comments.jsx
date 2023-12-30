@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
+import { SvgHeart } from "../../assets"
 
 export default function Comments(props) {
     const [comments, setComments] = useState({})
@@ -49,6 +50,18 @@ export default function Comments(props) {
 
     async function deleteReply(post_id, comment_id, reply_id){
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
+    }
+
+    async function likeComment(post_id, comment_id){       
+        await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_comment/${comment_id}`, {
+            logged_user_id: loggedUser.id
+        })
+    }
+
+    async function likeReply(post_id, comment_id, reply_id){
+        await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
+            logged_user_id: loggedUser.id
+        })
     }
 
     useEffect(() => {
@@ -106,11 +119,25 @@ export default function Comments(props) {
                     key={comment_id}
                     className="flex flex_column align_start full_width"
                     style={{ gap: "15px" }}>
-                        <div className="flex">
-                            <img className="profile_small" src={user?.imgUrl}/>
-                            <h3>{user?.name}</h3>
+                        <div 
+                        className="flex">
+                            <div>
+                                <div className="flex">
+                                <img src={user?.imgUrl}/>
+                                <h3>{user?.name}</h3>
+                                </div>
+                                <p>{text}</p>
+                            </div>
+                            <div
+                            onClick={() => likeComment(user?.name, comment_id)}>
+                                <SvgHeart 
+                                className="svg"
+                                style={{ 
+                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    }}/>
+                            </div>
                         </div>
-                        <p>{text}</p>
                         <div className="flex">
                             <h4>{timestamp}</h4>
                             <h4>{likes || 0} Likes</h4>
@@ -135,22 +162,36 @@ export default function Comments(props) {
                             .map(reply => {
                                 return (
                                     <section key={reply.comment_id}>
-                                    <div className="flex">
-                                    <img src={reply.user?.imgUrl}/>
-                                    <h3>{reply.user?.name}</h3>
-                                    </div>
-                                    <p>{text}</p>
-                                    <div className="flex">
-                                        <h4>{reply.timestamp}</h4>
-                                        <h4>{likes || 0} Likes</h4>
-                                        {(reply.user?.id !== loggedUser.id) && 
-                                        <h4 
-                                        onClick={() => replyToComment(reply.user?.name, comment_id)}>
-                                            Reply
-                                        </h4>}
-                                        {(reply.user?.id === loggedUser.id) &&
-                                        <h4 onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>Delete Comment</h4>}
-                                    </div>
+                                        <div 
+                                        className="flex">
+                                            <div>
+                                                <div className="flex">
+                                                <img src={reply.user?.imgUrl}/>
+                                                <h3>{reply.user?.name}</h3>
+                                                </div>
+                                                <p>{text}</p>
+                                            </div>
+                                            <div
+                                            onClick={() => likeReply(reply.user?.name, comment_id)}>
+                                                <SvgHeart 
+                                                className="svg"
+                                                style={{ 
+                                                    fill: reply?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                                    stroke: reply?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                                    }}/>
+                                            </div>
+                                        </div>
+                                        <div className="flex">
+                                            <h4>{reply.timestamp}</h4>
+                                            <h4>{reply.likes?.length || 0} Likes</h4>
+                                            {(reply.user?.id !== loggedUser.id) && 
+                                            <h4 
+                                            onClick={() => replyToComment(reply.user?.name, comment_id)}>
+                                                Reply
+                                            </h4>}
+                                            {(reply.user?.id === loggedUser.id) &&
+                                            <h4 onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>Delete Comment</h4>}
+                                        </div>
                                 </section>
                                 )
                             })
