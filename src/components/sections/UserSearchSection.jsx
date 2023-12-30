@@ -15,7 +15,7 @@ export default function UserSearchSection(props){
     const userSearchInputRef = useRef(null)
 
     
-    useClickOutside(userListRef, exceptionRef, () => setUserListVisibility({
+    useClickOutside(userListRef, [exceptionRef], () => setUserListVisibility({
         following: false,
         followers: false,
     }))

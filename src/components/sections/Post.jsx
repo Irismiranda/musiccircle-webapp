@@ -17,7 +17,7 @@ export default function Post(props){
     const dropMenuRef = useRef(null)
     const dotsIconRef = useRef(null)
 
-    useClickOutside(dropMenuRef, dotsIconRef, () => setShowMenuVisibility(false))
+    useClickOutside(dropMenuRef, [dotsIconRef], () => setShowMenuVisibility(false))
 
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`

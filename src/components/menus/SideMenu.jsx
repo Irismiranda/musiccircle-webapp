@@ -41,7 +41,7 @@ export default function SideMenu(){
         setStandardWrapperWidth(sideMenuWIdth)
     }
     
-    useClickOutside(extendedMenu, sideMenuRef, () => setActiveMenuByLocation())
+    useClickOutside(extendedMenu, [sideMenuRef], () => setActiveMenuByLocation())
     
     useEffect(() => {
         const sideMenuRect = sideMenuRef.current.getBoundingClientRect()

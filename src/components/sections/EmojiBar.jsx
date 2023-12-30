@@ -45,7 +45,7 @@ export default function EmojiBar(props){
     const emojiBtnRef = useRef(null)
     const emojiBarRef = useRef(null)
 
-    useClickOutside(emojiBarRef, emojiBtnRef, () => {
+    useClickOutside(emojiBarRef, [emojiBtnRef], () => {
         setShowEmojiBar(false)
     })
 

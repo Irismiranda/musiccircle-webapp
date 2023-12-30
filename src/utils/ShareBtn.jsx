@@ -10,7 +10,7 @@ export default function ShareBtn(props){
 
     const { content } = props
 
-    useClickOutside(shareMenuRef, shareBtnRef, () => setIsShareMenuVisibile(false))
+    useClickOutside(shareMenuRef, [shareBtnRef], () => setIsShareMenuVisibile(false))
 
     return (
         <section
