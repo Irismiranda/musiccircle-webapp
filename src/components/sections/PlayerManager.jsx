@@ -353,7 +353,7 @@ export default function PlayerManager() {
     }, [currentQueue, currentTrack])
 
     useEffect(() => {
-        playerRef?.current && setPlayerRef(playerRef)
+        playerRef?.current && setPlayerRef(playerRef.current)
     }, playerRef)
 
     const playerFunctionalProps = {
