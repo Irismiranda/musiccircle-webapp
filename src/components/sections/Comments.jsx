@@ -79,8 +79,8 @@ export default function Comments(props) {
     }, [socket])
 
     useEffect(() => {
-        if(comments?.length){
-            setCommentsNumber(comments.length)
+        if(comments){
+            setCommentsNumber(comments?.length || 0)
         }
         console.log("comments are", comments)
     }, [comments])
