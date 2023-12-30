@@ -16,6 +16,7 @@ export default function CommentBtn(props){
     const { content } = props
     const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
+    const [artistId, setArtistId] = useState(null)
     const [replyTo, setReplyTo] = useState(null)
 
     const postWindowRef = useRef(null)
@@ -48,11 +49,11 @@ export default function CommentBtn(props){
             user_id: loggedUser.id,
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
-            artist_id: postData?.artists[0].id || postData?.artist_id
+            artist_id: artistId
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === postData?.artists[0].id || postData?.artist_id
+        !user && commentData.artist_id === artistId
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
@@ -69,11 +70,16 @@ export default function CommentBtn(props){
     }, [content, id, isPostVisible])
 
     useEffect(() => {
-        if(isPostVisible){
-            postData?.artists && getArtist(postData?.artists[0].id)
-            postData?.artist_id && getArtist(postData?.artist_id)
+        if(postData && isPostVisible){
+            setArtistId(postData?.artists[0].id || postData?.artist_id)
         }
     }, [postData, isPostVisible])
+
+    useEffect(() => {
+        if(artistId){
+            getArtist(artistId)
+        }
+    }, [artistId])
 
     useEffect(() => {
         descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
