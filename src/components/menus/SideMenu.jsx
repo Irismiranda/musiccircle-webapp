@@ -114,7 +114,7 @@ export default function SideMenu(){
                         className="svg_medium"  
                         color={ activeMenu === "messages" ? "#F230AA" : "white" }/>
                         {isTextVisible && 
-                        <h2 
+                        <h2
                         style={{ 
                             color: activeMenu === "messages" ? "#F230AA" : "white", 
                             fontWeight: activeMenu === "messages" ? "500" : "" }}>Messages</h2>}

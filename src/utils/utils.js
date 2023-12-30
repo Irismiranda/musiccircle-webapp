@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { placeholder_img } from "../assets"
 
-const useClickOutside = (ref, exceptionRef, callback) => {
+const useClickOutside = (ref, exceptionRefs, callback) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        if(exceptionRef && exceptionRef.current && !exceptionRef.current.contains(event.target)){
+      if (!ref?.current?.contains(event.target)) {
+        if (!exceptionRefs.some((ref) => ref?.current?.contains(event.target))) {
           callback()
-        } else if(!exceptionRef){
+        } else if(!exceptionRefs){
           callback()
         } 
       }

@@ -99,7 +99,7 @@ export default function Comments(props) {
                     <section 
                     key={comment_id}
                     className="flex flex_column align_start full_width"
-                    style={{ gap: "10px" }}>
+                    style={{ gap: "15px" }}>
                         <div className="flex">
                             <img className="profile_small" src={user?.imgUrl}/>
                             <h3>{user?.name}</h3>

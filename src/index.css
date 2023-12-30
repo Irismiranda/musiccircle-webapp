@@ -569,10 +569,6 @@ a{
   z-index: 3;
 }
 
-.player_default .flex{
-  align-items: center;
-}
-
 .player_maximized{
   gap: 40px;
   width: 100%;
@@ -831,7 +827,7 @@ h3{
 }
 
 .slider_wrapper .flex{
-  align-items: start !important;
+  align-items: start;
 }
 
 .slider_grid h5{

@@ -12,7 +12,7 @@ export default function CommentBtn(props){
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
     const [commentsNumber, setCommentsNumber] = useState(0)
-    const { spotifyApi, loggedUser } = useStore()
+    const { spotifyApi, loggedUser, playerRef } = useStore()
     const { content } = props
     const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
@@ -25,7 +25,7 @@ export default function CommentBtn(props){
     const descriptionRef = useRef(null)
     const descriptionMenuRef = useRef(null)
 
-    useClickOutside(postWindowRef, commentsBtnRef, () => setIsPostVisible(false))
+    useClickOutside(postWindowRef, {commentsBtnRef, playerRef}, () => setIsPostVisible(false))
 
     async function getitem(id, type){
         const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
@@ -152,7 +152,7 @@ export default function CommentBtn(props){
                                 ref={descriptionRef}>
                                     {data?.description}
                                 </p> 
-                                { (descriptionRef?.current?.scrollHeight > 200) &&
+                                { (descriptionRef?.current?.scrollHeight > 150) &&
                                 <span 
                                 className={showFullDescription ? 
                                 "show_more_toggle show_less" : "show_more_toggle show_more"}

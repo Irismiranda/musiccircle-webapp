@@ -33,6 +33,7 @@ export default function PlayerManager() {
     })
     
     const { 
+        setPlayerRef,
         spotifyApi, 
         accessToken, 
         setArtistUri, 
@@ -350,6 +351,10 @@ export default function PlayerManager() {
             getRecommendations([currentTrack.id], "tracks")
         }
     }, [currentQueue, currentTrack])
+
+    useEffect(() => {
+        playerRef?.current && setPlayerRef(playerRef)
+    }, playerRef)
 
     const playerFunctionalProps = {
         setProperties,

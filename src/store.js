@@ -14,6 +14,7 @@ const useStore = create(devtools((set, get) => ({
   standardWrapperWidth: `calc(${document.documentElement.clientWidth}px - 269px - 25px)`,
   userTopTracks: null,
   userTopArtists: null,
+  playerRef: null,
   playerState:{ 
       player: undefined,
       isConnected: false,
@@ -40,6 +41,7 @@ const useStore = create(devtools((set, get) => ({
   setSocket: (socket) => set({ socket: socket }),
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
+  setPlayerRef: (ref) => set({ playerRef: ref }),
   setRecommendationSeed: (newSeed) => set((prevState) => ({ 
     ...prevState, 
     recommendationSeed: { 
@@ -53,8 +55,7 @@ const useStore = create(devtools((set, get) => ({
       ...state.playerState,
       ...newPlayerState,
     },
-  })),
-  
+  }))
 })))
 
 export default useStore
