@@ -22,6 +22,7 @@ export default function CommentBtn(props){
     const commentsBtnRef = useRef(null)
     const textAreaRef = useRef(null)
     const descriptionRef = useRef(null)
+    const descriptionMenuRef = useRef(null)
 
     useClickOutside(postWindowRef, commentsBtnRef, () => setIsPostVisible(false))
 
@@ -124,7 +125,8 @@ export default function CommentBtn(props){
                 <div
                 className="post_comments_wrapper">
                     <div 
-                    className="post_description_menu">
+                    className="post_description_menu"
+                    ref={descriptionMenuRef}>
                         {user && 
                         <section>
                             <div 
@@ -163,8 +165,9 @@ export default function CommentBtn(props){
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
+                    descriptionMenuRef={descriptionMenuRef}/>
                     setReplyTo={setReplyTo}
-                    setCommentsNumber={setCommentsNumber}/>
+                    setCommentsNumber={setCommentsNumber}
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>

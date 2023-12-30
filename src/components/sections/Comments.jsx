@@ -7,7 +7,7 @@ export default function Comments(props) {
     const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
 
-    const { postId, posterId, artistId, setReplyTo, setCommentsNumber } = props
+    const { postId, posterId, artistId, setReplyTo, setCommentsNumber, descriptionMenuRef } = props
     const { socket, loggedUser } = useStore()
 
     function replyToComment(name, comment_id){
@@ -88,7 +88,8 @@ export default function Comments(props) {
 
     return (
         <div 
-        className="flex flex_column comments_inner_wrapper">
+        className="flex flex_column comments_inner_wrapper"
+        style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (a.timestamp > b.timestamp ? -1 : 1))

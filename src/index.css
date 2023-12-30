@@ -749,7 +749,6 @@ h3{
 
 .comments_inner_wrapper{
   gap: 25px;
-  height: calc(100% - 155px);
   margin-top: 15px;
   overflow-y: auto;
 }
