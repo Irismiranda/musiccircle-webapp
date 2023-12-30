@@ -71,7 +71,7 @@ export default function CommentBtn(props){
 
     useEffect(() => {
         if(postData && isPostVisible){
-            setArtistId(postData?.artists[0]?.id || postData?.artist_id)
+            setArtistId(postData?.artists?[0]?.id || postData?.artist_id)
         }
     }, [postData, isPostVisible])
 
