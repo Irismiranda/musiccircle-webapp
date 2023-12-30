@@ -25,7 +25,7 @@ export default function CommentBtn(props){
     const descriptionRef = useRef(null)
     const descriptionMenuRef = useRef(null)
 
-    useClickOutside(postWindowRef, {commentsBtnRef, playerRef}, () => setIsPostVisible(false))
+    useClickOutside(postWindowRef, [commentsBtnRef, playerRef], () => setIsPostVisible(false))
 
     async function getitem(id, type){
         const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`

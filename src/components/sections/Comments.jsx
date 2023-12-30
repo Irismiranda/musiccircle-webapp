@@ -6,6 +6,7 @@ import { formatListData } from "../../utils"
 export default function Comments(props) {
     const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     const { postId, posterId, artistId, setReplyTo, setCommentsNumber, descriptionMenuRef } = props
     const { socket, loggedUser } = useStore()
@@ -60,7 +61,11 @@ export default function Comments(props) {
 
     useEffect(() => {
         socket?.on('loadAllComments', (comment) => {
+            setIsLoading(true)
+
             handleData(comment, "loadAllComments")
+
+            setIsLoading(false)
         })
 
         return () => {
@@ -86,6 +91,7 @@ export default function Comments(props) {
     }, [comments])
 
     return (
+        isLoading ? (
         <div 
         className="flex flex_column comments_inner_wrapper"
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
@@ -154,5 +160,10 @@ export default function Comments(props) {
             })
             }
         </div>
+        ) : (
+        <div 
+        className="loading_comments">
+        </div>
+        )
     )
 }
