@@ -344,6 +344,14 @@ svg{
   position: fixed;
 }
 
+.flex_column{
+  flex-direction: column;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
 textarea, input{
   box-sizing: border-box;
   border-radius: 100px;
@@ -462,10 +470,6 @@ a{
 
 .emoji_list p{
   line-height: 5px;
-}
-
-.flex_column{
-  flex-direction: column;
 }
 
 .categories{
@@ -728,6 +732,12 @@ h3{
   height: 100%;
 }
 
+.post_description_menu{
+  padding: 0px 0 15px;
+  border: solid #000;
+  border-width: 0 0 2.5px;
+}
+
 .post_comments_wrapper textarea{
   padding: 10px 55px 3px 18px;
   resize: none;
@@ -739,7 +749,8 @@ h3{
 
 .comments_inner_wrapper{
   gap: 25px;
-  height: calc(100% - 125px);
+  height: calc(100% - 155px);
+  margin-top: 15px;
   overflow-y: auto;
 }
 

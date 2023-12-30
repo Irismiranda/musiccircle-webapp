@@ -109,12 +109,18 @@ export default function Comments(props) {
                             <h4>{timestamp}</h4>
                             <h4>{likes || 0} Likes</h4>
                             {(user?.id !== loggedUser.id) && 
-                            <h4 onClick={() => replyToComment(user?.name, comment_id)}>Reply</h4>}
+                            <h4 
+                            className="pointer"
+                            onClick={() => replyToComment(user?.name, comment_id)}>Reply</h4>}
                             {(user?.id === loggedUser.id) &&
-                            <h4 onClick={() => deleteComment(postId, comment_id)}>Delete Comment</h4>}
+                            <h4 
+                            className="pointer"
+                            onClick={() => deleteComment(postId, comment_id)}>Delete Comment</h4>}
                         </div>
                         {replies && 
-                        <h4 onClick={() => setShowReplies(!showReplies)}> 
+                        <h4 
+                        className="pointer"
+                        onClick={() => setShowReplies(!showReplies)}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
                         
                         {showReplies &&
