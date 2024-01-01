@@ -61,7 +61,7 @@ export default function CommentBtn(props){
     }
 
     async function likePost(){
-        await Axios.post(`/api/${user?.id}/${artistId}/toggle_post_like/${postData.id}`, {
+        await Axios.post(`/api/${user?.id}/${artistId}/toggle_like_post/${postData.id}`, {
             logged_user_id: loggedUser
         })
     }
@@ -175,8 +175,9 @@ export default function CommentBtn(props){
                             <div
                             onClick={() => likePost()}>
                                 <SvgHeart 
-                                className="svg"
                                 style={{ 
+                                    height: "15px",
+                                    marginTop: "4px",
                                     fill: postData?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
                                     stroke: postData?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>

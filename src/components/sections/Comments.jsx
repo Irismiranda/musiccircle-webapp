@@ -38,7 +38,7 @@ export default function Comments(props) {
             console.log("updated comment is", updatedComments)
             
             call === "loadAllComments" && setComments(updatedComments)
-            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments])
+            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
          } catch(err){
             console.log(err)
          }
@@ -75,9 +75,7 @@ export default function Comments(props) {
     useEffect(() => {
         socket?.on('loadAllComments', (comment) => {
             setIsLoading(true)
-
             handleData(comment, "loadAllComments")
-
             setIsLoading(false)
         })
 
@@ -135,8 +133,8 @@ export default function Comments(props) {
                             <div
                             onClick={() => likeComment(user?.name, comment_id)}>
                                 <SvgHeart 
-                                className="svg"
                                 style={{ 
+                                    height: "15px",
                                     fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
                                     stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
@@ -181,8 +179,9 @@ export default function Comments(props) {
                                             <div
                                             onClick={() => likeReply(reply.user?.name, comment_id)}>
                                                 <SvgHeart 
-                                                className="svg"
                                                 style={{ 
+                                                    height: "15px",
+                                                    marginRight: "20px",
                                                     fill: reply?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
                                                     stroke: reply?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                                     }}/>
