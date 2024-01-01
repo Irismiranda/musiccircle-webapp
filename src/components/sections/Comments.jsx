@@ -70,10 +70,10 @@ export default function Comments(props) {
         return () => {
             socket.emit('disconnectFromComments', { post_id: postId })
         }
-    }, [socket])
+    }, [])
 
     useEffect(() => {
-        socket?.on('loadAllComments', (comment) => {
+        socket.on('loadAllComments', (comment) => {
             setIsLoading(true)
             handleData(comment, "loadAllComments")
             setIsLoading(false)
@@ -82,17 +82,17 @@ export default function Comments(props) {
         return () => {
             socket.off('loadAllComments')
         }
-    }, [socket])
+    }, [])
 
     useEffect(() => {
-        socket?.on('loadNewComment', (comment) => {
+        socket.on('loadNewComment', (comment) => {
             handleData(comment, "loadNewComment")           
         })
 
         return () => {
             socket.off('loadNewComment')
         }
-    }, [socket])
+    }, [])
 
     useEffect(() => {
         if(comments){
@@ -135,6 +135,7 @@ export default function Comments(props) {
                                 <SvgHeart 
                                 style={{ 
                                     height: "15px",
+                                    marginRight: "20px",
                                     fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
                                     stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
