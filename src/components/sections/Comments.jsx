@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import useStore from "../../store"
+import { setProperties } from "../../utils"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
 import { SvgHeart } from "../../assets"
@@ -8,6 +9,10 @@ export default function Comments(props) {
     const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [isSocketConnected, setIsSocketConnected] = useState({
+        allmessages: false,
+        newmessages: false,
+    })
 
     const { postId, posterId, artistId, setReplyTo, setCommentsNumber, descriptionMenuRef } = props
     const { socket, loggedUser } = useStore()
@@ -73,24 +78,30 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        socket.on('loadAllComments', (comment) => {
-            setIsLoading(true)
-            handleData(comment, "loadAllComments")
-            setIsLoading(false)
-        })
-
-        return () => {
-            socket.off('loadAllComments')
+        if(!isSocketConnected.allmessages){
+            socket.on('loadAllComments', (comment) => {
+                setIsLoading(true)
+                handleData(comment, "loadAllComments")
+                setIsLoading(false)
+                setProperties('allmessages', setIsSocketConnected, true)
+            })
+    
+            return () => {
+                socket.off('loadAllComments')
+            }
         }
     }, [])
 
     useEffect(() => {
-        socket.on('loadNewComment', (comment) => {
-            handleData(comment, "loadNewComment")           
-        })
-
-        return () => {
-            socket.off('loadNewComment')
+        if(!isSocketConnected.newmessages){
+            socket.on('loadNewComment', (comment) => {
+                handleData(comment, "loadNewComment")  
+                setProperties('newmessages', setIsSocketConnected, true)         
+            })
+    
+            return () => {
+                socket.off('loadNewComment')
+            }
         }
     }, [])
 
