@@ -58,22 +58,30 @@ export default function Comments(props) {
          try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
-                const updatedComment = {...comment}
+                const updatedComment = call === "deleteComment" ? 
+                comments.filter(comment => comment.id !== data[0].id) : 
+                {...comment}
+
                 console.log("comment data is", comment)
 
-                const user = await Axios.get(`api/user/${comment.user_id}`)
-                if(user.data){
-                    console.log("user is", user.data)
-
-                    const formatedUser = formatListData([user.data], user.data.type)
-                    updatedComment.user = formatedUser[0]
+                if (call !== "deleteComment"){
+                    user = await Axios.get(`api/user/${comment.user_id}`)
+                    if(user.data){
+                        console.log("user is", user.data)
+    
+                        const formatedUser = formatListData([user.data], user.data.type)
+                        updatedComment.user = formatedUser[0]
+                        return updatedComment
+                    }
+                } else {
                     return updatedComment
                 }
+
             }))
 
             console.log("updated comment is", updatedComments)
             
-            call === "loadAllComments" && setComments(updatedComments)
+            (call === "loadAllComments" || call === "deleteComment") && setComments(updatedComments)
             call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
 
             if(scrollOnLoad) {
@@ -137,6 +145,18 @@ export default function Comments(props) {
     
             return () => {
                 socket.off('loadNewComment')
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        if(!isSocketConnected.newmessages){
+            socket.on('loadNewComment', (comment) => {
+                handleData(comment, 'deleteComment')  
+            })
+    
+            return () => {
+                socket.off('deleteComment')
             }
         }
     }, [])
