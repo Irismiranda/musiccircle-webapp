@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
@@ -14,8 +14,23 @@ export default function Comments(props) {
         newmessages: false,
     })
 
-    const { postId, posterId, artistId, setReplyTo, setCommentsNumber, descriptionMenuRef } = props
-    const { socket, loggedUser } = useStore()
+    const { 
+        postId, 
+        posterId, 
+        artistId, 
+        setReplyTo, 
+        setCommentsNumber, 
+        descriptionMenuRef, 
+        scrollOnLoad, 
+        setScrollOnLoad 
+    } = props
+
+    const { 
+        socket, 
+        loggedUser 
+    } = useStore()
+
+    const commentsRef = useRef(null)
 
     const convertTimestampToDate = (timestamp) => {
         if (!timestamp) {
@@ -60,6 +75,11 @@ export default function Comments(props) {
             
             call === "loadAllComments" && setComments(updatedComments)
             call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
+
+            if(scrollOnLoad) {
+                commentsRef.current.scrollTo({ top: 100, behavior: "smooth" })
+                setScrollOnLoad(false)
+            }
          } catch(err){
             console.log(err)
          }
@@ -131,6 +151,7 @@ export default function Comments(props) {
     return (
         !isLoading ? (
         <div 
+        ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
             {(comments?.length > 0) &&

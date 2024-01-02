@@ -11,13 +11,15 @@ export default function CommentBtn(props){
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
-    const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { content, setCommentsNumber, commentsNumber } = props
-    const { user, data, item, id, type } = content
     const [postData, setPostData] = useState(null)
     const [artistId, setArtistId] = useState(null)
     const [replyTo, setReplyTo] = useState(null)
-
+    const [scrollOnLoad, setScrollOnLoad] = useState(false)
+    
+    const { spotifyApi, loggedUser, playerRef } = useStore()
+    const { content, setCommentsNumber, commentsNumber } = props
+    const { user, data, item, id, type } = content
+    
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
     const textAreaRef = useRef(null)
@@ -39,6 +41,8 @@ export default function CommentBtn(props){
     }
 
     async function sendComment(id){
+        setScrollOnLoad(true)
+
         const endpointPath = replyTo ? 
         `/api/${id}/reply_to/${replyTo}` :
         `/api/${id}/add_comment`
@@ -191,7 +195,9 @@ export default function CommentBtn(props){
                     textAreaRef={textAreaRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
-                    setCommentsNumber={setCommentsNumber}/>
+                    setCommentsNumber={setCommentsNumber}
+                    scrollOnLoad={scrollOnLoad}
+                    setScrollOnLoad={setScrollOnLoad}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
