@@ -73,10 +73,6 @@ export default function Profile(){
     }, [userId])
 
     useEffect(() => {
-        if(isLoggedUser && userProfileData){
-            setLoggedUser(userProfileData)
-        }
-
         if(isLoggedUser && userTopArtists){
             setTopArtists(userTopArtists)
         }
