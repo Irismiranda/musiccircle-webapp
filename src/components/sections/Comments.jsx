@@ -79,8 +79,11 @@ export default function Comments(props) {
 
             }))
             
-            (call === "loadAllComments" || call === "deleteComment") && setComments(updatedComments)
-            call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
+            if(call === "loadAllComments" || call === "deleteComment"){
+                setComments(updatedComments)
+            } else if(call === "loadNewComment"){
+                setComments(prevComments => [...prevComments, updatedComments[0]])
+            }
 
             if(scrollOnLoad) {
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
@@ -169,8 +172,7 @@ export default function Comments(props) {
 
     return (
         !isLoading ? (
-        <div 
-        ref={commentsRef}
+        <div
         className="flex flex_column comments_inner_wrapper"
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
             {(comments?.length > 0) &&
@@ -181,6 +183,7 @@ export default function Comments(props) {
                 const { user, comment_id, text, likes, timestamp, replies } = comment
                 return (
                     <section 
+                    ref={commentsRef}
                     key={comment_id}
                     className="flex flex_column align_start full_width"
                     style={{ gap: "15px" }}>
