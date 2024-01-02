@@ -9,10 +9,6 @@ export default function Comments(props) {
     const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
-    const [isSocketConnected, setIsSocketConnected] = useState({
-        allmessages: false,
-        newmessages: false,
-    })
 
     const { 
         postId, 
@@ -58,33 +54,29 @@ export default function Comments(props) {
          try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
-                const updatedComment = call === "deleteComment" ? 
-                comments.filter(comment => comment.id !== data[0].id) : 
-                {...comment}
+                const updatedComment = {...comment}
 
-                console.log("comment data is", comment)
-
-                if (call !== "deleteComment"){
-                    const user = await Axios.get(`api/user/${comment.user_id}`)
-                    if(user?.data){
-                        console.log("user is", user.data)
-    
-                        const formatedUser = formatListData([user.data], user.data.type)
-                        updatedComment.user = formatedUser[0]
-                        return updatedComment
-                    }
-                } else {
-                    return updatedComment
+                const user = await Axios.get(`api/user/${comment.user_id}`)
+                if(user?.data){
+                    console.log("user is", user.data)
+                    
+                    const formatedUser = formatListData([user.data], user.data.type)
+                    updatedComment.user = formatedUser[0]
+                    return updatedComment   
                 }
-
             }))
             
-            if(call === "loadAllComments" || call === "deleteComment"){
+            if(call === "loadAllComments"){
                 setComments(updatedComments)
-            } else if(call === "loadNewComment"){
+            } else if (call === "loadNewComment" 
+            && !comments.some((comment) => comment.post_id === data.post_id)){
                 setComments(prevComments => [...prevComments, updatedComments[0]])
+            } else{
+                setComments((prevComments) =>
+                prevComments.map((comment) => (comment.post_id === data.post_id ? updatedComments[0] : comment))
+                )
             }
-
+            
             if(scrollOnLoad) {
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
                 setScrollOnLoad(false)
@@ -96,6 +88,7 @@ export default function Comments(props) {
 
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
+        setComments(comments.filter(comment => comment.comment_id !== comment_id))
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
@@ -123,44 +116,27 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        if(!isSocketConnected.allmessages){
-            socket.on('loadAllComments', (comment) => {
-                setIsLoading(true)
-                handleData(comment, "loadAllComments")
-                setIsLoading(false)
-                setProperties(setIsSocketConnected, 'allmessages', true)
-            })
-    
-            return () => {
-                socket.off('loadAllComments')
-            }
+        socket.on('loadAllComments', (comment) => {
+            setIsLoading(true)
+            handleData(comment, "loadAllComments")
+            setIsLoading(false)
+        })
+
+        return () => {
+            socket.off('loadAllComments')
         }
+        
     }, [])
 
     useEffect(() => {
-        if(!isSocketConnected.newmessages){
-            socket.on('loadNewComment', (comment) => {
-                handleData(comment, "loadNewComment")  
-                setProperties(setIsSocketConnected, 'newmessages', true)    
-                     
-            })
-    
-            return () => {
-                socket.off('loadNewComment')
-            }
-        }
-    }, [])
+        socket.on('loadNewComment', (comment) => {
+            handleData(comment, "loadNewComment")       
+        })
 
-    useEffect(() => {
-        if(!isSocketConnected.newmessages){
-            socket.on('loadNewComment', (comment) => {
-                handleData(comment, 'deleteComment')  
-            })
-    
-            return () => {
-                socket.off('deleteComment')
-            }
+        return () => {
+            socket.off('loadNewComment')
         }
+    
     }, [])
 
     useEffect(() => {
@@ -172,7 +148,8 @@ export default function Comments(props) {
 
     return (
         !isLoading ? (
-        <div
+        <div 
+        ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
             {(comments?.length > 0) &&
@@ -183,7 +160,6 @@ export default function Comments(props) {
                 const { user, comment_id, text, likes, timestamp, replies } = comment
                 return (
                     <section 
-                    ref={commentsRef}
                     key={comment_id}
                     className="flex flex_column align_start full_width"
                     style={{ gap: "15px" }}>
