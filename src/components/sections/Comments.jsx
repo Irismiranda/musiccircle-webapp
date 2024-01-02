@@ -78,8 +78,6 @@ export default function Comments(props) {
                 }
 
             }))
-
-            console.log("updated comment is", updatedComments)
             
             (call === "loadAllComments" || call === "deleteComment") && setComments(updatedComments)
             call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
