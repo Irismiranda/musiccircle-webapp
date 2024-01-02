@@ -65,7 +65,7 @@ export default function Comments(props) {
                 console.log("comment data is", comment)
 
                 if (call !== "deleteComment"){
-                    user = await Axios.get(`api/user/${comment.user_id}`)
+                    const user = await Axios.get(`api/user/${comment.user_id}`)
                     if(user.data){
                         console.log("user is", user.data)
     
