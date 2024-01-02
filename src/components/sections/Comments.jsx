@@ -69,7 +69,7 @@ export default function Comments(props) {
             if(call === "loadAllComments"){
                 setComments(updatedComments)
             } else if (call === "loadNewComment" 
-            && !comments.some((comment) => comment.post_id === data.post_id)){
+            && !comments.some((comment) => comment.post_id === data[0].post_id)){
                 setComments(prevComments => [...prevComments, updatedComments[0]])
             } else{
                 setComments((prevComments) =>
