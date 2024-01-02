@@ -3,26 +3,34 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
 import { SvgHeart } from "../../assets"
+import { setProperties } from "../../utils"
 
 export default function Comments(props) {
     const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [isSocketConnected, setIsSocketConnected] = useState({
+        allmessages: false,
+        newmessages: false,
+    })
 
     const { postId, posterId, artistId, setReplyTo, setCommentsNumber, descriptionMenuRef } = props
     const { socket, loggedUser } = useStore()
 
     const convertTimestampToDate = (timestamp) => {
         if (!timestamp) {
-            return null; // Handle undefined or null timestamps
+            return null // Handle undefined or null timestamps
           }
-          
-        const [datePart, timePart] = timestamp.split(', ')
-        const [month, day, year] = datePart.split('/')
-        const [hour, minute, second] = timePart.split(':')
-      
-        // Month is 0-based in JavaScript Date, so subtract 1
-        return new Date(year, month - 1, day, hour, minute, second)
+
+        const dateString = {
+            yy: timestamp.slice(6, 9),
+            mm: timestamp.slice(3, 4),
+            dd: timestamp.slice(0, 1),
+            time: timestamp.slice(11).replace(":", "")
+        }
+        
+        console.log(Object.values(dateString).join(""))
+        return Object.values(dateString).join("")
       }
 
     function replyToComment(name, comment_id){
@@ -86,24 +94,30 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        socket.on('loadAllComments', (comment) => {
-            setIsLoading(true)
-            handleData(comment, "loadAllComments")
-            setIsLoading(false)
-        })
-
-        return () => {
-            socket.off('loadAllComments')
+        if(!isSocketConnected.allmessages){
+            socket.on('loadAllComments', (comment) => {
+                setIsLoading(true)
+                handleData(comment, "loadAllComments")
+                setIsLoading(false)
+                setProperties('allmessages', setIsSocketConnected, true)
+            })
+    
+            return () => {
+                socket.off('loadAllComments')
+            }
         }
     }, [])
 
     useEffect(() => {
-        socket.on('loadNewComment', (comment) => {
-            handleData(comment, "loadNewComment")           
-        })
-
-        return () => {
-            socket.off('loadNewComment')
+        if(!isSocketConnected.newmessages){
+            socket.on('loadNewComment', (comment) => {
+                handleData(comment, "loadNewComment")  
+                setProperties('newmessages', setIsSocketConnected, true)         
+            })
+    
+            return () => {
+                socket.off('loadNewComment')
+            }
         }
     }, [])
 
