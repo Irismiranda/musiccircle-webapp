@@ -77,7 +77,7 @@ export default function Comments(props) {
             call === "loadNewComment" && setComments(prevComments => [...prevComments, updatedComments[0]])
 
             if(scrollOnLoad) {
-                commentsRef.current.scrollTo({ top: 100, behavior: "smooth" })
+                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
                 setScrollOnLoad(false)
             }
          } catch(err){
