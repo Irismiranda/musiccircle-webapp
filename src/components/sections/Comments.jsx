@@ -127,7 +127,7 @@ export default function Comments(props) {
                 setIsLoading(true)
                 handleData(comment, "loadAllComments")
                 setIsLoading(false)
-                setProperties('allmessages', setIsSocketConnected, true)
+                setProperties(setIsSocketConnected, 'allmessages', true)
             })
     
             return () => {
@@ -140,7 +140,8 @@ export default function Comments(props) {
         if(!isSocketConnected.newmessages){
             socket.on('loadNewComment', (comment) => {
                 handleData(comment, "loadNewComment")  
-                setProperties('newmessages', setIsSocketConnected, true)         
+                setProperties(setIsSocketConnected, 'newmessages', true)    
+                     
             })
     
             return () => {
