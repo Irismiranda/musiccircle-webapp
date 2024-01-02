@@ -66,7 +66,7 @@ export default function Comments(props) {
 
                 if (call !== "deleteComment"){
                     const user = await Axios.get(`api/user/${comment.user_id}`)
-                    if(user.data){
+                    if(user?.data){
                         console.log("user is", user.data)
     
                         const formatedUser = formatListData([user.data], user.data.type)
