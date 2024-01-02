@@ -22,11 +22,11 @@ export default function Comments(props) {
             return null // Handle undefined or null timestamps
           }
 
-        const dateString = {
-            yy: timestamp.slice(6, 9),
-            mm: timestamp.slice(3, 4),
-            dd: timestamp.slice(0, 1),
-            time: timestamp.slice(11).replace(":", "")
+          const dateString = {
+            yy: timestamp.slice(6, 10),
+            mm: timestamp.slice(3, 5),
+            dd: timestamp.slice(0, 2),
+            time: timestamp.slice(12).replaceAll(":", "")
         }
         
         console.log(Object.values(dateString).join(""))
