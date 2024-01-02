@@ -135,7 +135,7 @@ export default function Comments(props) {
         style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
             {(comments?.length > 0) &&
             comments
-            .sort((a, b) => (convertTimestampToDate(a.timestamp) > convertTimestampToDate(b.timestamp) ? -1 : 1))
+            .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
             .map(comment => {
                 console.log("comment is", comment)
                 const { user, comment_id, text, likes, timestamp, replies } = comment
@@ -188,7 +188,7 @@ export default function Comments(props) {
                         
                         {showReplies &&
                             replies 
-                            .sort((a, b) => (convertTimestampToDate(a.timestamp) > convertTimestampToDate(b.timestamp) ? -1 : 1))
+                            .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                             .map(reply => {
                                 return (
                                     <section key={reply.comment_id}>
