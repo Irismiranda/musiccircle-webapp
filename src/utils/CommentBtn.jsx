@@ -187,7 +187,7 @@ export default function CommentBtn(props){
                         className="flex space_between ">
                             <div 
                             className="flex">
-                                <h4>{content?.likes?.length || 0} Likes</h4>
+                                <h4>{data?.likes?.length || 0} Likes</h4>
                                 <h4>{commentsNumber} Comments</h4>
                             </div>
                             <div
@@ -196,8 +196,8 @@ export default function CommentBtn(props){
                                 style={{ 
                                     height: "15px",
                                     marginTop: "4px",
-                                    fill: content?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: content?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: data?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: data?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
                             </div>
                         </section>
