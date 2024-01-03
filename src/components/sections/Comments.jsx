@@ -6,7 +6,7 @@ import { SvgHeart } from "../../assets"
 import { setProperties } from "../../utils"
 
 export default function Comments(props) {
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -51,6 +51,8 @@ export default function Comments(props) {
 
     async function handleData(data, call){
         console.log("data is", data)
+        if(data.length < 0) return 
+
          try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
@@ -65,8 +67,11 @@ export default function Comments(props) {
                     return updatedComment   
                 }
             }))
+
+            console.log("previous comments are:", comments)
             
             if(call === "loadAllComments"){
+                console.log("updated comments are", updatedComments)
                 setComments(updatedComments)
             } else if (call === "loadNewComment" 
             && !comments.some((comment) => comment.post_id === data[0].post_id)){
