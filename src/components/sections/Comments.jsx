@@ -82,8 +82,10 @@ export default function Comments(props) {
                 setComments(updatedComments)
             } else if (call === "loadNewComment" 
             && comments.length > 0 && !comments.some((comment) => comment.post_id === data[0].post_id)){
+                console.log("comment was already there")
                 setComments(prevComments => [...prevComments, updatedComments[0]])
             } else{
+                console.log("comment wasn't already there")
                 setComments((prevComments) =>
                 prevComments.map((comment) => (comment.post_id === data.post_id ? updatedComments[0] : comment))
                 )
@@ -128,7 +130,6 @@ export default function Comments(props) {
         socket.on('loadAllComments', (comment) => {
             setIsLoading(true)
             handleData(comment, "loadAllComments")
-            setIsLoading(false)
         })
 
         return () => {
@@ -151,6 +152,7 @@ export default function Comments(props) {
     useEffect(() => {
         if(comments){
             setCommentsNumber(comments.length)
+            setIsLoading(false)
         }
         console.log("comments are", comments)
     }, [comments])
