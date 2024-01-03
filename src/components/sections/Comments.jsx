@@ -87,7 +87,9 @@ export default function Comments(props) {
             } else{
                 console.log("comment wasn't already there")
                 setComments((prevComments) =>
-                prevComments.map((comment) => (comment.post_id === data.post_id ? updatedComments[0] : comment))
+                prevComments.map((comment) => {
+                    return comment.post_id === data.post_id ? updatedComments[0] : comment
+                })
                 )
             }
             
