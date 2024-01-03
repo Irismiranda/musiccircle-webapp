@@ -64,12 +64,12 @@ export default function Comments(props) {
 
                     updatedComment.user = formatedUser[0]
 
-                    console.log("formated comment is", updatedComment)
-
+                    
                     return updatedComment   
                 }
             }))
-
+            
+            console.log("formated comments are", updatedComments)
             return updatedComments
          } catch(err){
             console.log(err)
