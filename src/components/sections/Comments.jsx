@@ -150,6 +150,7 @@ export default function Comments(props) {
                 console.log("no comment")
                 setIsLoading(false)
             } else {
+                onsole.log("formatting comment")
                 setIsLoading(true)
                 handleData(comment, "loadAllComments")
             }
@@ -164,8 +165,8 @@ export default function Comments(props) {
     useEffect(() => {
         socket.on('loadNewComment', (comment) => {
             if(!comment || comment?.length === 0){
-                return 
-            } else handleData(comment, "loadNewComment")       
+                return
+            } else handleData(comment, "loadNewComment") 
         })
 
         return () => {
