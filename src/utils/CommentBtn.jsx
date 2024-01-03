@@ -29,7 +29,7 @@ export default function CommentBtn(props){
     useClickOutside(postWindowRef, [commentsBtnRef, playerRef], () => setIsPostVisible(false))
 
     async function getitem(id, type){
-        const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
+        const methodName = `get${type.charAt(0).toUpperCase() + type}`
         const data = await spotifyApi[methodName](id)
         const formatedItem = formatListData([data], `${type}s`)
         setPostData(formatedItem[0])
