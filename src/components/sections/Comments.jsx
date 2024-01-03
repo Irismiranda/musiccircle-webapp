@@ -165,7 +165,7 @@ export default function Comments(props) {
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
             .map(comment => {
-                const { user, comment_id, text, likes, timestamp, replies } = comment
+                const { user, comment_id, text, likes, timestamp, replies } = comment || {}
                 return (
                     <section 
                     key={comment_id}
