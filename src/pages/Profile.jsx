@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { Slider, Post } from "../components"
 import { Axios } from "../Axios-config"
 import { UserSearchSection } from "../components"
@@ -10,6 +10,7 @@ import useStore from "../store"
 export default function Profile(){
     const { standardWrapperWidth, loggedUser, setLoggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
     const { userId } = useParams()
+    const location = useLocation()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
     const [ topTracks, setTopTracks ] = useState(null)
@@ -70,7 +71,7 @@ export default function Profile(){
             setIsLoggedUser(false)
             userId && getPosts(userId)
         }
-    }, [userId])
+    }, [userId, location])
 
     useEffect(() => {
         if(isLoggedUser && userTopArtists){
