@@ -106,6 +106,13 @@ export default function Comments(props) {
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_comment/${comment_id}`, {
             logged_user_id: loggedUser.id
         })
+        const currentComment = comments.filter(comment => comment.comment_id === comment_id)
+        if(currentComment.likes?.includes(loggedUser.id)){
+            currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
+        } else {
+            currentComment.likes.push(loggedUser.id)
+        }
+        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
     async function likeReply(post_id, comment_id, reply_id){
@@ -126,7 +133,6 @@ export default function Comments(props) {
         socket.on('loadAllComments', (comment) => {
             if(!comment || comment?.length < 0){
                 setIsLoading(false)
-                return 
             } else {
                 setIsLoading(true)
                 handleData(comment, "loadAllComments")

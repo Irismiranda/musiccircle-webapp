@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { SvgPinned, SvgSendBtn } from "../../assets"
 import { EmojiBar, Messages } from "../index"
 import useStore from "../../store"
+import { Link } from "react-router-dom"
 
 export default function Chat(){
     const messageTextArea = createRef(null)
@@ -82,7 +83,10 @@ export default function Chat(){
                 <div className="flex space_between">
                     <div className="flex gap">
                         <img src={profilePic} alt={artistName} className="profile_medium"/>
-                        <h2>{artistName} Live Chat</h2>
+                        <h2>
+                            <Link to={`/artist/${artistId}`}>
+                                {artistName}
+                            </Link> Live Chat</h2>
                     </div>
                     <div onClick={() => setChatProperties('isPinned', !isPinned)} className="svg">
                         <SvgPinned className="svg_medium pinned" is_pinned={isPinned ? "true" : "false"} style={{ fill: isPinned ? '#AFADAD' : 'none', }}/>
