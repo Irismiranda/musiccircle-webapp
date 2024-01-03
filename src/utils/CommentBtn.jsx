@@ -69,6 +69,19 @@ export default function CommentBtn(props){
         await Axios.post(`/api/${user?.id}/${artistId}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser.id
         })
+
+        const updatedLikes = postData.likes?.includes(loggedUser.id) ?
+        post.likes?.filter(like => like !== loggedUser.id) :
+        [...(item.likes || []), loggedUser.id]
+
+        const updatedPost = {
+            ...item, 
+            likes: updatedLikes
+        }
+
+        setPosts((prevPosts => {
+            return prevPosts.map(post => post.post_id === item.post_id ? updatedPost : post)
+          }))
     }
 
     useEffect(() => {
