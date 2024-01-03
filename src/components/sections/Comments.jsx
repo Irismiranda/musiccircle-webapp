@@ -72,10 +72,6 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
-        if(!data || data?.length < 0){
-            return 
-        }
-        
         const updatedComments = await getUser(data)
         console.log("previous comments are:", comments)
             
@@ -126,7 +122,9 @@ export default function Comments(props) {
     useEffect(() => {
         socket.on('loadAllComments', (comment) => {
             setIsLoading(true)
-            handleData(comment, "loadAllComments")
+            if(!comment || comment?.length < 0){
+                return 
+            } else handleData(comment, "loadAllComments")
         })
 
         return () => {
@@ -137,7 +135,9 @@ export default function Comments(props) {
 
     useEffect(() => {
         socket.on('loadNewComment', (comment) => {
-            handleData(comment, "loadNewComment")       
+            if(!comment || comment?.length < 0){
+                return 
+            } else handleData(comment, "loadNewComment")       
         })
 
         return () => {
@@ -164,7 +164,6 @@ export default function Comments(props) {
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
             .map(comment => {
-                console.log("comment is", comment)
                 const { user, comment_id, text, likes, timestamp, replies } = comment
                 return (
                     <section 
