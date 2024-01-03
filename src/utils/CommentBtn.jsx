@@ -66,23 +66,21 @@ export default function CommentBtn(props){
     }
 
     async function likePost(){
-
-        console.log("content is", content)
         await Axios.post(`/api/${user?.id}/${artistId}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser.id
         })
 
-        const updatedLikes = content.likes?.includes(loggedUser.id) ?
-        content.likes?.filter(like => like !== loggedUser.id) :
-        [...(content.likes || []), loggedUser.id]
+        const updatedLikes = data.likes?.includes(loggedUser.id) ?
+        data.likes?.filter(like => like !== loggedUser.id) :
+        [...(data.likes || []), loggedUser.id]
 
         const updatedPost = {
-            ...content, 
+            ...data, 
             likes: updatedLikes
         }
 
         setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === content.post_id ? updatedPost : post)
+            return prevPosts.map(post => post.post_id === data.post_id ? updatedPost : post)
           }))
     }
 
