@@ -49,7 +49,7 @@ export default function Comments(props) {
         setReplyTo(comment_id)
     }
 
-    async function getUser(data, call){
+    async function getUser(data){
         console.log("data is", data)
         if(!data || data?.length < 0) return 
 
@@ -74,10 +74,8 @@ export default function Comments(props) {
          }
     }
 
-    function handleData(data, call){
-
-        const updatedComments = getUser(data, call)
-
+    async function handleData(data, call){
+        const updatedComments = await getUser(data)
         console.log("previous comments are:", comments)
             
             if(call === "loadAllComments"){
