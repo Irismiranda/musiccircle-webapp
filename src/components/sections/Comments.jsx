@@ -6,7 +6,7 @@ import { SvgHeart } from "../../assets"
 import { setProperties } from "../../utils"
 
 export default function Comments(props) {
-    const [comments, setComments] = useState({})
+    const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -69,7 +69,7 @@ export default function Comments(props) {
             if(call === "loadAllComments"){
                 setComments(updatedComments)
             } else if (call === "loadNewComment" 
-            && !comments?.some((comment) => comment.post_id === data[0].post_id)){
+            && !comments.some((comment) => comment.post_id === data[0].post_id)){
                 setComments(prevComments => [...prevComments, updatedComments[0]])
             } else{
                 setComments((prevComments) =>
