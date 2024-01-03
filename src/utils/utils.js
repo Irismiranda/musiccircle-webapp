@@ -48,6 +48,7 @@ function formatListData(items, category) {
       
       if(category === "album") {
         listItem.releaseDate = item.release_date
+        listItem.artist_name = item.artists[0].name
       }
       
     }
