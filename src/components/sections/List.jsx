@@ -25,7 +25,7 @@
                                         className="cover_small" />
                                         <div>
                                             <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
-                                            {(category === "tracks" || category === "albums") && 
+                                            {(category === "track" || category === "album") && 
                                             <h5>{item.artist_name}</h5>}
                                             <h4>{item.type}</h4>
                                         </div>

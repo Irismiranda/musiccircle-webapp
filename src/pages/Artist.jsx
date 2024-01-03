@@ -21,13 +21,13 @@ export default function Artist(){
 
     async function getArtistTopTracks(){
         const response = await spotifyApi.getArtistTopTracks(artistId, loggedUser.country)
-        const formatedData = formatListData(response.tracks, "tracks")
+        const formatedData = formatListData(response.tracks, "track")
         setArtistTopTracks(formatedData)
     }
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(artistId)
-        const formatedData = formatListData(response.items, "albums")
+        const formatedData = formatListData(response.items, "album")
         setArtistAlbums(formatedData)
     }
 
@@ -89,7 +89,7 @@ export default function Artist(){
                 <h2> Popular Tracks</h2>
                 <List 
                 list={artistTopTracks} 
-                category={"tracks"}
+                category={"track"}
                 showIndex={true}/>
             </section>}
             {artistAlbums && <h2>Discography</h2>}
@@ -98,7 +98,7 @@ export default function Artist(){
                     <Slider 
                     list={artistAlbums} 
                     visibility={true} 
-                    category="albums" 
+                    category="album" 
                     isLoggedUser={false} 
                     slidePercent={0.2} 
                     type={"list"}/>

@@ -11,7 +11,7 @@ export default function PlayBtn(props){
           await spotifyApi.play({ uris: [uri], device_id: deviceId })
           setRecommendationSeed({ 
             ids: [id], 
-            type: "tracks" })
+            type: "track" })
         } else{
           await spotifyApi.play({ context_uri: uri, device_id: deviceId })
           const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
@@ -28,7 +28,7 @@ export default function PlayBtn(props){
               await Promise.all(ids.map((id) => spotifyApi.queue(id)))
               setRecommendationSeed({ 
                 ids: type === "artist" ? uri : ids.slice(0, 5), 
-                type: type === "artist" ? "artists" : "tracks" })
+                type: type === "artist" ? "artist" : "track" })
               return 
             } catch (err) {
               if (err.status === 502) {

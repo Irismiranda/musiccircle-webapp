@@ -33,7 +33,7 @@ function formatListData(items, category) {
     }
 
     if (category !== "simplified") {
-      if (category === "tracks") {
+      if (category === "track") {
         listItem.imgUrl = item.album.images[0].url
         listItem.artist_name = item.artists[0].name
         listItem.artist_id = item.artists[0].uri.slice(15)
@@ -45,7 +45,7 @@ function formatListData(items, category) {
         listItem.userHandle = item.user_handle
       } 
       
-      if(category === "albums") {
+      if(category === "album") {
         listItem.releaseDate = item.release_date
       }
       

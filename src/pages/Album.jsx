@@ -26,7 +26,7 @@ export default function Album(){
 
     async function getArtistAlbums(){
         const response = await spotifyApi.getArtistAlbums(albumData.artists[0].id)
-        const formatedData = formatListData(response.items, "albums")
+        const formatedData = formatListData(response.items, "album")
         setArtistAlbums( formatedData.filter(item => item.id !== albumData.id))    
     }
 
@@ -77,14 +77,14 @@ export default function Album(){
                 <h2> Tracks</h2>
                 <SimplifiedList 
                 list={albumTracks} 
-                category={"tracks"}/>
+                category={"track"}/>
             </section>}
             {artistAlbums && <h2>More on {albumData?.artists[0].name}</h2>}
             {(artistAlbums && albumData) && 
             <Slider 
             list={artistAlbums} 
             visibility={true} 
-            category="albums" 
+            category="album" 
             isLoggedUser={false}
             slidePercent={0.2} 
             type={"list"}/>}

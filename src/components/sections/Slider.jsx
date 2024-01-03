@@ -63,10 +63,10 @@ export default function Slider(props){
                                         hoverItemId={hoverItemId}/>
                                     </div>
                                 </div>
-                                <Link to={category === "tracks" ? "" : `/${item.type}/${item.id}`}>
+                                <Link to={category === "track" ? "" : `/${item.type}/${item.id}`}>
                                     <h3>{item.name}</h3>
-                                    {(category === "tracks" || category === "albums") && <h5>{item.artist_name}</h5>}
-                                    <h4>{(category === "albums" || category === "albums") && 
+                                    {(category === "track" || category === "album") && <h5>{item.artist_name}</h5>}
+                                    <h4>{(category === "album" || category === "album") && 
                                     <span>{item.releaseDate.slice(0, -6)} • </span>}
                                     {category.slice(0, -1)}</h4>
                                 </Link>

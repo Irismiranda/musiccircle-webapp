@@ -8,7 +8,7 @@ import useStore from "../../store"
 export default function SearchMenu(){
     const [searchResults, setSearchResults] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [activeCategory, setActiveCategory] = useState("tracks")
+    const [activeCategory, setActiveCategory] = useState("track")
     const { spotifyApi } = useStore()
     const searchBarRef = useRef(null)
 
@@ -24,30 +24,30 @@ export default function SearchMenu(){
             const tracks = response.items.map(item => {
                 return item.track
             })
-            const formatedData = formatListData(tracks, "tracks")
+            const formatedData = formatListData(tracks, "track")
             setSearchResults(formatedData)
 
-        } else if(activeCategory === "tracks"){
+        } else if(activeCategory === "track"){
 
             const response = await spotifyApi.searchTracks(searchTerm, options)
 
             if(response){
 
-                const formatedData = formatListData(response.tracks.items, "tracks")
+                const formatedData = formatListData(response.tracks.items, "track")
 
                 setSearchResults(formatedData)
             } else setSearchResults(null)
 
-        } else if(activeCategory === "artists"){
+        } else if(activeCategory === "artist"){
 
             const response = await spotifyApi.searchArtists(searchTerm, options)
-            const formatedData = formatListData(response.artists.items, "artists")
+            const formatedData = formatListData(response.artists.items, "artist")
 
             setSearchResults(formatedData)
 
-        } else if(activeCategory === "albums"){
+        } else if(activeCategory === "album"){
             const response = await spotifyApi.searchAlbums(searchTerm, options)
-            const formatedData = formatListData(response.albums.items, "albums")
+            const formatedData = formatListData(response.albums.items, "album")
 
             setSearchResults(formatedData)
 
@@ -79,22 +79,22 @@ export default function SearchMenu(){
             className="flex space_between">
                 <button 
                 className="bullet_btn"
-                style={{ backgroundColor: activeCategory === "tracks" ? "#F230AA" : ""}}
-                onClick={() => setActiveCategory("tracks")}>
+                style={{ backgroundColor: activeCategory === "track" ? "#F230AA" : ""}}
+                onClick={() => setActiveCategory("track")}>
                     Tracks
                 </button>
 
                 <button 
                 className="bullet_btn"
-                style={{ backgroundColor: activeCategory === "albums" ? "#F230AA" : ""}}
-                onClick={() => setActiveCategory("albums")}>
+                style={{ backgroundColor: activeCategory === "album" ? "#F230AA" : ""}}
+                onClick={() => setActiveCategory("album")}>
                     Albums
                 </button>
 
                 <button 
                 className="bullet_btn"
-                style={{ backgroundColor: activeCategory === "artists" ? "#F230AA" : ""}}
-                onClick={() => setActiveCategory("artists")}>
+                style={{ backgroundColor: activeCategory === "artist" ? "#F230AA" : ""}}
+                onClick={() => setActiveCategory("artist")}>
                     Artists
                 </button>
 
