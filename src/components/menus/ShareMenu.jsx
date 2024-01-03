@@ -36,6 +36,7 @@ export default function ShareMenu(props){
     }
 
     async function getUsersData(idList){
+        console.log("id list is", idList)
         setIsLoading(true)
 
         const userList = []
