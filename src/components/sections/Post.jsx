@@ -22,7 +22,6 @@ export default function Post(props){
 
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
-        
         console.log("method name is", methodName)
         
         const item = await spotifyApi[methodName](data.id)
