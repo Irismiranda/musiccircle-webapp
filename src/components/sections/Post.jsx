@@ -21,7 +21,7 @@ export default function Post(props){
     useClickOutside(dropMenuRef, [dotsIconRef], () => setShowMenuVisibility(false))
 
     async function getitem(){
-        const methodName = `get${data.type.charAt(0).toUpperCase() + data.type}`
+        const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
         
         console.log("method name is", methodName)
         
