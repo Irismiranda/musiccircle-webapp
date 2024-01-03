@@ -66,6 +66,8 @@ export default function CommentBtn(props){
     }
 
     async function likePost(){
+
+        console.log("content is", content)
         await Axios.post(`/api/${user?.id}/${artistId}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser.id
         })
@@ -80,7 +82,7 @@ export default function CommentBtn(props){
         }
 
         setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === item.post_id ? updatedPost : post)
+            return prevPosts.map(post => post.post_id === content.post_id ? updatedPost : post)
           }))
     }
 
