@@ -60,7 +60,7 @@ export default function Post(props){
         }
 
         setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === item.post_id ? updatedPost : post)
+            return prevPosts.map(post => post.post_id === data.post_id ? updatedPost : post)
           }))
     }    
 
