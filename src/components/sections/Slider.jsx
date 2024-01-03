@@ -68,7 +68,7 @@ export default function Slider(props){
                                     {(category === "track" || category === "album") && <h5>{item.artist_name}</h5>}
                                     <h4>{(category === "album" || category === "album") && 
                                     <span>{item.releaseDate.slice(0, -6)} • </span>}
-                                    {category.slice(0, -1)}</h4>
+                                    {category}</h4>
                                 </Link>
                             </div>
                             )
