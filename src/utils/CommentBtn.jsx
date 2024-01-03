@@ -32,7 +32,7 @@ export default function CommentBtn(props){
         const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
         console.log("method name is", methodName)
         const data = await spotifyApi[methodName](id)
-        const formatedItem = formatListData([data], `${type}s`)
+        const formatedItem = formatListData([data], type)
         setPostData(formatedItem[0])
     }
 
