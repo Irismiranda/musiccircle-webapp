@@ -17,7 +17,7 @@ export default function CommentBtn(props){
     const [scrollOnLoad, setScrollOnLoad] = useState(false)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { content, setCommentsNumber, commentsNumber } = props
+    const { content, setCommentsNumber, commentsNumber, setPosts } = props
     const { user, data, item, id, type } = content
     
     const postWindowRef = useRef(null)
