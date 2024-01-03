@@ -159,7 +159,7 @@ export default function Profile(){
                 className={showVisibleTopArtists ? "" : "hidden_items_grid"}>
                     <Slider 
                     list={topArtists.items} 
-                    category="artist" 
+                    category={"artist"}
                     visibility={showVisibleTopArtists} 
                     isLoggedUser={isLoggedUser} 
                     slidePercent={0.2} 
@@ -184,7 +184,7 @@ export default function Profile(){
                     visibility={showVisibleTopTracks} 
                     isLoggedUser={isLoggedUser} 
                     slidePercent={0.2} 
-                    type={"top_list"}/>
+                    type="top_list"/>
                 </div>
            </section>}
            {posts?.length > 0 && 
