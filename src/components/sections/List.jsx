@@ -26,7 +26,7 @@
                                         <div>
                                             <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
                                             {(category === "track" || category === "album") && 
-                                            <h5>{item.artist_name}</h5>}
+                                            <h3>{item.artist_name}</h3>}
                                             <h4>{item.type}</h4>
                                         </div>
                                     </div>
