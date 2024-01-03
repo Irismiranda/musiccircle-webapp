@@ -84,7 +84,7 @@ export default function ShareMenu(props){
             type: content.type,
         })
 
-        setTimeout(() => closeMenu(), 5000)
+        closeMenu()
     }
 
     useEffect(() => {
