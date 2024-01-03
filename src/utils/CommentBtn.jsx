@@ -70,12 +70,12 @@ export default function CommentBtn(props){
             logged_user_id: loggedUser.id
         })
 
-        const updatedLikes = postData.likes?.includes(loggedUser.id) ?
-        post.likes?.filter(like => like !== loggedUser.id) :
-        [...(item.likes || []), loggedUser.id]
+        const updatedLikes = content.likes?.includes(loggedUser.id) ?
+        content.likes?.filter(like => like !== loggedUser.id) :
+        [...(content.likes || []), loggedUser.id]
 
         const updatedPost = {
-            ...item, 
+            ...content, 
             likes: updatedLikes
         }
 
@@ -187,7 +187,7 @@ export default function CommentBtn(props){
                         className="flex space_between ">
                             <div 
                             className="flex">
-                                <h4>{postData?.likes?.length || 0} Likes</h4>
+                                <h4>{content?.likes?.length || 0} Likes</h4>
                                 <h4>{commentsNumber} Comments</h4>
                             </div>
                             <div
@@ -196,8 +196,8 @@ export default function CommentBtn(props){
                                 style={{ 
                                     height: "15px",
                                     marginTop: "4px",
-                                    fill: postData?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: postData?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: content?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: content?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
                             </div>
                         </section>

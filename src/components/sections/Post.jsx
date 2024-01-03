@@ -50,12 +50,12 @@ export default function Post(props){
         await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser.id
         })
-        const updatedLikes = item.likes?.includes(loggedUser.id) ?
-        item.likes?.filter(like => like !== loggedUser.id) :
-        [...(item.likes || []), loggedUser.id]
+        const updatedLikes = data.likes?.includes(loggedUser.id) ?
+        data.likes?.filter(like => like !== loggedUser.id) :
+        [...(data.likes || []), loggedUser.id]
 
         const updatedPost = {
-            ...item, 
+            ...data, 
             likes: updatedLikes
         }
 
@@ -144,15 +144,15 @@ export default function Post(props){
                         
                         <div 
                         className="flex">
-                            <h4>{item?.likes?.length || 0} Likes</h4>
+                            <h4>{data?.likes?.length || 0} Likes</h4>
                             <h4>{commentsNumber} Comments</h4>
                             <div
                             onClick={() => likePost()}>
                                 <SvgHeart
                                 style={{ 
                                     height: "15px",
-                                    fill: item?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: item?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: data?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: data?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
                             </div>
                         </div>
