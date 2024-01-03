@@ -80,17 +80,11 @@ export default function Comments(props) {
             if(call === "loadAllComments"){
                 console.log("updated comments are", updatedComments)
                 setComments(updatedComments)
-            } else if (call === "loadNewComment" 
-            && comments.length > 0 && !comments.some((comment) => comment.post_id === data[0].post_id)){
+            } else if (call === "loadNewComment" && !comments?.some((comment) => comment.post_id === data[0].post_id)){
                 console.log("comment was already there")
                 setComments(prevComments => [...prevComments, updatedComments[0]])
             } else{
-                console.log("comment wasn't already there")
-                setComments((prevComments) =>
-                prevComments.map((comment) => {
-                    return comment.post_id === data.post_id ? updatedComments[0] : comment
-                })
-                )
+                return
             }
             
             if(scrollOnLoad) {
