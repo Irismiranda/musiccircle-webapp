@@ -50,8 +50,19 @@ export default function Post(props){
         await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser
         })
-        
-    }
+        const updatedLikes = item.likes?.includes(loggedUser.id) ?
+        item.likes?.filter(like => like !== loggedUser.id) :
+        [...(item.likes || []), loggedUser.id]
+
+        const updatedPost = {
+            ...item, 
+            likes: updatedLikes
+        }
+
+        setPosts((prevPosts => {
+            return prevPosts.map(post => post.post_id === item.post_id ? updatedPost : post)
+          }))
+    }    
 
     async function deletePost(){
         try {
