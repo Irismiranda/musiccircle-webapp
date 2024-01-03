@@ -112,7 +112,8 @@ export default function Comments(props) {
         if(currentComment.likes?.includes(loggedUser.id)){
             currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
         } else {
-            currentComment.likes.push(loggedUser.id)
+            currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
+            currentComment.likes = [loggedUser.id]
         }
         setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
