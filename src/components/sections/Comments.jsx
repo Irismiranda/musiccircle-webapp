@@ -72,23 +72,24 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
+        console.log("received data is", data)
         if(!data || data?.length === 0) return 
 
         const updatedComments = await getUser(data)
             
-            if(call === "loadAllComments"){
-                console.log("updated comments are", updatedComments)
-                setComments(updatedComments)
-            } else if (call === "loadNewComment" && !comments?.some((comment) => comment.post_id === data[0].post_id)){
-                setComments(prevComments => [...prevComments, updatedComments[0]])
-            } else{
-                return
-            }
-            
-            if(scrollOnLoad) {
-                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
-                setScrollOnLoad(false)
-            }
+        if(call === "loadAllComments"){
+            console.log("updated comments are", updatedComments)
+            setComments(updatedComments)
+        } else if (call === "loadNewComment" && !comments?.some((comment) => comment.post_id === data[0].post_id)){
+            setComments(prevComments => [...prevComments, updatedComments[0]])
+        } else{
+            return
+        }
+        
+        if(scrollOnLoad) {
+            commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+            setScrollOnLoad(false)
+        }
     }
 
     async function deleteComment(post_id, comment_id){       
@@ -156,7 +157,6 @@ export default function Comments(props) {
             setCommentsNumber(comments.length)
             setIsLoading(false)
         }
-        console.log("comments are", comments)
     }, [comments])
 
     return (
