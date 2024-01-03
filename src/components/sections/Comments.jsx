@@ -7,7 +7,7 @@ import { SvgHeart } from "../../assets"
 export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     const { 
         postId, 
@@ -124,6 +124,7 @@ export default function Comments(props) {
     useEffect(() => {
         socket.on('loadAllComments', (comment) => {
             if(!comment || comment?.length < 0){
+                setIsLoading(false)
                 return 
             } else {
                 setIsLoading(true)
