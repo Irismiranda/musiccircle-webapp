@@ -507,6 +507,10 @@ a{
   margin: 10px 8px;
 }
 
+.side_menu_wrapper .user_handle{
+  width: 320px
+}
+
 .side_menu{
   display: flex;
   position: fixed;
