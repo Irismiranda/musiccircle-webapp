@@ -50,9 +50,7 @@ export default function Comments(props) {
 
     async function getUser(data){
         console.log("data is", data)
-        if(!data || data?.length < 0){
-            return 
-        } else try{
+        try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
                 const updatedComment = {...comment}
@@ -74,6 +72,10 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
+        if(!data || data?.length < 0){
+            return 
+        }
+        
         const updatedComments = await getUser(data)
         console.log("previous comments are:", comments)
             
