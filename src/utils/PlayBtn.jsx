@@ -14,7 +14,7 @@ export default function PlayBtn(props){
             type: "track" })
         } else{
           await spotifyApi.play({ context_uri: uri, device_id: deviceId })
-          const methodName = `get${type.charAt(0).toUpperCase() + type}`
+          const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
           const response = await spotifyApi[methodName](id)
       
           let retries = 0
