@@ -170,6 +170,7 @@ export default function Post(props){
                         }}
                     commentsNumber={commentsNumber}
                     setCommentsNumber={setCommentsNumber}
+                    setPosts={setPosts}
                     /> 
                     <ShareBtn 
                     content={data}/>
