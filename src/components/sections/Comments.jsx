@@ -150,8 +150,7 @@ export default function Comments(props) {
                 console.log("no comment")
                 setIsLoading(false)
             } else {
-                onsole.log("formatting comment")
-                setIsLoading(true)
+                console.log("formatting comment")
                 handleData(comment, "loadAllComments")
             }
         })
