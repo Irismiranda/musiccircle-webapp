@@ -73,7 +73,7 @@ export default function Comments(props) {
 
     async function handleData(data, call){
         if(!data || data?.length === 0) return 
-        
+
         const updatedComments = await getUser(data)
             
             if(call === "loadAllComments"){
@@ -123,10 +123,12 @@ export default function Comments(props) {
 
     useEffect(() => {
         socket.on('loadAllComments', (comment) => {
-            setIsLoading(true)
             if(!comment || comment?.length < 0){
                 return 
-            } else handleData(comment, "loadAllComments")
+            } else {
+                setIsLoading(true)
+                handleData(comment, "loadAllComments")
+            }
         })
 
         return () => {
