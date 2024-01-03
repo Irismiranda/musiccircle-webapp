@@ -47,7 +47,7 @@ export default function Post(props){
     }
 
     async function likePost(){
-        await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_like_post/${data.post_id}`, {
+        await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_like_post/${item.post_id}`, {
             logged_user_id: loggedUser
         })
         const updatedLikes = item.likes?.includes(loggedUser.id) ?
