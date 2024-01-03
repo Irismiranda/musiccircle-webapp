@@ -49,7 +49,7 @@ export default function Comments(props) {
         setReplyTo(comment_id)
     }
 
-    async function handleData(data, call){
+    async function getUser(data, call){
         console.log("data is", data)
         if(!data || data?.length < 0) return 
 
@@ -68,7 +68,17 @@ export default function Comments(props) {
                 }
             }))
 
-            console.log("previous comments are:", comments)
+            return updatedComments
+         } catch(err){
+            console.log(err)
+         }
+    }
+
+    function handleData(data, call){
+
+        const updatedComments = getUser(data, call)
+
+        console.log("previous comments are:", comments)
             
             if(call === "loadAllComments"){
                 console.log("updated comments are", updatedComments)
@@ -86,9 +96,6 @@ export default function Comments(props) {
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
                 setScrollOnLoad(false)
             }
-         } catch(err){
-            console.log(err)
-         }
     }
 
     async function deleteComment(post_id, comment_id){       
