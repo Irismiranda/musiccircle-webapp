@@ -189,7 +189,7 @@ export default function Comments(props) {
                                 <p>{text}</p>
                             </div>
                             <div
-                            onClick={() => likeComment(user?.name, comment_id)}>
+                            onClick={() => likeComment(postId, comment_id)}>
                                 <SvgHeart 
                                 style={{ 
                                     height: "15px",
@@ -236,7 +236,7 @@ export default function Comments(props) {
                                                 <p>{text}</p>
                                             </div>
                                             <div
-                                            onClick={() => likeReply(reply.user?.name, comment_id)}>
+                                            onClick={() => likeReply(postId, comment_id)}>
                                                 <SvgHeart 
                                                 style={{ 
                                                     height: "15px",
