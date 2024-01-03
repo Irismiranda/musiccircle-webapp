@@ -147,7 +147,6 @@ export default function Comments(props) {
         socket.on('loadAllComments', (comment) => {
             console.log("comment is", comment)
             if(!comment || comment?.length < 0){
-                setComments({})
                 setIsLoading(false)
             } else {
                 setIsLoading(true)
