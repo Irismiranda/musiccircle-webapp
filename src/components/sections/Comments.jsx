@@ -6,7 +6,7 @@ import { SvgHeart } from "../../assets"
 import { setProperties } from "../../utils"
 
 export default function Comments(props) {
-    const [comments, setComments] = useState({})
+    const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
 
