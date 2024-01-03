@@ -72,11 +72,13 @@ export default function Comments(props) {
 
     async function handleData(data, call){
         const updatedComments = await getUser(data)
+        console.log("loaded comments are", updatedComments)
             
         if(call === "loadAllComments"){
-            console.log("updated comments are", updatedComments)
+            console.log("loading all comments")
             setComments(updatedComments)
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
+            console.log("loading new comment")
             setComments(prevComments => [...prevComments, updatedComments[0]])
         } else{
             return
