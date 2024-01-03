@@ -21,8 +21,10 @@ export default function Post(props){
     useClickOutside(dropMenuRef, [dotsIconRef], () => setShowMenuVisibility(false))
 
     async function getitem(){
-        console.log("method name is", methodName)
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type}`
+        
+        console.log("method name is", methodName)
+        
         const item = await spotifyApi[methodName](data.id)
         const formatedItem = formatListData([item], data.type)
         setItem(formatedItem[0])
