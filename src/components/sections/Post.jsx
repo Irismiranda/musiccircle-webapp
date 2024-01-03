@@ -23,7 +23,7 @@ export default function Post(props){
     async function getitem(){
         const methodName = `get${data.type.charAt(0).toUpperCase() + data.type}`
         const item = await spotifyApi[methodName](data.id)
-        const formatedItem = formatListData([item], `${data.type}s`)
+        const formatedItem = formatListData([item], data.type)
         setItem(formatedItem[0])
     }
 
