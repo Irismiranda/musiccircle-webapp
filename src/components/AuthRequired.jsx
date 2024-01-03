@@ -90,7 +90,7 @@
 
       const dbTopListData = formatListData(response.items, category.slice(4).slice(0, -1))
 
-      const firestoreResponse = await Axios.post(`/api/user/${category}`, {
+      const firestoreResponse = await Axios.post(`/api/user/data/${category}`, {
         id: loggedUser.id,
         items: dbTopListData,
       })
@@ -235,7 +235,7 @@
           const newUniqueItems = dbTopListData.filter(item => !existingItemIds.has(item.id))
           const updatedList = { ...list.items, items: list.items.concat(newUniqueItems)}
         
-        const firebaseResponse = await Axios.post(`/api/user/${category}`, {
+        const firebaseResponse = await Axios.post(`/api/user/data/${category}`, {
           id: loggedUser.id,
           items: updatedList.items,
         })

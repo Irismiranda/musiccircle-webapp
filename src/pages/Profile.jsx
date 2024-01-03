@@ -27,8 +27,8 @@ export default function Profile(){
     async function getUser(id){
         const response = await Axios.get(`/api/user/${id}`)
         setUserProfileData(response.data)
-        const topTracksList = await Axios.get(`/api/user/top_tracks/${id}`)
-        const topArtistsList = await Axios.get(`/api/user/top_artists/${id}`)
+        const topTracksList = await Axios.get(`/api/user/data/top_tracks/${id}`)
+        const topArtistsList = await Axios.get(`/api/user/data/top_artists/${id}`)
         setTopTracks(topTracksList.data)
         setTopArtists(topArtistsList.data)
     }
@@ -54,7 +54,7 @@ export default function Profile(){
     }
     
     async function hideSection(category){
-        const response = await Axios.post(`/api/user/${category}/hide_category`, {
+        const response = await Axios.post(`/api/user/data/${category}/hide_category`, {
             userId: loggedUser.id
         })
         category === "top_artists" && setUserTopArtists(response.data)
