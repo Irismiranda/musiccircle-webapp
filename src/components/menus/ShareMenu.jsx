@@ -47,9 +47,7 @@ export default function ShareMenu(props){
         )
 
         const formatedData = formatListData(userList, "user")
-
-        console.log("formated data is", formatedData)
-
+        
         setUserDataList(formatedData)
         setSearchResult(formatedData)
         setIsLoading(false)

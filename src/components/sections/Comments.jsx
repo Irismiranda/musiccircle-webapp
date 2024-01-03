@@ -49,7 +49,6 @@ export default function Comments(props) {
     }
 
     async function getUser(data){
-        console.log("data is", data)
         try{
             const updatedComments = await Promise.all(
                 data.map(async (comment) => {
@@ -72,7 +71,6 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
-        console.log("received data is", data)
         if(!data || data?.length === 0) return 
 
         const updatedComments = await getUser(data)

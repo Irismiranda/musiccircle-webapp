@@ -59,9 +59,6 @@
           return
         }
         userData.user_handle = `${normalizeText(userData.display_name).replace(/\s/g,'')}#${userData.id}`
-        
-        console.log("user data is", userData)
-
         const response = await Axios.post(`/api/user/${userData.id}`, {
           userData: userData
         })
