@@ -66,6 +66,7 @@ export default function Post(props){
         if(data.id){
             getitem()
             getUser(data.user_id)
+            console.log("data is", data)
         }
     }, [data])
 
