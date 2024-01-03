@@ -35,7 +35,7 @@ export default function SimplifiedList(props){
                             </div>
                             
                             <h3>{item.name}</h3>
-                            {category === "playlist" && <h5>{item.artistName}</h5>}
+                            {category === "playlist" && <h5>{item.artist_name}</h5>}
                             <h4>{item.type}</h4>
                         </div>
                         )

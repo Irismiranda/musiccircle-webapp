@@ -1,4 +1,4 @@
-    import React, { useEffect, useState } from "react"
+    import React, { useState } from "react"
     import { Link } from "react-router-dom"
     import { PlayBtn} from "../../utils"
 
@@ -26,7 +26,7 @@
                                         <div>
                                             <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
                                             {(category === "tracks" || category === "albums") && 
-                                            <h5>{item.artistName}</h5>}
+                                            <h5>{item.artist_name}</h5>}
                                             <h4>{item.type}</h4>
                                         </div>
                                     </div>

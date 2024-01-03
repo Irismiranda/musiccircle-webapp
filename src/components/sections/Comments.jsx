@@ -3,7 +3,6 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData } from "../../utils"
 import { SvgHeart } from "../../assets"
-import { setProperties } from "../../utils"
 
 export default function Comments(props) {
     const [comments, setComments] = useState([])
