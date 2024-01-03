@@ -60,7 +60,7 @@ export default function ShareMenu(props){
         let searchResults
         
         if (searchTerm === "") {
-            searchResults = searchResults.length > 0 ? userDataList?.slice(15) : []
+            searchResults = searchResults?.length > 0 ? userDataList?.slice(15) : []
         } else {
             searchResults = userDataList?.filter((user) =>
             normalizeText(user.userHandle).toLowerCase().includes(normalizedSearchTerm) ||
