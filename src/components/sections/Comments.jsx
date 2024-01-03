@@ -72,8 +72,9 @@ export default function Comments(props) {
     }
 
     async function handleData(data, call){
+        if(!data || data?.length === 0) return 
+        
         const updatedComments = await getUser(data)
-        console.log("previous comments are:", comments)
             
             if(call === "loadAllComments"){
                 console.log("updated comments are", updatedComments)
