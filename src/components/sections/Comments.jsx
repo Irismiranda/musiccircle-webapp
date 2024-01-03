@@ -92,6 +92,7 @@ export default function Comments(props) {
 
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
+        console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id)))
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
     }
 
