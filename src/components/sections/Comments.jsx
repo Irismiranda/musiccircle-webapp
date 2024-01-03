@@ -152,7 +152,7 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        if(comments){
+        if(comments && setCommentsNumber){
             setCommentsNumber(comments.length)
             setIsLoading(false)
         }

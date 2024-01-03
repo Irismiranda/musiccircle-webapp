@@ -7,9 +7,9 @@ import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "
 
 export default function Post(props){
     const { spotifyApi, loggedUser } = useStore()
-    const [ item, setItem ] = useState(null)
-    const [ hoverItemId, setHoverItemId ] = useState(null)
-    const [ user, setUser ] = useState(null)
+    const [item, setItem] = useState(null)
+    const [hoverItemId, setHoverItemId] = useState(null)
+    const [user, setUser] = useState(null)
     const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
     
