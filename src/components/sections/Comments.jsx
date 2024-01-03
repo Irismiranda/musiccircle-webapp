@@ -106,7 +106,9 @@ export default function Comments(props) {
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_comment/${comment_id}`, {
             logged_user_id: loggedUser.id
         })
-        const currentComment = comments.filter(comment => comment.comment_id === comment_id)
+
+        const currentComment = comments.find(comment => comment.comment_id === comment_id)
+
         if(currentComment.likes?.includes(loggedUser.id)){
             currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
         } else {
@@ -119,6 +121,19 @@ export default function Comments(props) {
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
             logged_user_id: loggedUser.id
         })
+        
+        const currentComment = comments.find(comment => comment.comment_id === comment_id)
+        const currentReply = currentComment.find(reply => reply.comment_id === reply_id)
+
+        if(currentReply.likes?.includes(loggedUser.id)){
+            currentReply.likes = currentReply.likes.filter(like => like !== loggedUser.id)
+        } else {
+            currentReply.likes.push(loggedUser.id)
+        }
+
+        currentComment.replies = currentComment.replies
+            .map(reply => reply.reply_id === reply_id ? currentReply : reply)
+        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
     useEffect(() => {
@@ -242,7 +257,7 @@ export default function Comments(props) {
                                                 <p>{text}</p>
                                             </div>
                                             <div
-                                            onClick={() => likeReply(postId, comment_id)}>
+                                            onClick={() => likeReply(postId, reply.reply_id)}>
                                                 <SvgHeart 
                                                 style={{ 
                                                     height: "15px",
