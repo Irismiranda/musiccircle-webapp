@@ -97,7 +97,7 @@ export default function PlayerManager() {
     
             while (retries < maxRetries) {
                 try {
-                    console.log("recommendations are", recommendations)
+                    console.log("recommendations are", recommendations, "index is", queueIndex)
                     if(recommendations[queueIndex].id === currentTrack.id){
                         setQueueIndex(prevIndex => prevIndex + 1)
                     }
