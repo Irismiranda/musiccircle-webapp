@@ -16,6 +16,7 @@ export default function Comments(props) {
         posterId, 
         artistId, 
         setReplyTo, 
+        replyTo,
         setCommentsNumber, 
         descriptionMenuRef, 
         sendPostRef,
@@ -187,7 +188,7 @@ export default function Comments(props) {
 
     useEffect(() => {
         sendPostRef?.current && setSendPostHeight(sendPostRef?.current?.clientHeight)
-    }, [sendPostRef])
+    }, [replyTo])
 
     return (
         !isLoading ? (

@@ -211,6 +211,7 @@ export default function CommentBtn(props){
                     sendPostRef={sendPostRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
+                    replyTo={replyTo}
                     setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
                     <section 
                     ref={sendPostRef}
