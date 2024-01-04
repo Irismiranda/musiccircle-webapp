@@ -359,7 +359,7 @@ export default function PlayerManager() {
         } else if(currentTrack && !recommendationSeed.ids && !recommendations){
             getRecommendations([currentTrack.id], "track")
         }
-    }, [currentQueue, currentTrack, recommendationSeed])
+    }, [currentQueue, currentTrack, recommendationSeed, recommendations])
 
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef)
