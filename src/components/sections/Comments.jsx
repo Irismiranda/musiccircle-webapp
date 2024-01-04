@@ -50,38 +50,39 @@ export default function Comments(props) {
     }
 
     async function getUser(data){
-        try{
-            const promises = await Promise.all(
-                data.map(async (comment) => {
-                const updatedComment = {...comment}
-
-                const user = await Axios.get(`api/user/${comment.user_id}`)
-                
+        try {
+            const promises = data.map(async (comment) => {
+                const updatedComment = { ...comment }
+    
+                try {
+                    const user = await Axios.get(`api/user/${comment.user_id}`)
                     console.log("user is", user.data)
-                    
+    
                     const formatedUser = formatListData([user.data], user.data.type)
-
+    
                     console.log("formated user is", formatedUser)
-
+    
                     updatedComment.user = formatedUser[0]
                     console.log("formated comments is", updatedComment)
-
-                    return updatedComment   
-            }))
-            
+                    return updatedComment
+                } catch (error) {
+                    console.error("Error fetching user data:", error)
+                    return null
+                }
+            });
+    
             const settledResults = await Promise.allSettled(promises)
-        console.log("All promises settled:", settledResults)
-
-        const updatedComments = settledResults
-            .filter((result) => result.status === "fulfilled")
-            .map((result) => result.value);
-
-        console.log("formated comments are", updatedComments)
-        return updatedComments
-
-         } catch(err){
+            console.log("All promises settled:", settledResults)
+    
+            const updatedComments = settledResults
+                .filter((result) => result.status === "fulfilled" && result.value !== null)
+                .map((result) => result.value)
+    
+            console.log("formated comments are", updatedComments)
+            return updatedComments
+        } catch (err) {
             console.log(err)
-         }
+        }
     }
 
     async function handleData(data, call){
