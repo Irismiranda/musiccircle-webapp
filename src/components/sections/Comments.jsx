@@ -97,12 +97,14 @@ export default function Comments(props) {
             
             console.log("comments were set")
 
-            commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
-            setScrollOnLoad(false)
-
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
             console.log("loading new comment")
             setComments(prevComments => [...prevComments, updatedComments[0]])
+
+            if(scrollOnLoad){
+                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+                setScrollOnLoad(false)
+            }
         }
     }
 
