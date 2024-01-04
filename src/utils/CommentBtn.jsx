@@ -15,14 +15,11 @@ export default function CommentBtn(props){
     const [artistId, setArtistId] = useState(null)
     const [replyTo, setReplyTo] = useState(null)
     const [scrollOnLoad, setScrollOnLoad] = useState(false)
+    const [localCommentsNumber, localSetCommentsNumber] = useState(null)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { content, setCommentsNumber, commentsNumber, setPosts } = props
     const { user, data, item, id, type } = content
-    
-    if(!props.setCommentsNumber){
-        const [commentsNumber, setCommentsNumber] = useState(null)
-    }
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -194,7 +191,7 @@ export default function CommentBtn(props){
                             <div 
                             className="flex">
                                 <h4>{data?.likes?.length || 0} Likes</h4>
-                                <h4>{commentsNumber} Comments</h4>
+                                <h4>{commentsNumber || localCommentsNumber || 0} Comments</h4>
                             </div>
                             <div
                             onClick={() => likePost()}>
@@ -215,7 +212,7 @@ export default function CommentBtn(props){
                     textAreaRef={textAreaRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
-                    setCommentsNumber={setCommentsNumber}
+                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
                     scrollOnLoad={scrollOnLoad}
                     setScrollOnLoad={setScrollOnLoad}/>
                     <section 
