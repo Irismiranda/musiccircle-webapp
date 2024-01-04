@@ -97,9 +97,6 @@ export default function PlayerManager() {
     
             while (retries < maxRetries) {
                 try {
-                    const currentQueue = await spotifyApi.getQueue()
-                    console.log("current queue is", currentQueue)
-
                     await spotifyApi.queue(recommendations[queueIndex])
                     if (queueIndex < recommendations.length - 1) {
                         setQueueIndex(prevIndex => prevIndex + 1)
