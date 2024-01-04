@@ -66,9 +66,7 @@ export default function Comments(props) {
     
                     return updatedComment
                 } catch (error) {
-                    console.error("Error fetching user:", error)
-                    // You can handle the error as needed
-                    // For example, return a default or partially populated comment
+                    console.log("Error fetching user:", error)
                     return { ...comment, error: "Failed to fetch user" }
                 }
             })
