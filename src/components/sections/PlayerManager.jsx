@@ -91,16 +91,12 @@ export default function PlayerManager() {
     }
 
     async function setQueue() {
-        console.log("recommendations are", recommendations, "index is", queueIndex)
         if (recommendations[queueIndex]) {    
             let retries = 0
             const maxRetries = 5
     
             while (retries < maxRetries) {
                 try {
-                    if(recommendations[queueIndex].id === currentTrack.id){
-                        setQueueIndex(prevIndex => prevIndex + 1)
-                    }
                     await spotifyApi.queue(recommendations[queueIndex])
                     if (queueIndex < recommendations.length - 1) {
                         setQueueIndex(prevIndex => prevIndex + 1)
@@ -348,7 +344,11 @@ export default function PlayerManager() {
 
     useEffect(() => {
         console.log("current queue is", currentQueue, "recommendationSeeds are", recommendationSeed?.ids, "recommendations are", recommendations, "current track is", currentTrack?.id)
-        if(currentQueue?.length < 10 && recommendations){
+        if(recommendations){
+            recommendations[queueIndex]?.id === currentTrack?.id && setQueueIndex(prevIndex => prevIndex + 1)
+        }
+
+        if(currentQueue?.length < 2 && recommendations){
             setQueue()  
         } else if(recommendationSeed.ids && !recommendations){
             getRecommendations(recommendationSeed.ids, recommendationSeed.type)
