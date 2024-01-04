@@ -253,10 +253,6 @@ export default function PlayerManager() {
                     return
                 }
 
-                if(state){
-                    setCurrentQueue(state.track_window.next_tracks)
-                }
-                    
                 const interval = setInterval(() => {
                     player.getCurrentState().then((state) => {
                         if (state && state.position && state.duration && !state.paused) {
@@ -359,7 +355,7 @@ export default function PlayerManager() {
         } else if(currentTrack && !recommendationSeed.ids && !recommendations){
             getRecommendations([currentTrack.id], "track")
         }
-    }, [currentQueue, currentTrack, recommendationSeed, recommendations])
+    }, [currentQueue, currentTrack, recommendationSeed, recommendations, queueIndex])
 
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef)
