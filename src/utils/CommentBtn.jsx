@@ -212,6 +212,7 @@ export default function CommentBtn(props){
                     setReplyTo={setReplyTo}
                     setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
                     <section 
+                    ref={sendPostRef}
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
                         {replyTo && 
@@ -225,20 +226,22 @@ export default function CommentBtn(props){
                         <span 
                         className="underline_text"
                         onClick={() => setReplyTo(null)}>Cancel</span></h4>}
-                        <textarea
-                        ref={textAreaRef}
-                        placeholder={`Say something cool about this ${postData?.type}`}/>
-                        <div
-                        ref={sendPostRef}
-                        className="flex absolute"
-                        style={{ top: "33px", right: "15px", gap: "5px" }}>
-                            <EmojiBar 
-                            textAreaRef={textAreaRef}
-                            sendPostRef={sendPostRef}/>
-                            <div 
-                            onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
-                                <SvgSendBtn 
-                                className="send_btn"/>
+                        <div 
+                        className="relative">
+                            <textarea
+                            ref={textAreaRef}
+                            placeholder={`Say something cool about this ${postData?.type}`}/>
+                            <div
+                            className="flex absolute"
+                            style={{ top: "15px", right: "15px", gap: "5px" }}>
+                                <EmojiBar 
+                                textAreaRef={textAreaRef}
+                                sendPostRef={sendPostRef}/>
+                                <div 
+                                onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
+                                    <SvgSendBtn 
+                                    className="send_btn"/>
+                                </div>
                             </div>
                         </div>
                     </section>
