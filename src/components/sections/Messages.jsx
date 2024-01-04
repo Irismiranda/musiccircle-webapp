@@ -5,6 +5,7 @@ import { convertTimestampToDate } from "../../utils";
 
 export default function Messages(props) {
   const storedMessages = useRef(null)
+  const messagesRef = useRef(null)
   const prevChatId = useRef(null)
   const [messages, setMessages] = useState({})
   const [ isLoading, setIsLoading ] = useState(true) 
@@ -47,6 +48,9 @@ export default function Messages(props) {
       if(eventName === "loadAllMessages"){
         handleLoadAllMessages(args)
       } else if(eventName === "loadNewMessage"){
+        if(data[0].userId === loggedUser.id){
+          messagesRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+      }
         handleLoadNewMessage(args)
       }
     })
@@ -79,7 +83,10 @@ export default function Messages(props) {
           <br/><br/>
         </>
       ) : messages.length > 0 ? (
-      <div className="chat_room flex">
+      <div 
+      ref={messagesRef}
+      className="chat_room flex"
+      >
         {messages
           .sort((a, b) => (convertTimestampToDate(b.timeStamp) > convertTimestampToDate(a.timeStamp) ? -1 : 1))
           .map((message) => {
