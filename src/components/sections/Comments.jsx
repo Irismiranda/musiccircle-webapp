@@ -59,29 +59,34 @@ export default function Comments(props) {
                     console.log("user is", user.data)
     
                     const formatedUser = formatListData([user.data], user.data.type)
-    
                     console.log("formated user is", formatedUser)
     
                     updatedComment.user = formatedUser[0]
-                    console.log("formated comments is", updatedComment)
+                    console.log("formated comment is", updatedComment)
+    
                     return updatedComment
                 } catch (error) {
-                    console.error("Error fetching user data:", error)
-                    return null
+                    console.error("Error fetching user:", error)
+                    // You can handle the error as needed
+                    // For example, return a default or partially populated comment
+                    return { ...comment, error: "Failed to fetch user" }
                 }
-            });
+            })
     
             const settledResults = await Promise.allSettled(promises)
+    
             console.log("All promises settled:", settledResults)
     
             const updatedComments = settledResults
-                .filter((result) => result.status === "fulfilled" && result.value !== null)
+                .filter((result) => result.status === "fulfilled")
                 .map((result) => result.value)
     
             console.log("formated comments are", updatedComments)
             return updatedComments
         } catch (err) {
             console.log(err)
+            // Handle any unexpected errors here
+            return []
         }
     }
 
