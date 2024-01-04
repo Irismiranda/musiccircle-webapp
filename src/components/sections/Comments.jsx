@@ -83,7 +83,6 @@ export default function Comments(props) {
             return updatedComments
         } catch (err) {
             console.log(err)
-            // Handle any unexpected errors here
             return []
         }
     }
@@ -94,18 +93,16 @@ export default function Comments(props) {
             
         if(call === "loadAllComments"){
             console.log("loading all comments")
-            setIsLoading(true)
             setComments(updatedComments)
+            
+            console.log("comments were set")
+
+            commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+            setScrollOnLoad(false)
+
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
             console.log("loading new comment")
             setComments(prevComments => [...prevComments, updatedComments[0]])
-        } else{
-            return
-        }
-        
-        if(scrollOnLoad) {
-            commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
-            setScrollOnLoad(false)
         }
     }
 
@@ -169,7 +166,7 @@ export default function Comments(props) {
         socket.on('loadAllComments', (comment) => {
             console.log("comment is", comment)
             if(!comment || comment?.length === 0){
-                console.log("no comment")
+                console.log("no new comments to load")
                 setIsLoading(false)
             } else {
                 console.log("formatting comment")
