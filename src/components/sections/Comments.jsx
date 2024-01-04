@@ -8,6 +8,7 @@ export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [listening, setIsListening] = useState(false)
 
     const { 
         postId, 
@@ -55,18 +56,17 @@ export default function Comments(props) {
                 const updatedComment = {...comment}
 
                 const user = await Axios.get(`api/user/${comment.user_id}`)
-                if(user?.data){
-                    console.log("user is", user.data)
-                    
-                    const formatedUser = formatListData([user.data], user.data.type)
+                console.log("user is", user.data)
+                
+                const formatedUser = formatListData([user.data], user.data.type)
 
-                    console.log("formated user is", formatedUser)
+                console.log("formated user is", formatedUser)
 
-                    updatedComment.user = formatedUser[0]
-                    console.log("formated comments is", updatedComment)
+                updatedComment.user = formatedUser[0]
+                console.log("formated comments is", updatedComment)
 
-                    return updatedComment   
-                }
+                return updatedComment   
+                
             }))
             
             console.log("formated comments are", updatedComments)
@@ -142,8 +142,9 @@ export default function Comments(props) {
     }
 
     useEffect(() => {
-        if(postId){
+        if(postId && !listening){
             socket.emit('listenToComments', { post_id: postId, poster_id: posterId, artist_id: artistId })
+            setIsListening(true)
         }
 
         return () => {
