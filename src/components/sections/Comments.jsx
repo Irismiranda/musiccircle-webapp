@@ -17,6 +17,7 @@ export default function Comments(props) {
         setReplyTo, 
         setCommentsNumber, 
         descriptionMenuRef, 
+        textAreaRef,
     } = props
 
     const { 
@@ -88,6 +89,11 @@ export default function Comments(props) {
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
         console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id))
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
+    }
+
+    function replyToComment(handle, comment_id){
+        textAreaRef.current.value = `@${handle}`
+        setReplyTo({comment_id: comment_id, user_handle: handle})
     }
 
     async function deleteReply(post_id, comment_id, reply_id){

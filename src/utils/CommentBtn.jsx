@@ -43,7 +43,7 @@ export default function CommentBtn(props){
 
     async function sendComment(id){
         const endpointPath = replyTo ? 
-        `/api/${id}/reply_to/${replyTo}` :
+        `/api/${id}/reply_to/${replyTo.comment_id}` :
         `/api/${id}/add_comment`
 
         const commentData = {
@@ -213,6 +213,7 @@ export default function CommentBtn(props){
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
+                        {replyTo && <h4>{`Replying to ${replyTo.user_handle}`} <span onClick={() => setReplyTo(null)}>Cancel</span></h4>}
                         <textarea 
                         ref={textAreaRef}
                         placeholder={`Say something cool about this ${postData?.type}`}/>
