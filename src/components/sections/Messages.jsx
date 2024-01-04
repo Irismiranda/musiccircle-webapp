@@ -53,7 +53,7 @@ export default function Messages(props) {
 
       console.log("data[0].userId is", data[0].userId , "loggedUser.id is", loggedUser.id)
 
-      if(data[0].userId === ){
+      if(data[0].userId === loggedUser.id){
         messagesRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
     }
     })
