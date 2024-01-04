@@ -102,7 +102,8 @@ export default function Comments(props) {
             setComments(prevComments => [...prevComments, updatedComments[0]])
 
             if(scrollOnLoad){
-                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+                const lastComment = commentsRef.current.lastChild
+                lastComment && lastComment.scrollIntoView({ behavior: 'smooth', block: 'end' })
                 setScrollOnLoad(false)
             }
         }
