@@ -187,7 +187,7 @@ export default function Comments(props) {
     }, [comments])
 
     useEffect(() => {
-        sendPostRef?.current && setSendPostHeight(sendPostRef?.current?.clientHeight)
+        sendPostRef?.current && setTimeout(setSendPostHeight(sendPostRef?.current?.clientHeight), 3000)
     }, [replyTo])
 
     return (
