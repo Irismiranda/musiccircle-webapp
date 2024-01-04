@@ -196,6 +196,7 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
+        console.log("comments are", comments)
         if(comments && setCommentsNumber){
             setCommentsNumber(comments.length)
             setIsLoading(false)

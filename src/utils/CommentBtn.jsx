@@ -20,6 +20,10 @@ export default function CommentBtn(props){
     const { content, setCommentsNumber, commentsNumber, setPosts } = props
     const { user, data, item, id, type } = content
     
+    if(!props.setCommentsNumber){
+        const [commentsNumber, setCommentsNumber] = useState(null)
+    }
+
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
     const textAreaRef = useRef(null)
