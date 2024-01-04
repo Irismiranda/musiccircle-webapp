@@ -267,8 +267,7 @@ export default function PlayerManager() {
                 }, 50)
 
                 console.log("queue is", state.track_window.next_tracks)
-                
-                setQueue(state.track_window.next_tracks)
+                setCurrentQueue(state.track_window.next_tracks)
                 setTrack(state.track_window.current_track)
 
                 try{
