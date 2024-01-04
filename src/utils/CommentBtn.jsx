@@ -54,7 +54,7 @@ export default function CommentBtn(props){
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
             artist_id: artistId,
-            post_id: data.post_id ? data.post_id : postData.id
+            post_id: data?.post_id ? data.post_id : postData.id
         }
 
         replyTo && commentData.reply_to === replyTo
