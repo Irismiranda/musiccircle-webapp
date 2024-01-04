@@ -81,10 +81,8 @@ export default function Comments(props) {
             console.log("loading new comment")
             setComments(prevComments => [...prevComments, updatedComments[0]])
 
-            console.log("data[0].user_id is", data[0].user_id, "loggedUser.id is", loggedUser.id)
-
             if(data[0].user_id === loggedUser.id){
-                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+                commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
             }
         }
     }
