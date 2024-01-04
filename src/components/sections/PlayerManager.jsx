@@ -259,8 +259,11 @@ export default function PlayerManager() {
                         }
                     })
                 }, 50)
+
+                if(currentTrack?.id !== state.track_window.current_track.id){
+                    setPlayerState({ currentTrack: state.track_window.current_track })
+                }
                     
-                setPlayerState({ currentTrack: state.track_window.current_track })
                     
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
