@@ -352,7 +352,7 @@ export default function PlayerManager() {
 
     useEffect(() => {
         console.log("current queue is", currentQueue, "recommendationSeeds are", recommendationSeed?.ids, "recommendations are", recommendations, "current track is", currentTrack?.id)
-        if(recommendationSeed.ids && currentQueue?.length < 10 && recommendations){
+        if(currentQueue?.length < 10 && recommendations){
             setQueue()  
         } else if(recommendationSeed.ids && !recommendations){
             getRecommendations(recommendationSeed.ids, recommendationSeed.type)
