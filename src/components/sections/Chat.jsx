@@ -98,7 +98,11 @@ export default function Chat(){
                 type={"artist"} 
                 key={chatState.chatId}/>
                 <div className="flex relative">
-                    <textarea id="chatInput" ref={messageTextArea} placeholder={`Say something nice to other ${artistName} fans...`} onKeyDown={(e) => {
+                    <textarea 
+                    id="chatInput" 
+                    ref={messageTextArea} 
+                    placeholder={`Say something nice to other ${artistName} fans...`} 
+                    onKeyDown={(e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
                             e.preventDefault()
                             sendMessage()

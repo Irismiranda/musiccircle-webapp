@@ -15,7 +15,7 @@ const useStore = create(devtools((set, get) => ({
   userTopTracks: null,
   userTopArtists: null,
   playerRef: null,
-  currentTrack,
+  currentTrack: null,
   playerState:{ 
       player: undefined,
       isConnected: false,
