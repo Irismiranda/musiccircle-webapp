@@ -5,7 +5,7 @@
         import { SaveTrackBtn, ShareBtn, CommentBtn } from "../../utils"
 
         const PlayerMinimized = ((props) => {
-            const { playerState, setPlayerState } = useStore()
+            const { playerState, setPlayerState, currentTrack } = useStore()
             const shareBtnRef = useRef(null)
             const volumeBarRef = useRef(null)
             const trackTimelineRef = useRef(null)
@@ -13,7 +13,6 @@
             const { 
                 player, 
                 isPaused,
-                currentTrack, 
                 listened, 
                 shuffleState, 
                 repeatState, 

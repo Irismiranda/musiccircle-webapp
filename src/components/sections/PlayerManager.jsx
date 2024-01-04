@@ -20,7 +20,6 @@ export default function PlayerManager() {
     const clientPrevPosX = useRef(null)
     const playerRectRef = useRef(null)
     
-    const [track, setTrack] = useState(null)
     const [isResizing, setIsResizing] = useState(false)
     const [playerSize, setPlayerSize] = useState({
         height: 248,
@@ -35,6 +34,8 @@ export default function PlayerManager() {
     
     const { 
         setPlayerRef,
+        currentTrack,
+        setCurrentTrack,
         spotifyApi, 
         accessToken, 
         setArtistUri, 
@@ -47,7 +48,6 @@ export default function PlayerManager() {
     const { 
         isMinimized,
         player, 
-        currentTrack, 
         shuffleState, 
         repeatState, 
         isScrolled,
@@ -264,7 +264,7 @@ export default function PlayerManager() {
                     })
                 }, 50)
 
-                setTrack(state.track_window.current_track)
+                setCurrentTrack(state.track_window.current_track)
 
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
@@ -359,13 +359,6 @@ export default function PlayerManager() {
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef)
     }, [playerRef])
-
-    useEffect(() => {
-        console.log("current track id is:", currentTrack?.id, "new track id is:", track?.id)
-        if(currentTrack?.id !== track?.id){
-            setPlayerState({ currentTrack: track })
-        }
-    }, [track])
 
     const playerFunctionalProps = {
         setProperties,

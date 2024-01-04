@@ -4,7 +4,7 @@ import useStore from "../../store"
 
 export default function SimplifiedList(props){
     const { list, category } = props
-    const { playerState } = useStore()
+    const { currentTrack } = useStore()
     const [ hoverItemId, setHoverItemId ] = useState(null)
     
     return(
@@ -15,14 +15,14 @@ export default function SimplifiedList(props){
                         key={item.id}
                         className="grid"                
                         onMouseEnter={() => {
-                        if(playerState.currentTrack){ 
+                        if(currentTrack){ 
                         setHoverItemId(item.id)
                         } }}
                         onMouseLeave={() => setHoverItemId(null)}> 
                             <div 
                             style={{ justifySelf: "center" }}
                             onMouseEnter={() => {
-                            if(playerState.currentTrack){ 
+                            if(currentTrack){ 
                             setHoverItemId(item.id)
                             } }} >
                                 <PlayBtn 

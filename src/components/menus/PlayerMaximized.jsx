@@ -5,14 +5,13 @@ import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } f
 import { SaveTrackBtn, ShareBtn, CommentBtn } from "../../utils"
 
 const PlayerMaximized = ((props) => {
-    const { playerState, setPlayerState } = useStore()
+    const { playerState, setPlayerState, currentTrack } = useStore()
     const shareBtnRef = useRef(null)
     const volumeBarRef = useRef(null)
     const trackTimelineRef = useRef(null)
     const { 
         player, 
         isPaused,
-        currentTrack, 
         listened,
         shuffleState, 
         repeatState, 

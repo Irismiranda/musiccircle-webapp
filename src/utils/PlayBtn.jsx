@@ -2,9 +2,9 @@ import React from "react"
 import useStore from "../store"
 
 export default function PlayBtn(props){
-    const { spotifyApi, playerState, setRecommendationSeed } = useStore()
+    const { spotifyApi, playerState, setRecommendationSeed, currentTrack } = useStore()
     const { uri, id, category, type, hoverItemId } = props
-    const { deviceId, currentTrack } = playerState
+    const { deviceId } = playerState
 
     async function playItem() {
         if (type === "track") {

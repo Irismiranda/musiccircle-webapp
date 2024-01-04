@@ -15,13 +15,13 @@ const useStore = create(devtools((set, get) => ({
   userTopTracks: null,
   userTopArtists: null,
   playerRef: null,
+  currentTrack,
   playerState:{ 
       player: undefined,
       isConnected: false,
       deviceId: null,
       isPaused: false,
       isActive: false,
-      currentTrack: null,
       listened: (0.1),
       shuffleState: false,
       repeatState: false,
@@ -42,6 +42,7 @@ const useStore = create(devtools((set, get) => ({
   setUserTopTracks: (tracks) => set({ userTopTracks: tracks }),
   setUserTopArtists: (artists) => set({ userTopArtists: artists }),
   setPlayerRef: (ref) => set({ playerRef: ref }),
+  setCurrentTrack: (track) => set({ currentTrack: track }),
   setRecommendationSeed: (newSeed) => set((prevState) => ({ 
     ...prevState, 
     recommendationSeed: { 
