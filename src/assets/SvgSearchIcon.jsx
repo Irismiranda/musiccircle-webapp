@@ -3,7 +3,7 @@ import React from "react"
 const SvgSearchIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 47 52"
+    viewBox="0 0 50 50"
     fill={props.color} 
     fillRule="evenodd" 
     clipRule="evenodd"

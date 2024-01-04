@@ -3,7 +3,7 @@ import React from "react"
 const SvgHomeIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 50 51"
+    viewBox="-2 0 57 57"
     fill="none"
     stroke={props.color} 
     strokeWidth="6"

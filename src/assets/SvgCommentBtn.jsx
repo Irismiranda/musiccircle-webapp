@@ -3,7 +3,7 @@ import React from "react"
 const SvgCommentBtn = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 37 37" 
+    viewBox="0 0 39 39" 
     fill={props.color || "#AFADAD"}
     {...props}
   >

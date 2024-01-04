@@ -91,13 +91,13 @@ export default function PlayerManager() {
     }
 
     async function setQueue() {
+        console.log("recommendations are", recommendations, "index is", queueIndex)
         if (recommendations[queueIndex]) {    
             let retries = 0
             const maxRetries = 5
     
             while (retries < maxRetries) {
                 try {
-                    console.log("recommendations are", recommendations, "index is", queueIndex)
                     if(recommendations[queueIndex].id === currentTrack.id){
                         setQueueIndex(prevIndex => prevIndex + 1)
                     }
