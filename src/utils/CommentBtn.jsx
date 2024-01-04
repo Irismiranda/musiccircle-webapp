@@ -25,6 +25,7 @@ export default function CommentBtn(props){
     const textAreaRef = useRef(null)
     const descriptionRef = useRef(null)
     const descriptionMenuRef = useRef(null)
+    const sendPostRef = useRef(null)
 
     useClickOutside(postWindowRef, [commentsBtnRef, playerRef], () => setIsPostVisible(false))
 
@@ -228,10 +229,12 @@ export default function CommentBtn(props){
                         ref={textAreaRef}
                         placeholder={`Say something cool about this ${postData?.type}`}/>
                         <div
+                        ref={sendPostRef}
                         className="flex absolute"
-                        style={{ top: "10px", right: "15px", gap: "5px" }}>
+                        style={{ top: "33px", right: "15px", gap: "5px" }}>
                             <EmojiBar 
-                            textAreaRef={textAreaRef}/>
+                            textAreaRef={textAreaRef}
+                            sendPostRef={sendPostRef}/>
                             <div 
                             onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
                                 <SvgSendBtn 

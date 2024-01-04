@@ -17,6 +17,7 @@ export default function Comments(props) {
         setReplyTo, 
         setCommentsNumber, 
         descriptionMenuRef, 
+        sendPostRef,
     } = props
 
     const { 
@@ -293,7 +294,8 @@ export default function Comments(props) {
         ) : (
         <div 
         className="loading_comments"
-        style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
+        style={{ height: 
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + sendPostRef?.current?.clientHeight}px)` }}>
         </div>
         )
     )
