@@ -54,7 +54,7 @@ export default function CommentBtn(props){
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
             artist_id: artistId,
-            post_id: data?.post_id ? data.post_id : postData.id
+            post_id: id,
         }
 
         replyTo && commentData.reply_to === replyTo
@@ -97,6 +97,8 @@ export default function CommentBtn(props){
         if(postData && isPostVisible){
             setArtistId(postData?.artists ? postData?.artists[0]?.id : postData?.artist_id)
         }
+
+        console.log("post data is", postData)
     }, [postData, isPostVisible])
 
     useEffect(() => {
@@ -225,7 +227,7 @@ export default function CommentBtn(props){
                             <EmojiBar 
                             textAreaRef={textAreaRef}/>
                             <div 
-                            onClick={() => sendComment(data?.post_id || postData?.id)}>
+                            onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
                                 <SvgSendBtn 
                                 className="send_btn"/>
                             </div>

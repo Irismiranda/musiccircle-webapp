@@ -142,6 +142,7 @@ export default function Comments(props) {
     }
 
     useEffect(() => {
+        console.log("post id is", postId)
         socket.emit('listenToComments', { post_id: postId, poster_id: posterId, artist_id: artistId })
 
         return () => {
