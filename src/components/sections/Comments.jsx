@@ -9,7 +9,7 @@ export default function Comments(props) {
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [listening, setIsListening] = useState(false)
-    const [sendPostHeight, setSendPostHeight] = useState(100)
+    const [sendPostHeight, setSendPostHeight] = useState(300)
 
     const { 
         postId, 
