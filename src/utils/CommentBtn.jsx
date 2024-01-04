@@ -209,8 +209,7 @@ export default function CommentBtn(props){
                     textAreaRef={textAreaRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
-                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
-                    setScrollOnLoad={setScrollOnLoad}/>
+                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>

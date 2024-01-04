@@ -48,11 +48,11 @@ export default function Messages(props) {
       if(eventName === "loadAllMessages"){
         handleLoadAllMessages(args)
       } else if(eventName === "loadNewMessage"){
-        if(data[0].userId === loggedUser.id){
-          messagesRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
-      }
         handleLoadNewMessage(args)
       }
+      if(data[0].userId === loggedUser.id){
+        messagesRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+    }
     })
   
     return () => {
