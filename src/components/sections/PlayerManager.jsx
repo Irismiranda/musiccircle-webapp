@@ -114,6 +114,8 @@ export default function PlayerManager() {
                 }
             }
             throw new Error(`Failed after ${maxRetries} retries`)
+        } else {
+            getRecommendations(currentTrack.id, "track")
         }
     }
     
@@ -346,6 +348,10 @@ export default function PlayerManager() {
         console.log("current queue is", currentQueue, "recommendationSeeds are", recommendationSeed?.ids, "recommendations are", recommendations, "current track is", currentTrack?.id)
         if(recommendations){
             recommendations[queueIndex]?.id === currentTrack?.id && setQueueIndex(prevIndex => prevIndex + 1)
+        }
+
+        if(currentTrack && currentQueue){
+            currentTrack?.id === currentQueue[0].id && player.nextTrack()
         }
 
         if(currentQueue?.length < 2 && recommendations){
