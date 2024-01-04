@@ -14,7 +14,7 @@ export default function CommentBtn(props){
     const [postData, setPostData] = useState(null)
     const [artistId, setArtistId] = useState(null)
     const [replyTo, setReplyTo] = useState(null)
-    const [scrollOnLoad, setScrollOnLoad] = useState(false)
+    const [scrollOnLoad, setScrollOnLoad] = useState(true)
     const [localCommentsNumber, localSetCommentsNumber] = useState(null)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
@@ -44,7 +44,7 @@ export default function CommentBtn(props){
 
     async function sendComment(id){
         setScrollOnLoad(true)
-
+        
         const endpointPath = replyTo ? 
         `/api/${id}/reply_to/${replyTo}` :
         `/api/${id}/add_comment`
