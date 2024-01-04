@@ -91,6 +91,7 @@ export default function Comments(props) {
             
         if(call === "loadAllComments"){
             console.log("loading all comments")
+            setIsLoading(true)
             setComments(updatedComments)
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
             console.log("loading new comment")

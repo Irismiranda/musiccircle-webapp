@@ -733,7 +733,7 @@ h3{
 }
 
 .post_description_menu{
-  padding: 0px 0 15px;
+  padding: 0 20px 15px 0;
   border: solid #000;
   border-width: 0 0 2.5px;
 }
