@@ -204,7 +204,7 @@ export default function CommentBtn(props){
                         </section>
                     </div>
                     <Comments 
-                    postId={data?.post_id || postData?.id}
+                    postId={data?.post_id ? data.post_id : postData?.id}
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
