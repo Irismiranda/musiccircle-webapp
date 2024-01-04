@@ -81,7 +81,7 @@ export default function Messages(props) {
       ) : messages.length > 0 ? (
       <div className="chat_room flex">
         {messages
-          .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
+          .sort((a, b) => (convertTimestampToDate(b.timeStamp) > convertTimestampToDate(a.timeStamp) ? -1 : 1))
           .map((message) => {
             const {
               userId,

@@ -146,7 +146,7 @@ export default function Comments(props) {
 
     useEffect(() => {
         socket.on('loadAllComments', (comment) => {
-            console.log("comment is", comment)
+            setIsLoading(true)
             if(!comment || comment?.length === 0){
                 console.log("no new comments to load")
                 setIsLoading(false)

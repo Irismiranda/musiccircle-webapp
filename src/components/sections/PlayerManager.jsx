@@ -82,7 +82,7 @@ export default function PlayerManager() {
     }
 
     async function getRecommendations(ids, type){
-        const response = await spotifyApi.getRecommendations({ [`seed_${type}s`]: [ids], limit: 100 })
+        const response = await spotifyApi.getRecommendations({ [`seed_${type}s`]: [ids], limit: 20 })
         const uriList = response.tracks.map(track => {
             return track.uri
         })
@@ -114,8 +114,6 @@ export default function PlayerManager() {
                 }
             }
             throw new Error(`Failed after ${maxRetries} retries`)
-        } else {
-            getRecommendations(currentTrack.id, "track")
         }
     }
     
