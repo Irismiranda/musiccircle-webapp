@@ -351,7 +351,7 @@ export default function PlayerManager() {
         }
 
         if(currentTrack && currentQueue){
-            currentTrack?.id === currentQueue[0].id && player.nextTrack()
+            currentTrack?.id === currentQueue[0]?.id && player.nextTrack()
         }
 
         if(currentQueue?.length < 2 && recommendations){

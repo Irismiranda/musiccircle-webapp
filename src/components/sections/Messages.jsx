@@ -80,7 +80,7 @@ export default function Messages(props) {
       ) : messages.length > 0 ? (
       <div className="chat_room flex">
         {messages
-          .sort((a, b) => (a.timeStamp > b.timeStamp ? -1 : 1))
+          .sort((a, b) => (b.timeStamp > a.timeStamp ? -1 : 1))
           .map((message) => {
             const {
               userId,
