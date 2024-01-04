@@ -9,6 +9,7 @@ export default function Comments(props) {
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [listening, setIsListening] = useState(false)
+    const [sendPostHeight, setSendPostHeight] = useState(null)
 
     const { 
         postId, 
@@ -184,13 +185,17 @@ export default function Comments(props) {
         }
     }, [comments])
 
+    useEffect(() => {
+        sendPostRef?.current && setSendPostHeight(sendPostRef?.current?.clientHeight)
+    }, [sendPostRef])
+
     return (
         !isLoading ? (
         <div 
         ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
         style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight}px - ${sendPostRef?.current?.clientHeight}px)` }}>
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight}px - ${sendPostHeight}px)` }}>
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
