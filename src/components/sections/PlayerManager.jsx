@@ -362,7 +362,7 @@ export default function PlayerManager() {
 
     useEffect(() => {
         console.log("current track id is:", currentTrack?.id, "new track id is:", track?.id)
-        if(currentTrack?.id !== state.track_window.current_track.id){
+        if(currentTrack?.id !== track.id){
             setPlayerState({ currentTrack: track })
         }
     }, [track])
