@@ -91,7 +91,7 @@ export default function PlayerManager() {
     async function setQueue() {
         if (recommendations[queueIndex]) {    
             let retries = 0
-            const maxRetries = 3
+            const maxRetries = 5
     
             while (retries < maxRetries) {
                 try {
@@ -353,7 +353,7 @@ export default function PlayerManager() {
         } else if(currentTrack && !recommendationSeed.ids && !recommendations){
             getRecommendations([currentTrack.id], "track")
         }
-    }, [currentQueue, currentTrack])
+    }, [currentQueue, currentTrack, recommendationSeed])
 
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef)
