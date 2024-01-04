@@ -63,8 +63,10 @@ export default function Comments(props) {
                     console.log("formated user is", formatedUser)
 
                     updatedComment.user = formatedUser[0]
+                    console.log("formated comments is", updatedComment)
 
-                    
+                    console.log("formated comment is", updatedComment)
+
                     return updatedComment   
                 }
             }))
