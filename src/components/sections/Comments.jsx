@@ -17,8 +17,6 @@ export default function Comments(props) {
         setReplyTo, 
         setCommentsNumber, 
         descriptionMenuRef, 
-        scrollOnLoad, 
-        setScrollOnLoad 
     } = props
 
     const { 
@@ -80,11 +78,10 @@ export default function Comments(props) {
             console.log("loading new comment")
             setComments(prevComments => [...prevComments, updatedComments[0]])
 
-            console.log("should scroll?", scrollOnLoad)
+            const scrollOnLoad = data.user_id === loggedUser.id
 
             if(scrollOnLoad){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
-                setScrollOnLoad(false)
             }
         }
     }
