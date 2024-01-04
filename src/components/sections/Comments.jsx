@@ -189,7 +189,8 @@ export default function Comments(props) {
         <div 
         ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
-        style={{ height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + 100}px)` }}>
+        style={{ height: 
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + sendPostRef?.current?.clientHeight}px)` }}>
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
