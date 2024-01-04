@@ -19,7 +19,8 @@ export default function PlayerManager() {
     const clientPrevPosY = useRef(null)
     const clientPrevPosX = useRef(null)
     const playerRectRef = useRef(null)
-
+    
+    const [track, setTrack] = useState(null)
     const [isResizing, setIsResizing] = useState(false)
     const [playerSize, setPlayerSize] = useState({
         height: 248,
@@ -263,13 +264,8 @@ export default function PlayerManager() {
                     })
                 }, 50)
 
-                console.log("current track id is:", currentTrack?.id, "new track id is:", state.track_window.current_track.id)
+                setTrack(state.track_window.current_track)
 
-                if(currentTrack?.id !== state.track_window.current_track.id){
-                    setPlayerState({ currentTrack: state.track_window.current_track })
-                }
-                    
-                    
                 try{
                     const currentArtistUri = state.track_window.current_track.artists[0].uri
                     if (!artistUri || currentArtistUri !== prevArtistUriRef.current) {
@@ -363,6 +359,13 @@ export default function PlayerManager() {
     useEffect(() => {
         playerRef?.current && setPlayerRef(playerRef)
     }, [playerRef])
+
+    useEffect(() => {
+        console.log("current track id is:", currentTrack?.id, "new track id is:", track?.id)
+        if(currentTrack?.id !== state.track_window.current_track.id){
+            setPlayerState({ currentTrack: track })
+        }
+    }, [track])
 
     const playerFunctionalProps = {
         setProperties,
