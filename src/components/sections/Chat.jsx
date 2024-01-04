@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { v4 as uuidv4 } from 'uuid'
 import { SvgPinned, SvgSendBtn } from "../../assets"
 import { EmojiBar, Messages } from "../index"
@@ -6,7 +6,7 @@ import useStore from "../../store"
 import { Link } from "react-router-dom"
 
 export default function Chat(){
-    const messageTextArea = createRef(null)
+    const messageTextArea = useRef(null)
     const { artistUri, spotifyApi, loggedUser, socket, standardWrapperWidth } = useStore()
     const [chatState, setChatState] = useState({
             artistData: null,
