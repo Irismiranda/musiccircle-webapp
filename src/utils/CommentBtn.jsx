@@ -97,8 +97,6 @@ export default function CommentBtn(props){
         if(postData && isPostVisible){
             setArtistId(postData?.artists ? postData?.artists[0]?.id : postData?.artist_id)
         }
-
-        console.log("post data is", postData)
     }, [postData, isPostVisible])
 
     useEffect(() => {

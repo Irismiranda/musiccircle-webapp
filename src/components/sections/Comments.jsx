@@ -142,13 +142,14 @@ export default function Comments(props) {
     }
 
     useEffect(() => {
-        console.log("post id is", postId)
-        socket.emit('listenToComments', { post_id: postId, poster_id: posterId, artist_id: artistId })
+        if(postId){
+            socket.emit('listenToComments', { post_id: postId, poster_id: posterId, artist_id: artistId })
+        }
 
         return () => {
             socket.emit('disconnectFromComments', { post_id: postId })
         }
-    }, [])
+    }, [postId])
 
     useEffect(() => {
         socket.on('loadAllComments', (comment) => {
