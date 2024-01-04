@@ -58,6 +58,8 @@ function formatListData(items, category) {
 }
 
 const convertTimestampToDate = (timestamp) => {
+  console.log("timestamp is", timestamp)
+
   if (!timestamp) {
       return null // Handle undefined or null timestamps
     }
