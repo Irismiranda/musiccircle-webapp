@@ -208,6 +208,7 @@ export default function CommentBtn(props){
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
+                    sendPostRef={sendPostRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
@@ -235,8 +236,7 @@ export default function CommentBtn(props){
                             className="flex absolute"
                             style={{ top: "15px", right: "15px", gap: "5px" }}>
                                 <EmojiBar 
-                                textAreaRef={textAreaRef}
-                                sendPostRef={sendPostRef}/>
+                                textAreaRef={textAreaRef}/>
                                 <div 
                                 onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
                                     <SvgSendBtn 
