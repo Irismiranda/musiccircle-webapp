@@ -51,26 +51,34 @@ export default function Comments(props) {
 
     async function getUser(data){
         try{
-            const updatedComments = await Promise.all(
+            const promises = await Promise.all(
                 data.map(async (comment) => {
                 const updatedComment = {...comment}
 
                 const user = await Axios.get(`api/user/${comment.user_id}`)
-                console.log("user is", user.data)
                 
-                const formatedUser = formatListData([user.data], user.data.type)
+                    console.log("user is", user.data)
+                    
+                    const formatedUser = formatListData([user.data], user.data.type)
 
-                console.log("formated user is", formatedUser)
+                    console.log("formated user is", formatedUser)
 
-                updatedComment.user = formatedUser[0]
-                console.log("formated comments is", updatedComment)
+                    updatedComment.user = formatedUser[0]
+                    console.log("formated comments is", updatedComment)
 
-                return updatedComment   
-                
+                    return updatedComment   
             }))
             
-            console.log("formated comments are", updatedComments)
-            return updatedComments
+            const settledResults = await Promise.allSettled(promises)
+        console.log("All promises settled:", settledResults)
+
+        const updatedComments = settledResults
+            .filter((result) => result.status === "fulfilled")
+            .map((result) => result.value);
+
+        console.log("formated comments are", updatedComments)
+        return updatedComments
+
          } catch(err){
             console.log(err)
          }
