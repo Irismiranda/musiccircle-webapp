@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import useStore from "../../store"
 import { Axios } from "../../Axios-config"
-import { formatListData } from "../../utils"
+import { formatListData, convertTimestampToDate } from "../../utils"
 import { SvgHeart } from "../../assets"
 
 export default function Comments(props) {
@@ -27,27 +27,6 @@ export default function Comments(props) {
     } = useStore()
 
     const commentsRef = useRef(null)
-
-    const convertTimestampToDate = (timestamp) => {
-        if (!timestamp) {
-            return null // Handle undefined or null timestamps
-          }
-
-          const dateString = {
-            yy: timestamp.slice(6, 10),
-            mm: timestamp.slice(3, 5),
-            dd: timestamp.slice(0, 2),
-            time: timestamp.slice(12).replaceAll(":", "")
-        }
-        
-        console.log(Object.values(dateString).join(""))
-        return Object.values(dateString).join("")
-      }
-
-    function replyToComment(name, comment_id){
-        textAreaRef.current.value = `@${name} `
-        setReplyTo(comment_id)
-    }
 
     async function getUser(data){
         try {

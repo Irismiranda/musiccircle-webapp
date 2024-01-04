@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { chat_illustration } from "../../assets"
 import useStore from "../../store"
+import { convertTimestampToDate } from "../../utils";
 
 export default function Messages(props) {
   const storedMessages = useRef(null)
@@ -80,7 +81,7 @@ export default function Messages(props) {
       ) : messages.length > 0 ? (
       <div className="chat_room flex">
         {messages
-          .sort((a, b) => (b.timeStamp > a.timeStamp ? -1 : 1))
+          .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
           .map((message) => {
             const {
               userId,
