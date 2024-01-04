@@ -107,7 +107,7 @@ export default function PlayerManager() {
                         retries++
                         await delay(1000)
                     } else {
-                        throw err
+                        console.log(err)
                     }
                 }
             }
@@ -260,7 +260,7 @@ export default function PlayerManager() {
                     })
                 }, 50)
 
-                console.log("current track id is:", currentTrack?.id, "new track id is:", state.track_window.current_track)
+                console.log("current track id is:", currentTrack?.id, "new track id is:", state.track_window.current_track.id)
 
                 if(currentTrack?.id !== state.track_window.current_track.id){
                     setPlayerState({ currentTrack: state.track_window.current_track })
