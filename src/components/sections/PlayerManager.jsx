@@ -260,6 +260,8 @@ export default function PlayerManager() {
                     })
                 }, 50)
 
+                console.log("current track id is:", currentTrack?.id, "new track id is:", state.track_window.current_track)
+
                 if(currentTrack?.id !== state.track_window.current_track.id){
                     setPlayerState({ currentTrack: state.track_window.current_track })
                 }
