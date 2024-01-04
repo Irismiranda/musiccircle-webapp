@@ -318,6 +318,10 @@ svg{
   gap: 20px;
 }
 
+.underline_text{
+  text-decoration: underline;
+}
+
 .space_between{
   align-items: space-between;
   justify-content: space-between;

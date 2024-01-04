@@ -213,8 +213,18 @@ export default function CommentBtn(props){
                     <section 
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
-                        {replyTo && <h4>{`Replying to ${replyTo.user_handle}`} <span onClick={() => setReplyTo(null)}>Cancel</span></h4>}
-                        <textarea 
+                        {replyTo && 
+                        <h4
+                        style={{ 
+                            display: "flex",
+                            justifyContent: "space-between",
+                            padding: "10px 20px" 
+                            }}>
+                            {`Replying to ${replyTo.user_handle}`} 
+                        <span 
+                        className="underline_text"
+                        onClick={() => setReplyTo(null)}>Cancel</span></h4>}
+                        <textarea
                         ref={textAreaRef}
                         placeholder={`Say something cool about this ${postData?.type}`}/>
                         <div

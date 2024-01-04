@@ -17,7 +17,6 @@ export default function Comments(props) {
         setReplyTo, 
         setCommentsNumber, 
         descriptionMenuRef, 
-        textAreaRef,
     } = props
 
     const { 
@@ -92,7 +91,6 @@ export default function Comments(props) {
     }
 
     function replyToComment(handle, comment_id){
-        textAreaRef.current.value = `@${handle}`
         setReplyTo({comment_id: comment_id, user_handle: handle})
     }
 
