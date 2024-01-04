@@ -361,6 +361,7 @@ export default function PlayerManager() {
     }, [playerRef])
 
     useEffect(() => {
+        console.log("new track is", track?.id, "prev track is", currentTrack?.id)
         if(track && (track?.id !== currentTrack?.id)){
             setCurrentTrack(track)
         }
