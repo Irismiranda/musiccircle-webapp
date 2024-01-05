@@ -160,7 +160,7 @@ export default function Post(props){
                 className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
                     <CommentBtn 
-                    post={[...data, {track: track}, {user: user}]} 
+                    post={[data, {track: track}, {user: user}]} 
                     commentsNumber={commentsNumber}
                     setCommentsNumber={setCommentsNumber}
                     setPosts={setPosts}
