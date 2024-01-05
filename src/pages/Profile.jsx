@@ -76,7 +76,7 @@ export default function Profile(){
             setIsLoggedUser(false)
             userId && getPosts(userId)
         }
-    }, [userId])
+    }, [userId, loggedUser])
 
     useEffect(() => {
         if(isLoggedUser && userTopArtists){

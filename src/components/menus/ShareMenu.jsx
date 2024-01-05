@@ -7,7 +7,7 @@ import { normalizeText } from "normalize-text"
 import useStore from "../../store"
 
 export default function ShareMenu(props){
-    const { loggedUser } = useStore()
+    const { loggedUser, setLoggedUser } = useStore()
     const [isLoading, setIsLoading] = useState(true)
     const [userDataList, setUserDataList] = useState(null)
     const [searchResult, setSearchResult] = useState(null)
@@ -79,10 +79,12 @@ export default function ShareMenu(props){
     async function postMessage(){
         setPublishing(true)
 
-        Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
+        const updatedUserData = await Axios.post(`/api/${loggedUser.id}/post/${content.id}`, {
             description: textAreaRef.current.value,
             type: content.type,
         })
+
+        setLoggedUser(updatedUserData.data)
 
         closeMenu()
     }

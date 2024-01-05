@@ -55,9 +55,9 @@ export default function Post(props){
             likes: updatedLikes
         }
 
-        setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === data.post_id ? updatedPost : post)
-          }))
+        const updatedPosts = posts.map(post => post.post_id === post_id ? updatedPost : post)
+
+        setPosts(updatedPosts)
     }    
 
     async function deletePost(){
