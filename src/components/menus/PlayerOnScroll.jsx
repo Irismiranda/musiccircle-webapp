@@ -89,7 +89,7 @@ const PlayerOnScroll = ((props) => {
                     </div>
                     <div className="flex">
                             <CommentBtn
-                            post={post}/>
+                            post={[...post]}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
