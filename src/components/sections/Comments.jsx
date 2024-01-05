@@ -77,7 +77,12 @@ export default function Comments(props) {
 
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
             console.log("loading new comment")
-            setComments(prevComments => [...prevComments, updatedComments[0]])
+            if(comments.includes(comment => comment.comment_id === updatedComments[0].comment_id)){
+                setComments(comments
+                    .map(comment => comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment))
+            } else {
+                setComments(prevComments => [...prevComments, updatedComments[0]])
+            }
 
             if(data[0].user_id === loggedUser.id){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
