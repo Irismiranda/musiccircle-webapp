@@ -43,10 +43,10 @@ export default function CommentBtn(props){
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
             post_id: post_id || track?.id,
+            artist_id: track?.artist_id,
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === track?.artist_id
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
