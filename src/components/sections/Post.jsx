@@ -13,7 +13,7 @@ export default function Post(props){
     const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
     
-    const { data, isLoggedUser, setPosts } = props
+    const { data, isLoggedUser, setPosts, posts } = props
 
     const dropMenuRef = useRef(null)
     const dotsIconRef = useRef(null)
@@ -163,6 +163,7 @@ export default function Post(props){
                     commentsNumber={commentsNumber}
                     setCommentsNumber={setCommentsNumber}
                     setPosts={setPosts}
+                    posts={posts}
                     /> 
                     <ShareBtn 
                     content={data}/>

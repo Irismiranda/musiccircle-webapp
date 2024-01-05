@@ -196,6 +196,7 @@ export default function Profile(){
                 return (
                     <Post 
                     data={post}
+                    posts={posts}
                     isLoggedUser={isLoggedUser} 
                     setPosts={setPosts}/>        
                 )

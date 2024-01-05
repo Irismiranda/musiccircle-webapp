@@ -15,7 +15,7 @@ export default function CommentBtn(props){
     const [localCommentsNumber, localSetCommentsNumber] = useState(null)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { post, setCommentsNumber, commentsNumber, setPosts } = props
+    const { post, setCommentsNumber, commentsNumber, setPosts, posts } = props
     const { track, likes, post_id, description, user } = post
 
     const postWindowRef = useRef(null)
@@ -68,9 +68,9 @@ export default function CommentBtn(props){
             likes: updatedLikes
         }
 
-        setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === post_id ? updatedPost : post)
-          }))
+        const updatedPosts = posts.map(post => post.post_id === post_id ? updatedPost : post)
+
+        setPosts(updatedPosts)
     }
 
     useEffect(() => {
