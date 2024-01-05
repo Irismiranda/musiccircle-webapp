@@ -89,7 +89,7 @@ export default function Comments(props) {
     async function handleReplies(id){
         setShowReplies(!showReplies)
 
-        if(showReplies){
+        if(!showReplies){
             const currentComment = comments.find(comment => comment.comment_id === id)
             console.log("current comment is", currentComment)
             const updatedComment = await getUser(currentComment.replies)
