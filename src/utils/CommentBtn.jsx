@@ -16,7 +16,7 @@ export default function CommentBtn(props){
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { post, setCommentsNumber, commentsNumber, setPosts } = props
-    const { user, track, likes, post_id, imgUrl, description } = post
+    const { track, likes, post_id, imgUrl, description } = post
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -40,7 +40,7 @@ export default function CommentBtn(props){
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,
-            poster_id: user?.id,
+            poster_id: post?.user?.id,
             timestamp: new Date().toLocaleString(),
             post_id: id,
         }
