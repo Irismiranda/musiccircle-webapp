@@ -88,12 +88,10 @@ export default function Comments(props) {
 
     async function handleReplies(id){
         setShowReplies(!showReplies)
-        if(showReplies){
-            const currentComment = comments.find(comment => comment.id === id)
-            console.log("current comment is", currentComment)
-            const updatedComment = await getUser(currentComment.replies)
-            setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
-        }
+        const currentComment = comments.find(comment => comment.id === id)
+        console.log("current comment is", currentComment)
+        const updatedComment = await getUser(currentComment.replies)
+        setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
     }
 
     async function deleteComment(post_id, comment_id){       
@@ -265,6 +263,7 @@ export default function Comments(props) {
                                 .map(reply => {
                                     return (
                                         <section 
+                                        className="full_width"
                                         key={reply.comment_id}>
                                             <div 
                                             className="flex space_between">
