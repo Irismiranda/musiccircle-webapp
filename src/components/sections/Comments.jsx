@@ -92,8 +92,8 @@ export default function Comments(props) {
 
         if(!showReplies){
             const currentComment = comments.find(comment => comment.comment_id === id)
-            console.log("current comment is", currentComment)
-            const updatedComment = await getUser(currentComment.replies)
+            const updatedReplies = await getUser(currentComment.replies)
+            const updatedComment = {...currentComment, replies: updatedReplies}
             setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         }
     }
