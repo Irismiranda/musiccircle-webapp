@@ -42,7 +42,7 @@ export default function CommentBtn(props){
             user_id: loggedUser.id,
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
-            post_id: id,
+            post_id: post_id || track?.id,
         }
 
         replyTo && commentData.reply_to === replyTo
