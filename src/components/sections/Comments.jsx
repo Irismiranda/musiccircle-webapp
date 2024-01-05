@@ -81,7 +81,7 @@ export default function Comments(props) {
 
             const isUpdate = comments.some((comment) => comment.comment_id === updatedComments[0].comment_id)
 
-            console.log("is update?", isUpdate, "comment.comment_id is", comments[0].comment_id, " updatedComments[0].comment_id is",  updatedComments[0].comment_id)
+            console.log("is update?", isUpdate, "comment is", comments[0], " updatedComments[0] is",  updatedComments[0])
 
             if(isUpdate){
                 setComments(comments
@@ -328,7 +328,7 @@ export default function Comments(props) {
                                     (
                                     <section 
                                     className="loading_comments full_width"
-                                    style={{ height: '400px' }}>
+                                    style={{ height: '100px' }}>
                                     </section>
                                     )
                                 })
