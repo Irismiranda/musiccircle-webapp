@@ -9,7 +9,7 @@ export default function Comments(props) {
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [listening, setIsListening] = useState(false)
-    const [sendPostHeight, setSendPostHeight] = useState(300)
+    const [inputSectionHeight, setInputSectionHeight] = useState(130)
 
     const { 
         postId, 
@@ -19,7 +19,7 @@ export default function Comments(props) {
         replyTo,
         setCommentsNumber, 
         descriptionMenuRef, 
-        sendPostRef,
+        inputSectionRef,
     } = props
 
     const { 
@@ -187,7 +187,7 @@ export default function Comments(props) {
     }, [comments])
 
     useEffect(() => {
-        sendPostRef?.current && setTimeout(setSendPostHeight(sendPostRef?.current?.clientHeight), 3000)
+        inputSectionRef?.current && setTimeout(setInputSectionHeight(inputSectionRef?.current?.clientHeight), 3000)
     }, [replyTo])
 
     return (
@@ -196,7 +196,7 @@ export default function Comments(props) {
         ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
         style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + sendPostHeight}px - 30px)` }}>
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)` }}>
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
@@ -302,7 +302,7 @@ export default function Comments(props) {
         <div 
         className="loading_comments"
         style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight}px)` }}>
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)` }}>
         </div>
         )
     )

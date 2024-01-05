@@ -25,7 +25,7 @@ export default function CommentBtn(props){
     const textAreaRef = useRef(null)
     const descriptionRef = useRef(null)
     const descriptionMenuRef = useRef(null)
-    const sendPostRef = useRef(null)
+    const inputSectionRef = useRef(null)
 
     useClickOutside(postWindowRef, [commentsBtnRef, playerRef], () => setIsPostVisible(false))
 
@@ -86,6 +86,7 @@ export default function CommentBtn(props){
     }
 
     useEffect(() => {
+        console.log("content is", content)
         if(item && isPostVisible){
             setPostData(item)
         } else if(id && type && isPostVisible){
@@ -208,13 +209,13 @@ export default function CommentBtn(props){
                     posterId={user?.id}
                     artistId={postData?.artist_id}
                     textAreaRef={textAreaRef}
-                    sendPostRef={sendPostRef}
+                    inputSectionRef={inputSectionRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
                     setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
                     <section 
-                    ref={sendPostRef}
+                    ref={inputSectionRef}
                     className="relative full_width"
                     style={{ marginTop: "10px" }}>
                         {replyTo && 
