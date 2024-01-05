@@ -274,7 +274,7 @@ export default function Comments(props) {
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
-                                    return isLoadingReplies ?  (
+                                    return !isLoadingReplies ?  (
                                         <section 
                                         className="full_width"
                                         key={reply.comment_id}>
