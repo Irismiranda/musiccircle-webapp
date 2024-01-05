@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react"
 import { SvgShareBtn } from "../assets"
 import { ShareMenu } from "../components"
 import { useClickOutside } from "./"
+import useStore from "../store"
 
 export default function ShareBtn(props){
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
@@ -9,6 +10,7 @@ export default function ShareBtn(props){
     const shareBtnRef = useRef(null)
 
     const { content } = props
+    const { setLoggedUser } = useStore()
 
     useClickOutside(shareMenuRef, [shareBtnRef], () => setIsShareMenuVisibile(false))
 
