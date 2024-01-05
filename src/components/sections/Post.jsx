@@ -12,7 +12,6 @@ export default function Post(props){
     const [user, setUser] = useState(null)
     const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
-    const [post, setPost] = useState(null)
     
     const { data, isLoggedUser, setPosts } = props
 

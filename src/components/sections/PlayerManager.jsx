@@ -6,7 +6,6 @@ import { formatListData, setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
-    const [isPostVisible, setIsPostVisible] = useState(false)
     const [recommendations, setRecommendations] = useState(null)
     const [currentQueue, setCurrentQueue] = useState(null)
     const [queueIndex, setQueueIndex] = useState(null)
@@ -380,10 +379,10 @@ export default function PlayerManager() {
     }, [track])
 
     useEffect(() => {
-        if(currentTrack && isPostVisible){
+        if(currentTrack){
             getPost()
         }
-    }, [isPostVisible])
+    }, [currentTrack])
 
     const playerFunctionalProps = {
         handleShuffleClick,
