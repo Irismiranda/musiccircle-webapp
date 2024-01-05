@@ -16,7 +16,7 @@ export default function CommentBtn(props){
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { post, setCommentsNumber, commentsNumber, setPosts } = props
-    const { track, likes, post_id, imgUrl, description, user } = post
+    const { track, likes, post_id, description, user } = post
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -102,7 +102,7 @@ export default function CommentBtn(props){
             ref={postWindowRef}>
                 <section 
                 className="cover_long flex flex_column relative"
-                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${imgUrl}')`}}
+                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${track?.imgUrl}')`}}
                 onMouseEnter={() => setHoverItemId(track?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     
