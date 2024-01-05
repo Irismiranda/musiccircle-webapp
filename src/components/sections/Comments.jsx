@@ -53,13 +53,10 @@ export default function Comments(props) {
     
             const settledResults = await Promise.allSettled(promises)
     
-            console.log("All promises settled:", settledResults)
-    
             const updatedComments = settledResults
                 .filter((result) => result.status === "fulfilled")
                 .map((result) => result.value)
-    
-            console.log("formated comments are", updatedComments)
+
             return updatedComments
         } catch (err) {
             console.log(err)
@@ -84,6 +81,17 @@ export default function Comments(props) {
             if(data[0].user_id === loggedUser.id){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
             }
+        } else if(call === "loadReply"){
+
+        }
+    }
+
+    async function handleReplies(id){
+        setShowReplies(!showReplies)
+        if(showReplies){
+            const currentComment = comments.find(comment => comment.id === id)
+            const updatedComment = await getUser(currentComment.replies)
+            setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
         }
     }
 
@@ -226,8 +234,7 @@ export default function Comments(props) {
                                 style={{ 
                                     height: "15px",
                                     marginRight: "20px",
-                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: likes?.includes(loggedUser.id) ? '#AFADAD' : 'none', 
                                     }}/>
                             </div>
                         </div>
@@ -246,53 +253,56 @@ export default function Comments(props) {
                         {replies && 
                         <h4 
                         className="pointer"
-                        onClick={() => setShowReplies(!showReplies)}> 
+                        onClick={() => handleReplies(comment_id)}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
                         
-                        {showReplies &&
-                            replies 
-                            .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
-                            .map(reply => {
-                                return (
-                                    <section key={reply.comment_id}>
-                                        <div 
-                                        className="flex space-between">
-                                            <div>
-                                                <div className="flex"
-                                                style={{ marginBottom: "10px" }}>
-                                                    <img 
-                                                    className="profile_small"
-                                                    src={reply.user?.imgUrl}/>
-                                                    <h3>{reply.user?.name}</h3>
+                        <section
+                        className="replies_section">
+                            {showReplies &&
+                                replies 
+                                .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
+                                .map(reply => {
+                                    return (
+                                        <section 
+                                        key={reply.comment_id}>
+                                            <div 
+                                            className="flex space-between">
+                                                <div>
+                                                    <div className="flex"
+                                                    style={{ marginBottom: "10px" }}>
+                                                        <img 
+                                                        className="profile_small"
+                                                        src={reply.user?.imgUrl}/>
+                                                        <h3>{reply.user?.name}</h3>
+                                                    </div>
+                                                    <p>{reply.text}</p>
                                                 </div>
-                                                <p>{text}</p>
+                                                <div
+                                                onClick={() => likeReply(postId, reply.reply_id)}>
+                                                    <SvgHeart 
+                                                    style={{ 
+                                                        height: "15px",
+                                                        marginRight: "20px",
+                                                        fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
+                                                        }}/>
+                                                </div>
                                             </div>
-                                            <div
-                                            onClick={() => likeReply(postId, reply.reply_id)}>
-                                                <SvgHeart 
-                                                style={{ 
-                                                    height: "15px",
-                                                    marginRight: "20px",
-                                                    fill: reply?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                                    stroke: reply?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
-                                                    }}/>
+                                            <div className="flex">
+                                                <h4>{reply.timestamp}</h4>
+                                                <h4>{reply.likes?.length || 0} Likes</h4>
+                                                {(reply.user?.id !== loggedUser.id) && 
+                                                <h4 
+                                                onClick={() => replyToComment(reply.user?.name, comment_id)}>
+                                                    Reply
+                                                </h4>}
+                                                {(reply.user?.id === loggedUser.id) &&
+                                                <h4 onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>Delete Comment</h4>}
                                             </div>
-                                        </div>
-                                        <div className="flex">
-                                            <h4>{reply.timestamp}</h4>
-                                            <h4>{reply.likes?.length || 0} Likes</h4>
-                                            {(reply.user?.id !== loggedUser.id) && 
-                                            <h4 
-                                            onClick={() => replyToComment(reply.user?.name, comment_id)}>
-                                                Reply
-                                            </h4>}
-                                            {(reply.user?.id === loggedUser.id) &&
-                                            <h4 onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>Delete Comment</h4>}
-                                        </div>
-                                </section>
-                                )
-                            })
-                        }
+                                    </section>
+                                    )
+                                })
+                            }
+                        </section>
                     </section>
                 )
             })

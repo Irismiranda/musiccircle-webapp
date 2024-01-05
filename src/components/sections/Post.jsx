@@ -146,8 +146,7 @@ export default function Post(props){
                                 <SvgHeart
                                 style={{ 
                                     height: "15px",
-                                    fill: data?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: data?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: data?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none'
                                     }}/>
                             </div>
                         </div>

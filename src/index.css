@@ -1201,7 +1201,8 @@ h3{
 }
 
 button:disabled{
-  opacity: 0.5;
+  background-color: #191717;
+  color: #8b8989;
 }
 
 .posting_wrapper::after{

@@ -173,8 +173,7 @@ export default function CommentBtn(props){
                                 style={{ 
                                     height: "15px",
                                     marginTop: "4px",
-                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
                                     }}/>
                             </div>
                         </section>
