@@ -78,9 +78,12 @@ export default function Comments(props) {
 
         } else if (call === "loadNewComment"){
             console.log("loading new comment")
-            if(comments.some(
-                (comment) => comment.comment_id === updatedComments[0].comment_id
-              )){
+
+            const isUpdate = comments.some((comment) => comment.comment_id === updatedComments[0].comment_id)
+
+            console.log("is update?", isUpdate)
+
+            if(isUpdate){
                 setComments(comments
                     .map(comment => comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment))
             } else {
@@ -267,7 +270,7 @@ export default function Comments(props) {
                         className="pointer"
                         onClick={() => handleReplies(comment_id)}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
-                        
+
                         <section
                         className="replies_section flex flex_column">
                             {showReplies &&
