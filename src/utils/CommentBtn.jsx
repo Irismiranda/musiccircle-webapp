@@ -52,6 +52,8 @@ export default function CommentBtn(props){
             await Axios.post(endpointPath, commentData)
             textAreaRef.current.value = ""
         }
+
+        setReplyTo(null)
     }
 
     async function likePost(){

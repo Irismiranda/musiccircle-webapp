@@ -81,7 +81,7 @@ export default function Comments(props) {
 
             const isUpdate = comments.some((comment) => comment.comment_id === updatedComments[0].comment_id)
 
-            console.log("is update?", isUpdate)
+            console.log("is update?", isUpdate, "comment.comment_id is", comments[0].comment_id, " updatedComments[0].comment_id is",  updatedComments[0].comment_id)
 
             if(isUpdate){
                 setComments(comments
