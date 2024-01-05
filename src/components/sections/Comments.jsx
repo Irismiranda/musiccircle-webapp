@@ -76,9 +76,9 @@ export default function Comments(props) {
             
             console.log("comments were set")
 
-        } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
+        } else if (call === "loadNewComment"){
             console.log("loading new comment")
-            if(!comments.some(
+            if(comments.some(
                 (comment) => comment.comment_id === updatedComments[0].comment_id
               )){
                 setComments(comments
@@ -322,8 +322,8 @@ export default function Comments(props) {
                                     ) :
                                     (
                                     <section 
-                                    className="loading_comments"
-                                    style={{ height: '100%' }}>
+                                    className="loading_comments full_width"
+                                    style={{ height: '400px' }}>
                                     </section>
                                     )
                                 })
