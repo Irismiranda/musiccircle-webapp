@@ -32,10 +32,10 @@ export default function CommentBtn(props){
         setArtistPic(artist.images[0].url)
     }
 
-    async function sendComment(id){
+    async function sendComment(){
         const endpointPath = replyTo ? 
-        `/api/${id}/reply_to/${replyTo.comment_id}` :
-        `/api/${id}/add_comment`
+        `/api/${post_id || track?.id}/reply_to/${replyTo.comment_id}` :
+        `/api/${post_id || track?.id}/add_comment`
 
         const commentData = {
             text: textAreaRef.current.value,
@@ -212,7 +212,7 @@ export default function CommentBtn(props){
                                 <EmojiBar 
                                 textAreaRef={textAreaRef}/>
                                 <div 
-                                onClick={() => sendComment(post_id || track?.id)}>
+                                onClick={() => sendComment()}>
                                     <SvgSendBtn 
                                     className="send_btn"/>
                                 </div>
