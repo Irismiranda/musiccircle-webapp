@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
+import { Axios } from "../../Axios-config"
 import { PlayerMaximized, PlayerMinimized, PlayerOnScroll } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
 import { formatListData, setProperties } from "../../utils"
