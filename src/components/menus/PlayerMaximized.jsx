@@ -94,7 +94,7 @@ const PlayerMaximized = ((props) => {
 
                     <div className="flex social_btns">
                             <CommentBtn
-                            post={[...post]}/>
+                            post={{track: post?.track, likes: post?.likes}}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
