@@ -9,6 +9,7 @@ export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [isLoadingReplies, setIsLoadingReplies] = useState(true)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
 
@@ -77,7 +78,9 @@ export default function Comments(props) {
 
         } else if (call === "loadNewComment" && !comments?.some((comment) => comment.comment_id === data[0].comment_id)){
             console.log("loading new comment")
-            if(comments.includes(comment => comment.comment_id === updatedComments[0].comment_id)){
+            if(!comments.some(
+                (comment) => comment.comment_id === updatedComments[0].comment_id
+              )){
                 setComments(comments
                     .map(comment => comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment))
             } else {
@@ -87,8 +90,6 @@ export default function Comments(props) {
             if(data[0].user_id === loggedUser.id){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
             }
-        } else if(call === "loadReply"){
-
         }
     }
 
@@ -101,6 +102,7 @@ export default function Comments(props) {
             const updatedComment = {...currentComment, replies: updatedReplies}
             setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         }
+        setIsLoadingReplies(false)
     }
 
     async function deleteComment(post_id, comment_id){       
@@ -272,7 +274,7 @@ export default function Comments(props) {
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
-                                    return (
+                                    return isLoadingReplies ?  (
                                         <section 
                                         className="full_width"
                                         key={reply.comment_id}>
@@ -310,8 +312,18 @@ export default function Comments(props) {
                                                     Reply
                                                 </h4>}
                                                 {(reply.user?.id === loggedUser.id) &&
-                                                <h4 onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>Delete Comment</h4>}
+                                                <h4 
+                                                className="pointer"
+                                                onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>
+                                                    Delete Comment
+                                                </h4>}
                                             </div>
+                                    </section>
+                                    ) :
+                                    (
+                                    <section 
+                                    className="loading_comments"
+                                    style={{ height: '100%' }}>
                                     </section>
                                     )
                                 })
