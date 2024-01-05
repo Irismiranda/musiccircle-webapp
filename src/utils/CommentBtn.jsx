@@ -16,7 +16,7 @@ export default function CommentBtn(props){
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { post, setCommentsNumber, commentsNumber, setPosts } = props
-    const { track, likes, post_id, imgUrl, description } = post
+    const { track, likes, post_id, imgUrl, description, user } = post
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -40,7 +40,7 @@ export default function CommentBtn(props){
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,
-            poster_id: post?.user?.id,
+            poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
             post_id: id,
         }
@@ -139,13 +139,13 @@ export default function CommentBtn(props){
                             <div 
                             className="flex"
                             style={{ marginBottom: "10px" }}>
-                                <Link to={`/account/${user.id}`}>
+                                <Link to={`/account/${user?.id}`}>
                                     <img 
-                                    src={user.imgUrl}
+                                    src={user?.imgUrl}
                                     className="profile_small" />
                                 </Link>
-                                <Link to={`/account/${user.id}`}>
-                                    <h4>{user.name}</h4>
+                                <Link to={`/account/${user?.id}`}>
+                                    <h4>{user?.name}</h4>
                                 </Link>
                             </div>
                                 <p 
