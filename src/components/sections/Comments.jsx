@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData, convertTimestampToDate } from "../../utils"
@@ -93,7 +94,7 @@ export default function Comments(props) {
             const currentComment = comments.find(comment => comment.comment_id === id)
             console.log("current comment is", currentComment)
             const updatedComment = await getUser(currentComment.replies)
-            setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
+            setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         }
     }
 
@@ -220,14 +221,16 @@ export default function Comments(props) {
                         <div 
                         className="flex space_between">
                             <div>
-                                <div 
-                                className="flex"
-                                style={{ marginBottom: "15px" }}>
-                                <img 
-                                className="profile_small"
-                                src={user?.imgUrl}/>
-                                <h3>{user?.name}</h3>
-                                </div>
+                                <Link to={`/account/${user?.id}`}>
+                                    <div 
+                                    className="flex"
+                                    style={{ marginBottom: "15px" }}>
+                                        <img 
+                                        className="profile_small"
+                                        src={user?.imgUrl}/>
+                                        <h3>{user?.name}</h3>
+                                    </div>
+                                </Link>
                                 <p>{text}</p>
                             </div>
                             <div
@@ -271,13 +274,15 @@ export default function Comments(props) {
                                             <div 
                                             className="flex space_between">
                                                 <div>
-                                                    <div className="flex"
-                                                    style={{ marginBottom: "10px" }}>
-                                                        <img 
-                                                        className="profile_small"
-                                                        src={reply.user?.imgUrl}/>
-                                                        <h3>{reply.user?.name}</h3>
-                                                    </div>
+                                                    <Link to={`/account/${reply.user?.id}`}>
+                                                        <div className="flex"
+                                                        style={{ marginBottom: "10px" }}>
+                                                            <img 
+                                                            className="profile_small"
+                                                            src={reply.user?.imgUrl}/>
+                                                            <h3>{reply.user?.name}</h3>
+                                                        </div>
+                                                    </Link>
                                                     <p>{reply.text}</p>
                                                 </div>
                                                 <div
@@ -295,6 +300,7 @@ export default function Comments(props) {
                                                 <h4>{reply.likes?.length || 0} Likes</h4>
                                                 {(reply.user?.id !== loggedUser.id) && 
                                                 <h4 
+                                                className="pointer"
                                                 onClick={() => replyToComment(reply.user?.name, comment_id)}>
                                                     Reply
                                                 </h4>}
