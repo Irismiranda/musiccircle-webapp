@@ -11,7 +11,6 @@ export default function PlayerManager() {
     const [queueIndex, setQueueIndex] = useState(null)
     const prevArtistUriRef = useRef(null)
     const prevSetVolume = useRef(null)
-    const postWindowRef = useRef(null)
     const playerRef = useRef(null)
     const playerWrapperRef = useRef(null)
     const draggableHandleRef = useRef(null)
@@ -20,7 +19,7 @@ export default function PlayerManager() {
     const playerRectRef = useRef(null)
     
     const [track, setTrack] = useState(null)
-    const [post, setPost] = useState(null)
+    const [post, setPost] = useState({})
     const [isResizing, setIsResizing] = useState(false)
     const [playerSize, setPlayerSize] = useState({
         height: 248,
