@@ -103,8 +103,8 @@ export default function Comments(props) {
             const currentComment = comments.find(comment => comment.comment_id === id)
             const updatedReplies = await getUser(currentComment.replies)
             
-            console.log("updated comment is", updatedComment)
             const updatedComment = {...currentComment, replies: updatedReplies}
+            console.log("updated comment is", updatedComment)
             setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         }
         setIsLoadingReplies(false)
