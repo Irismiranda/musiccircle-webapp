@@ -26,7 +26,7 @@ const PlayerMaximized = ((props) => {
         handleTimelineClick, 
     } = props.playerFunctionalProps
 
-    const { post } = props
+    const { post, setPost } = props
 
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
@@ -94,7 +94,8 @@ const PlayerMaximized = ((props) => {
 
                     <div className="flex social_btns">
                             <CommentBtn
-                            post={{track: post?.track, likes: post?.likes}}/>
+                            post={{track: post?.track, likes: post?.likes}}
+                            setPost={setPost}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

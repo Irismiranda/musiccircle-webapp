@@ -28,7 +28,7 @@
                 playerSize,
             } = props.playerFunctionalProps
 
-            const { post } = props
+            const { post, setPost } = props
 
             const albumImg = currentTrack.album.images[0].url
             const trackName = currentTrack.name
@@ -42,7 +42,8 @@
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
                             <CommentBtn
-                            post={{track: post?.track, likes: post?.likes}}/>
+                            post={{track: post?.track, likes: post?.likes}}
+                            setPost={setPost}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
@@ -156,7 +157,8 @@
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
                             <CommentBtn
-                            post={{track: post?.track, likes: post?.likes}}/>
+                            post={{track: post?.track, likes: post?.likes}}
+                            setPost={setPost}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

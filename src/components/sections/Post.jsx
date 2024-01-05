@@ -54,9 +54,8 @@ export default function Post(props){
             ...data, 
             likes: updatedLikes
         }
-
+        
         const updatedPosts = posts.map(post => post.post_id === post_id ? updatedPost : post)
-
         setPosts(updatedPosts)
     }    
 

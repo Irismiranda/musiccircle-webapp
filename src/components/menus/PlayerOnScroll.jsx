@@ -26,9 +26,8 @@ const PlayerOnScroll = ((props) => {
         handleTimelineClick,
     } = props.playerFunctionalProps
 
-    const { post } = props
+    const { post, setPost } = props
 
-    const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
     const artistName = currentTrack.artists[0].name
     const trackId = currentTrack.id
@@ -89,7 +88,8 @@ const PlayerOnScroll = ((props) => {
                     </div>
                     <div className="flex">
                             <CommentBtn
-                            post={{track: post?.track, likes: post?.likes}}/>
+                            post={{track: post?.track, likes: post?.likes}}
+                            setPost={setPost}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

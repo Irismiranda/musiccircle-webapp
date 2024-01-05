@@ -434,6 +434,7 @@ export default function PlayerManager() {
                         <PlayerMaximized
                         playerFunctionalProps={playerFunctionalProps}
                         post={post}
+                        setPost={setPost}
                     />
                     </div>
                     }
@@ -446,6 +447,7 @@ export default function PlayerManager() {
                         <PlayerOnScroll 
                         playerFunctionalProps={playerFunctionalProps}
                         post={post}
+                        setPost={setPost}
                     />
                     </div>
                     }
@@ -458,6 +460,7 @@ export default function PlayerManager() {
                         <PlayerMinimized 
                         playerFunctionalProps={playerFunctionalProps}
                         post={post}
+                        setPost={setPost}
                     />
                     <div 
                         className="draggable_handle" 
