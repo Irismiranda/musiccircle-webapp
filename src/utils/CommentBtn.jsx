@@ -46,7 +46,7 @@ export default function CommentBtn(props){
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === track.artist_id
+        !user && commentData.artist_id === track?.artist_id
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
@@ -55,7 +55,7 @@ export default function CommentBtn(props){
     }
 
     async function likePost(){
-        await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${post_id || track.id}`, {
+        await Axios.post(`/api/${user?.id}/${track?.artist_id}/toggle_like_post/${post_id || track?.id}`, {
             logged_user_id: loggedUser.id
         })
 
@@ -74,10 +74,10 @@ export default function CommentBtn(props){
     }
 
     useEffect(() => {
-        if(track.artist_id){
+        if(track?.artist_id){
             getArtist(artist_id)
         }
-    }, [track.artist_id])
+    }, [track?.artist_id])
 
     useEffect(() => {
         descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
@@ -103,7 +103,7 @@ export default function CommentBtn(props){
                 <section 
                 className="cover_long flex flex_column relative"
                 style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${imgUrl}')`}}
-                onMouseEnter={() => setHoverItemId(track.id)}
+                onMouseEnter={() => setHoverItemId(track?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     
                     {artistPic && 
@@ -111,22 +111,22 @@ export default function CommentBtn(props){
                     style={{ backgroundImage: `url('${artistPic}')`}}
                     className="cover_medium relative">
                         <div 
-                        onMouseEnter={() => setHoverItemId(track.id)}>
+                        onMouseEnter={() => setHoverItemId(track?.id)}>
                             <PlayBtn 
-                            uri={`spotify:${track.type}:${track.id}`} 
-                            id={track.id}
+                            uri={`spotify:${track?.type}:${track?.id}`} 
+                            id={track?.id}
                             category={"cover"} 
-                            type={track.type} 
+                            type={track?.type} 
                             hoverItemId={hoverItemId}/>
                         </div>
                     </div>}
                     <div
                     className="flex">
-                        <h2>{track.name}</h2>
+                        <h2>{track?.name}</h2>
                         <SaveTrackBtn 
-                        trackId={track.id}/>
+                        trackId={track?.id}/>
                     </div>
-                    <h3><Link to={`/artist/${track.artist_id}`}>{track.artist_name}</Link></h3>
+                    <h3><Link to={`/artist/${track?.artist_id}`}>{track?.artist_name}</Link></h3>
                     
                 </section>
                 <div
@@ -181,9 +181,9 @@ export default function CommentBtn(props){
                         </section>
                     </div>
                     <Comments 
-                    postId={post_id ? post_id : track.id}
+                    postId={post_id ? post_id : track?.id}
                     posterId={user?.id}
-                    artistId={track.artist_id}
+                    artistId={track?.artist_id}
                     textAreaRef={textAreaRef}
                     inputSectionRef={inputSectionRef}
                     descriptionMenuRef={descriptionMenuRef}
@@ -209,14 +209,14 @@ export default function CommentBtn(props){
                         className="relative">
                             <textarea
                             ref={textAreaRef}
-                            placeholder={`Say something cool about this ${track.type}`}/>
+                            placeholder={`Say something cool about this ${track?.type}`}/>
                             <div
                             className="flex absolute"
                             style={{ top: "15px", right: "15px", gap: "5px" }}>
                                 <EmojiBar 
                                 textAreaRef={textAreaRef}/>
                                 <div 
-                                onClick={() => sendComment(post_id ?post_id : track.id)}>
+                                onClick={() => sendComment(post_id ?post_id : track?.id)}>
                                     <SvgSendBtn 
                                     className="send_btn"/>
                                 </div>
