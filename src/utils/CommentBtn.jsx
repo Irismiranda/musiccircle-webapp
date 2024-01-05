@@ -46,7 +46,7 @@ export default function CommentBtn(props){
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === artist_id
+        !user && commentData.artist_id === track.artist_id
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
@@ -74,10 +74,10 @@ export default function CommentBtn(props){
     }
 
     useEffect(() => {
-        if(artist_id){
+        if(track.artist_id){
             getArtist(artist_id)
         }
-    }, [artist_id])
+    }, [track.artist_id])
 
     useEffect(() => {
         descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
