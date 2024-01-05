@@ -90,6 +90,7 @@ export default function Comments(props) {
         setShowReplies(!showReplies)
         if(showReplies){
             const currentComment = comments.find(comment => comment.id === id)
+            console.log("current comment is", currentComment)
             const updatedComment = await getUser(currentComment.replies)
             setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
         }
@@ -257,7 +258,7 @@ export default function Comments(props) {
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
                         
                         <section
-                        className="replies_section">
+                        className="replies_section flex flex_column">
                             {showReplies &&
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
@@ -266,7 +267,7 @@ export default function Comments(props) {
                                         <section 
                                         key={reply.comment_id}>
                                             <div 
-                                            className="flex space-between">
+                                            className="flex space_between">
                                                 <div>
                                                     <div className="flex"
                                                     style={{ marginBottom: "10px" }}>

@@ -764,6 +764,14 @@ h3{
   background-repeat: no-repeat;
 }
 
+.replies_section{
+  width: calc(100% - 30px);
+  margin-left: 30px;
+  box-sizing: border-box;
+  margin-top: 10px;
+  gap: 21px;
+}
+
 .hide_description{
   display: -webkit-box;
   -webkit-line-clamp: 3;
