@@ -88,11 +88,13 @@ export default function Comments(props) {
 
     async function handleReplies(id){
         setShowReplies(!showReplies)
-        console.log("id is", id)
-        const currentComment = comments.find(comment => comment.id === id)
-        console.log("current comment is", currentComment)
-        const updatedComment = await getUser(currentComment.replies)
-        setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
+
+        if(showReplies){
+            const currentComment = comments.find(comment => comment.comment_id === id)
+            console.log("current comment is", currentComment)
+            const updatedComment = await getUser(currentComment.replies)
+            setComments(comments.map(comment => comment.id === id ? updatedComment : comment))
+        }
     }
 
     async function deleteComment(post_id, comment_id){       
