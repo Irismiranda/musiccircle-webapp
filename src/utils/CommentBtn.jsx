@@ -75,7 +75,7 @@ export default function CommentBtn(props){
 
     useEffect(() => {
         if(track?.artist_id){
-            getArtist(artist_id)
+            getArtist(track?.artist_id)
         }
     }, [track?.artist_id])
 
