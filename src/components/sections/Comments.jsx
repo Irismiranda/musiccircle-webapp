@@ -275,7 +275,7 @@ export default function Comments(props) {
 
                         <section
                         className="replies_section flex flex_column">
-                            {showReplies &&
+                            {(showReplies && replies) &&
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
