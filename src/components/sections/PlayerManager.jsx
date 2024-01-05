@@ -123,7 +123,7 @@ export default function PlayerManager() {
     async function getPost(){
         const response = await Axios.get(`/api/${currentTrack.artists[0].id}/${currentTrack.id}/post`)
         const track = formatListData(currentTrack, currentTrack.type)
-        setPost([response.data.likes, {track: track[0]}])
+        setPost({likes: response.data.likes, track: track[0]})
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
