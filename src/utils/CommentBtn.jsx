@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { Comments, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn, SvgHeart } from "../assets"
-import { useClickOutside, formatListData, SaveTrackBtn, PlayBtn } from "."
+import { useClickOutside, SaveTrackBtn, PlayBtn } from "."
 import useStore from "../store"
 import { Axios } from "../Axios-config"
 
@@ -11,14 +11,12 @@ export default function CommentBtn(props){
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
-    const [postData, setPostData] = useState(null)
-    const [artistId, setArtistId] = useState(null)
     const [replyTo, setReplyTo] = useState(null)
     const [localCommentsNumber, localSetCommentsNumber] = useState(null)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { content, setCommentsNumber, commentsNumber, setPosts } = props
-    const { user, data, item, id, type } = content
+    const { post, setCommentsNumber, commentsNumber, setPosts } = props
+    const { user, track, likes, post_id, imgUrl, description } = post
 
     const postWindowRef = useRef(null)
     const commentsBtnRef = useRef(null)
@@ -28,14 +26,6 @@ export default function CommentBtn(props){
     const inputSectionRef = useRef(null)
 
     useClickOutside(postWindowRef, [commentsBtnRef, playerRef], () => setIsPostVisible(false))
-
-    async function getitem(id, type){
-        const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
-        console.log("method name is", methodName)
-        const data = await spotifyApi[methodName](id)
-        const formatedItem = formatListData([data], type)
-        setPostData(formatedItem[0])
-    }
 
     async function getArtist(id){
         const artist = await spotifyApi.getArtist(id)
@@ -52,12 +42,11 @@ export default function CommentBtn(props){
             user_id: loggedUser.id,
             poster_id: user?.id,
             timestamp: new Date().toLocaleString(),
-            artist_id: artistId,
             post_id: id,
         }
 
         replyTo && commentData.reply_to === replyTo
-        !user && commentData.artist_id === artistId
+        !user && commentData.artist_id === artist_id
         
         if(textAreaRef.current.value !== ""){
             await Axios.post(endpointPath, commentData)
@@ -66,49 +55,37 @@ export default function CommentBtn(props){
     }
 
     async function likePost(){
-        console.log("data is", data)
-        await Axios.post(`/api/${user?.id}/${artistId}/toggle_like_post/${data?.post_id || postData?.id}`, {
+        await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${post_id || track.id}`, {
             logged_user_id: loggedUser.id
         })
 
-        const updatedLikes = data.likes?.includes(loggedUser.id) ?
-        data.likes?.filter(like => like !== loggedUser.id) :
-        [...(data.likes || []), loggedUser.id]
+        const updatedLikes = likes?.includes(loggedUser.id) ?
+        likes?.filter(like => like !== loggedUser.id) :
+        [...(likes || []), loggedUser.id]
 
         const updatedPost = {
-            ...data, 
+            ...post, 
             likes: updatedLikes
         }
 
         setPosts((prevPosts => {
-            return prevPosts.map(post => post.post_id === data.post_id ? updatedPost : post)
+            return prevPosts.map(post => post.post_id === post_id ? updatedPost : post)
           }))
     }
 
     useEffect(() => {
-        console.log("content is", content)
-        if(item && isPostVisible){
-            setPostData(item)
-        } else if(id && type && isPostVisible){
-            getitem(id, type)
+        if(artist_id){
+            getArtist(artist_id)
         }
-    }, [content, id, isPostVisible])
-
-    useEffect(() => {
-        if(postData && isPostVisible){
-            setArtistId(postData?.artists ? postData?.artists[0]?.id : postData?.artist_id)
-        }
-    }, [postData, isPostVisible])
-
-    useEffect(() => {
-        if(artistId){
-            getArtist(artistId)
-        }
-    }, [artistId])
+    }, [artist_id])
 
     useEffect(() => {
         descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
     }, [showFullDescription])
+
+    useEffect(() => {
+        console.log("props are", props)
+    }, [props])
 
     return (
         <>
@@ -125,8 +102,8 @@ export default function CommentBtn(props){
             ref={postWindowRef}>
                 <section 
                 className="cover_long flex flex_column relative"
-                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${postData?.imgUrl}')`}}
-                onMouseEnter={() => setHoverItemId(postData?.id)}
+                style={{ background: `linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.84) 100%), url('${imgUrl}')`}}
+                onMouseEnter={() => setHoverItemId(track.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     
                     {artistPic && 
@@ -134,23 +111,22 @@ export default function CommentBtn(props){
                     style={{ backgroundImage: `url('${artistPic}')`}}
                     className="cover_medium relative">
                         <div 
-                        onMouseEnter={() => setHoverItemId(postData?.id)}>
+                        onMouseEnter={() => setHoverItemId(track.id)}>
                             <PlayBtn 
-                            uri={`spotify:${postData?.type}:${postData?.id}`} 
-                            id={postData?.id}
+                            uri={`spotify:${track.type}:${track.id}`} 
+                            id={track.id}
                             category={"cover"} 
-                            type={postData?.type} 
+                            type={track.type} 
                             hoverItemId={hoverItemId}/>
                         </div>
                     </div>}
                     <div
                     className="flex">
-                        <h2>{postData?.name}</h2>
-                        {(postData?.type === "track") && 
+                        <h2>{track.name}</h2>
                         <SaveTrackBtn 
-                        trackId={postData?.id}/>}
+                        trackId={track.id}/>
                     </div>
-                    <h3><Link to={`/artist/${postData?.artist_id}`}>{postData?.artist_name}</Link></h3>
+                    <h3><Link to={`/artist/${track.artist_id}`}>{track.artist_name}</Link></h3>
                     
                 </section>
                 <div
@@ -175,7 +151,7 @@ export default function CommentBtn(props){
                                 <p 
                                 className={showFullDescription ? "show_description" : "hide_description"}
                                 ref={descriptionRef}>
-                                    {data?.description}
+                                    {description}
                                 </p> 
                                 { (descriptionRef?.current?.scrollHeight > 150) &&
                                 <span 
@@ -189,7 +165,7 @@ export default function CommentBtn(props){
                         className="flex space_between ">
                             <div 
                             className="flex">
-                                <h4>{data?.likes?.length || 0} Likes</h4>
+                                <h4>{likes?.length || 0} Likes</h4>
                                 <h4>{commentsNumber || localCommentsNumber || 0} Comments</h4>
                             </div>
                             <div
@@ -198,16 +174,16 @@ export default function CommentBtn(props){
                                 style={{ 
                                     height: "15px",
                                     marginTop: "4px",
-                                    fill: data?.likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
-                                    stroke: data?.likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
+                                    fill: likes?.includes(loggedUser.id) ? '#F230AA' : 'none', 
+                                    stroke: likes?.includes(loggedUser.id) ? "#F230AA" : "#AFADAD" 
                                     }}/>
                             </div>
                         </section>
                     </div>
                     <Comments 
-                    postId={data?.post_id ? data.post_id : postData?.id}
+                    postId={post_id ? post_id : track.id}
                     posterId={user?.id}
-                    artistId={postData?.artist_id}
+                    artistId={track.artist_id}
                     textAreaRef={textAreaRef}
                     inputSectionRef={inputSectionRef}
                     descriptionMenuRef={descriptionMenuRef}
@@ -233,14 +209,14 @@ export default function CommentBtn(props){
                         className="relative">
                             <textarea
                             ref={textAreaRef}
-                            placeholder={`Say something cool about this ${postData?.type}`}/>
+                            placeholder={`Say something cool about this ${track.type}`}/>
                             <div
                             className="flex absolute"
                             style={{ top: "15px", right: "15px", gap: "5px" }}>
                                 <EmojiBar 
                                 textAreaRef={textAreaRef}/>
                                 <div 
-                                onClick={() => sendComment(data?.post_id ? data?.post_id : postData?.id)}>
+                                onClick={() => sendComment(post_id ?post_id : track.id)}>
                                     <SvgSendBtn 
                                     className="send_btn"/>
                                 </div>

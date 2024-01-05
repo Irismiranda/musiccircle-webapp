@@ -7,11 +7,12 @@ import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "
 
 export default function Post(props){
     const { spotifyApi, loggedUser } = useStore()
-    const [item, setItem] = useState(null)
+    const [track, setTrack] = useState(null)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [user, setUser] = useState(null)
     const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
+    const [post, setPost] = useState(null)
     
     const { data, isLoggedUser, setPosts } = props
 
@@ -20,13 +21,10 @@ export default function Post(props){
 
     useClickOutside(dropMenuRef, [dotsIconRef], () => setShowMenuVisibility(false))
 
-    async function getitem(){
-        const methodName = `get${data.type.charAt(0).toUpperCase() + data.type.slice(1)}`
-        console.log("method name is", methodName)
-        
-        const item = await spotifyApi[methodName](data.id)
-        const formatedItem = formatListData([item], data.type)
-        setItem(formatedItem[0])
+    async function getTrack(){
+        const track = await spotifyApi.getTrack(data.id)
+        const formatedTrack = formatListData([track], data.type)
+        setTrack(formatedTrack[0])
     }
 
     async function getUser(id){
@@ -46,7 +44,7 @@ export default function Post(props){
     }
 
     async function likePost(){
-        await Axios.post(`/api/${user?.id}/${item.artist_id}/toggle_like_post/${data.post_id}`, {
+        await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${data.post_id}`, {
             logged_user_id: loggedUser.id
         })
         const updatedLikes = data.likes?.includes(loggedUser.id) ?
@@ -75,13 +73,13 @@ export default function Post(props){
 
     useEffect(() => {
         if(data.id){
-            getitem()
+            getTrack()
             getUser(data.user_id)
         }
     }, [data])
 
     return (
-        (item && (!data.hide_post || isLoggedUser)) && (
+        (track && (!data.hide_post || isLoggedUser)) && (
             <section
             className="inner_wrapper relative"
             style={{ padding: "0px 20px 0px 0px" }}>
@@ -90,24 +88,24 @@ export default function Post(props){
                     className={data.hide_post ? "transparent_section flex" : "flex"}>
                     <div 
                         className="cover_large cover_post"
-                        style={{ backgroundImage: `url('${item.imgUrl}')`}}
-                        onMouseEnter={() => setHoverItemId(item.id)}
+                        style={{ backgroundImage: `url('${track.imgUrl}')`}}
+                        onMouseEnter={() => setHoverItemId(track.id)}
                         onMouseLeave={() => setHoverItemId(null)}>
                         <div 
-                        onMouseEnter={() => setHoverItemId(item.id)}>
+                        onMouseEnter={() => setHoverItemId(track.id)}>
                             <PlayBtn 
-                                uri={`spotify:${item.type}:${item.id}`} 
-                                id={item.id}
+                                uri={`spotify:${track.type}:${track.id}`} 
+                                id={track.id}
                                 category={"cover"} 
-                                type={item.type} 
+                                type={track.type} 
                                 hoverItemId={hoverItemId}
                             />
                         </div>
                     </div>
                     <div className="grid post_grid">
                         <div className="flex space_between full_width">
-                            <h3>{item.name} 
-                            {item.type !== "artist" && <span> by <Link to={`/artist/${item.artist_id}`}>{item.artist_name}</Link></span>}
+                            <h3>{track.name} 
+                            {track.type !== "artist" && <span> by <Link to={`/artist/${track.artist_id}`}>{track.artist_name}</Link></span>}
                             </h3>
                             {isLoggedUser && 
                             <div ref={dotsIconRef}>
@@ -162,11 +160,7 @@ export default function Post(props){
                 className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
                     <CommentBtn 
-                    content={{
-                        data: data,
-                        item: item,
-                        user: user,
-                        }}
+                    post={[...data, {track: track}, {user: user}]} 
                     commentsNumber={commentsNumber}
                     setCommentsNumber={setCommentsNumber}
                     setPosts={setPosts}

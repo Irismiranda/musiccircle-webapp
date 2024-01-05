@@ -25,10 +25,10 @@
                 handleRepeatClick,
                 trackVolumePosition,
                 handleTimelineClick,
-                isPostVisible, 
-                setIsPostVisible,
                 playerSize,
             } = props.playerFunctionalProps
+
+            const { post } = props
 
             const albumImg = currentTrack.album.images[0].url
             const trackName = currentTrack.name
@@ -42,10 +42,7 @@
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
                             <CommentBtn
-                            content={{
-                                id: trackId,
-                                type: "track"
-                                }}/>
+                            post={post}/>
                         <div ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>

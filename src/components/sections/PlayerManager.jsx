@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { Outlet } from "react-router-dom"
 import { PlayerMaximized, PlayerMinimized, PlayerOnScroll } from ".."
 import { SvgDeviceIcon, SvgMinMaxBtn, SvgResizeHandle } from "../../assets"
-import { setProperties } from "../../utils"
+import { formatListData, setProperties } from "../../utils"
 import useStore from "../../store"
 
 export default function PlayerManager() {
@@ -21,6 +21,7 @@ export default function PlayerManager() {
     const playerRectRef = useRef(null)
     
     const [track, setTrack] = useState(null)
+    const [post, setPost] = useState(null)
     const [isResizing, setIsResizing] = useState(false)
     const [playerSize, setPlayerSize] = useState({
         height: 248,
@@ -119,6 +120,12 @@ export default function PlayerManager() {
     
     async function delay(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function getPost(){
+        const response = await Axios.get(`/api/${currentTrack.artists[0].id}/${currentTrack.id}/post`)
+        const track = formatListData(currentTrack, currentTrack.type)
+        setPost([response.data.likes, {track: track[0]}])
     }
 
     function handleTimelineClick(e, trackTimelineRef) {
@@ -372,15 +379,17 @@ export default function PlayerManager() {
         }
     }, [track])
 
+    useEffect(() => {
+        if(currentTrack && isPostVisible){
+            getPost()
+        }
+    }, [isPostVisible])
+
     const playerFunctionalProps = {
-        setProperties,
         handleShuffleClick,
         handleRepeatClick,
         trackVolumePosition,
         handleTimelineClick,
-        setIsPostVisible,
-        handleResize,
-        getInitialPos,
         playerSize,
       }
 
@@ -423,9 +432,8 @@ export default function PlayerManager() {
                     className="full_width"
                     ref={playerRef}>
                         <PlayerMaximized
-                        postWindowRef={postWindowRef}
-                        playerState={playerState}
                         playerFunctionalProps={playerFunctionalProps}
+                        post={post}
                     />
                     </div>
                     }
@@ -436,9 +444,8 @@ export default function PlayerManager() {
                     className="full_width"
                     ref={playerRef}>
                         <PlayerOnScroll 
-                        postWindowRef={postWindowRef}
-                        playerState={playerState}
                         playerFunctionalProps={playerFunctionalProps}
+                        post={post}
                     />
                     </div>
                     }
@@ -449,9 +456,8 @@ export default function PlayerManager() {
                     style={{ flexDirection: playerSize.height < 120 ? "row" : "column" }}
                     ref={playerRef}>
                         <PlayerMinimized 
-                        postWindowRef={postWindowRef}
-                        playerState={playerState}
                         playerFunctionalProps={playerFunctionalProps}
+                        post={post}
                     />
                     <div 
                         className="draggable_handle" 

@@ -24,11 +24,9 @@ const PlayerOnScroll = ((props) => {
         handleRepeatClick,
         trackVolumePosition,
         handleTimelineClick,
-        isPostVisible, 
-        setIsPostVisible,
     } = props.playerFunctionalProps
 
-    const { postWindowRef } = props
+    const { post } = props
 
     const albumImg = currentTrack.album.images[0].url
     const trackName = currentTrack.name
@@ -91,10 +89,7 @@ const PlayerOnScroll = ((props) => {
                     </div>
                     <div className="flex">
                             <CommentBtn
-                            content={{
-                                id: trackId,
-                                type: "track"
-                                }}/>
+                            post={post}/>
                         <div className="flex" ref={shareBtnRef}>
                             <ShareBtn
                             content={currentTrack}/>
