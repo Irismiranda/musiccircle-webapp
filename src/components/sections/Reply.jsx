@@ -25,6 +25,7 @@ export default function Reply(props) {
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(reply_id){      
+        console.log("comment is", currentComment)
         setIsLoadingReply(true)
 
         const userData = await getUser(reply_id)
