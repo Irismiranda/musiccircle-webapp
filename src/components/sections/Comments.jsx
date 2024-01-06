@@ -276,7 +276,7 @@ export default function Comments(props) {
                         {replies && 
                         <h4 
                         className="pointer"
-                        onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === id ? null : id))}> 
+                        onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment_id ? null : comment_id))}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
                         <section
