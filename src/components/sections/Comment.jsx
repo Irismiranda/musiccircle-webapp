@@ -37,14 +37,27 @@ export default function Comment(props){
 
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
-        console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id))
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
     }
 
     async function handleData(data){
-        const userData = await getUser(data.user_id)
-        setUserData(userData)
-        setReplies(data.replies)
+        if(!userData){
+            const userData = await getUser(data.user_id)
+            setUserData(userData)
+        }
+        if(!replies){
+            setReplies(data.replies)
+        } else {
+            setReplies((prevReplies) => {
+                if (prevReplies.some((reply) => reply.reply_id === data[0].reply_id)) {
+                    return prevReplies.map((reply) =>
+                        reply.reply_id === data[0].reply_id ? data[0] : reply
+                    )              
+                } else {
+                    return [...prevReplies, data]
+                }
+            })
+        }
     }
 
     function replyToComment(handle, comment_id){
@@ -56,15 +69,13 @@ export default function Comment(props){
             logged_user_id: loggedUser.id
         })
 
-        const currentComment = comments.find(comment => comment.comment_id === comment_id)
-
-        if(currentComment.likes?.includes(loggedUser.id)){
-            currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
+        if(comment.likes?.includes(loggedUser.id)){
+            comment.likes = comment.likes.filter(like => like !== loggedUser.id)
         } else {
-            currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
-            currentComment.likes = [loggedUser.id]
+            comment.likes ? comment.likes.push(loggedUser.id) : 
+            comment.likes = [loggedUser.id]
         }
-        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
+        setComments(comments.map(prevComment => prevComment.comment_id === comment_id ? comment : prevComment))
     }
 
     useEffect(() => {
