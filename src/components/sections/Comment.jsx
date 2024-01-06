@@ -20,12 +20,9 @@ export default function Comment(props){
         posterId,
         postId,
         artistId,
-        inputSectionHeight,
-        descriptionMenuRef,
     } = props
 
     const { comment_id, text, likes, timestamp } = comment || {}
-    console.log("current comment is", comment)
 
     const { loggedUser } = useStore()
 
@@ -51,14 +48,17 @@ export default function Comment(props){
         if(!replies){
             setReplies(data.replies)
         } else {
-            setReplies((prevReplies) => {
-                if (prevReplies.some((reply) => reply.reply_id === data[0].reply_id)) {
-                    return prevReplies.map((reply) =>
-                        reply.reply_id === data[0].reply_id ? data[0] : reply
+            setComments((prevComments) => {
+                if (prevComments.some((comment) => comment.comment_id === data[0].comment_id)) {
+                    return prevComments.map((comment) =>
+                        comment.comment_id === data[0].comment_id ? data[0] : comment
                     )              
                 } else {
-                    return [...prevReplies, data]
+                    return [...prevComments, data]
                 }
+            })
+            setReplies(prevReplies => {
+                prevReplies.map()
             })
         }
     }
@@ -160,11 +160,10 @@ export default function Comment(props){
                     })
                 }
                 {(isFirstRepliesLoad && showReplies === comment_id) &&
-                    <div 
-                    className="loading_comments"
-                    style={{ height: 
-                    `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
-                    </div>
+                    <section 
+                    className="loading_comments full_width"
+                    style={{ height: '100px' }}>
+                    </section>
                 }
             </section>
         </section>
