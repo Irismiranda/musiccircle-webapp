@@ -25,7 +25,7 @@ export default function Comment(props){
     } = props
 
     const { comment_id, text, likes, timestamp } = comment || {}
-    console.log("current comment is", currentComment)
+    console.log("current comment is", comment)
 
     const { loggedUser } = useStore()
 
