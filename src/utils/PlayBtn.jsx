@@ -15,7 +15,6 @@ export default function PlayBtn(props){
         } else{
           await spotifyApi.play({ context_uri: uri, device_id: deviceId })
           const methodName = `get${type.charAt(0).toUpperCase() + type.slice(1)}`
-          console.log("method name is", methodName)
           
           const response = await spotifyApi[methodName](id)
       

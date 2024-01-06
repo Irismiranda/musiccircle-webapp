@@ -27,13 +27,8 @@ export default function Comments(props) {
 
     async function handleData(data, call){   
         if(call === "loadAllComments"){
-            console.log("loading all comments")
             setComments(data)
-            
-            console.log("comments were set")
-
         } else if (call === "loadNewComment"){
-            console.log("loading new comment", data[0])
             setComments((prevComments) => {
                 if (prevComments.some((comment) => comment.comment_id === data[0].comment_id)) {
                     return prevComments.map((comment) =>
@@ -61,10 +56,8 @@ export default function Comments(props) {
         socket.on('loadAllComments', (comment) => {
             setIsLoading(true)
             if(!comment || comment?.length === 0){
-                console.log("no new comments to load")
                 setIsLoading(false)
             } else {
-                console.log("formatting comment")
                 handleData(comment, 'loadAllComments')
             }
         })
@@ -89,7 +82,6 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        console.log("comments are", comments)
         if(comments){
             setCommentsNumber(comments.length)
             setIsLoading(false)

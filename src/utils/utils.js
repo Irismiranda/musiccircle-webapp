@@ -67,8 +67,6 @@ const convertTimestampToDate = (timestamp) => {
       dd: timestamp.slice(0, 2),
       time: timestamp.slice(12).replaceAll(":", "")
   }
-  
-  console.log(Object.values(dateString).join(""))
   return Object.values(dateString).join("")
 }
 

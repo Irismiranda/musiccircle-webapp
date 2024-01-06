@@ -42,8 +42,9 @@ export default function Post(props){
           }
     }
 
-    async function likePost(){
-        await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${data.post_id}`, {
+    async function likePost(post_id){
+        console.log("data is", data, "post id", post_id)
+        await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${post_id}`, {
             logged_user_id: loggedUser.id
         })
         const updatedLikes = data.likes?.includes(loggedUser.id) ?
@@ -142,7 +143,7 @@ export default function Post(props){
                             <h4>{data?.likes?.length || 0} Likes</h4>
                             <h4>{commentsNumber} Comments</h4>
                             <div
-                            onClick={() => likePost()}>
+                            onClick={() => likePost(data?.post_id)}>
                                 <SvgHeart
                                 style={{ 
                                     height: "15px",

@@ -20,6 +20,8 @@ export default function Comment(props){
         posterId,
         postId,
         artistId,
+        inputSectionHeight,
+        descriptionMenuRef,
     } = props
 
     const { comment_id, text, likes, timestamp } = comment || {}
@@ -29,9 +31,6 @@ export default function Comment(props){
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
         const formatedUser = formatListData([userData.data], userData.data.type) 
-
-        console.log("formated user is", formatedUser[0])
-
         return formatedUser[0]   
     }
 
@@ -55,13 +54,15 @@ export default function Comment(props){
             logged_user_id: loggedUser.id
         })
 
-        if(comment.likes?.includes(loggedUser.id)){
-            comment.likes = comment.likes.filter(like => like !== loggedUser.id)
+        const currentComment = comments.find(comment => comment.comment_id === comment_id)
+
+        if(currentComment.likes?.includes(loggedUser.id)){
+            currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
         } else {
-            comment.likes ? comment.likes.push(loggedUser.id) : 
-            comment.likes = [loggedUser.id]
+            currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
+            currentComment.likes = [loggedUser.id]
         }
-        setComments(comments.map(prevComment => prevComment.comment_id === comment_id ? comment : prevComment))
+        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
     useEffect(() => {
@@ -143,10 +144,11 @@ export default function Comment(props){
                     })
                 }
                 {(isFirstRepliesLoad && showReplies === comment_id) &&
-                    <section 
-                    className="loading_comments full_width"
-                    style={{ height: '100px' }}>
-                    </section>
+                    <div 
+                    className="loading_comments"
+                    style={{ height: 
+                    `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
+                    </div>
                 }
             </section>
         </section>

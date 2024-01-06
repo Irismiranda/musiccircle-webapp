@@ -124,7 +124,6 @@ export default function PlayerManager() {
     async function getPost(){
         const response = await Axios.get(`/api/${currentTrack.artists[0].uri.slice(15)}/${currentTrack.id}/post`)
         const track = formatListData([currentTrack], currentTrack.type)
-        console.log("response is", response.data)
         setPost({likes: response.data.likes, track: track[0]})
     }
 
@@ -265,7 +264,6 @@ export default function PlayerManager() {
                     })
                 }, 50)
 
-                console.log("queue is", state.track_window.next_tracks)
                 setCurrentQueue(state.track_window.next_tracks)
                 setTrack(state.track_window.current_track)
 
@@ -350,7 +348,6 @@ export default function PlayerManager() {
     }, [isMoving])
 
     useEffect(() => {
-        console.log("current queue is", currentQueue, "recommendationSeeds are", recommendationSeed?.ids, "recommendations are", recommendations, "current track is", currentTrack?.id)
         if(recommendations){
             recommendations[queueIndex]?.id === currentTrack?.id && setQueueIndex(prevIndex => prevIndex + 1)
         }
@@ -373,7 +370,6 @@ export default function PlayerManager() {
     }, [playerRef])
 
     useEffect(() => {
-        console.log("new track is", track?.id, "prev track is", currentTrack?.id)
         if(track && (track?.id !== currentTrack?.id)){
             setCurrentTrack(track)
         }
