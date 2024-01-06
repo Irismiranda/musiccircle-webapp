@@ -54,15 +54,18 @@ export default function Comment(props){
             logged_user_id: loggedUser.id
         })
 
-        const currentComment = comments.find(comment => comment.comment_id === comment_id)
+        const updatedLikes = comment.likes ? [...comment.likes] : []
 
-        if(currentComment.likes?.includes(loggedUser.id)){
-            currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
+        if (updatedLikes.includes(loggedUser.id)) {
+            updatedLikes.splice(updatedLikes.indexOf(loggedUser.id), 1);
         } else {
-            currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
-            currentComment.likes = [loggedUser.id]
+            updatedLikes.push(loggedUser.id)
         }
-        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
+
+        const updatedComment = [...comment, likes: updatedLikes]
+        
+        setComments(comments
+            .map(prevComment => prevComment.comment_id === comment_id ? updatedComment : prevComment))
     }
 
     useEffect(() => {
