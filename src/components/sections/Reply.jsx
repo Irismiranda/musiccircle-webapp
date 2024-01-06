@@ -25,20 +25,15 @@ export default function Reply(props) {
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(reply_id){      
-        console.log("comment is", currentComment)
+        console.log("reply is", reply)
         setIsLoadingReply(true)
 
-        try{
-            const userData = await getUser(reply_id)
-            console.log("user data is", userData)
+        const userData = await getUser(reply_id)
 
-            setUser(userData)
-                
-            setIsLoadingReply(false)
+        setUser(userData)
+               
+        setIsLoadingReply(false)
         isFirstRepliesLoad && setIsFirstRepliesLoad(false)
-        } catch(err){
-            console.log(err)
-        }  
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
