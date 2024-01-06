@@ -77,6 +77,8 @@ export default function Comments(props) {
             console.log("comments were set")
         } else if (call === "loadNewComment") {
             let updatedComment
+
+            console.log("reply id is", showReplies, "loaded comment id is", commentData[0].comment_id)
     
             if (showReplies === commentData[0].comment_id) {
                 const updatedReplies = await getUser(commentData[0].replies)
