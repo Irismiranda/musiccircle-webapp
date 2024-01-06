@@ -77,11 +77,9 @@ export default function Comments(props) {
             console.log("comments were set")
 
         } else if (call === "loadNewComment"){
-            console.log("loading new comment")
-
+            console.log("comments are", comments)
+            console.log("new comment id is", updatedComments[0].comment_id)
             const isUpdate = comments.some((comment) => comment.comment_id === updatedComments[0].comment_id)
-
-            comments.map(comment => console.log(`comment.comment_id is`, comment.comment_id, "updatedComments[0].comment_id is", updatedComments[0].comment_id, "is upload?", updatedComments[0].comment_id === comment.comment_id))
 
             if(isUpdate){
                 setComments(comments
