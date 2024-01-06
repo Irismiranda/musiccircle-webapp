@@ -28,14 +28,17 @@ export default function Reply(props) {
         console.log("comment is", currentComment)
         setIsLoadingReply(true)
 
-        const userData = await getUser(reply_id)
+        try{
+            const userData = await getUser(reply_id)
+            console.log("user data is", userData)
 
-        console.log("user data is", userData)
-
-        setUser(userData)
-               
-        setIsLoadingReply(false)
+            setUser(userData)
+                
+            setIsLoadingReply(false)
         isFirstRepliesLoad && setIsFirstRepliesLoad(false)
+        } catch(err){
+            console.log(err)
+        }  
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
