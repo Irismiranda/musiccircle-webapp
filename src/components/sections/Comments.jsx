@@ -93,11 +93,9 @@ export default function Comments(props) {
         }
     }
 
-    async function handleReplies(id, toggle){
+    async function handleReplies(id){
         setIsLoadingReplies(true)
 
-        toggle && setShowReplies((prevShowReplies) => (prevShowReplies === id ? null : id))
-        
         const currentComment = comments.find(comment => comment.comment_id === id)
         const updatedReplies = await getUser(currentComment.replies)
         
@@ -214,9 +212,12 @@ export default function Comments(props) {
     useEffect(() => {
         if(showReplies){
             const currentComment = comments.find(comment => comment.comment_id === showReplies)
-            !currentComment.replies[0].user && handleReplies(showReplies, false)
+           
+            if (currentComment && !currentComment.replies[0]?.user) {
+                handleReplies(showReplies)
+            }
         }
-    }, [comments])
+    }, [comments, showReplies])
 
     return (
         !isLoading ? (
@@ -275,7 +276,7 @@ export default function Comments(props) {
                         {replies && 
                         <h4 
                         className="pointer"
-                        onClick={() => handleReplies(comment_id, true)}> 
+                        onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === id ? null : id))}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
                         <section
