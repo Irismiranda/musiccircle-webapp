@@ -10,9 +10,9 @@ export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
-    const [isLoadingReplies, setIsLoadingReplies] = useState(true)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
+    const [isFirstRepliesLoad, setIsFirstRepliesLoad] = useState(true)
 
     const { 
         postId, 
@@ -158,7 +158,6 @@ export default function Comments(props) {
         return () => {
             socket.off('loadNewComment')
         }
-    
     }, [])
 
     useEffect(() => {
@@ -233,7 +232,6 @@ export default function Comments(props) {
                         onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment_id ? null : comment_id))}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
-                        {!isLoadingReplies ? 
                         <section
                         className="replies_section flex flex_column">
                             {(showReplies === comment_id && replies) &&
@@ -244,21 +242,22 @@ export default function Comments(props) {
                                     <Reply 
                                     comment_id={comment_id}
                                     reply={reply}
-                                    setIsLoadingReplies={setIsLoadingReplies}
                                     postId={postId}
                                     posterId={posterId} 
                                     artistId={artistId} 
                                     replyToComment={replyToComment}
-                                    getUser={getUser}/>
+                                    getUser={getUser}
+                                    showReplies={showReplies}/>
                                     )
                                 })
                             }
-                        </section> :
-                        (showReplies === comment_id && replies) && 
-                        <section 
-                        className="loading_comments full_width"
-                        style={{ height: '100px' }}>
-                        </section>}
+                            {(isFirstRepliesLoad && showReplies === comment_id) &&
+                                <section 
+                                className="loading_comments full_width"
+                                style={{ height: '100px' }}>
+                                </section>
+                            }
+                        </section>
                     </section>
                     )
                 })

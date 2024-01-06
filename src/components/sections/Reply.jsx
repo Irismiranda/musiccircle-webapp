@@ -7,17 +7,20 @@ import { SvgHeart } from "../../assets"
 export default function Reply(props) {
     const { 
         reply,
-        comment_id, 
-        setIsLoadingReplies, 
+        comment_id,  
         setComments, 
         comments,
         postId, 
         posterId, 
         artistId, 
         replyToComment, 
-        getUser} = props
+        getUser,
+        isFirstRepliesLoad,
+        setIsFirstRepliesLoad
+    } = props
 
     const { loggedUser } = useStore()
+    const [isLoadingReplies, setIsLoadingReplies] = useState(true)
 
     async function handleReplies(id){
         setIsLoadingReplies(true)
@@ -30,6 +33,7 @@ export default function Reply(props) {
         setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         
         setIsLoadingReplies(false)
+        setIsFirstRepliesLoad(false)
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
@@ -61,50 +65,56 @@ export default function Reply(props) {
         }
     }, [reply])
 
-    return (
-            <section 
-            className="full_width"
-            key={reply.comment_id}>
-                <div 
-                className="flex space_between">
-                    <div>
-                        <Link to={`/account/${reply.user?.id}`}>
-                            <div className="flex"
-                            style={{ marginBottom: "10px" }}>
-                                <img 
-                                className="profile_small"
-                                src={reply.user?.imgUrl}/>
-                                <h3>{reply.user?.name}</h3>
-                            </div>
-                        </Link>
-                        <p>{reply.text}</p>
-                    </div>
-                    <div
-                    onClick={() => likeReply(postId, reply.reply_id)}>
-                        <SvgHeart 
-                        style={{ 
-                            height: "15px",
-                            marginRight: "20px",
-                            fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
-                            }}/>
-                    </div>
+    return (isLoadingReplies && !isFirstRepliesLoad) ? (
+        <section 
+        className="loading_comments full_width"
+        style={{ height: '100px' }}>
+        </section>
+        ) :
+        (
+        <section 
+        className="full_width"
+        key={reply.comment_id}>
+            <div 
+            className="flex space_between">
+                <div>
+                    <Link to={`/account/${reply.user?.id}`}>
+                        <div className="flex"
+                        style={{ marginBottom: "10px" }}>
+                            <img 
+                            className="profile_small"
+                            src={reply.user?.imgUrl}/>
+                            <h3>{reply.user?.name}</h3>
+                        </div>
+                    </Link>
+                    <p>{reply.text}</p>
                 </div>
-                <div className="flex">
-                    <h4>{reply.timestamp}</h4>
-                    <h4>{reply.likes?.length || 0} Likes</h4>
-                    {(reply.user?.id !== loggedUser.id) && 
-                    <h4 
-                    className="pointer"
-                    onClick={() => replyToComment(reply.user?.name, comment_id)}>
-                        Reply
-                    </h4>}
-                    {(reply.user?.id === loggedUser.id) &&
-                    <h4 
-                    className="pointer"
-                    onClick={() => deleteReply(postId, comment_id, reply.reply_id)}>
-                        Delete Comment
-                    </h4>}
+                <div
+                onClick={() => likeReply(postId, reply.reply_id)}>
+                    <SvgHeart 
+                    style={{ 
+                        height: "15px",
+                        marginRight: "20px",
+                        fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
+                        }}/>
                 </div>
+            </div>
+            <div className="flex">
+                <h4>{reply.timestamp}</h4>
+                <h4>{reply.likes?.length || 0} Likes</h4>
+                {(reply.user?.id !== loggedUser.id) && 
+                <h4 
+                className="pointer"
+                onClick={() => replyToComment(reply.user?.name, comment_id)}>
+                    Reply
+                </h4>}
+                {(reply.user?.id === loggedUser.id) &&
+                <h4 
+                className="pointer"
+                onClick={() => deleteReply(postId, comment_id, reply.reply_id)}>
+                    Delete Comment
+                </h4>}
+            </div>
         </section>
         )
         
