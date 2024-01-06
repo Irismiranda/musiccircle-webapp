@@ -22,21 +22,19 @@ export default function Reply(props) {
     const { comment_id } = currentComment
 
     const { loggedUser } = useStore()
+    
     const [isLoadingReply, setIsLoadingReply] = useState(true)
+    const [ user, setUser ] = useState(null)
 
     async function handleReplies(id){
         console.log("reply is", reply, "current comment is", currentComment)
         
         setIsLoadingReply(true)
 
-        const updatedReply = await getUser(reply.user_id)
-        
-        console.log("updated reply is", updatedReply)
-        
-        const updatedComment = {...currentComment, replies: updatedReply}
-        console.log("updated comment is", updatedComment)
-        setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
-        
+        const userData = await getUser(reply.user_id)
+
+        setUser(userData)
+               
         setIsLoadingReply(false)
         isFirstRepliesLoad && setIsFirstRepliesLoad(false)
     }
@@ -82,13 +80,13 @@ export default function Reply(props) {
                 <div 
                 className="flex space_between">
                     <div>
-                        <Link to={`/account/${reply.user?.id}`}>
+                        <Link to={`/account/${user?.id}`}>
                             <div className="flex"
                             style={{ marginBottom: "10px" }}>
                                 <img 
                                 className="profile_small"
-                                src={reply.user?.imgUrl}/>
-                                <h3>{reply.user?.name}</h3>
+                                src={user?.imgUrl}/>
+                                <h3>{user?.name}</h3>
                             </div>
                         </Link>
                         <p>{reply.text}</p>
@@ -106,13 +104,13 @@ export default function Reply(props) {
                 <div className="flex">
                     <h4>{reply.timestamp}</h4>
                     <h4>{reply.likes?.length || 0} Likes</h4>
-                    {(reply.user?.id !== loggedUser.id) && 
+                    {(user?.id !== loggedUser.id) && 
                     <h4 
                     className="pointer"
-                    onClick={() => replyToComment(reply.user?.name, comment_id)}>
+                    onClick={() => replyToComment(user?.name, comment_id)}>
                         Reply
                     </h4>}
-                    {(reply.user?.id === loggedUser.id) &&
+                    {(user?.id === loggedUser.id) &&
                     <h4 
                     className="pointer"
                     onClick={() => deleteReply(postId, comment_id, reply.reply_id)}>

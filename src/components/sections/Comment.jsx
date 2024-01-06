@@ -28,14 +28,20 @@ export default function Comment(props){
 
     async function getUser(data){
         const userData = await Axios.get(`api/user/${data}`)
-        const formatedUser = formatListData([userData.data], userData.data.type)
-        setUserData(formatedUser[0])    
+        formatedUser = formatListData([userData.data], userData.data.type) 
+        return formatedUser[0]   
     }
 
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
         console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id))
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
+    }
+
+    async function handleData(data){
+        const userData = await getUser(data.user_id)
+        setUserData(userData)
+        setReplies(data.replies)
     }
 
     function replyToComment(handle, comment_id){
@@ -63,8 +69,7 @@ export default function Comment(props){
     }, [showReplies])
 
     useEffect(() => {
-        getUser(comment.user_id)
-        setReplies(comment.replies)
+        handleData(comment)
     }, [comment])
 
     return (
