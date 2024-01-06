@@ -24,10 +24,10 @@ export default function Reply(props) {
     const [isLoadingReply, setIsLoadingReply] = useState(true)
     const [ user, setUser ] = useState(null)
 
-    async function handleReplies(reply_id){      
+    async function handleReplies(user_id){      
         setIsLoadingReply(true)
 
-        const userData = await getUser(reply_id)
+        const userData = await getUser(user_id)
 
         setUser(userData)
                
@@ -57,7 +57,7 @@ export default function Reply(props) {
 
     useEffect(() => {
         if(reply){
-            handleReplies(reply.reply_id)
+            handleReplies(reply.user_id)
         }
     }, [reply])
 
