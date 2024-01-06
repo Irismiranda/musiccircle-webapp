@@ -24,12 +24,10 @@ export default function Reply(props) {
     const [isLoadingReply, setIsLoadingReply] = useState(true)
     const [ user, setUser ] = useState(null)
 
-    async function handleReplies(id){
-        console.log("reply is", reply, "current is comment is", currentComment?.comment_id)
-        
+    async function handleReplies(reply_id){      
         setIsLoadingReply(true)
 
-        const userData = await getUser(reply.user_id)
+        const userData = await getUser(reply_id)
 
         setUser(userData)
                
@@ -38,10 +36,12 @@ export default function Reply(props) {
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
+        console.log("comment id is", comment_id)
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
     }
 
     async function likeReply(post_id, comment_id, reply_id){
+        console.log("comment id is", comment_id)
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
             logged_user_id: loggedUser.id
         })
@@ -90,7 +90,7 @@ export default function Reply(props) {
                         <p>{reply.text}</p>
                     </div>
                     <div
-                    onClick={() => likeReply(postId, reply.reply_id)}>
+                    onClick={() => likeReply(postId, currentComment?.comment_id, reply.reply_id)}>
                         <SvgHeart 
                         style={{ 
                             height: "15px",
