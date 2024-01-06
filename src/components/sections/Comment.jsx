@@ -62,7 +62,7 @@ export default function Comment(props){
             updatedLikes.push(loggedUser.id)
         }
 
-        const updatedComment = [...comment, likes: updatedLikes]
+        const updatedComment = {...comment, likes: updatedLikes}
         
         setComments(comments
             .map(prevComment => prevComment.comment_id === comment_id ? updatedComment : prevComment))
