@@ -213,7 +213,8 @@ export default function Comments(props) {
 
     useEffect(() => {
         if(showReplies){
-            handleReplies(showReplies, false)
+            const currentComment = comments.find(comment => comment.comment_id === showReplies)
+            !currentComment.replies[0].user && handleReplies(showReplies, false)
         }
     }, [comments])
 
