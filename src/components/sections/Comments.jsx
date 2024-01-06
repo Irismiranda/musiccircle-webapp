@@ -29,14 +29,13 @@ export default function Comments(props) {
         if(call === "loadAllComments"){
             setComments(data)
         } else if (call === "loadNewComment"){
-            console.log("data is", data)
             setComments((prevComments) => {
                 if (prevComments.some((prevComment) => prevComment.comment_id === data[0].comment_id)) {
                     return prevComments.map((prevComment) =>
                     prevComment.comment_id === data[0].comment_id ? data[0] : prevComment
                     )              
                 } else {
-                    return [...prevComments, data]
+                    return [...prevComments, data[0]]
                 }
             })
         }
