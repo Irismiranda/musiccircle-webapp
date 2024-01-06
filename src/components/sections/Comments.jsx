@@ -78,16 +78,7 @@ export default function Comments(props) {
             if(!comment || comment?.length === 0){
                 return
             } else {
-                setComments((prevComments) => {
-                    if (prevComments.some(
-                        (comment) => comment.comment_id === updatedComments[0].comment_id)) {
-                        return prevComments.map((comment) =>
-                            comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment
-                        )              
-                    } else {
-                        return [...prevComments, updatedComments[0]]
-                    }
-                })
+                handleData(comment, 'loadNewComment')
             } 
         })
 
