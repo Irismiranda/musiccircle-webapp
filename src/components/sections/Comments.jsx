@@ -66,36 +66,28 @@ export default function Comments(props) {
         }
     }
 
-    async function handleData(data, call) {
-        const commentData = await getUser(data)
-        console.log("loaded comments are", commentData)
-    
-        if (call === "loadAllComments") {
+    async function handleData(data, call){
+        const updatedComments = await getUser(data)
+        console.log("loaded comments are", updatedComments)
+            
+        if(call === "loadAllComments"){
             console.log("loading all comments")
-            setComments(commentData)
-    
+            setComments(updatedComments)
+            
             console.log("comments were set")
-        } else if (call === "loadNewComment") {
-            let updatedComment
 
-            console.log("reply id is", showReplies, "loaded comment id is", commentData[0].comment_id)
-    
-            if (showReplies === commentData[0].comment_id) {
-                const updatedReplies = await getUser(commentData[0].replies)
-                updatedComment = { ...commentData[0], replies: updatedReplies }
-            }
-    
+        } else if (call === "loadNewComment"){
             setComments((prevComments) => {
-                if (prevComments.some((comment) => comment.comment_id === commentData[0].comment_id)) {
+                if (prevComments.some((comment) => comment.comment_id === updatedComments[0].comment_id)) {
                     return prevComments.map((comment) =>
-                        comment.comment_id === commentData[0].comment_id ? (updatedComment || commentData[0]) : comment
-                    )
+                        comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment
+                    )              
                 } else {
-                    return [...prevComments, commentData[0]]
+                    return [...prevComments, updatedComments[0]]
                 }
             })
-    
-            if (data[0].user_id === loggedUser.id) {
+
+            if(data[0].user_id === loggedUser.id){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
             }
         }
@@ -218,6 +210,12 @@ export default function Comments(props) {
     useEffect(() => {
         inputSectionRef?.current && setTimeout(setInputSectionHeight(inputSectionRef?.current?.clientHeight), 3000)
     }, [replyTo])
+
+    useEffect(() => {
+        if(showReplies){
+            handleReplies(showReplies, false)
+        }
+    }, [comments])
 
     return (
         !isLoading ? (
