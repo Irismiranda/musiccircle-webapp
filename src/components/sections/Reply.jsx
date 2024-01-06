@@ -17,7 +17,7 @@ export default function Reply(props) {
         getUser,
         isFirstRepliesLoad,
         setIsFirstRepliesLoad,
-        currentComment
+        currentComment,
     } = props
 
     const { loggedUser } = useStore()

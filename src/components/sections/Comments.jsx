@@ -252,7 +252,8 @@ export default function Comments(props) {
                                     replyToComment={replyToComment}
                                     getUser={getUser}
                                     showReplies={showReplies}
-                                    currentComment={comment}/>
+                                    currentComment={comment}
+                                    comments={comments}/>
                                     )
                                 })
                             }
