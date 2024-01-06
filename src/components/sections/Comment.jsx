@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { SvgHeart } from "../../assets"
 import { Reply } from ".."
+import useStore from "../../store"
 import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
