@@ -46,12 +46,12 @@ export default function Comment(props){
 
         if(replies.length > 0){
             setReplies((prevReplies) => {
-                if (prevReplies.some((prevReply) => prevReply.reply_id === data.replies.reply_id)) {
+                if (prevReplies.some((prevReply) => prevReply.reply_id === data.replies[0].reply_id)) {
                     return prevReplies.map((prevReply) =>
-                    prevReply.reply_id === data.replies.reply_id ? data.replies : prevReply
+                    prevReply.reply_id === data.replies[0].reply_id ? data.replies[0] : prevReply
                     )              
                 } else {
-                    return [...prevReplies, data.replies]
+                    return [...prevReplies, data.replies[0]]
                 }
             })
         } else {
