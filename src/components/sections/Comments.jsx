@@ -88,7 +88,7 @@ export default function Comments(props) {
             })
 
             if(showReplies === updatedComments[0].comment_id){
-                handleReplies(updatedComments[0].comment_id)
+                handleReplies(updatedComments[0].comment_id, false)
             }
 
             if(data[0].user_id === loggedUser.id){
@@ -97,10 +97,10 @@ export default function Comments(props) {
         }
     }
 
-    async function handleReplies(id){
+    async function handleReplies(id, toggle){
         setIsLoadingReplies(true)
 
-        showReplies === id ? setShowReplies(null) : setShowReplies(id)
+        toggle && setShowReplies((prevShowReplies) => (prevShowReplies === id ? null : id))
         
         const currentComment = comments.find(comment => comment.comment_id === id)
         const updatedReplies = await getUser(currentComment.replies)
@@ -272,7 +272,7 @@ export default function Comments(props) {
                         {replies && 
                         <h4 
                         className="pointer"
-                        onClick={() => handleReplies(comment_id)}> 
+                        onClick={() => handleReplies(comment_id, true)}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
                         <section
