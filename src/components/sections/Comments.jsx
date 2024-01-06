@@ -212,8 +212,11 @@ export default function Comments(props) {
     useEffect(() => {
         if(showReplies){
             const currentComment = comments.find(comment => comment.comment_id === showReplies)
+
+            console.log("current comment is", currentComment)
+            console.log("current replies is", currentComment.replies)
            
-            if (currentComment && !currentComment.replies[0]?.user) {
+            if (currentComment?.replies && !currentComment.replies[0]?.user) {
                 handleReplies(showReplies)
             }
         }
