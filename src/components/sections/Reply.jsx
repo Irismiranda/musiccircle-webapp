@@ -19,7 +19,7 @@ export default function Reply(props) {
         currentComment,
     } = props
 
-    const { comment_id } = currentComment
+    const { comment_id } = currentComment[0]
 
     const { loggedUser } = useStore()
     
