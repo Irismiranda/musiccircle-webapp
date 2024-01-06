@@ -39,6 +39,7 @@ export default function Comment(props){
 
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
+        console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id))
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
     }
 
@@ -57,13 +58,15 @@ export default function Comment(props){
             logged_user_id: loggedUser.id
         })
 
-        if(comment.likes?.includes(loggedUser.id)){
-            comment.likes = comment.likes.filter(like => like !== loggedUser.id)
+        const currentComment = comments.find(comment => comment.comment_id === comment_id)
+
+        if(currentComment.likes?.includes(loggedUser.id)){
+            currentComment.likes = currentComment.likes.filter(like => like !== loggedUser.id)
         } else {
-            comment.likes ? comment.likes.push(loggedUser.id) : 
-            comment.likes = [loggedUser.id]
+            currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
+            currentComment.likes = [loggedUser.id]
         }
-        setComments(comments.map(prevComment => prevComment.comment_id === comment_id ? comment : prevComment))
+        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
     useEffect(() => {
