@@ -19,6 +19,7 @@ export default function Comment(props){
         setReplyTo, 
         posterId,
         postId,
+        artistId,
     } = props
 
     const { comment_id, text, likes, timestamp } = comment || {}

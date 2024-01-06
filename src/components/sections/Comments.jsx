@@ -122,7 +122,12 @@ export default function Comments(props) {
                     return (
                         <Comment 
                         comment={comment}
-                        setReplyTo={setReplyTo}/>
+                        comments={comments}
+                        setComments={setComments}
+                        setReplyTo={replyTo}
+                        posterId={postId}
+                        postId={postId}
+                        artistId={artistId}/>
                     )
                 })
             }
