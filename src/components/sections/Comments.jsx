@@ -214,7 +214,7 @@ export default function Comments(props) {
             const currentComment = comments.find(comment => comment.comment_id === showReplies)
 
             console.log("current comment is", currentComment)
-            console.log("current replies is", currentComment.replies)
+            console.log("current replies are", currentComment.replies)
            
             if (currentComment?.replies && !currentComment.replies[0]?.user) {
                 handleReplies(showReplies)
