@@ -30,6 +30,8 @@ export default function Reply(props) {
 
         const userData = await getUser(reply_id)
 
+        console.log("user data is", userData)
+
         setUser(userData)
                
         setIsLoadingReply(false)
