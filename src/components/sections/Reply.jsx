@@ -72,7 +72,7 @@ export default function Reply(props) {
         style={{ height: '100px' }}>
         </section>)
         
-        (!isLoadingReplies) &&
+        (!isLoadingReplies && reply) &&
         (<section 
         className="full_width"
         key={reply.comment_id}>
