@@ -66,32 +66,34 @@ export default function Comments(props) {
         }
     }
 
-    async function handleData(data, call){
-        const updatedComments = await getUser(data)
-        console.log("loaded comments are", updatedComments)
-            
-        if(call === "loadAllComments"){
+    async function handleData(data, call) {
+        const commentData = await getUser(data)
+        console.log("loaded comments are", commentData)
+    
+        if (call === "loadAllComments") {
             console.log("loading all comments")
-            setComments(updatedComments)
-            
+            setComments(commentData)
+    
             console.log("comments were set")
-
-        } else if (call === "loadNewComment"){
+        } else if (call === "loadNewComment") {
+            let updatedComment
+    
+            if (showReplies === commentData[0].comment_id) {
+                const updatedReplies = await getUser(commentData[0].replies)
+                updatedComment = { ...commentData[0], replies: updatedReplies }
+            }
+    
             setComments((prevComments) => {
-                if (prevComments.some((comment) => comment.comment_id === updatedComments[0].comment_id)) {
+                if (prevComments.some((comment) => comment.comment_id === commentData[0].comment_id)) {
                     return prevComments.map((comment) =>
-                        comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment
-                    )              
+                        comment.comment_id === commentData[0].comment_id ? (updatedComment || commentData[0]) : comment
+                    )
                 } else {
-                    return [...prevComments, updatedComments[0]]
+                    return [...prevComments, commentData[0]]
                 }
             })
-
-            if(showReplies === updatedComments[0].comment_id){
-                handleReplies(updatedComments[0].comment_id, false)
-            }
-
-            if(data[0].user_id === loggedUser.id){
+    
+            if (data[0].user_id === loggedUser.id) {
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
             }
         }
