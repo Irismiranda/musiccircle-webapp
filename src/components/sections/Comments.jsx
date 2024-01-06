@@ -172,6 +172,10 @@ export default function Comments(props) {
         inputSectionRef?.current && setTimeout(setInputSectionHeight(inputSectionRef?.current?.clientHeight), 3000)
     }, [replyTo])
 
+    useEffect(() => {
+        setIsFirstRepliesLoad(true)
+    }, [showReplies])
+
     return (
         !isLoading ? (
         <div 
@@ -247,7 +251,8 @@ export default function Comments(props) {
                                     artistId={artistId} 
                                     replyToComment={replyToComment}
                                     getUser={getUser}
-                                    showReplies={showReplies}/>
+                                    showReplies={showReplies}
+                                    currentComment={comment}/>
                                     )
                                 })
                             }

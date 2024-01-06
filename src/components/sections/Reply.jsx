@@ -16,23 +16,25 @@ export default function Reply(props) {
         replyToComment, 
         getUser,
         isFirstRepliesLoad,
-        setIsFirstRepliesLoad
+        setIsFirstRepliesLoad,
+        currentComment
     } = props
 
     const { loggedUser } = useStore()
-    const [isLoadingReplies, setIsLoadingReplies] = useState(true)
+    const [isLoadingReply, setIsLoadingReply] = useState(true)
 
     async function handleReplies(id){
-        setIsLoadingReplies(true)
+        console.log("reply is", reply, "current comment is", currentComment)
+        
+        setIsLoadingReply(true)
 
-        const currentComment = comments.find(comment => comment.comment_id === id)
         const updatedReplies = await getUser(currentComment.replies)
         
         const updatedComment = {...currentComment, replies: updatedReplies}
         console.log("updated comment is", updatedComment)
         setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         
-        setIsLoadingReplies(false)
+        setIsLoadingReply(false)
         setIsFirstRepliesLoad(false)
     }
 
@@ -45,7 +47,6 @@ export default function Reply(props) {
             logged_user_id: loggedUser.id
         })
         
-        const currentComment = comments.find(comment => comment.comment_id === comment_id)
         const currentReply = currentComment.find(reply => reply.comment_id === reply_id)
 
         if(currentReply.likes?.includes(loggedUser.id)){
@@ -67,13 +68,13 @@ export default function Reply(props) {
 
     return (
         <>
-            {(isLoadingReplies && !isFirstRepliesLoad) &&
+            {(isLoadingReply && !isFirstRepliesLoad) &&
             <section 
             className="loading_comments full_width"
             style={{ height: '100px' }}>
             </section>}
             
-            {(!isLoadingReplies && reply) &&
+            {(!isLoadingReply && reply) &&
             <section 
             className="full_width"
             key={reply.comment_id}>
