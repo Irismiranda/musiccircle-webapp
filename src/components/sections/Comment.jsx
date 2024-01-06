@@ -155,7 +155,7 @@ export default function Comment(props){
                         getUser={getUser}
                         isFirstRepliesLoad={isFirstRepliesLoad}
                         setIsFirstRepliesLoad={setIsFirstRepliesLoad}
-                        currentComment={comment[0]}/>
+                        currentComment={comment}/>
                         )
                     })
                 }
