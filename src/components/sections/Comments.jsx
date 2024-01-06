@@ -81,11 +81,15 @@ export default function Comments(props) {
                 if (prevComments.some((comment) => comment.comment_id === updatedComments[0].comment_id)) {
                     return prevComments.map((comment) =>
                         comment.comment_id === updatedComments[0].comment_id ? updatedComments[0] : comment
-                    )
+                    )              
                 } else {
                     return [...prevComments, updatedComments[0]]
                 }
             })
+
+            if(showReplies === updatedComments[0].comment_id){
+                handleReplies(updatedComments[0].comment_id)
+            }
 
             if(data[0].user_id === loggedUser.id){
                 commentsRef?.current && commentsRef.current.scrollTo({ bottom: 0 })
@@ -94,16 +98,17 @@ export default function Comments(props) {
     }
 
     async function handleReplies(id){
-        setShowReplies(!showReplies)
+        setIsLoadingReplies(true)
+
+        showReplies === id ? setShowReplies(null) : setShowReplies(id)
         
-        if(!showReplies){
-            const currentComment = comments.find(comment => comment.comment_id === id)
-            const updatedReplies = await getUser(currentComment.replies)
-            
-            const updatedComment = {...currentComment, replies: updatedReplies}
-            console.log("updated comment is", updatedComment)
-            setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
-        }
+        const currentComment = comments.find(comment => comment.comment_id === id)
+        const updatedReplies = await getUser(currentComment.replies)
+        
+        const updatedComment = {...currentComment, replies: updatedReplies}
+        console.log("updated comment is", updatedComment)
+        setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
+        
         setIsLoadingReplies(false)
     }
 
@@ -272,7 +277,7 @@ export default function Comments(props) {
 
                         <section
                         className="replies_section flex flex_column">
-                            {(showReplies && replies) &&
+                            {(showReplies === comment_id && replies) &&
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
