@@ -244,16 +244,18 @@ export default function Comments(props) {
                                 .map(reply => {
                                     return (
                                     <Reply 
-                                    comment_id={comment_id}
                                     reply={reply}
+                                    comment_id={comment_id} 
+                                    setComments={setComments}
+                                    comments={comments}
                                     postId={postId}
-                                    posterId={posterId} 
-                                    artistId={artistId} 
+                                    posterId={posterId}
+                                    artistId={artistId}
                                     replyToComment={replyToComment}
                                     getUser={getUser}
-                                    showReplies={showReplies}
-                                    currentComment={comment}
-                                    comments={comments}/>
+                                    isFirstRepliesLoad={isFirstRepliesLoad}
+                                    setIsFirstRepliesLoad={setIsFirstRepliesLoad}
+                                    currentComment={currentComment}/>
                                     )
                                 })
                             }
