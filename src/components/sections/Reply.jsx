@@ -65,14 +65,15 @@ export default function Reply(props) {
         }
     }, [reply])
 
-    return (isLoadingReplies && !isFirstRepliesLoad) ? (
-        <section 
+    return (
+        (isLoadingReplies && !isFirstRepliesLoad) &&
+        (<section 
         className="loading_comments full_width"
         style={{ height: '100px' }}>
-        </section>
-        ) :
-        (
-        <section 
+        </section>)
+        
+        (!isLoadingReplies) &&
+        (<section 
         className="full_width"
         key={reply.comment_id}>
             <div 
@@ -115,7 +116,7 @@ export default function Reply(props) {
                     Delete Comment
                 </h4>}
             </div>
-        </section>
+        </section>)
         )
         
 }
