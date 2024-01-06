@@ -4,7 +4,7 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { SvgHeart } from "../../assets"
 
-export default function Replies(props) {
+export default function Reply(props) {
     const { 
         reply,
         comment_id, 

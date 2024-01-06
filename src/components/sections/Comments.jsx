@@ -4,7 +4,7 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData, convertTimestampToDate } from "../../utils"
 import { SvgHeart } from "../../assets"
-import Replies from "../"
+import { Reply } from "../"
 
 export default function Comments(props) {
     const [comments, setComments] = useState([])
@@ -241,7 +241,7 @@ export default function Comments(props) {
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
                                     return (
-                                    <Replies 
+                                    <Reply 
                                     comment_id={comment_id}
                                     reply={reply}
                                     setIsLoadingReplies={setIsLoadingReplies}
