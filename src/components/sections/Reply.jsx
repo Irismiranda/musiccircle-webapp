@@ -38,7 +38,7 @@ export default function Reply(props) {
         setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         
         setIsLoadingReply(false)
-        setIsFirstRepliesLoad(false)
+        isFirstRepliesLoad && setIsFirstRepliesLoad(false)
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
