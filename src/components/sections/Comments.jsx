@@ -116,7 +116,7 @@ export default function Comments(props) {
                         comment={comment}
                         comments={comments}
                         setComments={setComments}
-                        setReplyTo={setReplyTo}
+                        setReplyTo={replyTo}
                         posterId={posterId}
                         postId={postId}
                         artistId={artistId}
