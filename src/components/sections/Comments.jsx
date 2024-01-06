@@ -4,6 +4,7 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { formatListData, convertTimestampToDate } from "../../utils"
 import { SvgHeart } from "../../assets"
+import Replies from "../"
 
 export default function Comments(props) {
     const [comments, setComments] = useState([])
@@ -93,19 +94,6 @@ export default function Comments(props) {
         }
     }
 
-    async function handleReplies(id){
-        setIsLoadingReplies(true)
-
-        const currentComment = comments.find(comment => comment.comment_id === id)
-        const updatedReplies = await getUser(currentComment.replies)
-        
-        const updatedComment = {...currentComment, replies: updatedReplies}
-        console.log("updated comment is", updatedComment)
-        setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
-        
-        setIsLoadingReplies(false)
-    }
-
     async function deleteComment(post_id, comment_id){       
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_comment/${comment_id}`)
         console.log("comments are", comments.filter(comment => comment.comment_id !== comment_id))
@@ -114,10 +102,6 @@ export default function Comments(props) {
 
     function replyToComment(handle, comment_id){
         setReplyTo({comment_id: comment_id, user_handle: handle})
-    }
-
-    async function deleteReply(post_id, comment_id, reply_id){
-        await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
     }
 
     async function likeComment(post_id, comment_id){       
@@ -133,25 +117,6 @@ export default function Comments(props) {
             currentComment.likes ? currentComment.likes.push(loggedUser.id) : 
             currentComment.likes = [loggedUser.id]
         }
-        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
-    }
-
-    async function likeReply(post_id, comment_id, reply_id){
-        await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
-            logged_user_id: loggedUser.id
-        })
-        
-        const currentComment = comments.find(comment => comment.comment_id === comment_id)
-        const currentReply = currentComment.find(reply => reply.comment_id === reply_id)
-
-        if(currentReply.likes?.includes(loggedUser.id)){
-            currentReply.likes = currentReply.likes.filter(like => like !== loggedUser.id)
-        } else {
-            currentReply.likes.push(loggedUser.id)
-        }
-
-        currentComment.replies = currentComment.replies
-            .map(reply => reply.reply_id === reply_id ? currentReply : reply)
         setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
@@ -180,8 +145,7 @@ export default function Comments(props) {
 
         return () => {
             socket.off('loadAllComments')
-        }
-        
+        }      
     }, [])
 
     useEffect(() => {
@@ -208,19 +172,6 @@ export default function Comments(props) {
     useEffect(() => {
         inputSectionRef?.current && setTimeout(setInputSectionHeight(inputSectionRef?.current?.clientHeight), 3000)
     }, [replyTo])
-
-    useEffect(() => {
-        if(showReplies){
-            const currentComment = comments.find(comment => comment.comment_id === showReplies)
-
-            console.log("current comment is", currentComment)
-            console.log("current replies are", currentComment.replies)
-           
-            if (currentComment?.replies && !currentComment.replies[0]?.user) {
-                handleReplies(showReplies)
-            }
-        }
-    }, [comments, showReplies])
 
     return (
         !isLoading ? (
@@ -282,67 +233,31 @@ export default function Comments(props) {
                         onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment_id ? null : comment_id))}> 
                         {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
+                        {!isLoadingReplies ? 
                         <section
                         className="replies_section flex flex_column">
                             {(showReplies === comment_id && replies) &&
                                 replies 
                                 .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                                 .map(reply => {
-                                    return !isLoadingReplies ?  (
-                                        <section 
-                                        className="full_width"
-                                        key={reply.comment_id}>
-                                            <div 
-                                            className="flex space_between">
-                                                <div>
-                                                    <Link to={`/account/${reply.user?.id}`}>
-                                                        <div className="flex"
-                                                        style={{ marginBottom: "10px" }}>
-                                                            <img 
-                                                            className="profile_small"
-                                                            src={reply.user?.imgUrl}/>
-                                                            <h3>{reply.user?.name}</h3>
-                                                        </div>
-                                                    </Link>
-                                                    <p>{reply.text}</p>
-                                                </div>
-                                                <div
-                                                onClick={() => likeReply(postId, reply.reply_id)}>
-                                                    <SvgHeart 
-                                                    style={{ 
-                                                        height: "15px",
-                                                        marginRight: "20px",
-                                                        fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
-                                                        }}/>
-                                                </div>
-                                            </div>
-                                            <div className="flex">
-                                                <h4>{reply.timestamp}</h4>
-                                                <h4>{reply.likes?.length || 0} Likes</h4>
-                                                {(reply.user?.id !== loggedUser.id) && 
-                                                <h4 
-                                                className="pointer"
-                                                onClick={() => replyToComment(reply.user?.name, comment_id)}>
-                                                    Reply
-                                                </h4>}
-                                                {(reply.user?.id === loggedUser.id) &&
-                                                <h4 
-                                                className="pointer"
-                                                onClick={() => deleteReply(postId, comment_id, reply.comment_id)}>
-                                                    Delete Comment
-                                                </h4>}
-                                            </div>
-                                    </section>
-                                    ) :
-                                    (
-                                    <section 
-                                    className="loading_comments full_width"
-                                    style={{ height: '100px' }}>
-                                    </section>
+                                    return (
+                                    <Replies 
+                                    comment_id={comment_id}
+                                    reply={reply}
+                                    setIsLoadingReplies={setIsLoadingReplies}
+                                    postId={postId}
+                                    posterId={posterId} 
+                                    artistId={artistId} 
+                                    replyToComment={replyToComment}
+                                    getUser={getUser}/>
                                     )
                                 })
                             }
-                        </section>
+                        </section> :
+                        <section 
+                        className="loading_comments full_width"
+                        style={{ height: '100px' }}>
+                        </section>}
                     </section>
                 )
             })
