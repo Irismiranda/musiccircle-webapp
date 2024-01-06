@@ -41,26 +41,9 @@ export default function Comment(props){
     }
 
     async function handleData(data){
-        if(!userData){
-            const userData = await getUser(data.user_id)
-            setUserData(userData)
-        }
-        if(!replies){
-            setReplies(data.replies)
-        } else {
-            setComments((prevComments) => {
-                if (prevComments.some((comment) => comment.comment_id === data.comment_id)) {
-                    return prevComments.map((comment) =>
-                        comment.comment_id === data.comment_id ? data : comment
-                    )              
-                } else {
-                    return [...prevComments, data]
-                }
-            })
-            setReplies(prevReplies => {
-                prevReplies.map()
-            })
-        }
+        const userData = await getUser(data.user_id)
+        setUserData(userData)
+        setReplies(data.replies)
     }
 
     function replyToComment(handle, comment_id){
