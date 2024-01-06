@@ -29,8 +29,8 @@ export default function Reply(props) {
         
         setIsLoadingReply(true)
 
-        const updatedReply = await getUser({reply})
-
+        const updatedReply = await getUser(reply.user_id)
+        
         console.log("updated reply is", updatedReply)
         
         const updatedComment = {...currentComment, replies: updatedReply}
