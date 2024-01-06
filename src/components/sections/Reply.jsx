@@ -19,15 +19,13 @@ export default function Reply(props) {
         currentComment,
     } = props
 
-    const { comment_id } = currentComment
-
     const { loggedUser } = useStore()
     
     const [isLoadingReply, setIsLoadingReply] = useState(true)
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(id){
-        console.log("reply is", reply, "current is comment is", currentComment.comment_id)
+        console.log("reply is", reply, "current is comment is", currentComment?.comment_id)
         
         setIsLoadingReply(true)
 
@@ -76,7 +74,7 @@ export default function Reply(props) {
             {(!isLoadingReply && reply) &&
             <section 
             className="full_width"
-            key={reply.comment_id}>
+            key={reply.reply_id}>
                 <div 
                 className="flex space_between">
                     <div>
@@ -107,13 +105,13 @@ export default function Reply(props) {
                     {(user?.id !== loggedUser.id) && 
                     <h4 
                     className="pointer"
-                    onClick={() => replyToComment(user?.name, comment_id)}>
+                    onClick={() => replyToComment(user?.name, currentComment?.comment_id)}>
                         Reply
                     </h4>}
                     {(user?.id === loggedUser.id) &&
                     <h4 
                     className="pointer"
-                    onClick={() => deleteReply(postId, comment_id, reply.reply_id)}>
+                    onClick={() => deleteReply(postId, currentComment?.comment_id, reply.reply_id)}>
                         Delete Comment
                     </h4>}
                 </div>
