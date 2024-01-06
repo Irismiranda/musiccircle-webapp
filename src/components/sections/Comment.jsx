@@ -20,9 +20,12 @@ export default function Comment(props){
         posterId,
         postId,
         artistId,
+        inputSectionHeight,
+        descriptionMenuRef,
     } = props
 
     const { comment_id, text, likes, timestamp } = comment || {}
+    console.log("current comment is", currentComment)
 
     const { loggedUser } = useStore()
 
@@ -157,10 +160,11 @@ export default function Comment(props){
                     })
                 }
                 {(isFirstRepliesLoad && showReplies === comment_id) &&
-                    <section 
-                    className="loading_comments full_width"
-                    style={{ height: '100px' }}>
-                    </section>
+                    <div 
+                    className="loading_comments"
+                    style={{ height: 
+                    `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
+                    </div>
                 }
             </section>
         </section>

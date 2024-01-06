@@ -106,8 +106,7 @@ export default function Comments(props) {
         ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
         style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`, 
-        minHeight: "265px"}}>
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
             {(comments?.length > 0) &&
             comments
             .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
@@ -120,7 +119,9 @@ export default function Comments(props) {
                         setReplyTo={setReplyTo}
                         posterId={posterId}
                         postId={postId}
-                        artistId={artistId}/>
+                        artistId={artistId}
+                        inputSectionHeight={inputSectionHeight}
+                        descriptionMenuRef={descriptionMenuRef}/>
                     )
                 })
             }
@@ -129,8 +130,7 @@ export default function Comments(props) {
         <div 
         className="loading_comments"
         style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`, 
-        minHeight: "265px" }}>
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
         </div>
         )
     )

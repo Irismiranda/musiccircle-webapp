@@ -19,7 +19,7 @@ export default function Reply(props) {
         currentComment,
     } = props
 
-    const { comment_id } = currentComment[0]
+    const { comment_id } = currentComment
 
     const { loggedUser } = useStore()
     
@@ -27,8 +27,7 @@ export default function Reply(props) {
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(id){
-        console.log("reply is", reply, "current comment is", currentComment)
-        
+                
         setIsLoadingReply(true)
 
         const userData = await getUser(reply.user_id)
