@@ -123,7 +123,7 @@ export default function Comment(props){
             <h4 
             className="pointer"
             onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment?.comment_id ? null : comment?.comment_id))}> 
-            {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
+            {showReplies === comment?.comment_id && replies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
