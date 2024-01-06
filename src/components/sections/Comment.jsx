@@ -28,10 +28,10 @@ export default function Comment(props){
 
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
-        formatedUser = formatListData([userData.data], userData.data.type) 
+        const formatedUser = formatListData([userData.data], userData.data.type) 
 
         console.log("formated user is", formatedUser[0])
-        
+
         return formatedUser[0]   
     }
 
