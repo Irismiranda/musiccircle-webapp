@@ -43,7 +43,20 @@ export default function Comment(props){
     async function handleData(data){
         const userData = await getUser(data.user_id)
         setUserData(userData)
-        setReplies(data.replies)
+
+        if(replies){
+            setReplies((prevReplies) => {
+                if (prevReplies.some((prevReply) => prevReply.reply_id === data.replies.reply_id)) {
+                    return prevReplies.map((prevReply) =>
+                    prevReply.reply_id === data.replies.reply_id ? data.replies : prevReply
+                    )              
+                } else {
+                    return [...prevReplies, data.replies]
+                }
+            })
+        } else {
+            setReplies(data.replies)
+        }
     }
 
     function replyToComment(handle, comment_id){
