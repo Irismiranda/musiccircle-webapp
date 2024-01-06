@@ -17,6 +17,7 @@ export default function Comment(props){
         comments,
         setComments,
         setReplyTo, 
+        replyTo,
         posterId,
         postId,
         artistId,
@@ -75,6 +76,10 @@ export default function Comment(props){
     useEffect(() => {
         handleData(comment)
     }, [comment])
+
+    useEffect(() => {
+        isFirstRepliesLoad(true)
+    }, [])
 
     return (
         <section 
