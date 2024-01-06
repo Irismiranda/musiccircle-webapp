@@ -254,13 +254,14 @@ export default function Comments(props) {
                                 })
                             }
                         </section> :
+                        (showReplies === comment_id && replies) && 
                         <section 
                         className="loading_comments full_width"
                         style={{ height: '100px' }}>
                         </section>}
                     </section>
-                )
-            })
+                    )
+                })
             }
         </div>
         ) : (
