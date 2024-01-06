@@ -7,9 +7,8 @@ import { SvgHeart } from "../../assets"
 export default function Reply(props) {
     const { 
         reply,
-        comment_id,  
-        setComments, 
         comments,
+        setComments, 
         postId, 
         posterId, 
         artistId, 
@@ -20,6 +19,8 @@ export default function Reply(props) {
         currentComment,
     } = props
 
+    const { comment_id } = currentComment
+
     const { loggedUser } = useStore()
     const [isLoadingReply, setIsLoadingReply] = useState(true)
 
@@ -28,9 +29,11 @@ export default function Reply(props) {
         
         setIsLoadingReply(true)
 
-        const updatedReplies = await getUser(currentComment.replies)
+        const updatedReply = await getUser({reply})
+
+        console.log("updated reply is", updatedReply)
         
-        const updatedComment = {...currentComment, replies: updatedReplies}
+        const updatedComment = {...currentComment, replies: updatedReply}
         console.log("updated comment is", updatedComment)
         setComments(comments.map(comment => comment.comment_id === id ? updatedComment : comment))
         
@@ -46,17 +49,15 @@ export default function Reply(props) {
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
             logged_user_id: loggedUser.id
         })
-        
-        const currentReply = currentComment.find(reply => reply.comment_id === reply_id)
 
-        if(currentReply.likes?.includes(loggedUser.id)){
-            currentReply.likes = currentReply.likes.filter(like => like !== loggedUser.id)
+        if(reply.likes?.includes(loggedUser.id)){
+            reply.likes = reply.likes.filter(like => like !== loggedUser.id)
         } else {
-            currentReply.likes.push(loggedUser.id)
+            reply.likes.push(loggedUser.id)
         }
 
         currentComment.replies = currentComment.replies
-            .map(reply => reply.reply_id === reply_id ? currentReply : reply)
+            .map(prev => prev.reply_id === reply_id ? reply : prev)
         setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
     }
 
