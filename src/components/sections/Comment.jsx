@@ -24,7 +24,7 @@ export default function Comment(props){
         descriptionMenuRef,
     } = props
 
-    const { comment_id, text, likes, timestamp } = comment || {}
+    const { text, likes, timestamp } = comment || {}
 
     const { loggedUser } = useStore()
 
@@ -75,7 +75,7 @@ export default function Comment(props){
 
     return (
         <section 
-        key={comment_id}
+        key={comment?.comment_id}
         className="flex flex_column align_start full_width"
         style={{ gap: "15px" }}>
             <div 
@@ -94,7 +94,7 @@ export default function Comment(props){
                     <p>{text}</p>
                 </div>
                 <div
-                onClick={() => likeComment(postId, comment_id)}>
+                onClick={() => likeComment(postId, comment?.comment_id)}>
                     <SvgHeart 
                     style={{ 
                         height: "15px",
@@ -109,21 +109,21 @@ export default function Comment(props){
                 {(userData?.id !== loggedUser.id) && 
                 <h4 
                 className="pointer"
-                onClick={() => replyToComment(userData?.name, comment_id)}>Reply</h4>}
+                onClick={() => replyToComment(userData?.name, comment?.comment_id)}>Reply</h4>}
                 {(userData?.id === loggedUser.id) &&
                 <h4 
                 className="pointer"
-                onClick={() => deleteComment(postId, comment_id)}>Delete Comment</h4>}
+                onClick={() => deleteComment(postId, comment?.comment_id)}>Delete Comment</h4>}
             </div>
             {replies && 
             <h4 
             className="pointer"
-            onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment_id ? null : comment_id))}> 
+            onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment?.comment_id ? null : comment?.comment_id))}> 
             {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
-                {(showReplies === comment_id && replies) &&
+                {(showReplies === comment?.comment_id && replies) &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                     .map(reply => {
@@ -143,7 +143,7 @@ export default function Comment(props){
                         )
                     })
                 }
-                {(isFirstRepliesLoad && showReplies === comment_id) &&
+                {(isFirstRepliesLoad && showReplies === comment?.comment_id) &&
                     <div 
                     className="loading_comments"
                     style={{ height: 
