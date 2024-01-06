@@ -49,9 +49,9 @@ export default function Comment(props){
             setReplies(data.replies)
         } else {
             setComments((prevComments) => {
-                if (prevComments.some((comment) => comment.comment_id === data[0].comment_id)) {
+                if (prevComments.some((comment) => comment.comment_id === data.comment_id)) {
                     return prevComments.map((comment) =>
-                        comment.comment_id === data[0].comment_id ? data[0] : comment
+                        comment.comment_id === data.comment_id ? data : comment
                     )              
                 } else {
                     return [...prevComments, data]
