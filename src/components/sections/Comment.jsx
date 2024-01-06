@@ -77,10 +77,6 @@ export default function Comment(props){
         handleData(comment)
     }, [comment])
 
-    useEffect(() => {
-        isFirstRepliesLoad(true)
-    }, [])
-
     return (
         <section 
         key={comment?.comment_id}
