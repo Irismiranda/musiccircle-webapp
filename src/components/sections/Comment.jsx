@@ -44,7 +44,7 @@ export default function Comment(props){
         const userData = await getUser(data.user_id)
         setUserData(userData)
 
-        if(replies){
+        if(replies.length > 0){
             setReplies((prevReplies) => {
                 if (prevReplies.some((prevReply) => prevReply.reply_id === data.replies.reply_id)) {
                     return prevReplies.map((prevReply) =>
