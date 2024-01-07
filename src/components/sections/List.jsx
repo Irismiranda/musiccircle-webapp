@@ -13,24 +13,26 @@
                             <div 
                             className="relative"
                             key={item.id}>
-                                <Link 
-                                to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}
-                                onClick={(item.type === "track") && ((e) => e.preventDefault())}>
                                     <div 
                                     className="flex"                          
                                     onMouseEnter={() => setHoverItemId(item.id)}
                                     onMouseLeave={() => setHoverItemId(null)}>
-                                        <img 
-                                        src={`${item.imgUrl}`} 
-                                        className="cover_small" />
+                                        <Link 
+                                        to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}
+                                        onClick={(item.type === "track") && ((e) => e.preventDefault())}>
+                                            <img 
+                                            src={`${item.imgUrl}`} 
+                                            className="cover_small" />
+                                        </Link>
                                         <div>
                                             <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
                                             {(category === "track" || category === "album") && 
-                                            <h3>{item.artist_name}</h3>}
+                                            <Link to={`/artist/${item.artist_id}`}>
+                                                <h3>{item.artist_name}</h3>
+                                            </Link>}
                                             <h4>{item.type}</h4>
                                         </div>
                                     </div>
-                                </Link>
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
                                     <PlayBtn 
                                     uri={item.uri} 
