@@ -13,6 +13,7 @@ export default function CommentBtn(props){
     const [showFullDescription, setShowFullDescription] = useState(false)
     const [replyTo, setReplyTo] = useState(null)
     const [localCommentsNumber, localSetCommentsNumber] = useState(null)
+    const [scrollOnLoad, setScrollOnLoad] = useState(false)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { post, setCommentsNumber, commentsNumber, setPosts, posts, setPost } = props
@@ -33,6 +34,7 @@ export default function CommentBtn(props){
     }
 
     async function sendComment(){
+        setScrollOnLoad(true)
         const endpointPath = replyTo ? 
         `/api/${post_id || track?.id}/reply_to/${replyTo.comment_id}` :
         `/api/${post_id || track?.id}/add_comment`
@@ -184,12 +186,13 @@ export default function CommentBtn(props){
                     postId={post_id ? post_id : track?.id}
                     posterId={user?.id}
                     artistId={track?.artist_id}
-                    textAreaRef={textAreaRef}
                     inputSectionRef={inputSectionRef}
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
-                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
+                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
+                    scrollOnLoad={scrollOnLoad}/>
+                    setScrollOnLoad={setScrollOnLoad}
                     <section 
                     ref={inputSectionRef}
                     className="relative full_width"

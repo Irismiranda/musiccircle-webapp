@@ -20,6 +20,8 @@ export default function Comments(props) {
         setCommentsNumber, 
         descriptionMenuRef, 
         inputSectionRef,
+        setScrollOnLoad,
+        scrollOnLoad,
     } = props
 
     const { socket } = useStore()
@@ -39,6 +41,11 @@ export default function Comments(props) {
                     return [...prevComments, data[0]]
                 }
             })
+
+            if(scrollOnLoad){
+                console.log("let's scroll bby!!!")
+                setScrollOnLoad(false)
+            }
         }
     }
 
@@ -95,39 +102,41 @@ export default function Comments(props) {
     }, [replyTo])
 
     return (
-        isLoading ? (
-        <div 
-        className="loading_comments full_width"
-        style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
-        </div>
-        ) : (
-        <div 
-        ref={commentsRef}
-        className="flex flex_column comments_inner_wrapper"
-        style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
-            {(comments?.length > 0) &&
-            comments
-            .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
-            .map(comment => {
-                    return (
-                        <Comment 
-                        comment={comment}
-                        comments={comments}
-                        setComments={setComments}
-                        setReplyTo={setReplyTo}
-                        replyTo={replyTo}
-                        posterId={posterId}
-                        postId={postId}
-                        artistId={artistId}
-                        inputSectionHeight={inputSectionHeight}
-                        descriptionMenuRef={descriptionMenuRef}
-                        setCommentsLoaded={setCommentsLoaded}/>
-                    )
-                })
-            }
-        </div>
-        )
+        <>
+            isLoading && 
+            {<div 
+            className="loading_comments full_width"
+            style={{ height: 
+            `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
+            </div>}
+            
+            <div 
+            ref={commentsRef}
+            className="flex flex_column comments_inner_wrapper"
+            style={{ 
+                height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`,
+                display: isLoading ? "hidden" : "" }}>
+                {(comments?.length > 0) &&
+                comments
+                .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
+                .map(comment => {
+                        return (
+                            <Comment 
+                            comment={comment}
+                            comments={comments}
+                            setComments={setComments}
+                            setReplyTo={setReplyTo}
+                            replyTo={replyTo}
+                            posterId={posterId}
+                            postId={postId}
+                            artistId={artistId}
+                            inputSectionHeight={inputSectionHeight}
+                            descriptionMenuRef={descriptionMenuRef}
+                            setCommentsLoaded={setCommentsLoaded}/>
+                        )
+                    })
+                }
+            </div>
+        </>
     )
 }
