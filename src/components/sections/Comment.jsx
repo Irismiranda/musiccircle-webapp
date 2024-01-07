@@ -51,17 +51,15 @@ const Comment = React.memo((props) => {
         }
         console.log("is new comment?", isNewComment)
 
-        if(isNewComment){
+        if(replies.length === 0){
             setReplies(data.replies)
         } else {
-            setIsNewReply(true)
-
-            const prevRepliesIds = replies.map(reply => reply.reply_id)
-
-            const newReply = data.replies.find(reply => !prevRepliesIds.includes(reply.reply_id))
-
+            const prevRepliesIds = replies?.map(reply => reply.reply_id)
+            const newReply = data.replies?.find(reply => !prevRepliesIds.includes(reply.reply_id))
+        
             console.log("new reply is", newReply)
-
+            
+            setIsNewReply(true)
             setReplies(prevReplies => {
                 return prevReplies.map(prevReply => {
                     return prevReply.reply_id === newReply.reply_id ?
