@@ -193,9 +193,7 @@ export default function CommentBtn(props){
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
-                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
-                    setScrollOnLoad={setScrollOnLoad}
-                    scrollOnLoad={scrollOnLoad}/>
+                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
                 
                     <section 
                     ref={inputSectionRef}
