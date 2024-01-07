@@ -43,7 +43,6 @@ export default function Post(props){
     }
 
     async function likePost(post_id){
-        console.log("data is", data, "post id", post_id)
         await Axios.post(`/api/${user?.id}/${track.artist_id}/toggle_like_post/${post_id}`, {
             logged_user_id: loggedUser.id
         })

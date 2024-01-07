@@ -41,8 +41,10 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){
-        const userData = await getUser(data.user_id)
-        setUserData(userData)
+        if(!userData){
+            const userData = await getUser(data.user_id)
+            setUserData(userData)
+        }
         setCommentsLoaded(prevCount => prevCount + 1)
         setReplies(data.replies)
     }
@@ -75,7 +77,7 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        setIsLoading(repliesLoaded < replies.length)
+        setIsLoading(repliesLoaded >= replies.length)
     }, [repliesLoaded])
 
     return (
