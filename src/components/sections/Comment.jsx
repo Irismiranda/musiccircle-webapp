@@ -77,7 +77,7 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        setIsLoading(repliesLoaded >= replies.length)
+        setIsLoading(repliesLoaded >= (Object.keys(replies)?.length > 0))
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
 
