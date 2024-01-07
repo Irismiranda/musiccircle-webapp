@@ -255,6 +255,7 @@ svg{
   height: 35px;
   object-fit: cover;
   border-radius: 100%;
+  background-color: #000000;
 }
 
 .profile_medium{
@@ -262,6 +263,7 @@ svg{
   height: 50px;
   object-fit: cover;
   border-radius: 100%;
+  background-color: #000000;
 }
 
 .profile_large{
@@ -269,6 +271,7 @@ svg{
   height: 200px;
   object-fit: cover;
   border-radius: 100%;
+  background-color: #000000;
 }
 
 .cover_small{
