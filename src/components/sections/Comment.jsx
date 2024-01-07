@@ -84,6 +84,7 @@ const Comment = React.memo((props) => {
 
     return (
         <section 
+        id={comment.comment_id}
         key={comment?.comment_id}
         className="flex flex_column align_start full_width"
         style={{ gap: "15px" }}>
@@ -142,7 +143,6 @@ const Comment = React.memo((props) => {
                     .map(reply => {
                         return (
                             <section
-                            id={comment.comment_id}
                             className="full_width"
                             style={{ display: isLoading ? "none" : "" }}>
                                 <Reply 
