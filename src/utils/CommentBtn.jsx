@@ -191,8 +191,9 @@ export default function CommentBtn(props){
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
                     setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
-                    scrollOnLoad={scrollOnLoad}/>
-                    setScrollOnLoad={setScrollOnLoad}
+                    scrollOnLoad={scrollOnLoad}
+                    setScrollOnLoad={setScrollOnLoad}/>
+                
                     <section 
                     ref={inputSectionRef}
                     className="relative full_width"

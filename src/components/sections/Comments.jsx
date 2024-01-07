@@ -103,8 +103,7 @@ export default function Comments(props) {
 
     return (
         <>
-            isLoading && 
-            {<div 
+            {isLoading && <div 
             className="loading_comments full_width"
             style={{ height: 
             `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
