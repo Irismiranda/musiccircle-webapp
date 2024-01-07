@@ -149,7 +149,7 @@ const Comment = React.memo((props) => {
                 }
                 {(isLoading && showReplies) &&
                     <div 
-                    className="loading_comments"
+                    className="loading_comments full_width"
                     style={{ height: 
                     `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
                     </div>
