@@ -13,6 +13,7 @@ export default function CommentBtn(props){
     const [showFullDescription, setShowFullDescription] = useState(false)
     const [replyTo, setReplyTo] = useState(null)
     const [localCommentsNumber, localSetCommentsNumber] = useState(null)
+    const [scrollOnLoad, setScrollOnLoad] = useState(false)
     
     const { spotifyApi, loggedUser, playerRef } = useStore()
     const { post, setCommentsNumber, commentsNumber, setPosts, posts, setPost } = props
@@ -49,6 +50,7 @@ export default function CommentBtn(props){
         replyTo && commentData.reply_to === replyTo
         
         if(textAreaRef.current.value !== ""){
+            setScrollOnLoad(true)
             await Axios.post(endpointPath, commentData)
             textAreaRef.current.value = ""
         }
@@ -191,7 +193,9 @@ export default function CommentBtn(props){
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
-                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}/>
+                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
+                    setScrollOnLoad={setScrollOnLoad}
+                    scrollOnLoad={scrollOnLoad}/>
                 
                     <section 
                     ref={inputSectionRef}

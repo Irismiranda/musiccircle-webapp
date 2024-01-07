@@ -23,6 +23,8 @@ const Comment = React.memo((props) => {
         postId,
         artistId,
         setCommentsLoaded,
+        setScrollOnLoad,
+        scrollOnLoad,
     } = props
 
     const { text, likes, timestamp } = comment || {}
@@ -47,9 +49,10 @@ const Comment = React.memo((props) => {
         }
         setReplies(data.replies)
         setCommentsLoaded(prevCount => prevCount + 1)
-        if(data.user_id === loggedUser.id){
+        if(scrollOnLoad){
             const newCommentElement = document.getElementById(data.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+            setScrollOnLoad(false)
         }
     }
 
@@ -159,7 +162,9 @@ const Comment = React.memo((props) => {
                                 getUser={getUser}
                                 currentComment={comment}
                                 setRepliesLoaded={setRepliesLoaded}
-                                setReplies={setReplies}/>
+                                setReplies={setReplies}
+                                setScrollOnLoad={setScrollOnLoad}
+                                scrollOnLoad={scrollOnLoad}/>
                             </section>
                         )
                     })

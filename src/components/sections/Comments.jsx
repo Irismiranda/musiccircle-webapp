@@ -19,6 +19,8 @@ export default function Comments(props) {
         setCommentsNumber, 
         descriptionMenuRef, 
         inputSectionRef,
+        setScrollOnLoad,
+        scrollOnLoad,
     } = props
 
     const { socket } = useStore()
@@ -122,7 +124,9 @@ export default function Comments(props) {
                             artistId={artistId}
                             inputSectionHeight={inputSectionHeight}
                             descriptionMenuRef={descriptionMenuRef}
-                            setCommentsLoaded={setCommentsLoaded}/>
+                            setCommentsLoaded={setCommentsLoaded}
+                            setScrollOnLoad={setScrollOnLoad}
+                            scrollOnLoad={scrollOnLoad}/>
                         )
                     })
                 }

@@ -54,7 +54,8 @@ export default function Messages(props) {
       console.log("commenter id is", args[0][0].userId, "loggedUser.id is", loggedUser.id)
 
       if(args[0][0].userId === loggedUser.id){
-        messagesRef?.current && messagesRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+        const newCommentElement = document.getElementById(args[0][0].messageId)
+        newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
     }
     })
   
@@ -105,6 +106,7 @@ export default function Messages(props) {
             } = message
             return (
               <div
+                id={messageId}
                 key={messageId}
                 className="message_wrapper"
                 style={{
