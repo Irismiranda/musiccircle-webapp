@@ -123,7 +123,7 @@ const Comment = React.memo((props) => {
                 className="pointer"
                 onClick={() => deleteComment(postId, comment?.comment_id)}>Delete Comment</h4>}
             </div>
-            {(Object.keys(replies).length > 0) && 
+            {(Object.keys(replies)?.length > 0) && 
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
