@@ -98,7 +98,7 @@ export default function Comments(props) {
         (isLoading && isFirstLoad) ? (
         <div 
         className="loading_comments full_width"
-        style={{ height: "50px" }}>
+        style={{ height: "100px" }}>
         </div>
         ) : (
         <div 
