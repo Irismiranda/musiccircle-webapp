@@ -37,11 +37,9 @@ export default function Comments(props) {
                 }
             })
 
-            const scrollOnLoad = (data[0]?.user_id === loggedUser.id)
+            console.log("scroll on load?", data[0].user_id === loggedUser.id)
 
-            console.log("scroll on load?", scrollOnLoad)
-
-            if(scrollOnLoad){
+            if(data[0].user_id === loggedUser.id){
                 const newCommentElement = document.getElementById(`${data[0].reply_id || data[0].comment_id}`)
 
                 newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
