@@ -42,7 +42,7 @@ export default function Comments(props) {
                 }
             })
             if(scrollOnLoad){
-                commentsWrapperRef?.current && commentsWrapperRef.current.scrollTo({ top: 0, behavior: "smooth" })
+                commentsWrapperRef?.current && commentsWrapperRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
                 setScrollOnLoad(false)
             }
         }

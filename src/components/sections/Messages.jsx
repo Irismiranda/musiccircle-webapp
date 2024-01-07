@@ -79,17 +79,18 @@ export default function Messages(props) {
     
     <div>
       {isLoading ? (
-        <>
+        <section
+        style={{ margin: "30px 0" }}>
           <h3>Loading...</h3>
           <br/><br/>
-        </>
+        </section>
       ) : messages.length > 0 ? (
       <div 
       ref={messagesRef}
       className="chat_room flex"
       >
         {messages
-          .sort((a, b) => (convertTimestampToDate(b.timeStamp) > convertTimestampToDate(a.timeStamp) ? -1 : 1))
+          .sort((a, b) => (convertTimestampToDate(b.timeStamp) > convertTimestampToDate(a.timeStamp) ? 1 : -1))
           .map((message) => {
             const {
               userId,
