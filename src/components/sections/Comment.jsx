@@ -44,21 +44,26 @@ export default function Comment(props){
         const userData = await getUser(data.user_id)
         setUserData(userData)
 
-        if(replies.length > 0){
-            console.log("new reply is", data.replies[0])
-            setReplies((prevReplies) => {
-                if (prevReplies
-                    .some((prevReply) => prevReply.reply_id === data.replies[0].reply_id)) {
-                        return prevReplies
-                        .map((prevReply) => prevReply.reply_id === data.replies[0].reply_id ? 
-                        data.replies[0] : prevReply
-                    )              
-                } else {
-                    return [...prevReplies, data.replies[0]]
-                }
-            })
+        const newReplies = data.replies
+        const prevReplies = comment.replies
+
+        const newReplyIds = newReplies.map(reply => { return reply.reply_id })
+        const prevReplyIds = prevReplies.map(reply => { return reply.reply_id })
+
+        const newReplyId = newReplyIds.filter(reply_id => !prevReplyIds.includes(reply_id))
+        const index = newReplyIds.findIndex(reply => reply.reply_id === newReplyId)
+
+        const updatedReply = newReplies.filter(newReply => {
+            return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
+        }) 
+
+        if (newReplyId.length > 0){
+            setReplies(prevReplies => [...prevReplies, data[index]])
+        } else if (updatedReply.length > 0){
+            setReplies(comments
+                .map(prevReply => prevReply.reply_id === updatedReply.reply_id ? updatedReply : prevReply))
         } else {
-            setReplies(data.replies)
+            setReplies(newReplies)
         }
     }
 
