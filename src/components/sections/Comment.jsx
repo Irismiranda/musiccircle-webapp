@@ -8,10 +8,10 @@ import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
     const [showReplies, setShowReplies] = useState(false)
-    const [replies, setReplies] = useState([])
     const [isFirstRepliesLoad, setIsFirstRepliesLoad] = useState(true)
     const [userData, setUserData] = useState(null)
-    
+    const [replies, setReplies] = useState([])
+
     const { 
         comment, 
         comments,

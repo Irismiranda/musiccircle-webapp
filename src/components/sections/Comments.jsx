@@ -9,6 +9,7 @@ export default function Comments(props) {
     const [isLoading, setIsLoading] = useState(true)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
+    const [isFirstLoad, setIsFirstLoad] = useState(true)
 
     const { 
         postId, 
@@ -28,6 +29,7 @@ export default function Comments(props) {
     async function handleData(data, call){   
         if(call === "loadAllComments"){
             setComments(data)
+            setIsFirstLoad(false)
         } else if (call === "loadNewComment"){
             setComments((prevComments) => {
                 if (prevComments.some((prevComment) => prevComment.comment_id === data[0].comment_id)) {
@@ -83,7 +85,7 @@ export default function Comments(props) {
 
     useEffect(() => {
         if(comments){
-            setCommentsNumber(comments.length)
+            setCommentsNumber(comments.length + comments.replies?.length)
             setIsLoading(false)
         }
     }, [comments])
@@ -93,7 +95,13 @@ export default function Comments(props) {
     }, [replyTo])
 
     return (
-        !isLoading ? (
+        (isLoading && isFirstLoad) ? (
+        <div 
+        className="loading_comments"
+        style={{ height: 
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
+        </div>
+        ) : (
         <div 
         ref={commentsRef}
         className="flex flex_column comments_inner_wrapper"
@@ -118,12 +126,6 @@ export default function Comments(props) {
                     )
                 })
             }
-        </div>
-        ) : (
-        <div 
-        className="loading_comments"
-        style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
         </div>
         )
     )
