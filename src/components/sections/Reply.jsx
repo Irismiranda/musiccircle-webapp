@@ -27,7 +27,7 @@ const Reply = React.memo((props) => {
         setRepliesLoaded(prevCount => prevCount + 1)
 
         if(user_id === loggedUser.id){
-            const newCommentElement = document.getElementById(data.comment_id)
+            const newCommentElement = document.getElementById(reply.reply_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
         }
     }
