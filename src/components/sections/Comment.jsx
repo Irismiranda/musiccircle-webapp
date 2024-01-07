@@ -122,15 +122,15 @@ const Comment = React.memo((props) => {
                 className="pointer"
                 onClick={() => deleteComment(postId, comment?.comment_id)}>Delete Comment</h4>}
             </div>
-            {replies?.length > 0 && 
+            {comment.replies?.length > 0 && 
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
-            {showReplies ? "Hide" : "View"} {replies.length} replies </h4>}
+            {showReplies ? "Hide" : "View"} {comment.replies?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
-                {(!isLoading && showReplies && replies) &&
+                {(!isLoading && showReplies) &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b?.timestamp) > convertTimestampToDate(a?.timestamp) ? -1 : 1))
                     .map(reply => {

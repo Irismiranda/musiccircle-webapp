@@ -10,7 +10,6 @@ export default function Comments(props) {
     const [commentsLoaded, setCommentsLoaded] = useState(0)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
-    const [isFirstLoad, setIsFirstLoad] = useState(true)
 
     const { 
         postId, 
@@ -30,7 +29,6 @@ export default function Comments(props) {
     async function handleData(data, call){   
         if(call === "loadAllComments"){
             setComments(data)
-            setIsFirstLoad(false)
         } else if (call === "loadNewComment"){
             setComments((prevComments) => {
                 if (prevComments.some((prevComment) => prevComment.comment_id === data[0].comment_id)) {
@@ -96,7 +94,7 @@ export default function Comments(props) {
     }, [replyTo])
 
     return (
-        (isLoading && isFirstLoad) ? (
+        isLoading ? (
         <div 
         className="loading_comments full_width"
         style={{ height: "100px" }}>
