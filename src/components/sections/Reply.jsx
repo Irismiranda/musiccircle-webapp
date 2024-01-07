@@ -26,7 +26,6 @@ const Reply = React.memo((props) => {
             const userData = await getUser(user_id)
             setUser(userData)
         }
-
         setRepliesLoaded(prevCount => prevCount + 1)
     }
 
