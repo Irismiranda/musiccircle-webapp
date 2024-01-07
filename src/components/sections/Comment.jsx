@@ -45,7 +45,6 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        console.log("replies are", data.replies)
         setReplies(data.replies)
         setCommentsLoaded(prevCount => prevCount + 1)
     }
@@ -81,6 +80,10 @@ const Comment = React.memo((props) => {
         setIsLoading(repliesLoaded >= replies.length)
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
+
+    useEffect(() => {
+        console.log("replies are", replies)
+    }, [replies])
 
     return (
         <section 
