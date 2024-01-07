@@ -42,10 +42,7 @@ export default function Comments(props) {
                 }
             })
 
-            if(scrollOnLoad){
-                console.log("let's scroll bby!!!")
-                setScrollOnLoad(false)
-            }
+            setScrollOnLoad(false)
         }
     }
 
