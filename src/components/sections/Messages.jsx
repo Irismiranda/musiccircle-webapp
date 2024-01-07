@@ -51,9 +51,9 @@ export default function Messages(props) {
         handleLoadNewMessage(args)
       }
 
-      console.log("arg is", args[0], "loggedUser.id is", loggedUser.id)
+      console.log("commenter id is", args[0][0].userId, "loggedUser.id is", loggedUser.id)
 
-      if(args[0].userId === loggedUser.id){
+      if(args[0][0].userId === loggedUser.id){
         messagesRef?.current && messagesRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
     }
     })
