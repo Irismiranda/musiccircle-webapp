@@ -67,6 +67,7 @@ button {
   color: #ffff;
   cursor: pointer;
   transition: border-color 0.25s;
+  background-color: #261e1e;
 }
 button:hover {
   border-color: #646cff;
@@ -868,6 +869,7 @@ h3{
   position: absolute;
   top: 108px;
   right: 10px;
+  background-color:#1a1a1a;
 }
 
 .slider_btns_wrapper{

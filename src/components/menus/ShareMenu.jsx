@@ -172,7 +172,7 @@ export default function ShareMenu(props){
 
             <section 
             className="flex full_width"
-            style={{ marginTop: "20px"}}>
+            style={{ margin: "20px 0px"}}>
                 <div 
                 className="flex full_width justify_center"
                 onClick={() => copyToClipboard()}>

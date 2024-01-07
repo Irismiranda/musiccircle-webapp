@@ -90,6 +90,10 @@ export default function CommentBtn(props){
         descriptionRef?.current && descriptionRef.current.scrollTo({ top: 0, behavior: "smooth" })
     }, [showFullDescription])
 
+    useEffect(() => {
+        console.log("scroll on load?", scrollOnLoad)
+    }, [scrollOnLoad])
+
     return (
         <>
             <div
