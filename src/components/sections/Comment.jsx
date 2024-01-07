@@ -60,7 +60,7 @@ export default function Comment(props){
         console.log("new reply ids are", newReplyIdsArr, "prev reply ids are", prevReplyIdsArr)
 
         const newReplyId = newReplyIdsArr.filter(reply_id => !prevReplyIdsArr.includes(reply_id))
-        const newReplyIndex = newReplyIdsArr.findIndex(reply => reply.reply_id === newReplyId[0])
+        const newReplyIndex = newReplyIdsArr.findIndex(reply => reply.reply_id === newReplyId)
 
         const updatedReply = newReplies.filter(newReply => {
             return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
