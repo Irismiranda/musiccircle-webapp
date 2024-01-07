@@ -93,7 +93,7 @@ export default function Comments(props) {
     }, [commentsLoaded])
 
     useEffect(() => {
-        setCommentsNumber(comments.length + (comments?.replies?.length || 0))
+        setCommentsNumber(comments?.length + (comments?.replies?.length || 0))
     }, [comments])
 
     useEffect(() => {
