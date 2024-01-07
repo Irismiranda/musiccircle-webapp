@@ -29,6 +29,13 @@ export default function Comment(props){
 
     const { loggedUser } = useStore()
 
+    function areRepliesEqual(reply1, reply2) {
+        return (
+            reply1?.likes === reply2?.likes &&
+            reply1?.id === reply2?.id
+        )
+    }
+
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
         const formatedUser = formatListData([userData.data], userData.data.type) 
