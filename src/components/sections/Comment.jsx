@@ -135,7 +135,7 @@ const Comment = React.memo((props) => {
                         <Reply 
                         reply={reply}
                         setComments={setComments}
-                        comments={comments}
+                        comment_id={comments}
                         postId={postId}
                         posterId={posterId}
                         artistId={artistId}

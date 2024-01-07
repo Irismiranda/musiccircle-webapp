@@ -62,55 +62,51 @@ const Reply = React.memo((props) => {
     }, [reply])
 
     return (
-        <>
-
-            
-            {(reply) &&
-            <section 
-            className="full_width"
-            key={reply.reply_id}>
-                <div 
-                className="flex space_between">
-                    <div>
-                        <Link to={`/account/${user?.id}`}>
-                            <div className="flex"
-                            style={{ marginBottom: "10px" }}>
-                                <img 
-                                className="profile_small"
-                                src={user?.imgUrl}/>
-                                <h3>{user?.name}</h3>
-                            </div>
-                        </Link>
-                        <p>{reply.text}</p>
-                    </div>
-                    <div
-                    onClick={() => likeReply(postId, currentComment?.comment_id, reply.reply_id)}>
-                        <SvgHeart 
-                        style={{ 
-                            height: "15px",
-                            marginRight: "20px",
-                            fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
-                            }}/>
-                    </div>
+        reply &&
+        <section 
+        className="full_width"
+        key={reply.reply_id}>
+            <div 
+            className="flex space_between">
+                <div>
+                    <Link to={`/account/${user?.id}`}>
+                        <div className="flex"
+                        style={{ marginBottom: "10px" }}>
+                            <img 
+                            className="profile_small"
+                            src={user?.imgUrl}/>
+                            <h3>{user?.name}</h3>
+                        </div>
+                    </Link>
+                    <p>{reply.text}</p>
                 </div>
-                <div className="flex">
-                    <h4>{reply.timestamp}</h4>
-                    <h4>{reply.likes?.length || 0} Likes</h4>
-                    {(user?.id !== loggedUser.id) && 
-                    <h4 
-                    className="pointer"
-                    onClick={() => replyToComment(user?.name, currentComment?.comment_id)}>
-                        Reply
-                    </h4>}
-                    {(user?.id === loggedUser.id) &&
-                    <h4 
-                    className="pointer"
-                    onClick={() => deleteReply(postId, currentComment?.comment_id, reply.reply_id)}>
-                        Delete Comment
-                    </h4>}
+                <div
+                onClick={() => likeReply(postId, currentComment?.comment_id, reply.reply_id)}>
+                    <SvgHeart 
+                    style={{ 
+                        height: "15px",
+                        marginRight: "20px",
+                        fill: reply?.likes?.includes(loggedUser.id) ? '#AFADAD' : 'none',
+                        }}/>
                 </div>
-            </section>}
-        </>
+            </div>
+            <div className="flex">
+                <h4>{reply.timestamp}</h4>
+                <h4>{reply.likes?.length || 0} Likes</h4>
+                {(user?.id !== loggedUser.id) && 
+                <h4 
+                className="pointer"
+                onClick={() => replyToComment(user?.name, currentComment?.comment_id)}>
+                    Reply
+                </h4>}
+                {(user?.id === loggedUser.id) &&
+                <h4 
+                className="pointer"
+                onClick={() => deleteReply(postId, currentComment?.comment_id, reply.reply_id)}>
+                    Delete Comment
+                </h4>}
+            </div>
+        </section>
         )
         
 })
