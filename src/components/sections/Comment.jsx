@@ -46,7 +46,7 @@ const Comment = React.memo((props) => {
             setCommentsLoaded(prevCount => prevCount + 1)  
             setUserData(userData)
         }
-        !replies && setReplies(data.replies)
+        setReplies(data.replies)
     }
 
     function replyToComment(handle, comment_id){
@@ -126,7 +126,7 @@ const Comment = React.memo((props) => {
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
-            {showReplies && replies ? "Hide" : "View"} {replies?.length} replies </h4>}
+            {showReplies ? "Hide" : "View"} {replies.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
