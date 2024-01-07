@@ -22,8 +22,6 @@ const Comment = React.memo((props) => {
         posterId,
         postId,
         artistId,
-        inputSectionHeight,
-        descriptionMenuRef,
     } = props
 
     const { text, likes, timestamp } = comment || {}
