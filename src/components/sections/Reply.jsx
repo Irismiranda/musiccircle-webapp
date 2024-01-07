@@ -47,15 +47,18 @@ const Reply = React.memo((props) => {
             logged_user_id: loggedUser.id
         })
 
-        if(reply.likes?.includes(loggedUser.id)){
-            reply.likes = reply.likes.filter(like => like !== loggedUser.id)
-        } else {
-            reply.likes.push(loggedUser.id)
-        }
+        const updatedReply = reply.likes?.includes(loggedUser.id) ?
+        reply.likes.filter(like => like !== loggedUser.id) :
+        [...(reply.likes || []), loggedUser.id]
 
-        currentComment.replies = currentComment.replies
-            .map(prev => prev.reply_id === reply_id ? reply : prev)
-        setComments(comments.map(comment => comment.comment_id === comment_id ? currentComment : comment))
+        const updatedComment = {...currentComment, replies: updatedReply}
+
+        setComments(prevComments => 
+            prevComments
+            .map(prevComment => 
+                prevComment.comment_id === comment_id ? updatedComment : prevComment
+                )
+            )
     }
 
     useEffect(() => {
