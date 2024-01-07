@@ -6,7 +6,7 @@ import useStore from "../../store"
 import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
-export default function Comment(props){
+const Comment = React.memo((props) => {
     const [showReplies, setShowReplies] = useState(false)
     const [replies, setReplies] = useState([])
     const [isFirstRepliesLoad, setIsFirstRepliesLoad] = useState(true)
@@ -29,13 +29,6 @@ export default function Comment(props){
 
     const { loggedUser } = useStore()
 
-    function areRepliesEqual(reply1, reply2) {
-        return (
-            reply1?.likes === reply2?.likes &&
-            reply1?.id === reply2?.id
-        )
-    }
-
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
         const formatedUser = formatListData([userData.data], userData.data.type) 
@@ -50,32 +43,7 @@ export default function Comment(props){
     async function handleData(data){
         const userData = await getUser(data.user_id)
         setUserData(userData)
-
-        const newReplies = data.replies
-        const prevReplies = comment.replies
-
-        const newReplyIdsArr = newReplies.map(reply => { return reply.reply_id })
-        const prevReplyIdsArr = prevReplies.map(reply => { return reply.reply_id })
-
-        console.log("new reply ids are", newReplyIdsArr, "prev reply ids are", prevReplyIdsArr)
-
-        const newReplyId = newReplyIdsArr.filter(reply_id => !prevReplyIdsArr.includes(reply_id))
-        const newReplyIndex = newReplyIdsArr.findIndex(reply => reply.reply_id === newReplyId)
-
-        const updatedReply = newReplies.filter(newReply => {
-            return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
-        }) 
-
-        console.log("new reply id is:", newReplyId[0], "new reply index is", newReplyIndex,"updated reply is", updatedReply)
-
-        if (newReplyId.length > 0){
-            setReplies(prevReplies => [...prevReplies, data[newReplyIndex]])
-        } else if (updatedReply.length > 0){
-            setReplies(comments
-                .map(prevReply => prevReply.reply_id === updatedReply.reply_id ? updatedReply : prevReply))
-        } else {
-            setReplies(newReplies)
-        }
+        setReplies(data.replies)
     }
 
     function replyToComment(handle, comment_id){
@@ -189,4 +157,6 @@ export default function Comment(props){
             </section>
         </section>
         )
-}
+})
+
+export default Comment
