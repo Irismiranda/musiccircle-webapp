@@ -7,7 +7,7 @@ import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
-    const [replies, setReplies] = useState([])
+    const [replies, setReplies] = useState({})
     const [showReplies, setShowReplies] = useState(false)
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
