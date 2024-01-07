@@ -54,11 +54,11 @@ export default function Comment(props){
         const newReplies = data.replies
         const prevReplies = comment.replies
 
-        const newReplyIds = newReplies.map(reply => { return reply.reply_id })
-        const prevReplyIds = prevReplies.map(reply => { return reply.reply_id })
+        const newReplyIdsArr = newReplies.map(reply => { return reply.reply_id })
+        const prevReplyIdsArr = prevReplies.map(reply => { return reply.reply_id })
 
-        const newReplyId = newReplyIds.filter(reply_id => !prevReplyIds.includes(reply_id))
-        const newReplyIndex = newReplyIds.findIndex(reply => reply.reply_id === newReplyId)
+        const newReplyId = newReplyIdsArr.filter(reply_id => !prevReplyIdsArr.includes(reply_id))
+        const newReplyIndex = newReplyIdsArr.findIndex(reply => reply.reply_id === newReplyId)
 
         const updatedReply = newReplies.filter(newReply => {
             return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
