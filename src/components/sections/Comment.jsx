@@ -53,7 +53,7 @@ const Comment = React.memo((props) => {
 
         if(replies?.length === 0){
             setReplies(data.replies)
-        } else {
+        } else if(data.replies){
             const prevRepliesIds = replies?.map(reply => reply.reply_id)
             const newReply = data.replies?.find(reply => !prevRepliesIds.includes(reply.reply_id))
         
