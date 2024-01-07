@@ -91,7 +91,7 @@ export default function Comments(props) {
             setCommentsNumber(comments.length + (comments?.replies?.length || 0))
             setIsLoading(false)
         }
-    }, [commentsLoaded])
+    }, [comments])
 
     useEffect(() => {
         setInputSectionHeight(inputSectionRef?.current?.clientHeight)
