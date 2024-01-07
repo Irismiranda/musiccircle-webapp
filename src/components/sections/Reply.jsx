@@ -22,10 +22,8 @@ const Reply = React.memo((props) => {
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(user_id){      
-        if(!user){
-            const userData = await getUser(user_id)
-            setUser(userData)
-        }
+        const userData = await getUser(user_id)
+        setUser(userData)
         setRepliesLoaded(prevCount => prevCount + 1)
     }
 
