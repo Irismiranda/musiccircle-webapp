@@ -25,7 +25,11 @@
                                             className="cover_small" />
                                         </Link>
                                         <div>
-                                            <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
+                                            <Link 
+                                            to={item.type !== "track" ? `/${item.type}/${item.id}` : ""}
+                                            onClick={(item.type === "track") && ((e) => e.preventDefault())}>
+                                                <h3>{showIndex && <span>{index + 1}.</span>} {item.name}</h3>
+                                            </Link>
                                             {(category === "track" || category === "album") && 
                                             <Link to={`/artist/${item.artist_id}`}>
                                                 <h3>{item.artist_name}</h3>

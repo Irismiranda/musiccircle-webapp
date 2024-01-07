@@ -35,8 +35,6 @@ function formatListData(items, category) {
     if (category !== "simplified") {
       if (category === "track") {
         listItem.imgUrl = item.album.images[0].url
-        listItem.artist_name = item.artists[0].name
-        listItem.artist_id = item.artists[0].uri.slice(15)
       } else {
         listItem.imgUrl = item.images[0]?.url ? item.images[0].url : placeholder_img
       }
@@ -45,9 +43,10 @@ function formatListData(items, category) {
         listItem.userHandle = item.user_handle
       } 
       
-      if(category === "album") {
+      if(category === "album" || category === "track") {
         listItem.releaseDate = item.release_date
         listItem.artist_name = item.artists[0].name
+        listItem.artist_id = item.artists[0].uri.slice(15)
       }
       
     }
@@ -68,11 +67,6 @@ const convertTimestampToDate = (timestamp) => {
       time: timestamp.slice(12).replaceAll(":", "")
   }
   return Object.values(dateString).join("")
-}
-
-function replyToComment(name, comment_id){
-  textAreaRef.current.value = `@${name} `
-  setReplyTo(comment_id)
 }
 
 function setProperties(callback, property, value) {
