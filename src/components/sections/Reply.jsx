@@ -72,6 +72,7 @@ const Reply = React.memo((props) => {
     }
 
     useEffect(() => {
+        console.log("reply is", reply)
         if(reply){
             handleReplies(reply.user_id)
         }
