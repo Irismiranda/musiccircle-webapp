@@ -4,7 +4,7 @@ import useStore from "../../store"
 import { Axios } from "../../Axios-config"
 import { SvgHeart } from "../../assets"
 
-export default function Reply(props) {
+const Reply = React.memo((props) => {
     const { 
         reply,
         comments,
@@ -117,4 +117,6 @@ export default function Reply(props) {
         </>
         )
         
-}
+})
+
+export default Reply
