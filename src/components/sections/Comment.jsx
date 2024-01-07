@@ -59,14 +59,27 @@ const Comment = React.memo((props) => {
         
             console.log("new reply is", newReply)
 
-            setIsNewReply(true)
-            setReplies(prevReplies => {
-                return prevReplies.map(prevReply => {
-                    return prevReply.reply_id === newReply.reply_id ?
-                    newReply : prevReply
+            if(newReply){
+                setReplies(prevReplies => [...prevReplies, newReply])
+            } else {
+                const updatedReply = replies.map(prevReply => {
+                    const newReplyData = data.replies.find(reply => reply.reply_id === prevReply.reply_id)
+
+                    if (newReplyData && (newReplyData.likes.length !== prevReply.likes.length)) {
+                        return newReplyData
+                    }
                 })
-            })
+
+                updatedReply && setReplies(prevReplies => {
+                    return prevReplies.map(prevReply => {
+                        return prevReply.reply_id === updatedReply.reply_id ?
+                        updatedReply : prevReply
+                    })
+                })
+                
+            }
         }
+        
         setCommentsLoaded(prevCount => prevCount + 1)
 
         if(scrollOnLoad && isNewComment){
