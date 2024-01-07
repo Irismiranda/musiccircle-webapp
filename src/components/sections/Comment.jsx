@@ -64,7 +64,7 @@ export default function Comment(props){
             return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
         }) 
 
-        console.log("new reply index is", newReplyIndex,"updated reply is", updatedReply)
+        console.log("new reply id is:", newReplyId, "new reply index is", newReplyIndex,"updated reply is", updatedReply)
 
         if (newReplyId.length > 0){
             setReplies(prevReplies => [...prevReplies, data[newReplyIndex]])
