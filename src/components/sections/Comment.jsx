@@ -142,12 +142,12 @@ const Comment = React.memo((props) => {
                     .map(reply => {
                         return (
                             <section
+                            id={comment.comment_id}
                             className="full_width"
                             style={{ display: isLoading ? "none" : "" }}>
                                 <Reply 
                                 reply={reply}
                                 setComments={setComments}
-                                comment_id={comments}
                                 postId={postId}
                                 posterId={posterId}
                                 artistId={artistId}

@@ -68,6 +68,7 @@ const Reply = React.memo((props) => {
     return (
         reply &&
         <section 
+        id={reply.reply_id}
         className="full_width"
         style={{ minWidth: "70px" }}
         key={reply.reply_id}>

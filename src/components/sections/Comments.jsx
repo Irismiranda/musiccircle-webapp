@@ -41,8 +41,10 @@ export default function Comments(props) {
                     return [...prevComments, data[0]]
                 }
             })
-            if(scrollOnLoad){
-                commentsWrapperRef?.current && commentsWrapperRef.current.scrollTo({ bottom: 0, behavior: "smooth" })
+            if(scrollOnLoad && commentsWrapperRef.current){
+                const newCommentElement = document.getElementById(`${data[0].reply_id || data[0].comment_id}`)
+                
+                newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
                 setScrollOnLoad(false)
             }
         }
