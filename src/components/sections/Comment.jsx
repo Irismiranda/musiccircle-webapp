@@ -50,9 +50,10 @@ const Comment = React.memo((props) => {
         setReplies(data.replies)
         setCommentsLoaded(prevCount => prevCount + 1)
 
-        const isNewComment = !comments.some(comment => comment.comment_id === data.comment_id)
+        const isNewComment = !comments?.some(comment => (comment.comment_id === data.comment_id))
+        console.log("is new comment?", isNewComment)
 
-        if(scrollOnLoad){
+        if(scrollOnLoad && isNewComment){
             const newCommentElement = document.getElementById(data.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
             setScrollOnLoad(false)
