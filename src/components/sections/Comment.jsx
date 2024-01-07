@@ -7,7 +7,7 @@ import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
-    const [replies, setReplies] = useState({})
+    const [replies, setReplies] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
@@ -131,7 +131,7 @@ const Comment = React.memo((props) => {
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
-            {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
+            {showReplies ? "Hide" : "View"} {Object.keys(replies)?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
