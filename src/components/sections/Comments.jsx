@@ -91,15 +91,14 @@ export default function Comments(props) {
     }, [comments])
 
     useEffect(() => {
-        inputSectionRef?.current && setTimeout(() => setInputSectionHeight(inputSectionRef?.current?.clientHeight), 200)
+        inputSectionRef?.current && setTimeout(() => setInputSectionHeight(inputSectionRef?.current?.clientHeight), 100)
     }, [replyTo])
 
     return (
         (isLoading && isFirstLoad) ? (
         <div 
-        className="loading_comments"
-        style={{ height: 
-        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px)`}}>
+        className="loading_comments full_width"
+        style={{ height: "50px" }}>
         </div>
         ) : (
         <div 
