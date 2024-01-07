@@ -7,7 +7,7 @@ import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
-    const [replies, setReplies] = useState([])
+    const [replies, setReplies] = useState({ })
     const [showReplies, setShowReplies] = useState(false)
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
@@ -45,7 +45,7 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        data.replies && setReplies(data.replies)
+        data.replies && setReplies(Object.values(data.replies))
         setCommentsLoaded(prevCount => prevCount + 1)
     }
 
@@ -77,13 +77,9 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        setIsLoading(repliesLoaded >= (Object.keys(replies)?.length > 0))
+        setIsLoading(repliesLoaded >= replies.length)
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
-
-    useEffect(() => {
-        console.log("replies are", replies)
-    }, [replies])
 
     return (
         <section 
@@ -127,15 +123,15 @@ const Comment = React.memo((props) => {
                 className="pointer"
                 onClick={() => deleteComment(postId, comment?.comment_id)}>Delete Comment</h4>}
             </div>
-            {(Object.keys(replies)?.length > 0) && 
+            {replies?.length > 0 && 
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
-            {showReplies ? "Hide" : "View"} {Object.keys(replies)?.length} replies </h4>}
+            {showReplies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
-                {(replies && showReplies) &&
+                {showReplies &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b?.timestamp) > convertTimestampToDate(a?.timestamp) ? -1 : 1))
                     .map(reply => {
