@@ -23,7 +23,6 @@ const Reply = React.memo((props) => {
 
     async function handleReplies(user_id){      
         if(!user){
-            console.log("reply is", reply)
             const userData = await getUser(user_id)
             setUser(userData)
         }
