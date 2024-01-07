@@ -7,7 +7,7 @@ import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
-    const [replies, setReplies] = useState({ })
+    const [replies, setReplies] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
@@ -45,7 +45,7 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        data.replies && setReplies(Object.values(data.replies))
+        setReplies(data.replies)
         setCommentsLoaded(prevCount => prevCount + 1)
     }
 
@@ -77,7 +77,7 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        setIsLoading(repliesLoaded >= Object.keys(replies).length)
+        setIsLoading(repliesLoaded >= replies.length)
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
 
