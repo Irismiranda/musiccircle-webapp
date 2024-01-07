@@ -58,14 +58,16 @@ export default function Comment(props){
         const prevReplyIds = prevReplies.map(reply => { return reply.reply_id })
 
         const newReplyId = newReplyIds.filter(reply_id => !prevReplyIds.includes(reply_id))
-        const index = newReplyIds.findIndex(reply => reply.reply_id === newReplyId)
+        const newReplyIndex = newReplyIds.findIndex(reply => reply.reply_id === newReplyId)
 
         const updatedReply = newReplies.filter(newReply => {
             return !prevReplies.some(prevReply => areRepliesEqual(prevReply, newReply));
         }) 
 
+        console.log("new reply index is", newReplyIndex,"updated reply is", updatedReply)
+
         if (newReplyId.length > 0){
-            setReplies(prevReplies => [...prevReplies, data[index]])
+            setReplies(prevReplies => [...prevReplies, data[newReplyIndex]])
         } else if (updatedReply.length > 0){
             setReplies(comments
                 .map(prevReply => prevReply.reply_id === updatedReply.reply_id ? updatedReply : prevReply))
