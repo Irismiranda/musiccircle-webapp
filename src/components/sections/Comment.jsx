@@ -45,6 +45,8 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setCommentsLoaded(prevCount => prevCount + 1)  
             setUserData(userData)
+        } else {
+            setCommentsLoaded(prevCount => prevCount + 1)
         }
         setReplies(data.replies)
     }

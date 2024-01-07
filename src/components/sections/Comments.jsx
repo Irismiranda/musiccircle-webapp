@@ -83,6 +83,7 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
+        console.log("comments Loaded are", commentsLoaded)
         if(commentsLoaded >= comments?.length){
             setCommentsNumber(comments.length + (comments.replies?.length || 0))
             setIsLoading(false)
@@ -97,7 +98,8 @@ export default function Comments(props) {
         isLoading ? (
         <div 
         className="loading_comments full_width"
-        style={{ height: "100px" }}>
+        style={{ height: 
+        `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`}}>
         </div>
         ) : (
         <div 
