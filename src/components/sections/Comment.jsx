@@ -81,10 +81,6 @@ const Comment = React.memo((props) => {
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
 
-    useEffect(() => {
-        console.log("replies are", replies)
-    }, [replies])
-
     return (
         <section 
         key={comment?.comment_id}
@@ -127,7 +123,7 @@ const Comment = React.memo((props) => {
                 className="pointer"
                 onClick={() => deleteComment(postId, comment?.comment_id)}>Delete Comment</h4>}
             </div>
-            {replies?.length > 0 && 
+            {(Object.keys(replies).length > 0) && 
             <h4 
             className="pointer"
             onClick={() => setShowReplies(!showReplies)}> 
