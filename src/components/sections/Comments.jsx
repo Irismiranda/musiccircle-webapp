@@ -3,7 +3,6 @@ import useStore from "../../store"
 import { Comment } from "../"
 import { convertTimestampToDate } from "../../utils"
 
-
 export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -24,7 +23,7 @@ export default function Comments(props) {
         scrollOnLoad,
     } = props
 
-    const { socket } = useStore()
+    const { socket, loggedUser } = useStore()
 
     async function handleData(data, call){   
         if(call === "loadAllComments"){
@@ -40,13 +39,14 @@ export default function Comments(props) {
                 }
             })
 
+            const scrollOnLoad = (data[0].user_id === loggedUser.id)
+
             console.log("scroll on load?", scrollOnLoad)
 
             if(scrollOnLoad){
                 const newCommentElement = document.getElementById(`${data[0].reply_id || data[0].comment_id}`)
 
                 newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
-                setScrollOnLoad(false)
             }
         }
     }
