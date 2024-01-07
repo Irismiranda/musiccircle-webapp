@@ -26,7 +26,7 @@ export default function Comments(props) {
 
     const { socket } = useStore()
 
-    const commentsRef = useRef(null)
+    const commentsWrapperRef = useRef(null)
 
     async function handleData(data, call){   
         if(call === "loadAllComments"){
@@ -41,8 +41,10 @@ export default function Comments(props) {
                     return [...prevComments, data[0]]
                 }
             })
-
-            setScrollOnLoad(false)
+            if(scrollOnLoad){
+                commentsWrapperRef?.current && commentsWrapperRef.current.scrollTo({ top: 0, behavior: "smooth" })
+                setScrollOnLoad(false)
+            }
         }
     }
 
@@ -110,6 +112,7 @@ export default function Comments(props) {
             
             <div 
             className="flex flex_column comments_inner_wrapper"
+            ref={commentsWrapperRef}
             style={{ 
                 height: `calc(100% - ${descriptionMenuRef?.current?.clientHeight + inputSectionHeight}px - 30px)`,
                 display: isLoading ? "none" : "" }}>
