@@ -81,6 +81,10 @@ const Comment = React.memo((props) => {
         console.log("replies loaded are", repliesLoaded)
     }, [repliesLoaded])
 
+    useEffect(() => {
+        console.log("replies are", replies)
+    }, [replies])
+
     return (
         <section 
         key={comment?.comment_id}
@@ -131,7 +135,7 @@ const Comment = React.memo((props) => {
 
             <section
             className="replies_section flex flex_column">
-                {showReplies &&
+                {(replies && showReplies) &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b?.timestamp) > convertTimestampToDate(a?.timestamp) ? -1 : 1))
                     .map(reply => {
