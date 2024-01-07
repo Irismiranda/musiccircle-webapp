@@ -142,6 +142,7 @@ const Comment = React.memo((props) => {
                     .map(reply => {
                         return (
                             <section
+                            className="full_width"
                             style={{ display: isLoading ? "none" : "" }}>
                                 <Reply 
                                 reply={reply}
@@ -153,7 +154,8 @@ const Comment = React.memo((props) => {
                                 replyToComment={replyToComment}
                                 getUser={getUser}
                                 currentComment={comment}
-                                setRepliesLoaded={setRepliesLoaded}/>
+                                setRepliesLoaded={setRepliesLoaded}
+                                setReplies={setReplies}/>
                             </section>
                         )
                     })

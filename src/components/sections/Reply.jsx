@@ -7,7 +7,6 @@ import { SvgHeart } from "../../assets"
 const Reply = React.memo((props) => {
     const { 
         reply,
-        comments,
         setComments, 
         postId, 
         posterId, 
@@ -16,6 +15,7 @@ const Reply = React.memo((props) => {
         getUser,
         currentComment,
         setRepliesLoaded,
+        setReplies,
     } = props
 
     const { loggedUser } = useStore()
@@ -49,14 +49,14 @@ const Reply = React.memo((props) => {
         reply.likes.filter(like => like !== loggedUser.id) :
         [...(reply.likes || []), loggedUser.id]
 
-        const updatedComment = {...currentComment, replies: updatedReply}
+        console.log("updated reply is", updatedReply)
 
-        setComments(prevComments => 
-            prevComments
-            .map(prevComment => 
-                prevComment.comment_id === comment_id ? updatedComment : prevComment
-                )
-            )
+        setReplies(prevReplies => prevReplies
+            .map(prevReply => {
+                return prevReply.reply_id === reply_id ?
+                updatedReply :
+                prevReply
+            }))
     }
 
     useEffect(() => {
