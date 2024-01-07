@@ -37,7 +37,7 @@ export default function Comments(props) {
                 }
             })
 
-            const scrollOnLoad = (data[0].user_id === loggedUser.id)
+            const scrollOnLoad = (data[0]?.user_id === loggedUser.id)
 
             console.log("scroll on load?", scrollOnLoad)
 
