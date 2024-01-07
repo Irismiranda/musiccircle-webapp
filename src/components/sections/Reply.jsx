@@ -31,9 +31,13 @@ const Reply = React.memo((props) => {
 
     async function deleteReply(post_id, comment_id, reply_id){
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
+
+        console.log("path is", `/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
     }
 
     async function likeReply(post_id, comment_id, reply_id){
+        console.log("path is", `/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`)
+
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/toggle_like_reply/${comment_id}/${reply_id}`, {
             logged_user_id: loggedUser.id
         })

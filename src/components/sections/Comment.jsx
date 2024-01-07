@@ -123,7 +123,7 @@ const Comment = React.memo((props) => {
             {replies && 
             <h4 
             className="pointer"
-            onClick={() => setShowReplies(true)}> 
+            onClick={() => setShowReplies(!showReplies)}> 
             {showReplies && replies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
             <section
