@@ -98,7 +98,7 @@ const Comment = React.memo((props) => {
                             userData?.imgUrl ? 
                             <img 
                             className="profile_small"
-                            src={user.imgUrl}/> :
+                            src={userData?.imgUrl}/> :
                             <div className="profile_small"></div>
                             }
                             <h3>{userData?.name}</h3>
