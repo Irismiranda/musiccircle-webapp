@@ -22,6 +22,7 @@ const Comment = React.memo((props) => {
         posterId,
         postId,
         artistId,
+        setCommentsLoaded,
     } = props
 
     const { text, likes, timestamp } = comment || {}
@@ -31,7 +32,7 @@ const Comment = React.memo((props) => {
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
         const formatedUser = formatListData([userData.data], userData.data.type) 
-        return formatedUser[0]   
+        return formatedUser[0]
     }
 
     async function deleteComment(post_id, comment_id){       
@@ -40,7 +41,10 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){
-        const userData = await getUser(data.user_id)
+        if (!userData){
+            const userData = await getUser(data.user_id)
+            setCommentsLoaded(prevCount => prevCount + 1)  
+        }
         setUserData(userData)
         setReplies(data.replies)
     }

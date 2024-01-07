@@ -7,6 +7,7 @@ import { convertTimestampToDate } from "../../utils"
 export default function Comments(props) {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [commentsLoaded, setCommentsLoaded] = useState(0)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
     const [isFirstLoad, setIsFirstLoad] = useState(true)
@@ -84,11 +85,11 @@ export default function Comments(props) {
     }, [])
 
     useEffect(() => {
-        if(comments){
+        if(commentsLoaded >= comments?.length){
             setCommentsNumber(comments.length + comments.replies?.length)
             setIsLoading(false)
         }
-    }, [comments])
+    }, [commentsLoaded])
 
     useEffect(() => {
         inputSectionRef?.current && setTimeout(() => setInputSectionHeight(inputSectionRef?.current?.clientHeight), 100)
@@ -121,7 +122,8 @@ export default function Comments(props) {
                         postId={postId}
                         artistId={artistId}
                         inputSectionHeight={inputSectionHeight}
-                        descriptionMenuRef={descriptionMenuRef}/>
+                        descriptionMenuRef={descriptionMenuRef}
+                        setCommentsLoaded={setCommentsLoaded}/>
                     )
                 })
             }
