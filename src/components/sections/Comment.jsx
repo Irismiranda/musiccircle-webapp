@@ -128,22 +128,25 @@ const Comment = React.memo((props) => {
 
             <section
             className="replies_section flex flex_column">
-                {(!isLoading && showReplies) &&
+                {showReplies &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b?.timestamp) > convertTimestampToDate(a?.timestamp) ? -1 : 1))
                     .map(reply => {
                         return (
-                        <Reply 
-                        reply={reply}
-                        setComments={setComments}
-                        comment_id={comments}
-                        postId={postId}
-                        posterId={posterId}
-                        artistId={artistId}
-                        replyToComment={replyToComment}
-                        getUser={getUser}
-                        currentComment={comment}
-                        setRepliesLoaded={setRepliesLoaded}/>
+                            <section
+                            style={{ display: isLoading ? "none" : "" }}>
+                                <Reply 
+                                reply={reply}
+                                setComments={setComments}
+                                comment_id={comments}
+                                postId={postId}
+                                posterId={posterId}
+                                artistId={artistId}
+                                replyToComment={replyToComment}
+                                getUser={getUser}
+                                currentComment={comment}
+                                setRepliesLoaded={setRepliesLoaded}/>
+                            </section>
                         )
                     })
                 }
