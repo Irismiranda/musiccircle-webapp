@@ -19,8 +19,6 @@ export default function Comments(props) {
         setCommentsNumber, 
         descriptionMenuRef, 
         inputSectionRef,
-        setScrollOnLoad,
-        scrollOnLoad,
     } = props
 
     const { socket, loggedUser } = useStore()
