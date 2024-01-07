@@ -84,7 +84,7 @@ export default function Comments(props) {
 
     useEffect(() => {
         if(commentsLoaded >= comments?.length){
-            setCommentsNumber(comments.length + comments.replies?.length)
+            setCommentsNumber(comments.length + (comments.replies?.length || 0))
             setIsLoading(false)
         }
     }, [commentsLoaded])
