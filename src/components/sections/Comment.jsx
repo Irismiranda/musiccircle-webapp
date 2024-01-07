@@ -80,6 +80,7 @@ const Comment = React.memo((props) => {
         setIsLoading(repliesLoaded >= replies.length)
         console.log("replies are", replies)
         console.log("replies loaded are", repliesLoaded)
+        console.log("loading is", repliesLoaded >= replies.length)
     }, [repliesLoaded])
 
     return (
