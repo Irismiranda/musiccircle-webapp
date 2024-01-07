@@ -15,7 +15,7 @@ const Reply = React.memo((props) => {
         replyToComment, 
         getUser,
         currentComment,
-        setFullyLoadedReplies,
+        setRepliesLoaded,
     } = props
 
     const { loggedUser } = useStore()
@@ -26,7 +26,7 @@ const Reply = React.memo((props) => {
 
         !user && setUser(userData)
 
-        setFullyLoadedReplies(prevCount => prevCount + 1)
+        setRepliesLoaded(prevCount => prevCount + 1)
     }
 
     async function deleteReply(post_id, comment_id, reply_id){

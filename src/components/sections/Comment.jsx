@@ -8,7 +8,7 @@ import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
     const [showReplies, setShowReplies] = useState(false)
-    const [fullyLoadedReplies, setFullyLoadedReplies] = useState(0)
+    const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [userData, setUserData] = useState(null)
     const [replies, setReplies] = useState([])
@@ -41,10 +41,8 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){
-        if (!userData){
-            const userData = await getUser(data.user_id)
-            setUserData(userData)
-        }
+        const userData = await getUser(data.user_id)
+        setUserData(userData)
         setCommentsLoaded(prevCount => prevCount + 1)
         setReplies(data.replies)
     }
@@ -77,8 +75,8 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        setIsLoading(fullyLoadedReplies < replies.length)
-    }, [fullyLoadedReplies])
+        setIsLoading(repliesLoaded < replies.length)
+    }, [repliesLoaded])
 
     return (
         <section 
@@ -145,7 +143,7 @@ const Comment = React.memo((props) => {
                         replyToComment={replyToComment}
                         getUser={getUser}
                         currentComment={comment}
-                        setFullyLoadedReplies={setFullyLoadedReplies}/>
+                        setRepliesLoaded={setRepliesLoaded}/>
                         )
                     })
                 }
