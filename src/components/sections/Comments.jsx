@@ -97,7 +97,7 @@ export default function Comments(props) {
     }, [commentsLoaded])
 
     useEffect(() => {
-        inputSectionRef?.current && setTimeout(() => setInputSectionHeight(inputSectionRef?.current?.clientHeight), 50)
+        setInputSectionHeight(inputSectionRef?.current?.clientHeight)
     }, [replyTo])
 
     return (

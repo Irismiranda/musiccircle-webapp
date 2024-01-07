@@ -85,7 +85,15 @@ export default function EmojiBar(props){
             })
             setEmojiList(emojis)
          } else {
-            setEmojiList(<h5 style={{width: "210px", color: "grey", marginTop: "30px", textAlign: "center"}}>Sorry, no results were found 🫣</h5>)
+            setEmojiList(
+            <h5 
+            style={{
+                width: "210px", 
+                color: "grey", 
+                marginTop: "30px", 
+                textAlign: "center"}}>
+                    Sorry, no results were found 🫣
+            </h5>)
          }      
         setIsLoading(false)  
      }
@@ -116,7 +124,16 @@ export default function EmojiBar(props){
                     }
                 </div>
                 <div className="emoji_list">
-                    {!emojiList || isLoading ? <h5 style={{width: "150px", color: "grey", marginTop: "auto", textAlign: "center"}}>Loading...</h5> : emojiList}
+                    {!emojiList || isLoading ? 
+                    <h5 
+                    style={{
+                        width: "210px", 
+                        color: "grey", 
+                        marginTop: "30px", 
+                        textAlign: "center"}}>
+                        Loading...
+                    </h5> : 
+                    emojiList}
                 </div>
             </div>}
 

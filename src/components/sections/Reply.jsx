@@ -69,6 +69,7 @@ const Reply = React.memo((props) => {
         reply &&
         <section 
         className="full_width"
+        style={{ minWidth: "70px" }}
         key={reply.reply_id}>
             <div 
             className="flex space_between">
