@@ -25,6 +25,11 @@ const Reply = React.memo((props) => {
         const userData = await getUser(user_id)
         setUser(userData)
         setRepliesLoaded(prevCount => prevCount + 1)
+
+        if(user_id === loggedUser.id){
+            const newCommentElement = document.getElementById(data.comment_id)
+            newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+        }
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
@@ -69,9 +74,9 @@ const Reply = React.memo((props) => {
         reply &&
         <section 
         id={reply.reply_id}
+        key={reply.reply_id}
         className="full_width"
-        style={{ minWidth: "70px" }}
-        key={reply.reply_id}>
+        style={{ minWidth: "70px" }}>
             <div 
             className="flex space_between">
                 <div>

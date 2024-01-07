@@ -47,6 +47,10 @@ const Comment = React.memo((props) => {
         }
         setReplies(data.replies)
         setCommentsLoaded(prevCount => prevCount + 1)
+        if(data.user_id === loggedUser.id){
+            const newCommentElement = document.getElementById(data.comment_id)
+            newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+        }
     }
 
     function replyToComment(handle, comment_id){

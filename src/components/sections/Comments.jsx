@@ -21,7 +21,7 @@ export default function Comments(props) {
         inputSectionRef,
     } = props
 
-    const { socket, loggedUser } = useStore()
+    const { socket } = useStore()
 
     async function handleData(data, call){   
         if(call === "loadAllComments"){
@@ -36,16 +36,6 @@ export default function Comments(props) {
                     return [...prevComments, data[0]]
                 }
             })
-
-            console.log("scroll on load?", data[0].user_id === loggedUser.id)
-
-            if(data[0].user_id === loggedUser.id){
-                const newCommentElement = document.getElementById(data[0].reply_id || data[0].comment_id)
-
-                console.log("comment element is", newCommentElement)
-
-                newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
-            }
         }
     }
 
