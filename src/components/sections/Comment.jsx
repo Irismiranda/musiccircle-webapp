@@ -7,11 +7,11 @@ import { convertTimestampToDate, formatListData } from "../../utils"
 import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
+    const [replies, setReplies] = useState([])
     const [showReplies, setShowReplies] = useState(false)
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [userData, setUserData] = useState(null)
-    const [replies, setReplies] = useState([])
 
     const { 
         comment, 
@@ -45,8 +45,9 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        setCommentsLoaded(prevCount => prevCount + 1)
+        console.log("replies are", data.replies)
         setReplies(data.replies)
+        setCommentsLoaded(prevCount => prevCount + 1)
     }
 
     function replyToComment(handle, comment_id){
