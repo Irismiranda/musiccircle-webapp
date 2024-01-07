@@ -63,13 +63,9 @@ const Reply = React.memo((props) => {
 
     return (
         <>
-            {(isLoadingReply && !isFirstRepliesLoad) &&
-            <section 
-            className="loading_comments full_width"
-            style={{ height: '100px' }}>
-            </section>}
+
             
-            {(!isLoadingReply && reply) &&
+            {(reply) &&
             <section 
             className="full_width"
             key={reply.reply_id}>
