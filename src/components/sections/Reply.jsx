@@ -14,25 +14,19 @@ const Reply = React.memo((props) => {
         artistId, 
         replyToComment, 
         getUser,
-        isFirstRepliesLoad,
-        setIsFirstRepliesLoad,
         currentComment,
+        setFullyLoadedReplies,
     } = props
 
     const { loggedUser } = useStore()
-    
-    const [isLoadingReply, setIsLoadingReply] = useState(true)
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(user_id){      
-        setIsLoadingReply(true)
-
         const userData = await getUser(user_id)
 
         setUser(userData)
-               
-        setIsLoadingReply(false)
-        isFirstRepliesLoad && setIsFirstRepliesLoad(false)
+
+        setFullyLoadedReplies(prevCount => prevCount + 1)
     }
 
     async function deleteReply(post_id, comment_id, reply_id){

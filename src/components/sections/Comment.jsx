@@ -8,7 +8,8 @@ import { Axios } from "../../Axios-config"
 
 const Comment = React.memo((props) => {
     const [showReplies, setShowReplies] = useState(false)
-    const [isFirstRepliesLoad, setIsFirstRepliesLoad] = useState(true)
+    const [fullyLoadedReplies, setFullyLoadedReplies] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
     const [userData, setUserData] = useState(null)
     const [replies, setReplies] = useState([])
 
@@ -70,12 +71,12 @@ const Comment = React.memo((props) => {
     }
 
     useEffect(() => {
-        setIsFirstRepliesLoad(true)
-    }, [showReplies])
-
-    useEffect(() => {
         handleData(comment)
     }, [comment])
+
+    useEffect(() => {
+        setIsLoading(fullyLoadedReplies < replies.length)
+    }, [fullyLoadedReplies])
 
     return (
         <section 
@@ -122,12 +123,12 @@ const Comment = React.memo((props) => {
             {replies && 
             <h4 
             className="pointer"
-            onClick={() => setShowReplies((prevShowReplies) => (prevShowReplies === comment?.comment_id ? null : comment?.comment_id))}> 
-            {showReplies === comment?.comment_id && replies ? "Hide" : "View"} {replies?.length} replies </h4>}
+            onClick={() => setShowReplies(true)}> 
+            {showReplies && replies ? "Hide" : "View"} {replies?.length} replies </h4>}
 
             <section
             className="replies_section flex flex_column">
-                {(showReplies === comment?.comment_id && replies) &&
+                {(!isLoading && showReplies && replies) &&
                     replies 
                     .sort((a, b) => (convertTimestampToDate(b.timestamp) > convertTimestampToDate(a.timestamp) ? -1 : 1))
                     .map(reply => {
@@ -141,13 +142,12 @@ const Comment = React.memo((props) => {
                         artistId={artistId}
                         replyToComment={replyToComment}
                         getUser={getUser}
-                        isFirstRepliesLoad={isFirstRepliesLoad}
-                        setIsFirstRepliesLoad={setIsFirstRepliesLoad}
-                        currentComment={comment}/>
+                        currentComment={comment}
+                        setFullyLoadedReplies={setFullyLoadedReplies}/>
                         )
                     })
                 }
-                {(isFirstRepliesLoad && showReplies === comment?.comment_id) &&
+                {(isLoading && showReplies) &&
                     <div 
                     className="loading_comments"
                     style={{ height: 
