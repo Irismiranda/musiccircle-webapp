@@ -94,9 +94,13 @@ const Comment = React.memo((props) => {
                         <div 
                         className="flex"
                         style={{ marginBottom: "15px" }}>
+                            {
+                            userData?.imgUrl ? 
                             <img 
                             className="profile_small"
-                            src={userData?.imgUrl}/>
+                            src={user.imgUrl}/> :
+                            <div className="profile_small"></div>
+                            }
                             <h3>{userData?.name}</h3>
                         </div>
                     </Link>

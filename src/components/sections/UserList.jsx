@@ -18,11 +18,12 @@ export default function UserSearchSection(props){
                 list.map((user, index) => (
                     <div className="user_list_grid">
                         <Link to={`/account/${user.id}`}>
-                            <img
-                                className="profile_medium"
-                                src={user.imgUrl}
-                                alt={`Profile of ${user.name}`}
-                            />
+                            {
+                            user?.imgUrl ? <img 
+                            className="profile_small"
+                            src={user.imgUrl}/> :
+                            <div className="profile_small"></div>
+                            }
                         </Link>
                         <Link to={`/account/${user.id}`}>
                             <h3>

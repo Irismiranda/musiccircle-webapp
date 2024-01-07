@@ -76,9 +76,13 @@ const Reply = React.memo((props) => {
                     <Link to={`/account/${user?.id}`}>
                         <div className="flex"
                         style={{ marginBottom: "10px" }}>
+                            {
+                            user?.imgUrl ? 
                             <img 
                             className="profile_small"
-                            src={user?.imgUrl}/>
+                            src={user.imgUrl}/> :
+                            <div className="profile_small"></div>
+                            }
                             <h3>{user?.name}</h3>
                         </div>
                     </Link>

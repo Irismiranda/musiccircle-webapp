@@ -117,9 +117,12 @@ export default function ShareMenu(props){
                                         "flex flex_column user_slider_item"}
                                     key={user.id}
                                     onClick={() => toggleSendList(user.name)}>
-                                        <img 
+                                        {
+                                        user.imgUrl ? <img 
                                         className="profile_small"
-                                        src={user.imgUrl}/>
+                                        src={user.imgUrl}/> :
+                                        <div className="profile_small"></div>
+                                        }
                                         <h3>{user.name}</h3>
                                     </div>
                                 )

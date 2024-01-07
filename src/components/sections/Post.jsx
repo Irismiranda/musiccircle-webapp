@@ -126,9 +126,13 @@ export default function Post(props){
                         className="flex"
                         style={{ marginBottom: "10px" }}>
                             <Link to={`/account/${user?.id}`}>
-                                <img 
-                                src={user?.imgUrl}
-                                className="profile_small" />
+                            {
+                            user?.imgUrl ? 
+                            <img 
+                            className="profile_small"
+                            src={user.imgUrl}/> :
+                            <div className="profile_small"></div>
+                            }
                             </Link>
                             <Link to={`/account/${user?.id}`}>
                                 <h4>{user?.name}</h4>
