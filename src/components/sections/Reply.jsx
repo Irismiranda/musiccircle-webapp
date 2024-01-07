@@ -16,7 +16,8 @@ const Reply = React.memo((props) => {
         currentComment,
         setRepliesLoaded,
         setReplies,
-        replies,
+        scrollOnLoad,
+        setScrollOnLoad,
     } = props
 
     const { loggedUser } = useStore()
@@ -27,11 +28,10 @@ const Reply = React.memo((props) => {
         setUser(userData)
         setRepliesLoaded(prevCount => prevCount + 1)
 
-        const isNewReply = !replies.some(prevReply => prevReply.reply_id === reply.reply_id)
-
-        if((user_id === loggedUser.id) && isNewReply){
+        if(scrollOnLoad){
             const newCommentElement = document.getElementById(reply.reply_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+            setScrollOnLoad(false)
         }
     }
 

@@ -23,6 +23,8 @@ const Comment = React.memo((props) => {
         postId,
         artistId,
         setCommentsLoaded,
+        scrollOnLoad,
+        setScrollOnLoad,
     } = props
 
     const { text, likes, timestamp } = comment || {}
@@ -50,9 +52,10 @@ const Comment = React.memo((props) => {
 
         const isNewComment = !comments.some(comment => comment.comment_id === data.comment_id)
 
-        if((data.user_id === loggedUser.id) && isNewComment){
+        if(scrollOnLoad){
             const newCommentElement = document.getElementById(data.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+            setScrollOnLoad(false)
         }
     }
 
