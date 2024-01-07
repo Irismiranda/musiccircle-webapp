@@ -45,10 +45,13 @@ export default function Comment(props){
         setUserData(userData)
 
         if(replies.length > 0){
+            console.log("new reply is", data.replies[0])
             setReplies((prevReplies) => {
-                if (prevReplies.some((prevReply) => prevReply.reply_id === data.replies[0].reply_id)) {
-                    return prevReplies.map((prevReply) =>
-                    prevReply.reply_id === data.replies[0].reply_id ? data.replies[0] : prevReply
+                if (prevReplies
+                    .some((prevReply) => prevReply.reply_id === data.replies[0].reply_id)) {
+                        return prevReplies
+                        .map((prevReply) => prevReply.reply_id === data.replies[0].reply_id ? 
+                        data.replies[0] : prevReply
                     )              
                 } else {
                     return [...prevReplies, data.replies[0]]
