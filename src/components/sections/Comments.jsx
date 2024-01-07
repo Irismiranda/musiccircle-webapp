@@ -9,6 +9,7 @@ export default function Comments(props) {
     const [commentsLoaded, setCommentsLoaded] = useState(0)
     const [listening, setIsListening] = useState(false)
     const [inputSectionHeight, setInputSectionHeight] = useState(200)
+    const [isNewComment, setIsNewComment] = useState(false)
 
     const { 
         postId, 
@@ -29,6 +30,7 @@ export default function Comments(props) {
         if(call === "loadAllComments"){
             setComments(data)
         } else if (call === "loadNewComment"){
+            setIsNewComment(true)
             setComments((prevComments) => {
                 if (prevComments.some((prevComment) => prevComment.comment_id === data[0].comment_id)) {
                     return prevComments.map((prevComment) =>
@@ -126,7 +128,9 @@ export default function Comments(props) {
                             descriptionMenuRef={descriptionMenuRef}
                             setCommentsLoaded={setCommentsLoaded}
                             setScrollOnLoad={setScrollOnLoad}
-                            scrollOnLoad={scrollOnLoad}/>
+                            scrollOnLoad={scrollOnLoad}
+                            setIsNewComment={setIsNewComment}
+                            isNewComment={isNewComment}/>
                         )
                     })
                 }

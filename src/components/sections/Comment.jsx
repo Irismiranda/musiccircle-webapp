@@ -12,19 +12,21 @@ const Comment = React.memo((props) => {
     const [repliesLoaded, setRepliesLoaded] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [userData, setUserData] = useState(null)
+    const [isNewReply, setIsNewReply] = useState(false)
 
     const { 
         comment, 
         comments,
         setComments,
         setReplyTo, 
-        replyTo,
         posterId,
         postId,
         artistId,
         setCommentsLoaded,
         scrollOnLoad,
         setScrollOnLoad,
+        isNewComment,
+        setIsNewComment,
     } = props
 
     const { text, likes, timestamp } = comment || {}
@@ -47,16 +49,33 @@ const Comment = React.memo((props) => {
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        setReplies(data.replies)
-        setCommentsLoaded(prevCount => prevCount + 1)
-
-        const isNewComment = !comments?.some(comment => (comment.comment_id === data.comment_id))
         console.log("is new comment?", isNewComment)
+
+        if(isNewComment){
+            setReplies(data.replies)
+        } else {
+            setIsNewReply(true)
+
+            const prevRepliesIds = replies.map(reply => reply.reply_id)
+
+            const newReply = data.replies.find(reply => !prevRepliesIds.includes(reply.reply_id))
+
+            console.log("new reply is", newReply)
+
+            setReplies(prevReplies => {
+                return prevReplies.map(prevReply => {
+                    return prevReply.reply_id === newReply.reply_id ?
+                    newReply : prevReply
+                })
+            })
+        }
+        setCommentsLoaded(prevCount => prevCount + 1)
 
         if(scrollOnLoad && isNewComment){
             const newCommentElement = document.getElementById(data.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
             setScrollOnLoad(false)
+            setIsNewComment(false)
         }
     }
 
@@ -167,7 +186,9 @@ const Comment = React.memo((props) => {
                                 currentComment={comment}
                                 setRepliesLoaded={setRepliesLoaded}
                                 setReplies={setReplies}
-                                replies={replies}/>
+                                replies={replies}
+                                isNewReply={isNewReply}
+                                setIsNewReply={setIsNewReply}/>
                             </section>
                         )
                     })
