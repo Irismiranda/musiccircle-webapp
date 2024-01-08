@@ -45,8 +45,8 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){
-        console.log("data is", data)
-
+        console.log("user data is", userData)
+        
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
@@ -57,20 +57,10 @@ const Comment = React.memo((props) => {
             setReplies(data.replies)
         } else if(data.replies){
             const prevRepliesIds = replies?.map(reply => reply.reply_id)
-
-            console.log("prev reply ids are", prevRepliesIds)
-
             const newReplyIds = data.replies?.map(reply => reply.reply_id)
-
-            console.log("newReplyIds id are", newReplyIds)
             
             const newReplyId = newReplyIds.filter(id => !prevRepliesIds?.includes(id))
-
-            console.log("new reply id is", newReplyId)
-
-            const newReply = data.replies.find(reply => reply.reply_id === newReplyId[0])
-        
-            console.log("new reply is", newReply)
+            const newReply = data.replies.find(reply => reply.reply_id === newReplyId)
 
             if(newReply){
                 setIsNewReply(true)
@@ -135,10 +125,6 @@ const Comment = React.memo((props) => {
             setIsLoading(false)
         }
     }, [repliesLoaded])
-
-    useEffect(() => {
-        console.log("user data is", userData)
-    }, [userData])
 
     return (
         <section 
