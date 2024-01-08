@@ -53,10 +53,12 @@ const Reply = React.memo((props) => {
             logged_user_id: loggedUser.id
         })
 
-        const updatedReply = reply.likes?.includes(loggedUser.id) ?
+        const udatedLikes = reply.likes?.includes(loggedUser.id) ?
         reply.likes.filter(like => like !== loggedUser.id) :
         [...(reply.likes || []), loggedUser.id]
 
+        const updatedReply = {...reply, likes: udatedLikes}
+        
         setReplies(prevReplies => prevReplies
             .map(prevReply => {
                 return prevReply.reply_id === reply_id ?
