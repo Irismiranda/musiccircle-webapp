@@ -37,6 +37,8 @@ export default function CommentBtn(props){
         `/api/${post_id || track?.id}/reply_to/${replyTo.comment_id}` :
         `/api/${post_id || track?.id}/add_comment`
 
+        console.log("user_handle at CommentBtn is", replyTo.user_handle)
+
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,

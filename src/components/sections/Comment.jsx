@@ -71,8 +71,9 @@ const Comment = React.memo((props) => {
         setPostCommentsCount(postId, ((comments?.length || 0) + (replies?.length || 0)))
     }
 
-    function replyToComment(user_id, handle, comment_id){
-        setReplyTo({user_id: user_id, comment_id: comment_id, user_handle: handle})
+    function replyToComment(user_id, user_handle, comment_id){
+        setReplyTo({user_id: user_id, comment_id: comment_id, user_handle: user_handle})
+        console.log("user_handle at Comment is", user_handle)
     }
 
     async function likeComment(post_id, comment_id){       
@@ -229,6 +230,7 @@ const Comment = React.memo((props) => {
                                 currentComment={comment}
                                 scrollOnLoad={scrollOnLoad}
                                 setScrollOnLoad={setScrollOnLoad}
+                                setShowReplies={setShowReplies}
                                 />
                             </section>
                         )
