@@ -193,7 +193,7 @@ const Comment = React.memo((props) => {
                 {(userData?.id !== loggedUser.id) && 
                 <h4 
                 className="pointer"
-                onClick={() => replyToComment(userData.id, userData?.handle, comment?.comment_id)}>Reply</h4>}
+                onClick={() => replyToComment(userData.id, userData?.userHandle, comment?.comment_id)}>Reply</h4>}
                 {(userData?.id === loggedUser.id) &&
                 <h4 
                 className="pointer"
