@@ -46,7 +46,11 @@ export default function CommentBtn(props){
             artist_id: track?.artist_id,
         }
 
-        replyTo && commentData.reply_to === replyTo
+        replyTo && 
+        (commentData.reply_to = {
+            user_id: replyTo.user_id,
+            user_handle: replyTo.user_handle
+        })
         
         if(textAreaRef.current.value !== ""){
             setScrollOnLoad(true)

@@ -58,7 +58,7 @@ const Reply = React.memo((props) => {
         [...(reply.likes || []), loggedUser.id]
 
         const updatedReply = {...reply, likes: udatedLikes}
-        
+
         setReplies(prevReplies => prevReplies
             .map(prevReply => {
                 return prevReply.reply_id === reply_id ?
@@ -96,7 +96,12 @@ const Reply = React.memo((props) => {
                             <h3>{user?.name}</h3>
                         </div>
                     </Link>
-                    <p>{reply.text}</p>
+                    <p>
+                        {reply?.reply_to && <a href={`/user/${reply.reply_to.user_id}`}>
+                            {reply?.reply_to.user_handle}
+                        </a>} 
+                        {reply?.text}
+                    </p>
                 </div>
                 <div
                 onClick={() => likeReply(postId, currentComment?.comment_id, reply.reply_id)}>
@@ -114,7 +119,7 @@ const Reply = React.memo((props) => {
                 {(user?.id !== loggedUser.id) && 
                 <h4 
                 className="pointer"
-                onClick={() => replyToComment(user?.name, currentComment?.comment_id)}>
+                onClick={() => replyToComment(user?.id, user?.handle, currentComment?.comment_id)}>
                     Reply
                 </h4>}
                 {(user?.id === loggedUser.id) &&

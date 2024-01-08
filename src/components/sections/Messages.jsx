@@ -55,7 +55,7 @@ export default function Messages(props) {
 
       if(args[0][0].userId === loggedUser.id){
         const newCommentElement = document.getElementById(args[0][0].messageId)
-        newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+        newCommentElement?.scrollIntoView({ behavior: "smooth", block: "end" })
     }
     })
   

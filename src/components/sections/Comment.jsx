@@ -71,8 +71,8 @@ const Comment = React.memo((props) => {
         setPostCommentsCount(postId, ((comments?.length || 0) + (replies?.length || 0)))
     }
 
-    function replyToComment(handle, comment_id){
-        setReplyTo({comment_id: comment_id, user_handle: handle})
+    function replyToComment(user_id, handle, comment_id){
+        setReplyTo({user_id: user_id, comment_id: comment_id, user_handle: handle})
     }
 
     async function likeComment(post_id, comment_id){       
@@ -192,7 +192,7 @@ const Comment = React.memo((props) => {
                 {(userData?.id !== loggedUser.id) && 
                 <h4 
                 className="pointer"
-                onClick={() => replyToComment(userData?.name, comment?.comment_id)}>Reply</h4>}
+                onClick={() => replyToComment(userData.id, userData?.handle, comment?.comment_id)}>Reply</h4>}
                 {(userData?.id === loggedUser.id) &&
                 <h4 
                 className="pointer"
