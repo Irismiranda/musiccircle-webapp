@@ -29,6 +29,7 @@ const Reply = React.memo((props) => {
     async function handleReplies(user_id){   
         if(!user){
             const userData = await getUser(user_id)
+            console.log("user data is", userData, "user handle is", userData.userHandle)
             setUser(userData)
             setRepliesLoaded(prevCount => prevCount + 1)
         }
@@ -121,7 +122,7 @@ const Reply = React.memo((props) => {
                 {(user?.id !== loggedUser.id) && 
                 <h4 
                 className="pointer"
-                onClick={() => replyToComment(user?.id, loggedUser?.userHandle, currentComment?.comment_id)}>
+                onClick={() => replyToComment(user?.id, user?.userHandle, currentComment?.comment_id)}>
                     Reply
                 </h4>}
                 {(user?.id === loggedUser.id) &&
