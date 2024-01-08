@@ -25,8 +25,7 @@ const Reply = React.memo((props) => {
     const { loggedUser } = useStore()
     const [ user, setUser ] = useState(null)
 
-    async function handleReplies(user_id){ 
-        console.log("is new reply?", isNewReply)     
+    async function handleReplies(user_id){   
         if(!user){
             const userData = await getUser(user_id)
             setUser(userData)
@@ -64,8 +63,6 @@ const Reply = React.memo((props) => {
         reply.likes.filter(like => like !== loggedUser.id) :
         [...(reply.likes || []), loggedUser.id]
 
-        console.log("updated reply is", updatedReply)
-
         setReplies(prevReplies => prevReplies
             .map(prevReply => {
                 return prevReply.reply_id === reply_id ?
@@ -75,7 +72,6 @@ const Reply = React.memo((props) => {
     }
 
     useEffect(() => {
-        console.log("reply is", reply)
         if(reply){
             handleReplies(reply.user_id)
         }

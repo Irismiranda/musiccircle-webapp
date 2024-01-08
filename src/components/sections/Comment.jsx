@@ -45,16 +45,15 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){       
-        console.log("comment is", comment)
+        console.log("is new comment?", isNewComment, "prev replies are", replies, "new replies are", data?.replies)
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
-        console.log("is new comment?", isNewComment)
 
         if(replies?.length === 0){
             setReplies(data.replies)
-        } else if(data.replies){
+        } else if(data?.replies){
             const prevRepliesIds = replies?.map(reply => reply.reply_id)
             const newReplyIds = data.replies?.map(reply => reply.reply_id)
 
@@ -74,10 +73,8 @@ const Comment = React.memo((props) => {
                 const updatedReply = replies.map(prevReply => {
                 const updatedReplyData = data.replies.find(reply => reply.reply_id === prevReply.reply_id)
 
-                console.log("found reply is", updatedReplyData)
-
                 if (updatedReplyData && (updatedReplyData.likes?.length !== prevReply.likes?.length)) {
-                    return updatedReplyData
+                    return updatedReply
                     }
                 })
 
