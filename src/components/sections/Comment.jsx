@@ -53,7 +53,7 @@ const Comment = React.memo((props) => {
         }
     }
 
-    function handleReplies(data){
+    function handleReplies(data, call){
         if(call === "loadAllReplies"){
             setReplies(data)
         } else if (call === "loadNewReply"){
