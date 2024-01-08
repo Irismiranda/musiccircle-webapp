@@ -48,11 +48,14 @@ const Comment = React.memo((props) => {
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
+            console.log("user data is", userData)
+            setCommentsLoaded(prevCount => prevCount + 1)
         }
+    }
 
+    function handleReplies(data){
         if(call === "loadAllReplies"){
             setReplies(data)
-            setCommentsLoaded(prevCount => prevCount + 1)
         } else if (call === "loadNewReply"){
             setReplies((prevReplies) => {
                 if (prevReplies.some((prevReply) => prevReply.reply_id === data[0].reply_id)) {
@@ -64,7 +67,6 @@ const Comment = React.memo((props) => {
                     return [...prevReplies, data[0]]
                 }
             })
-            setCommentsLoaded(prevCount => prevCount + 1)
         }
         setpostCommentsCount(postId, ((comments?.length || 0) + (replies?.length || 0)))
     }
@@ -94,6 +96,7 @@ const Comment = React.memo((props) => {
 
     useEffect(() => {
         if(scrollOnLoad && isNewComment){
+            handleData(comment)
             const newCommentElement = document.getElementById(comment.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
             setScrollOnLoad(false)
@@ -120,7 +123,7 @@ const Comment = React.memo((props) => {
             if(!reply || reply?.length === 0){
                 setIsLoading(false)
             } else {
-                handleData(reply, 'loadAllReplies')
+                handleReplies(reply, 'loadAllReplies')
             }
         })
 
@@ -134,7 +137,7 @@ const Comment = React.memo((props) => {
             if(!reply || reply?.length === 0){
                 return
             } else {
-                handleData(reply, 'loadNewReply')
+                handleReplies(reply, 'loadNewReply')
             } 
         })
 
