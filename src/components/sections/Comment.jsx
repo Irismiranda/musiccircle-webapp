@@ -13,6 +13,7 @@ const Comment = React.memo((props) => {
     const [isLoading, setIsLoading] = useState(true)
     const [userData, setUserData] = useState(null)
     const [isNewReply, setIsNewReply] = useState(false)
+    const [listening, setIsListening] = useState(false)
 
     const { 
         comment, 
@@ -48,7 +49,6 @@ const Comment = React.memo((props) => {
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
-            console.log("user data is", userData)
             setCommentsLoaded(prevCount => prevCount + 1)
         }
     }
@@ -103,21 +103,24 @@ const Comment = React.memo((props) => {
             setIsNewComment(false)
         }
     }, [comment])
-
-    useEffect(() => {
-        socket.emit('listenToReplies', { post_id: postId, poster_id: posterId, artist_id: artistId, comment_id: comment.comment_id })
     
-        return () => {
-            socket.emit('disconnectFromReplies', { comment_id: comment.comment_id })
-        }
-        
-    }, [])
-
     useEffect(() => {
         if(repliesLoaded >= replies.length){
             setIsLoading(false)
         }
     }, [repliesLoaded])
+
+    useEffect(() => {
+        if(comment && !listening){
+            socket.emit('listenToReplies', { post_id: postId, poster_id: posterId, artist_id: artistId, comment_id: comment.comment_id })
+            setIsListening(true)
+        }
+    
+        return () => {
+            socket.emit('disconnectFromReplies', { comment_id: comment.comment_id })
+        }
+    }, [comment])
+
 
     useEffect(() => {
         socket.on('loadAllReplies', (reply) => {
