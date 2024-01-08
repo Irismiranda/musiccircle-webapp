@@ -26,9 +26,11 @@ const Reply = React.memo((props) => {
     const [ user, setUser ] = useState(null)
 
     async function handleReplies(user_id){      
-        const userData = await getUser(user_id)
-        setUser(userData)
-        setRepliesLoaded(prevCount => prevCount + 1)
+        if(isNewReply){
+            const userData = await getUser(user_id)
+            setUser(userData)
+            setRepliesLoaded(prevCount => prevCount + 1)
+        }
 
         if(scrollOnLoad && isNewReply){
             const newCommentElement = document.getElementById(reply.reply_id)

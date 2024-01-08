@@ -57,12 +57,13 @@ const Comment = React.memo((props) => {
             const prevRepliesIds = replies?.map(reply => reply.reply_id)
             const newReplyIds = data.replies?.map(reply => reply.reply_id)
             
-            const newReplyId = newReplyIds.find(id => !prevRepliesIds?.includes(id))
+            const newReplyId = newReplyIds.filter(id => !prevRepliesIds?.includes(id))
             const newReply = data.replies.find(reply => reply.reply_id === newReplyId)
         
-            console.log("new reply is", newReply)
+            console.log("reply is", newReply)
 
             if(newReply){
+                setIsNewReply(true)
                 setReplies(prevReplies => [...prevReplies, newReply])
             } else {
                 const updatedReply = replies.map(prevReply => {
