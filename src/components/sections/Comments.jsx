@@ -17,7 +17,6 @@ export default function Comments(props) {
         artistId, 
         setReplyTo, 
         replyTo,
-        setCommentsNumber, 
         descriptionMenuRef, 
         inputSectionRef,
         setScrollOnLoad,
@@ -40,6 +39,7 @@ export default function Comments(props) {
                     return [...prevComments, data[0]]
                 }
             })
+            setScrollOnLoad(false)
         }
     }
 
@@ -88,10 +88,6 @@ export default function Comments(props) {
             setIsLoading(false)
         }
     }, [commentsLoaded])
-
-    useEffect(() => {
-        setCommentsNumber(comments?.length + (comments?.replies?.length || 0))
-    }, [comments])
 
     useEffect(() => {
         setInputSectionHeight(inputSectionRef?.current?.clientHeight)

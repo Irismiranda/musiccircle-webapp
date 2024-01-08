@@ -6,20 +6,20 @@ import { SvgHeart } from "../../assets"
 
 const Reply = React.memo((props) => {
     const { 
+        replies,
+        setReplies,
+        setRepliesLoaded,
         reply,
-        setComments, 
+        isNewReply,
+        setIsNewReply,
         postId, 
         posterId, 
         artistId, 
         replyToComment, 
         getUser,
         currentComment,
-        setRepliesLoaded,
-        setReplies,
         scrollOnLoad,
         setScrollOnLoad,
-        setIsNewReply,
-        isNewReply,
     } = props
 
     const { loggedUser } = useStore()
@@ -33,23 +33,21 @@ const Reply = React.memo((props) => {
         }
 
         if(scrollOnLoad && isNewReply){
-            const newCommentElement = document.getElementById(reply.reply_id)
-            newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+            const newReplyElement = document.getElementById(reply.reply_id)
+            newReplyElement.scrollIntoView({ behavior: "smooth", block: "end" })
             setScrollOnLoad(false)
             setIsNewReply(false)
-
         }
     }
 
     async function deleteReply(post_id, comment_id, reply_id){
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
 
-        const updatedReplies = currentComment.replies.filter(reply => reply.reply_id !== reply_id)
-        const updatedComment = {...currentComment, replies: updatedReplies}
+        const updatedReply = replies.filter(reply => reply.reply_id !== reply_id)
         
-        setComments(prevComments => 
-            prevComments.map(comment =>
-                comment.comment_id === comment_id ? updatedComment : comment
+        setReplies(preReply => 
+            preReply.map(reply =>
+                reply.reply_id === reply_id ? updatedReply : reply
             )
         )
     }

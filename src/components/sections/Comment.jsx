@@ -45,58 +45,25 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){       
-        console.log("comment is", comment, "is new comment?", isNewComment, "prev replies are", replies, "new replies are", data?.replies)
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
         }
 
-        if(replies?.length === 0){
-            setReplies(data.replies)
-        } else if(data?.replies){
-            const prevRepliesIds = replies?.map(reply => reply.reply_id)
-            const newReplyIds = data.replies?.map(reply => reply.reply_id)
-
-            console.log("prev reply ids are", prevRepliesIds, "new reply ids are", newReplyIds)
-            
-            const newReplyId = newReplyIds.find(id => !prevRepliesIds?.includes(id))
-            const newReply = newReplyId ? 
-            data.replies.find(reply => reply.reply_id === newReplyId) :
-            undefined
-
-            console.log("new reply id is", newReplyId, "new reply is", newReply)
-
-            if(newReply){
-                setIsNewReply(true)
-                setReplies(prevReplies => [...prevReplies, newReply])
-            } else {
-                const updatedReply = data.replies
-                .map(prevReply => {
-                    const currentReply = data.replies
-                    .find(reply => reply.reply_id === prevReply.reply_id)
-                    console.log(currentReply.likes?.length === prevReply.likes?.length)
-                    return (currentReply && (currentReply.likes?.length !== prevReply.likes?.length)) ? currentReply : null
-                })
-                .filter(reply => reply !== null)
-
-                console.log("updated reply is", updatedReply)
-                
-                updatedReply[0] && setReplies(prevReplies => prevReplies
-                    .map(prevReply => (
-                        prevReply.reply_id === updatedReply[0].reply_id ?
-                            updatedReply[0] : prevReply
-                    ))
-                ) 
-            }
-        }
-        
-        setCommentsLoaded(prevCount => prevCount + 1)
-
-        if(scrollOnLoad && isNewComment){
-            const newCommentElement = document.getElementById(data.comment_id)
-            newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
-            setScrollOnLoad(false)
-            setIsNewComment(false)
+        if(call === "loadAllReplies"){
+            setReplies(data)
+            setCommentsLoaded(prevCount => prevCount + 1)
+        } else if (call === "loadNewReply"){
+            setReplies((prevReplies) => {
+                if (prevReplies.some((prevReply) => prevReply.reply_id === data[0].reply_id)) {
+                    return prevReplies.map((prevReply) =>
+                    prevReply.reply_id === data[0].reply_id ? data[0] : prevReply
+                    )              
+                } else {
+                    setIsNewComment(true)
+                    return [...prevReplies, data[0]]
+                }
+            })
         }
     }
 
@@ -124,14 +91,56 @@ const Comment = React.memo((props) => {
     }
 
     useEffect(() => {
-        handleData(comment)
+        if(scrollOnLoad && isNewComment){
+            const newCommentElement = document.getElementById(comment.comment_id)
+            newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
+            setScrollOnLoad(false)
+            setIsNewComment(false)
+        }
     }, [comment])
+
+    useEffect(() => {
+        if(showReplies){
+            socket.emit('listenToReplies', { post_id: postId, poster_id: posterId, artist_id: artistId, comment_id: comment.comment_id })
+        } else {
+            socket.emit('disconnectFromReplies', { comment_id: comment.comment_id })
+        }
+    }, [showReplies])
 
     useEffect(() => {
         if(repliesLoaded >= replies.length){
             setIsLoading(false)
         }
     }, [repliesLoaded])
+
+    useEffect(() => {
+        socket.on('loadAllReplies', (reply) => {
+            if(!reply || reply?.length === 0){
+                setIsLoading(false)
+            } else {
+                handleData(reply, 'loadAllReplies')
+            }
+        })
+
+        return () => {
+            socket.off('loadAllReplies')
+        }      
+    }, [])
+
+    useEffect(() => {
+        socket.on('loadNewReply', (reply) => {
+            if(!reply || reply?.length === 0){
+                return
+            } else {
+                handleData(reply, 'loadNewReply')
+            } 
+        })
+
+        return () => {
+            socket.off('loadNewReply')
+        }
+    }, [])
+
 
     return (
         <section 
@@ -197,19 +206,21 @@ const Comment = React.memo((props) => {
                             className="full_width"
                             style={{ display: isLoading ? "none" : "" }}>
                                 <Reply 
+                                replies={replies}
+                                setReplies={setReplies}
+                                setRepliesLoaded={setRepliesLoaded}
                                 reply={reply}
-                                setComments={setComments}
+                                isNewReply={isNewReply}
+                                setIsNewReply={setIsNewReply}
                                 postId={postId}
                                 posterId={posterId}
                                 artistId={artistId}
                                 replyToComment={replyToComment}
                                 getUser={getUser}
                                 currentComment={comment}
-                                setRepliesLoaded={setRepliesLoaded}
-                                setReplies={setReplies}
-                                replies={replies}
-                                isNewReply={isNewReply}
-                                setIsNewReply={setIsNewReply}/>
+                                scrollOnLoad={scrollOnLoad}
+                                setScrollOnLoad={setScrollOnLoad}
+                                />
                             </section>
                         )
                     })
