@@ -44,9 +44,7 @@ const Comment = React.memo((props) => {
         setComments(comments.filter(comment => comment.comment_id !== comment_id))
     }
 
-    async function handleData(data){
-        console.log("user data is", userData)
-        
+    async function handleData(data){       
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
@@ -59,7 +57,7 @@ const Comment = React.memo((props) => {
             const prevRepliesIds = replies?.map(reply => reply.reply_id)
             const newReplyIds = data.replies?.map(reply => reply.reply_id)
             
-            const newReplyId = newReplyIds.filter(id => !prevRepliesIds?.includes(id))
+            const newReplyId = newReplyIds.find(id => !prevRepliesIds?.includes(id))
             const newReply = data.replies.find(reply => reply.reply_id === newReplyId)
 
             if(newReply){

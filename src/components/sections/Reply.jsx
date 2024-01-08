@@ -25,8 +25,9 @@ const Reply = React.memo((props) => {
     const { loggedUser } = useStore()
     const [ user, setUser ] = useState(null)
 
-    async function handleReplies(user_id){      
-        if(isNewReply){
+    async function handleReplies(user_id){ 
+        console.log("is new reply?", isNewReply)     
+        if(!user){
             const userData = await getUser(user_id)
             setUser(userData)
             setRepliesLoaded(prevCount => prevCount + 1)
