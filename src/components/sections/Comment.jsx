@@ -45,6 +45,7 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){       
+        console.log("comment is", comment)
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
