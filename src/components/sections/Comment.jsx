@@ -95,8 +95,8 @@ const Comment = React.memo((props) => {
     }
 
     useEffect(() => {
+        comment && handleData(comment)
         if(scrollOnLoad && isNewComment){
-            handleData(comment)
             const newCommentElement = document.getElementById(comment.comment_id)
             newCommentElement.scrollIntoView({ behavior: "smooth", block: "end" })
             setScrollOnLoad(false)
