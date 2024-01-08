@@ -98,7 +98,7 @@ const Reply = React.memo((props) => {
                     </Link>
                     <p>
                         {reply?.reply_to && <a href={`/user/${reply.reply_to.user_id}`}>
-                            {reply?.reply_to.user_handle}
+                            {reply?.reply_to.userHandle}
                         </a>} 
                         {reply?.text}
                     </p>
