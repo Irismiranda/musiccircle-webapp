@@ -45,6 +45,8 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){
+        console.log("data is", data)
+
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
@@ -133,6 +135,10 @@ const Comment = React.memo((props) => {
             setIsLoading(false)
         }
     }, [repliesLoaded])
+
+    useEffect(() => {
+        console.log("user data is", userData)
+    }, [userData])
 
     return (
         <section 
