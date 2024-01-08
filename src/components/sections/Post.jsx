@@ -143,7 +143,7 @@ export default function Post(props){
                         <div 
                         className="flex">
                             <h4>{data?.likes?.length || 0} Likes</h4>
-                            <h4>{postCommentsCount[`${data?.post_id}`]} Comments</h4>
+                            <h4>{postCommentsCount[`${data?.post_id}`] || 0} Comments</h4>
                             <div
                             onClick={() => likePost(data?.post_id)}>
                                 <SvgHeart

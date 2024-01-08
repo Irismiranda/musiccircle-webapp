@@ -30,7 +30,7 @@ const useStore = create(devtools((set, get) => ({
       isMinimized: false,
       isScrolled: false,
   },
-  postCommentsCount: null,
+  postCommentsCount: {},
 
   setAccessToken: (token) => set({ accessToken: token }),
   setLoggedUser: (user) => set({ loggedUser: user }),
