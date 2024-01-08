@@ -45,7 +45,7 @@ const Comment = React.memo((props) => {
     }
 
     async function handleData(data){       
-        console.log("is new comment?", isNewComment, "prev replies are", replies, "new replies are", data?.replies)
+        console.log("comment is", comment, "is new comment?", isNewComment, "prev replies are", replies, "new replies are", data?.replies)
         if(!userData){
             const userData = await getUser(data.user_id)
             setUserData(userData)
@@ -70,20 +70,20 @@ const Comment = React.memo((props) => {
                 setIsNewReply(true)
                 setReplies(prevReplies => [...prevReplies, newReply])
             } else {
-                const updatedReply = replies.map(prevReply => {
+                const updatedReply = data.replies.map(prevReply => {
                 const updatedReplyData = data.replies.find(reply => reply.reply_id === prevReply.reply_id)
 
                 if (updatedReplyData && (updatedReplyData.likes?.length !== prevReply.likes?.length)) {
-                    return updatedReply
+                    return updatedReplyData
                     }
                 })
 
-                console.log("updated reply is", updatedReply)
+                console.log("updated reply is", updatedReply[0])
                 
-                updatedReply && setReplies(prevReplies => prevReplies
+                updatedReply[0] && setReplies(prevReplies => prevReplies
                     .map(prevReply => (
-                        prevReply.reply_id === updatedReply.reply_id ?
-                            updatedReply : prevReply
+                        prevReply.reply_id === updatedReply[0].reply_id ?
+                            updatedReply[0] : prevReply
                     ))
                 ) 
             }
