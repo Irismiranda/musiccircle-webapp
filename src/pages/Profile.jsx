@@ -15,7 +15,7 @@ export default function Profile(){
         userTopArtists, 
         setUserTopTracks, 
         setUserTopArtists, 
-        resetCommentsCount 
+        resetPostCommentsCount 
     } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
@@ -42,7 +42,7 @@ export default function Profile(){
     }
 
     async function getPosts(userId){
-        resetCommentsCount()
+        resetPostCommentsCount()
         const response = await Axios.get(`/api/${userId}/posts`)
         setPosts(response.data)
     }

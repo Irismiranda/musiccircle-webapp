@@ -58,14 +58,14 @@ const useStore = create(devtools((set, get) => ({
       ...newPlayerState,
     },
   })),
-  setCommentsCount: (postId, count) => set((state) => ({
+  setPostCommentsCount: (postId, count) => set((state) => ({
     ...state,
     commentsCount: {
       ...state.commentsCount,
       [postId]: count,
     },
   })),
-  resetCommentsCount: () => set({ commentsCount: {} })
+  resetPostCommentsCount: () => set({ commentsCount: {} })
 })))
 
 export default useStore

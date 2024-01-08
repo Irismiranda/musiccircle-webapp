@@ -43,13 +43,9 @@ const Reply = React.memo((props) => {
     async function deleteReply(post_id, comment_id, reply_id){
         await Axios.post(`/api/${posterId}/${artistId}/${post_id}/delete_reply/${comment_id}/${reply_id}`)
 
-        const updatedReply = replies.filter(reply => reply.reply_id !== reply_id)
+        const updatedReplies = replies.filter(reply => reply.reply_id !== reply_id)
         
-        setReplies(preReply => 
-            preReply.map(reply =>
-                reply.reply_id === reply_id ? updatedReply : reply
-            )
-        )
+        setReplies(updatedReplies)
     }
 
     async function likeReply(post_id, comment_id, reply_id){
