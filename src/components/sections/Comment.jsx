@@ -71,13 +71,17 @@ const Comment = React.memo((props) => {
                 setReplies(prevReplies => [...prevReplies, newReply])
             } else {
                 const updatedReply = replies.map(prevReply => {
-                    const newReplyData = data.replies.find(reply => reply.reply_id === prevReply.reply_id)
+                const updatedReplyData = data.replies.find(reply => reply.reply_id === prevReply.reply_id)
 
-                    if (newReplyData && (newReplyData.likes?.length !== prevReply.likes?.length)) {
-                        return newReplyData
+                console.log("found reply is", updatedReplyData)
+
+                if (updatedReplyData && (updatedReplyData.likes?.length !== prevReply.likes?.length)) {
+                    return updatedReplyData
                     }
                 })
 
+                console.log("updated reply is", updatedReply)
+                
                 updatedReply && setReplies(prevReplies => prevReplies
                     .map(prevReply => (
                         prevReply.reply_id === updatedReply.reply_id ?
