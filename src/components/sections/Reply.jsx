@@ -99,9 +99,14 @@ const Reply = React.memo((props) => {
                             <h3>{user?.name}</h3>
                         </div>
                     </Link>
-                    <p>
-                        {reply?.reply_to && <a href={`/user/${reply.reply_to.user_id}`}>
-                            {reply?.reply_to.user_handle}
+                    <p
+                    style={{ margin: "10px 0" }}>
+                        {reply?.reply_to && 
+                        <a 
+                        className="user_handle"
+                        style={{ maxWidth: "340px", marginBottom: "4px" }}
+                        href={`/user/${reply.reply_to.user_id}`}>
+                            @{reply?.reply_to.user_handle}
                         </a>} 
                         {reply?.text}
                     </p>
