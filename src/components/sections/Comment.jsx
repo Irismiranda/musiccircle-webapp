@@ -105,12 +105,13 @@ const Comment = React.memo((props) => {
     }, [comment])
 
     useEffect(() => {
-        if(showReplies){
-            socket.emit('listenToReplies', { post_id: postId, poster_id: posterId, artist_id: artistId, comment_id: comment.comment_id })
-        } else {
+        socket.emit('listenToReplies', { post_id: postId, poster_id: posterId, artist_id: artistId, comment_id: comment.comment_id })
+    
+        return () => {
             socket.emit('disconnectFromReplies', { comment_id: comment.comment_id })
         }
-    }, [showReplies])
+        
+    }, [])
 
     useEffect(() => {
         if(repliesLoaded >= replies.length){
