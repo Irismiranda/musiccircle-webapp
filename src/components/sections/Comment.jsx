@@ -64,6 +64,7 @@ const Comment = React.memo((props) => {
                     return [...prevReplies, data[0]]
                 }
             })
+            setCommentsLoaded(prevCount => prevCount + 1)
         }
         setpostCommentsCount(postId, ((comments?.length || 0) + (replies?.length || 0)))
     }
