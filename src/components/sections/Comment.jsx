@@ -31,7 +31,7 @@ const Comment = React.memo((props) => {
 
     const { text, likes, timestamp } = comment || {}
 
-    const { loggedUser } = useStore()
+    const { loggedUser, setpostCommentsCount } = useStore()
 
     async function getUser(id){
         const userData = await Axios.get(`api/user/${id}`)
@@ -65,6 +65,7 @@ const Comment = React.memo((props) => {
                 }
             })
         }
+        setpostCommentsCount(postId, ((comments?.length || 0) + (replies?.length || 0)))
     }
 
     function replyToComment(handle, comment_id){

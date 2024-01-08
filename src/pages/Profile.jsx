@@ -8,7 +8,15 @@ import { placeholder_img } from "../assets"
 import useStore from "../store"
 
 export default function Profile(){
-    const { standardWrapperWidth, loggedUser, userTopTracks, userTopArtists, setUserTopTracks, setUserTopArtists } = useStore()
+    const { 
+        standardWrapperWidth, 
+        loggedUser, 
+        userTopTracks, 
+        userTopArtists, 
+        setUserTopTracks, 
+        setUserTopArtists, 
+        resetCommentsCount 
+    } = useStore()
     const { userId } = useParams()
     const [ isLoggedUser, setIsLoggedUser ] = useState(false)
     const [ userProfileData, setUserProfileData ] = useState(null)
@@ -34,6 +42,7 @@ export default function Profile(){
     }
 
     async function getPosts(userId){
+        resetCommentsCount()
         const response = await Axios.get(`/api/${userId}/posts`)
         setPosts(response.data)
     }

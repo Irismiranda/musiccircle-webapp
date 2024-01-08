@@ -6,11 +6,10 @@ import { SvgDots, SvgHeart } from "../../assets"
 import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
 
 export default function Post(props){
-    const { spotifyApi, loggedUser } = useStore()
+    const { spotifyApi, loggedUser, postCommentsCount } = useStore()
     const [track, setTrack] = useState(null)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [user, setUser] = useState(null)
-    const [commentsNumber, setCommentsNumber] = useState(0)
     const [showMenuVisibility, setShowMenuVisibility] = useState(false)
     
     const { data, isLoggedUser, setPosts, posts } = props
@@ -144,7 +143,7 @@ export default function Post(props){
                         <div 
                         className="flex">
                             <h4>{data?.likes?.length || 0} Likes</h4>
-                            <h4>{commentsNumber} Comments</h4>
+                            <h4>{postCommentsCount[`${data?.post_id}`]} Comments</h4>
                             <div
                             onClick={() => likePost(data?.post_id)}>
                                 <SvgHeart
@@ -162,8 +161,6 @@ export default function Post(props){
                 style={{ right: "20px", bottom: "20px" }}>   
                     <CommentBtn 
                     post={{...data, track: track, user: user}} 
-                    commentsNumber={commentsNumber}
-                    setCommentsNumber={setCommentsNumber}
                     setPosts={setPosts}
                     posts={posts}
                     /> 

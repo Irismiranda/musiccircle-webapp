@@ -12,11 +12,10 @@ export default function CommentBtn(props){
     const [artistPic, setArtistPic] = useState(null)
     const [showFullDescription, setShowFullDescription] = useState(false)
     const [replyTo, setReplyTo] = useState(null)
-    const [localCommentsNumber, localSetCommentsNumber] = useState(null)
     const [scrollOnLoad, setScrollOnLoad] = useState(false)
     
-    const { spotifyApi, loggedUser, playerRef } = useStore()
-    const { post, setCommentsNumber, commentsNumber, setPosts, posts, setPost } = props
+    const { spotifyApi, loggedUser, playerRef, postCommentsCount } = useStore()
+    const { post, setPosts, posts, setPost } = props
     const { track, likes, post_id, description, user } = post
 
     const postWindowRef = useRef(null)
@@ -172,7 +171,7 @@ export default function CommentBtn(props){
                             <div 
                             className="flex">
                                 <h4>{likes?.length || 0} Likes</h4>
-                                <h4>{commentsNumber || localCommentsNumber || 0} Comments</h4>
+                                <h4>{postCommentsCount[`${post_id}`]} Comments</h4>
                             </div>
                             <div
                             onClick={() => likePost()}>
@@ -193,7 +192,6 @@ export default function CommentBtn(props){
                     descriptionMenuRef={descriptionMenuRef}
                     setReplyTo={setReplyTo}
                     replyTo={replyTo}
-                    setCommentsNumber={setCommentsNumber || localSetCommentsNumber}
                     setScrollOnLoad={setScrollOnLoad}
                     scrollOnLoad={scrollOnLoad}/>
                 
