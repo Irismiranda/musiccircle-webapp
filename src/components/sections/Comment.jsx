@@ -74,6 +74,7 @@ const Comment = React.memo((props) => {
                 .map(prevReply => {
                     const currentReply = data.replies
                     .find(reply => reply.reply_id === prevReply.reply_id)
+                    console.log("current Reply is", currentReply, "prev Reply id", prevReply)
                     return (currentReply && (currentReply.likes?.length !== prevReply.likes?.length)) ? currentReply : null
                 })
                 .filter(reply => reply !== null)
