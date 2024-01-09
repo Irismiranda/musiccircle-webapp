@@ -24,6 +24,7 @@ export default function Feed(){
     useEffect(() => {
         console.log(loggedUser)
         loggedUser && getPosts(index, loggedUser.following)
+        console.log(loggedUser.following)
     }, [])
 
     return (
