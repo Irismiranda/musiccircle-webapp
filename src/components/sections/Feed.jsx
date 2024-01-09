@@ -10,7 +10,7 @@ export default function Feed(){
     const { standardWrapperWidth, loggedUser } = useStore()
 
     async function getPosts(index, user_ids){
-        const postsArr = await Axios.get(`api/posts/${index}`, {
+        const postsArr = await Axios.post(`api/posts/${index}`, {
             params: {
                 user_ids: user_ids,
               }
