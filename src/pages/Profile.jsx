@@ -43,7 +43,7 @@ export default function Profile(){
 
     async function getPosts(userId){
         resetPostCommentsCount()
-        const response = await Axios.get(`/api/${userId}/posts`)
+        const response = await Axios.get(`/api/${userId}/user_posts`)
         setPosts(response.data)
     }
 
