@@ -21,6 +21,7 @@ export default function Feed(){
     }
 
     useEffect(() => {
+        console.log("logged user is", loggedUser)
         getPosts(index, loggedUser.following)
         setIndex(prevIndex => prevIndex + 10)
     }, [])
