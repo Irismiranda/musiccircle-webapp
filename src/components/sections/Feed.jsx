@@ -10,16 +10,20 @@ export default function Feed(){
     const { standardWrapperWidth, loggedUser } = useStore()
 
     async function getPosts(index, user_ids){
-        const postsArr = await Axios.post(`api/posts/${index}`, {user_ids: user_ids,})
+        const postsArr = await Axios.get(`api/posts/${index}`, {
+            params: {
+                user_ids: user_ids,
+              }
+        })
 
         console.log(postsArr.data)
         setPosts(postsArr.data)
+        setIndex(prevIndex => prevIndex + 10)
     }
 
     useEffect(() => {
-        console.log("logged user is", loggedUser)
-        getPosts(index, loggedUser.following)
-        setIndex(prevIndex => prevIndex + 10)
+        console.log(loggedUser)
+        loggedUser && getPosts(index, loggedUser.following)
     }, [])
 
     return (
