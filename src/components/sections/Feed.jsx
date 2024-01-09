@@ -27,7 +27,7 @@ export default function Feed(){
 
     return (
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
-            { posts?.map(post => {
+            { posts && posts.map(post => {
                 return (
                     <Post 
                     data={post}
