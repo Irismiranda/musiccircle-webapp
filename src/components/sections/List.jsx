@@ -1,6 +1,6 @@
     import React, { useState } from "react"
     import { Link } from "react-router-dom"
-    import { PlayBtn} from "../../utils"
+    import { PlayBtnManager} from "../../utils"
 
     export default function List(props){
         const { list, category, showIndex } = props
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                 <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                    <PlayBtn 
+                                    <PlayBtnManager 
                                     uri={item.uri} 
                                     id={item.id}
                                     category={"list"} 

@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { Comments, EmojiBar } from "../components"
 import { SvgCommentBtn, SvgSendBtn, SvgHeart } from "../assets"
-import { useClickOutside, SaveTrackBtn, PlayBtn } from "."
+import { useClickOutside, SaveTrackBtnManager, PlayBtnManager } from "."
 import useStore from "../store"
 import { Axios } from "../Axios-config"
 
-export default function CommentBtn(props){
+export default function CommentsManager(props){
     const [isPostVisible, setIsPostVisible] = useState(false)
     const [hoverItemId, setHoverItemId] = useState(null)
     const [artistPic, setArtistPic] = useState(null)
@@ -36,9 +36,6 @@ export default function CommentBtn(props){
         const endpointPath = replyTo ? 
         `/api/${post_id || track?.id}/reply_to/${replyTo.comment_id}` :
         `/api/${post_id || track?.id}/add_comment`
-
-        console.log("user_handle at CommentBtn is", replyTo.user_handle)
-
         const commentData = {
             text: textAreaRef.current.value,
             user_id: loggedUser.id,
@@ -120,7 +117,7 @@ export default function CommentBtn(props){
                     className="cover_medium relative">
                         <div 
                         onMouseEnter={() => setHoverItemId(track?.id)}>
-                            <PlayBtn 
+                            <PlayBtnManager 
                             uri={`spotify:${track?.type}:${track?.id}`} 
                             id={track?.id}
                             category={"cover"} 
@@ -131,7 +128,7 @@ export default function CommentBtn(props){
                     <div
                     className="flex">
                         <h2>{track?.name}</h2>
-                        <SaveTrackBtn 
+                        <SaveTrackBtnManager 
                         trackId={track?.id}/>
                     </div>
                     <h3><Link to={`/artist/${track?.artist_id}`}>{track?.artist_name}</Link></h3>

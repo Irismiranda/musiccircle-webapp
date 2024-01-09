@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react"
 import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
-import { PlayBtn, SliderScrollBtns } from "../../utils"
+import { PlayBtnManager, SliderScrollBtns } from "../../utils"
 
 export default function Slider(props){
     const { list, visibility, category, isLoggedUser, type, slidePercent } = props
@@ -55,7 +55,7 @@ export default function Slider(props){
                                     </Link>
                                     {isLoggedUser && <button onClick={() => toggleItemVisibility(item.id, item.type)}>{visibility ? "Hide" : "Show"}</button>}
                                     <div onMouseEnter={() => setHoverItemId(item.id)}>
-                                        <PlayBtn 
+                                        <PlayBtnManager 
                                         uri={item.uri} 
                                         id={item.id}
                                         category={"slider"} 

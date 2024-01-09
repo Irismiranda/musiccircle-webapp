@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Slider, SimplifiedList } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData, PlayBtn } from "../utils"
+import { formatListData, PlayBtnManager } from "../utils"
 import useStore from "../store"
 
 export default function Album(){
@@ -57,7 +57,7 @@ export default function Album(){
                 onMouseEnter={() => setHoverItemId(albumData?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     <div className="cover_medium" style={{ backgroundImage: `url('${albumData?.images[0].url}')` }}>
-                        <PlayBtn 
+                        <PlayBtnManager 
                         uri={albumData?.uri} 
                         id={albumData?.id}
                         category={"cover"} 

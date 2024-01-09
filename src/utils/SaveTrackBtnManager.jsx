@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import useStore from "../store"
 import { SvgHeart } from "../assets"
 
-export default function SaveTrackBtn(props){
+export default function SaveTrackBtnManager(props){
     const { spotifyApi } = useStore()
     const [isLiked, setIsLiked] = useState(false)
 

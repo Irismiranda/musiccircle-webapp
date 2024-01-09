@@ -29,7 +29,6 @@ const Reply = React.memo((props) => {
     async function handleReplies(user_id){   
         if(!user){
             const userData = await getUser(user_id)
-            console.log("user data is", userData, "user handle is", userData.userHandle)
             setUser(userData)
             setRepliesLoaded(prevCount => prevCount + 1)
         }
@@ -105,7 +104,7 @@ const Reply = React.memo((props) => {
                         <a 
                         className="user_handle"
                         style={{ maxWidth: "340px", marginBottom: "4px" }}
-                        href={`/user/${reply.reply_to.user_id}`}>
+                        href={`/account/${reply.reply_to.user_id}`}>
                             @{reply?.reply_to.user_handle}
                         </a>} 
                         {reply?.text}

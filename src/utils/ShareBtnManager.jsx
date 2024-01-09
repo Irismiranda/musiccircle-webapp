@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react"
 import { SvgShareBtn } from "../assets"
 import { ShareMenu } from "../components"
-import { useClickOutside } from "./"
+import { useClickOutside } from "."
 
-export default function ShareBtn(props){
+export default function ShareBtnManager(props){
     const [isShareMenuVisibile, setIsShareMenuVisibile] = useState(false)
     const shareMenuRef = useRef(null)
     const shareBtnRef = useRef(null)

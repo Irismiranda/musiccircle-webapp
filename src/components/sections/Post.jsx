@@ -3,7 +3,7 @@ import useStore from "../../store"
 import { Link } from "react-router-dom"
 import { Axios } from "../../Axios-config"
 import { SvgDots, SvgHeart } from "../../assets"
-import { PlayBtn, ShareBtn, CommentBtn, formatListData, useClickOutside } from "../../utils"
+import { PlayBtnManager, ShareBtnManager, CommentsManager, formatListData, useClickOutside } from "../../utils"
 
 export default function Post(props){
     const { spotifyApi, loggedUser, postCommentsCount } = useStore()
@@ -90,7 +90,7 @@ export default function Post(props){
                         onMouseLeave={() => setHoverItemId(null)}>
                         <div 
                         onMouseEnter={() => setHoverItemId(track.id)}>
-                            <PlayBtn 
+                            <PlayBtnManager 
                                 uri={`spotify:${track.type}:${track.id}`} 
                                 id={track.id}
                                 category={"cover"} 
@@ -159,12 +159,12 @@ export default function Post(props){
                 <div
                 className="absolute flex"
                 style={{ right: "20px", bottom: "20px" }}>   
-                    <CommentBtn 
+                    <CommentsManager 
                     post={{...data, track: track, user: user}} 
                     setPosts={setPosts}
                     posts={posts}
                     /> 
-                    <ShareBtn 
+                    <ShareBtnManager 
                     content={data}/>
                 </div>
             </section>

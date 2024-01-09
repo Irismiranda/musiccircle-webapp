@@ -2,7 +2,7 @@
         import { Link } from "react-router-dom"
         import useStore from "../../store"
         import { SvgPlayBtn, SvgRandom, SvgRepeat, SvgVolume, SvgPrevBtn, SvgNextBtn } from "../../assets"
-        import { SaveTrackBtn, ShareBtn, CommentBtn } from "../../utils"
+        import { SaveTrackBtnManager, ShareBtnManager, CommentsManager } from "../../utils"
 
         const PlayerMinimized = ((props) => {
             const { playerState, setPlayerState, currentTrack } = useStore()
@@ -41,14 +41,14 @@
                 <>
                         <div className="cover_flexible overlay" style={{ background: `linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8379726890756303) 100%), url(${albumImg})` }}>
                         <div className="flex social_btns">
-                            <CommentBtn
+                            <CommentsManager
                             post={{track: post?.track, likes: post?.likes}}
                             setPost={setPost}/>
                         <div ref={shareBtnRef}>
-                            <ShareBtn
+                            <ShareBtnManager
                             content={currentTrack}/>
                         </div>
-                        <SaveTrackBtn 
+                        <SaveTrackBtnManager 
                         trackId={trackId}/>
                     </div>
                         </div>
@@ -156,14 +156,14 @@
                 </div>
                     
                     {playerSize.height > 145 && <div className="flex social_btns">  
-                            <CommentBtn
+                            <CommentsManager
                             post={{track: post?.track, likes: post?.likes}}
                             setPost={setPost}/>
                         <div ref={shareBtnRef}>
-                            <ShareBtn
+                            <ShareBtnManager
                             content={currentTrack}/>
                         </div>
-                        <SaveTrackBtn 
+                        <SaveTrackBtnManager 
                         trackId={trackId}/>
                     </div>} 
                 </> 

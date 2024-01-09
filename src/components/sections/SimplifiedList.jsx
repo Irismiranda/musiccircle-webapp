@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { PlayBtn } from "../../utils"
+import { PlayBtnManager } from "../../utils"
 import useStore from "../../store"
 
 export default function SimplifiedList(props){
@@ -25,7 +25,7 @@ export default function SimplifiedList(props){
                             if(currentTrack){ 
                             setHoverItemId(item.id)
                             } }} >
-                                <PlayBtn 
+                                <PlayBtnManager 
                                 uri={item.uri} 
                                 id={item.id}
                                 category={"simplified_list"} 

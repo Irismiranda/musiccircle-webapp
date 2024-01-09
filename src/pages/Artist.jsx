@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Slider, List } from "../components"
 import { useParams } from "react-router-dom"
-import { formatListData, PlayBtn } from "../utils"
+import { formatListData, PlayBtnManager } from "../utils"
 import useStore from "../store"
 
 export default function Artist(){
@@ -72,7 +72,7 @@ export default function Artist(){
                 onMouseEnter={() => setHoverItemId(artistData?.id)}
                 onMouseLeave={() => setHoverItemId(null)}>
                     <div className="cover_medium" style={{ backgroundImage: `url('${artistData?.images[0].url}')` }}>
-                        <PlayBtn 
+                        <PlayBtnManager 
                         uri={artistData?.uri} 
                         id={artistData?.id}
                         category={"cover"} 
