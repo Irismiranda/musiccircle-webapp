@@ -10,11 +10,7 @@ export default function Feed(){
     const { standardWrapperWidth, loggedUser } = useStore()
 
     async function getPosts(index, user_ids){
-        const postsArr = await Axios.post(`api/posts/${index}`, {
-            params: {
-                user_ids: user_ids,
-              }
-        })
+        const postsArr = await Axios.post(`api/posts/${index}`, {user_ids: user_ids})
 
         console.log(postsArr.data)
         setPosts(postsArr.data)
@@ -22,10 +18,9 @@ export default function Feed(){
     }
 
     useEffect(() => {
-        console.log(loggedUser)
         loggedUser && getPosts(index, loggedUser.following)
         console.log(loggedUser.following)
-    }, [])
+    }, [loggedUser])
 
     return (
         <div className="wrapper default_padding" style={{ width: standardWrapperWidth }}>
